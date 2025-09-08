@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using System.IO;
+using System.Text;
 using BepInEx.Logging;
 using UnityEngine;
 using static Martyr.Utils.CompatibilityManager;
@@ -117,8 +118,22 @@ internal static class MyLogger
     private static string FormatMessage(object message, LogLevel logLevel, bool addNewLine = true, bool addDateTime = true) =>
         $"{(addDateTime ? GetDateTime() : "")} [{BuildLogPrefix("MY")}: {logLevel}] {message}".Trim() + (addNewLine ? Environment.NewLine : "");
 
-    private static string FormatErrorMessage(object message, Exception exception) =>
-        $"{message}{Environment.NewLine}-- Exception:{Environment.NewLine}({exception.HResult}) {exception.GetType()}: {exception.Message}{Environment.NewLine}-- Stack trace:{Environment.NewLine}{exception.StackTrace}";
+    private static string FormatErrorMessage(object message, Exception exception)
+    {
+        StringBuilder stringBuilder = new($"{message}{Environment.NewLine}-- Exception:{Environment.NewLine}({exception.HResult}) {exception.GetType()}: {exception.Message}{Environment.NewLine}-- Stack trace:{Environment.NewLine}{exception.StackTrace}");
+
+        Exception? inner = exception;
+        while (inner is not null)
+        {
+            inner = exception.InnerException;
+
+            if (inner is null) break;
+
+            stringBuilder.Append($"{Environment.NewLine}-- Inner exception:{Environment.NewLine}({inner.HResult}) {inner.GetType()}: {inner.Message}{Environment.NewLine}-- Stack trace:{Environment.NewLine}{inner.StackTrace}");
+        }
+
+        return stringBuilder.ToString();
+    }
 
     /// <summary>
     /// Writes the given message to the mod's log file.

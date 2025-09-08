@@ -44,7 +44,7 @@ internal static class ImprovedInputHandler
         {
             if (PlayerKeybind.Keybinds().Any(key => key.Id == id))
             {
-                MyLogger.LogError($"A {nameof(PlayerKeybind)} is already registered with that ID: {id}");
+                MyLogger.LogWarning($"A {nameof(PlayerKeybind)} is already registered with that ID: {id}");
             }
             else
             {

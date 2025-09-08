@@ -65,7 +65,7 @@ public static class InputHandler
 
         if (Keybinds.Contains(keybind))
         {
-            MyLogger.LogError($"Tried to register an existing keybind: {keybind.ID}");
+            MyLogger.LogWarning($"Tried to register an existing keybind: {keybind.ID}");
         }
         else
         {

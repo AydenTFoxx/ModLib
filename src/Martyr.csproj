@@ -12,6 +12,9 @@
 		<Reference Include="../lib/*.dll">
 			<Private>false</Private>
 		</Reference>
+		<Reference Include="../lib/**/*.dll">
+			<Private>false</Private>
+		</Reference>
 	</ItemGroup>
 
 	<Target Name="GenerateMod" AfterTargets="PostBuildEvent">
@@ -19,7 +22,7 @@
 			<RemovePlugins Include="../mod/plugins/*.dll" />
 		</ItemGroup>
 		<ItemGroup>
-			<CopyPlugins Include="$(TargetPath)" />
+			<CopyPlugins Include="$(TargetDir)$(TargetName).*" />
 		</ItemGroup>
 		
 		<Delete Files="@(RemovePlugins)" />

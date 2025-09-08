@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using Martyr.Slugcat.Features;
 using Martyr.Utils;
 
 namespace Martyr;
@@ -9,6 +10,8 @@ public class MartyrMain : BaseUnityPlugin
     public const string MOD_GUID = "ynhzrfxn.martyr";
     public const string MOD_NAME = "The Martyr";
     public const string MOD_VERSION = "0.1.0";
+
+    public static SlugcatStats.Name Martyr = new("Martyr");
 
     private static MyOptions? options;
 
@@ -30,7 +33,12 @@ public class MartyrMain : BaseUnityPlugin
 
         CompatibilityManager.CheckModCompats();
 
-        ApplyAllHooks();
+        MyExtras.WrapAction(() =>
+        {
+            ApplyAllHooks();
+
+            MyLogger.LogDebug("Successfully registered hooks to the game.");
+        });
 
         InputHandler.Keys.InitKeybinds();
 
@@ -42,34 +50,50 @@ public class MartyrMain : BaseUnityPlugin
         if (!isModEnabled) return;
         isModEnabled = !isModEnabled;
 
-        RemoveAllHooks();
+        MyExtras.WrapAction(() =>
+        {
+            RemoveAllHooks();
+
+            MyLogger.LogDebug("Removed all hooks successfully.");
+        });
 
         Logger.LogInfo($"Disabled {MOD_NAME} successfully.");
     }
 
 
     // Load any resources, such as sprites or sounds
-    private static void LoadResources(RainWorld _) =>
+    private static void LoadResources() =>
         MachineConnector.SetRegisteredOI(MOD_GUID, options);
 
 
     private static void ApplyAllHooks()
     {
-        On.RainWorld.OnModsInit += MyExtras.WrapInit(LoadResources);
+        On.RainWorld.OnModsInit += OnModsInitHook;
 
         On.GameSession.ctor += MyExtras.GameSessionHook;
         On.GameSession.AddPlayer += MyExtras.AddPlayerHook;
 
-        Slugcat.Features.Feature.ApplyFeatures();
+        FeatureManager.ApplyFeatures();
+
+        MyExtras.WrapAction(Slugcat.SaintMechanicsHooks.ApplyHooks);
     }
 
     private static void RemoveAllHooks()
     {
-        On.RainWorld.OnModsInit -= MyExtras.WrapInit(LoadResources);
+        On.RainWorld.OnModsInit -= OnModsInitHook;
 
         On.GameSession.ctor -= MyExtras.GameSessionHook;
         On.GameSession.AddPlayer -= MyExtras.AddPlayerHook;
 
-        Slugcat.Features.Feature.RemoveFeatures();
+        FeatureManager.RemoveFeatures();
+
+        MyExtras.WrapAction(Slugcat.SaintMechanicsHooks.RemoveHooks);
+    }
+
+    private static void OnModsInitHook(On.RainWorld.orig_OnModsInit orig, RainWorld self)
+    {
+        orig.Invoke(self);
+
+        MyExtras.WrapAction(LoadResources);
     }
 }
