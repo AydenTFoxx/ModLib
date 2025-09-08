@@ -1,6 +1,4 @@
-using Martyr.Possession;
-
-namespace Martyr.Utils;
+namespace MyMod.Utils.Options;
 
 /// <summary>
 /// Utility methods for retrieving the mod's REMIX options.
@@ -8,7 +6,7 @@ namespace Martyr.Utils;
 /// <remarks>This also allows for overriding the player's local options without touching their REMIX values.</remarks>
 public static class OptionUtils
 {
-    public static Options.ServerOptions SharedOptions { get; } = new();
+    public static ServerOptions SharedOptions { get; } = new();
 
     /// <summary>
     /// Directly requests for the client's REMIX options, then retrieves its value.

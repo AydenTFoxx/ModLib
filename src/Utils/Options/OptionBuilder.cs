@@ -3,13 +3,13 @@ using Menu;
 using Menu.Remix.MixedUI;
 using UnityEngine;
 
-namespace Martyr.Utils.Options;
+namespace MyMod.Utils.Options;
 
 /// <summary>
 /// Helper class for building <c>OpTab</c>s with a variety of chain-able methods.
 /// </summary>
 /// <remarks>To return the modified <c>OpTab</c> object, use <see cref="Build()"/>.</remarks>
-internal class OptionBuilder
+public class OptionBuilder
 {
     private Vector2 vector2 = new(100f, 400f);
     private readonly OpTab opTab;
@@ -23,8 +23,8 @@ internal class OptionBuilder
 
         opTab.AddItems(
             [
-                new OpLabel(new Vector2(200f, 520f), new Vector2(200f, 40f), MartyrMain.MOD_NAME, bigText: true),
-                new OpLabel(new Vector2(245f, 510f), new Vector2(200f, 15f), $"[v{MartyrMain.MOD_VERSION}]")
+                new OpLabel(new Vector2(200f, 520f), new Vector2(200f, 40f), Main.MOD_NAME, bigText: true),
+                new OpLabel(new Vector2(245f, 510f), new Vector2(200f, 15f), $"[v{Main.MOD_VERSION}]")
                 {
                     color = Color.gray
                 }

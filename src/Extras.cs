@@ -1,13 +1,8 @@
 using System;
 using System.Security.Permissions;
-using Martyr.Possession;
-using Martyr.Utils;
 using MonoMod.Cil;
-
-/*
- * This file contains fixes to some common problems when modding Rain World.
- * Unless you know what you're doing, you shouldn't modify anything here.
- */
+using MyMod.Utils;
+using MyMod.Utils.Options;
 
 // Allows access to private members
 #pragma warning disable CS0618
@@ -15,7 +10,7 @@ using MonoMod.Cil;
 #pragma warning restore CS0618
 
 
-namespace Martyr;
+namespace MyMod;
 
 internal static class MyExtras
 {

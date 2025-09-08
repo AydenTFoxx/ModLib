@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Martyr.Utils.Generics;
+namespace MyMod.Utils.Generics;
 
 public class WeakList<T> : WeakCollection<T>, IList<T> where T : class
 {

@@ -3,7 +3,7 @@ using System.Linq;
 using ImprovedInput;
 using UnityEngine;
 
-namespace Martyr.Utils;
+namespace MyMod.Utils;
 
 internal static class ImprovedInputHandler
 {
@@ -48,7 +48,7 @@ internal static class ImprovedInputHandler
             }
             else
             {
-                PlayerKeybind.Register(id, MartyrMain.MOD_NAME, name, keyboardKey, gamepadKey);
+                PlayerKeybind.Register(id, Main.MOD_NAME, name, keyboardKey, gamepadKey);
 
                 MyLogger.LogInfo($"Registered new {nameof(PlayerKeybind)}! {id}");
             }

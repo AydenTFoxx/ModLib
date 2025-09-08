@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Martyr.Utils.Options;
+namespace MyMod.Utils.Options;
 
 public class ServerOptions
 {
@@ -12,9 +12,9 @@ public class ServerOptions
 
     public void RefreshOptions(bool isOnline = false)
     {
-        foreach (FieldInfo? field in typeof(Martyr.MyOptions).GetFields(BindingFlags.Public | BindingFlags.Static))
+        foreach (FieldInfo field in typeof(MyMod.Options).GetFields(BindingFlags.Public | BindingFlags.Static))
         {
-            if (field?.GetValue(null) is not Configurable<bool> configurable
+            if (field.GetValue(null) is not Configurable<bool> configurable
                 || Attribute.GetCustomAttribute(field, typeof(ClientOptionAttribute)) is not null)
             {
                 continue;

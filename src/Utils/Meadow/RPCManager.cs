@@ -1,9 +1,12 @@
 using System.Collections.Generic;
-using Martyr.Utils.Generics;
+using MyMod.Utils.Generics;
 using RainMeadow;
 
-namespace Martyr.Possession.Meadow;
+namespace MyMod.Utils.Meadow;
 
+/// <summary>
+/// A simple tracker of sent RPC events, used to prevent unresolved SoftRPCs from hanging around indefinitely.
+/// </summary>
 public static class RPCManager
 {
     private static readonly WeakDictionary<RPCEvent, RPCTimeout> _activeRPCs = [];

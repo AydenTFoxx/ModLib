@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 
-namespace Martyr.Utils;
+namespace MyMod.Utils;
 
 /// <summary>
 /// Simple helper for determining the presence of other mods and ensure mod compatibility.

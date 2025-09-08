@@ -1,24 +1,21 @@
 ﻿using BepInEx;
-using Martyr.Slugcat.Features;
-using Martyr.Utils;
+using MyMod.Utils;
 
-namespace Martyr;
+namespace MyMod;
 
 [BepInPlugin(MOD_GUID, MOD_NAME, MOD_VERSION)]
-public class MartyrMain : BaseUnityPlugin
+public class Main : BaseUnityPlugin
 {
-    public const string MOD_GUID = "ynhzrfxn.martyr";
-    public const string MOD_NAME = "The Martyr";
+    public const string MOD_GUID = "ynhzrfxn.example";
+    public const string MOD_NAME = "Example Mod";
     public const string MOD_VERSION = "0.1.0";
 
-    public static SlugcatStats.Name Martyr = new("Martyr");
-
-    private static MyOptions? options;
+    private static Options? options;
 
     private bool isModEnabled;
 
 
-    public MartyrMain()
+    public Main()
         : base()
     {
         MyLogger.CleanLogFile();
@@ -72,10 +69,6 @@ public class MartyrMain : BaseUnityPlugin
 
         On.GameSession.ctor += MyExtras.GameSessionHook;
         On.GameSession.AddPlayer += MyExtras.AddPlayerHook;
-
-        FeatureManager.ApplyFeatures();
-
-        MyExtras.WrapAction(Slugcat.SaintMechanicsHooks.ApplyHooks);
     }
 
     private static void RemoveAllHooks()
@@ -84,10 +77,6 @@ public class MartyrMain : BaseUnityPlugin
 
         On.GameSession.ctor -= MyExtras.GameSessionHook;
         On.GameSession.AddPlayer -= MyExtras.AddPlayerHook;
-
-        FeatureManager.RemoveFeatures();
-
-        MyExtras.WrapAction(Slugcat.SaintMechanicsHooks.RemoveHooks);
     }
 
     private static void OnModsInitHook(On.RainWorld.orig_OnModsInit orig, RainWorld self)

@@ -1,38 +1,16 @@
 using System;
-using RainMeadow;
-using Random = UnityEngine.Random;
-using Martyr.Utils.Options;
-using static Martyr.Utils.OptionUtils;
 using System.Linq;
+using RainMeadow;
+using MyMod.Utils.Options;
+using static MyMod.Utils.Options.OptionUtils;
 
-namespace Martyr.Possession.Meadow;
+namespace MyMod.Utils.Meadow;
 
-public static class PossessionRPCs
+/// <summary>
+/// Events sent to and received by clients, used for syncing data in an online context.
+/// </summary>
+public static class MyRPCs
 {
-    [SoftRPCMethod]
-    public static void ApplyPossessionEffects(RPCEvent rpcEvent, OnlineCreature onlineTarget, bool isPossession)
-    {
-        if (onlineTarget.realizedCreature is not Creature target || target.room is null)
-        {
-            MyLogger.LogWarning($"Target or room is invalid; Target: {onlineTarget.realizedCreature} | Room: {onlineTarget.realizedCreature?.room}");
-
-            rpcEvent.Resolve(new GenericResult.Fail(rpcEvent));
-            return;
-        }
-
-        if (isPossession)
-        {
-            target.room.AddObject(new TemplarCircle(target, target.mainBodyChunk.pos, 48f, 8f, 2f, 12, true));
-            target.room.AddObject(new ShockWave(target.mainBodyChunk.pos, 100f, 0.08f, 4, false));
-            target.room.PlaySound(SoundID.SS_AI_Give_The_Mark_Boom, target.mainBodyChunk, loop: false, 1f, 1.25f + (Random.value * 1.25f));
-        }
-        else
-        {
-            target.room.AddObject(new ReverseShockwave(target.mainBodyChunk.pos, 64f, 0.05f, 24));
-            target.room.PlaySound(SoundID.HUD_Pause_Game, target.mainBodyChunk, loop: false, 1f, 0.5f);
-        }
-    }
-
     [SoftRPCMethod]
     public static void RequestRemixOptionsSync(RPCEvent rpcEvent, OnlinePlayer onlinePlayer)
     {
@@ -52,22 +30,6 @@ public static class PossessionRPCs
         MyLogger.LogInfo($"Syncing REMIX options with player {onlinePlayer}...");
 
         onlinePlayer.SendRPCEvent(SyncRemixOptions, new OnlineServerOptions());
-    }
-
-    [SoftRPCMethod]
-    public static void SetCreatureControl(RPCEvent rpcEvent, OnlineCreature onlineTarget, bool controlled)
-    {
-        if (onlineTarget.realizedCreature is not Creature target)
-        {
-            MyLogger.LogWarning($"{onlineTarget} is not a controllable creature.");
-
-            rpcEvent.Resolve(new GenericResult.Fail(rpcEvent));
-            return;
-        }
-
-        target.abstractCreature.controlled = controlled;
-
-        MyLogger.LogInfo($"{target} is {(controlled ? "now" : "no longer")} being controlled by {rpcEvent.from}.");
     }
 
     [SoftRPCMethod]
@@ -103,11 +65,11 @@ public static class PossessionRPCs
         }
     }
 
-    internal static RPCEvent SendRPCEvent<T>(this OnlinePlayer onlinePlayer, T @delegate, params object[] args)
+    public static RPCEvent SendRPCEvent<T>(this OnlinePlayer onlinePlayer, T @delegate, params object[] args)
         where T : Delegate
     {
         RPCEvent rpcEvent = onlinePlayer
-            .InvokeOnceRPC(typeof(PossessionRPCs).GetMethod(@delegate.Method.Name).CreateDelegate(typeof(T)), args)
+            .InvokeOnceRPC(typeof(MyRPCs).GetMethod(@delegate.Method.Name).CreateDelegate(typeof(T)), args)
             .Then(ResolveRPCEvent)
             .SetTimeout(1000);
 
@@ -116,7 +78,7 @@ public static class PossessionRPCs
         return rpcEvent;
     }
 
-    private static void ResolveRPCEvent(GenericResult result)
+    public static void ResolveRPCEvent(GenericResult result)
     {
         switch (result)
         {
@@ -137,6 +99,9 @@ public static class PossessionRPCs
         }
     }
 
+    /// <summary>
+    /// An online variant of <see cref="ServerOptions"/> which can be serialized by Rain Meadow.
+    /// </summary>
     public class OnlineServerOptions : ServerOptions, Serializer.ICustomSerializable
     {
         public void CustomSerialize(Serializer serializer) =>
