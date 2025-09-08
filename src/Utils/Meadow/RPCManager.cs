@@ -45,7 +45,7 @@ public static class RPCManager
 
             if (managedRPC.Value.Lifetime < 1)
             {
-                MyLogger.LogWarning($"RPC event {managedRPC.Key} failed to be delivered; Timed out waiting for response.");
+                Logger.LogWarning($"RPC event {managedRPC.Key} failed to be delivered; Timed out waiting for response.");
 
                 managedRPC.Key.Abort();
 

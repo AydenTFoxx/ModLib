@@ -65,7 +65,7 @@ public static class InputHandler
 
         if (Keybinds.Contains(keybind))
         {
-            MyLogger.LogWarning($"Tried to register an existing keybind: {keybind.ID}");
+            Logger.LogWarning($"Tried to register an existing keybind: {keybind.ID}");
         }
         else
         {
@@ -78,11 +78,11 @@ public static class InputHandler
                     ImprovedInputHandler.RegisterPlayerKeybind(keybind);
                 }
 
-                MyLogger.LogInfo($"Registered new keybind! {keybind}");
+                Logger.LogInfo($"Registered new keybind! {keybind}");
             }
             catch (Exception ex)
             {
-                MyLogger.LogError($"Failed to register keybind: {keybind}!", ex);
+                Logger.LogError($"Failed to register keybind: {keybind}!", ex);
             }
         }
 
@@ -105,7 +105,7 @@ public static class InputHandler
         /// Initializes all keybinds of the mod. A dummy method for the sake of registering keybinds as early as possible.
         /// </summary>
         public static void InitKeybinds() =>
-            MyLogger.LogDebug($"Initialized keybinds successfully. IIC support enabled? {IsIICEnabled()}");
+            Logger.LogDebug($"Initialized keybinds successfully. IIC support enabled? {IsIICEnabled()}");
     }
 }
 

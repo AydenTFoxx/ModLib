@@ -16,7 +16,7 @@ public static class MyRPCs
     {
         if (!MeadowUtils.IsHost)
         {
-            MyLogger.LogWarning("Player is not host; Cannot sync options with other players!");
+            Logger.LogWarning("Player is not host; Cannot sync options with other players!");
 
             rpcEvent.Resolve(new GenericResult.Fail(rpcEvent));
             return;
@@ -27,7 +27,7 @@ public static class MyRPCs
             SharedOptions.RefreshOptions(true);
         }
 
-        MyLogger.LogInfo($"Syncing REMIX options with player {onlinePlayer}...");
+        Logger.LogInfo($"Syncing REMIX options with player {onlinePlayer}...");
 
         onlinePlayer.SendRPCEvent(SyncRemixOptions, new OnlineServerOptions());
     }
@@ -37,7 +37,7 @@ public static class MyRPCs
     {
         if (MeadowUtils.IsHost)
         {
-            MyLogger.LogWarning("Player is host; Ignoring options sync.");
+            Logger.LogWarning("Player is host; Ignoring options sync.");
 
             rpcEvent.Resolve(new GenericResult.Fail(rpcEvent));
             return;
@@ -45,7 +45,7 @@ public static class MyRPCs
 
         SharedOptions.SetOptions(options);
 
-        MyLogger.LogInfo($"Synced REMIX options! New values are: {SharedOptions}");
+        Logger.LogInfo($"Synced REMIX options! New values are: {SharedOptions}");
     }
 
     public static void SendCreatureRPC<T>(Creature creature, T @delegate, params object[] args)
@@ -73,7 +73,7 @@ public static class MyRPCs
             .Then(ResolveRPCEvent)
             .SetTimeout(1000);
 
-        MyLogger.LogDebug($"Sending RPC event {rpcEvent} to {rpcEvent.to}...");
+        Logger.LogDebug($"Sending RPC event {rpcEvent} to {rpcEvent.to}...");
 
         return rpcEvent;
     }
@@ -83,13 +83,13 @@ public static class MyRPCs
         switch (result)
         {
             case GenericResult.Ok:
-                MyLogger.LogInfo($"Successfully delivered RPC {result.referencedEvent} to {result.to}.");
+                Logger.LogInfo($"Successfully delivered RPC {result.referencedEvent} to {result.to}.");
                 break;
             case GenericResult.Fail:
-                MyLogger.LogWarning($"Could not run RPC {result.referencedEvent} as {result.to}.");
+                Logger.LogWarning($"Could not run RPC {result.referencedEvent} as {result.to}.");
                 break;
             default:
-                MyLogger.LogWarning($"Failed to deliver RPC {result.referencedEvent} to {result.to}!");
+                Logger.LogWarning($"Failed to deliver RPC {result.referencedEvent} to {result.to}!");
                 break;
         }
 

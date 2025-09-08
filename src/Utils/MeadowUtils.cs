@@ -36,15 +36,15 @@ public static class MeadowUtils
     {
         try
         {
-            MyLogger.LogDebug($"Requesting ownership of {physicalObject}...");
+            Logger.LogDebug($"Requesting ownership of {physicalObject}...");
 
             physicalObject.abstractPhysicalObject.GetOnlineObject()?.Request();
 
-            MyLogger.LogDebug($"New owner is: {physicalObject.abstractPhysicalObject.GetOnlineObject()?.owner}");
+            Logger.LogDebug($"New owner is: {physicalObject.abstractPhysicalObject.GetOnlineObject()?.owner}");
         }
         catch (System.Exception ex)
         {
-            MyLogger.LogError($"Failed to request ownership of {physicalObject}!", ex);
+            Logger.LogError($"Failed to request ownership of {physicalObject}!", ex);
         }
     }
 

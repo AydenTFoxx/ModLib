@@ -1,6 +1,6 @@
-# Yannah's Template Mod
+# RW Template Project
 
-A not-so-basic skeleton of a Rain World mod, with extensible utilities for mod compatibility, error handling, and more.
+A not-so-basic skeleton of a Rain World mod, with a variety of utility classes for compatibility and quality of life.
 
 For a version of this using SlimeCubed's [SlugTemplate](https://github.com/SlimeCubed/SlugTemplate), see the [template-slugbase](https://github.com/AydenTFoxx/Martyr/tree/template-slugbase/README.md) branch.
 
@@ -12,7 +12,7 @@ For a version of this using SlimeCubed's [SlugTemplate](https://github.com/Slime
 - [Weak collection classes](src/Utils/Generics) for storing weak references to game objects
 - [Meadow helpers](src/Utils/Meadow) for syncing settings and custom events with other players
 - Helper classes for handling REMIX options:
-  - [A REMIX menu page builder](src/Utils/Options/OptionBuilder.cs) for quickly creating simple menus
+  - A [REMIX menu page builder](src/Utils/Options/OptionBuilder.cs) for quickly creating simple menus
   - A [handler of current REMIX options](src/Utils/Options/OptionBuilder.cs), which stores the actual settings used by the mod, with an [utility class for retrieving its values](src/Utils/Options/OptionUtils.cs) by reference
 - A [compatibility manager](src/Utils/CompatibilityManager.cs) for handling "compatibility layers" with other mods
   - Includes a method for querying the user's `enabledMods.txt` file directly, useful for detecting a mod's presence during `OnEnable` or earlier

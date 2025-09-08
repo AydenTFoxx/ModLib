@@ -12,7 +12,7 @@ namespace MyMod;
 /// A custom logger which sends messages to both the game's and this mod's log files.
 /// </summary>
 /// <remarks>The generated logs for this mod can be found at <c>"%HOMEPATH%\AppData\LocalLow\Videocult\Rain World\MyMod.log"</c></remarks>
-public static class MyLogger
+internal static class Logger
 {
     private const string LogPrefix = "EX";
 

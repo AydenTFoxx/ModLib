@@ -35,7 +35,7 @@ public class Options : OptionInterface
 
     public override void Initialize()
     {
-        MyLogger.LogInfo($"{nameof(Options)}: Initialized REMIX menu interface.");
+        Logger.LogInfo($"{nameof(Options)}: Initialized REMIX menu interface.");
         base.Initialize();
 
         Tabs = new OpTab[1];

@@ -15,7 +15,7 @@ internal static class ImprovedInputHandler
 
         if (isRecursive)
         {
-            MyLogger.LogWarning("Failed to register PlayerKeybind; Disabling IIC compatibility layer.");
+            Logger.LogWarning("Failed to register PlayerKeybind; Disabling IIC compatibility layer.");
 
             CompatibilityManager.ToggleModCompatibility("improved-input-config", false);
 
@@ -23,7 +23,7 @@ internal static class ImprovedInputHandler
         }
         else
         {
-            MyLogger.LogWarning($"Could not find PlayerKeybind {keybind.ID}; Attempting to register it to IIC...");
+            Logger.LogWarning($"Could not find PlayerKeybind {keybind.ID}; Attempting to register it to IIC...");
 
             RegisterPlayerKeybind(keybind);
 
@@ -44,18 +44,18 @@ internal static class ImprovedInputHandler
         {
             if (PlayerKeybind.Keybinds().Any(key => key.Id == id))
             {
-                MyLogger.LogWarning($"A {nameof(PlayerKeybind)} is already registered with that ID: {id}");
+                Logger.LogWarning($"A {nameof(PlayerKeybind)} is already registered with that ID: {id}");
             }
             else
             {
                 PlayerKeybind.Register(id, Main.MOD_NAME, name, keyboardKey, gamepadKey);
 
-                MyLogger.LogInfo($"Registered new {nameof(PlayerKeybind)}! {id}");
+                Logger.LogInfo($"Registered new {nameof(PlayerKeybind)}! {id}");
             }
         }
         catch (Exception ex)
         {
-            MyLogger.LogError($"Failed to register PlayerKeybind: {id}!", ex);
+            Logger.LogError($"Failed to register PlayerKeybind: {id}!", ex);
         }
     }
 }

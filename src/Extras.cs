@@ -12,7 +12,7 @@ using MyMod.Utils.Options;
 
 namespace MyMod;
 
-internal static class MyExtras
+internal static class Extras
 {
     /// <summary>
     /// Wraps a given action in a try-catch, safely performing its code while handling potential exceptions.
@@ -27,7 +27,7 @@ internal static class MyExtras
         }
         catch (Exception ex)
         {
-            MyLogger.LogError($"Failed to run wrapped action: {action.Method.Name}", ex);
+            Logger.LogError($"Failed to run wrapped action: {action.Method.Name}", ex);
         }
     }
 
@@ -47,7 +47,7 @@ internal static class MyExtras
             }
             catch (Exception ex)
             {
-                MyLogger.LogError($"Failed to apply IL hook: {action.Method.Name}", ex);
+                Logger.LogError($"Failed to apply IL hook: {action.Method.Name}", ex);
             }
         };
     }
@@ -67,7 +67,7 @@ internal static class MyExtras
         }
         else
         {
-            MyLogger.LogDebug($"{self.game.FirstAnyPlayer} is already present, ignoring.");
+            Logger.LogDebug($"{self.game.FirstAnyPlayer} is already present, ignoring.");
         }
     }
 

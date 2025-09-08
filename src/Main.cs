@@ -6,7 +6,7 @@ namespace MyMod;
 [BepInPlugin(MOD_GUID, MOD_NAME, MOD_VERSION)]
 public class Main : BaseUnityPlugin
 {
-    public const string MOD_GUID = "ynhzrfxn.example";
+    public const string MOD_GUID = "example.mymod";
     public const string MOD_NAME = "Example Mod";
     public const string MOD_VERSION = "0.1.0";
 
@@ -18,7 +18,7 @@ public class Main : BaseUnityPlugin
     public Main()
         : base()
     {
-        MyLogger.CleanLogFile();
+        MyMod.Logger.CleanLogFile();
 
         options = new();
     }
@@ -30,11 +30,11 @@ public class Main : BaseUnityPlugin
 
         CompatibilityManager.CheckModCompats();
 
-        MyExtras.WrapAction(() =>
+        Extras.WrapAction(() =>
         {
             ApplyAllHooks();
 
-            MyLogger.LogDebug("Successfully registered hooks to the game.");
+            MyMod.Logger.LogDebug("Successfully registered hooks to the game.");
         });
 
         InputHandler.Keys.InitKeybinds();
@@ -47,11 +47,11 @@ public class Main : BaseUnityPlugin
         if (!isModEnabled) return;
         isModEnabled = !isModEnabled;
 
-        MyExtras.WrapAction(() =>
+        Extras.WrapAction(() =>
         {
             RemoveAllHooks();
 
-            MyLogger.LogDebug("Removed all hooks successfully.");
+            MyMod.Logger.LogDebug("Removed all hooks successfully.");
         });
 
         Logger.LogInfo($"Disabled {MOD_NAME} successfully.");
@@ -67,22 +67,22 @@ public class Main : BaseUnityPlugin
     {
         On.RainWorld.OnModsInit += OnModsInitHook;
 
-        On.GameSession.ctor += MyExtras.GameSessionHook;
-        On.GameSession.AddPlayer += MyExtras.AddPlayerHook;
+        On.GameSession.ctor += Extras.GameSessionHook;
+        On.GameSession.AddPlayer += Extras.AddPlayerHook;
     }
 
     private static void RemoveAllHooks()
     {
         On.RainWorld.OnModsInit -= OnModsInitHook;
 
-        On.GameSession.ctor -= MyExtras.GameSessionHook;
-        On.GameSession.AddPlayer -= MyExtras.AddPlayerHook;
+        On.GameSession.ctor -= Extras.GameSessionHook;
+        On.GameSession.AddPlayer -= Extras.AddPlayerHook;
     }
 
     private static void OnModsInitHook(On.RainWorld.orig_OnModsInit orig, RainWorld self)
     {
         orig.Invoke(self);
 
-        MyExtras.WrapAction(LoadResources);
+        Extras.WrapAction(LoadResources);
     }
 }

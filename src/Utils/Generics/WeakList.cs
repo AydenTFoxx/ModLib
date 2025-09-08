@@ -23,7 +23,7 @@ public class WeakList<T> : WeakCollection<T>, IList<T> where T : class
         {
             if (!list[index].TryGetTarget(out T target))
             {
-                MyLogger.LogWarning($"Returning an empty value: {this}");
+                Logger.LogWarning($"Returning an empty value: {this}");
             }
 
             return target;

@@ -22,7 +22,7 @@ public class ServerOptions
             MyOptions[configurable.key] = configurable.Value;
         }
 
-        MyLogger.LogDebug($"{(isOnline ? "Online " : "")}REMIX options are: {this}");
+        Logger.LogDebug($"{(isOnline ? "Online " : "")}REMIX options are: {this}");
     }
 
     public void SetOptions(ServerOptions? options)
@@ -33,7 +33,7 @@ public class ServerOptions
         {
             bool value = options is not null && opts[key];
 
-            MyLogger.LogDebug($"Setting key {MyOptions[key]} to {value}.");
+            Logger.LogDebug($"Setting key {MyOptions[key]} to {value}.");
 
             MyOptions[key] = value;
         }

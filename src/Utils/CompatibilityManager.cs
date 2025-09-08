@@ -22,7 +22,7 @@ public static class CompatibilityManager
     /// </summary>
     public static void CheckModCompats()
     {
-        MyLogger.LogDebug("Checking compatibility mods...");
+        Logger.LogDebug("Checking compatibility mods...");
 
         try
         {
@@ -43,14 +43,14 @@ public static class CompatibilityManager
 
                         ManagedMods.Add(modID, true);
 
-                        MyLogger.LogInfo($"Added compatibility layer for: {modID}");
+                        Logger.LogInfo($"Added compatibility layer for: {modID}");
                     }
                 }
             }
         }
         catch (Exception ex)
         {
-            MyLogger.LogError("Failed to read enabled mods file!", ex);
+            Logger.LogError("Failed to read enabled mods file!", ex);
         }
     }
 
