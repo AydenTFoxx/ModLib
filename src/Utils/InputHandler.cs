@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static Martyr.Utils.CompatibilityManager;
+using static MyMod.Utils.CompatibilityManager;
 
-namespace Martyr.Utils;
+namespace MyMod.Utils;
 
 /// <summary>
 /// General functions for retrieving player input, as well as registering keybinds.
@@ -65,7 +65,7 @@ public static class InputHandler
 
         if (Keybinds.Contains(keybind))
         {
-            MyLogger.LogWarning($"Tried to register an existing keybind: {keybind.ID}");
+            Logger.LogWarning($"Tried to register an existing keybind: {keybind.ID}");
         }
         else
         {
@@ -78,11 +78,11 @@ public static class InputHandler
                     ImprovedInputHandler.RegisterPlayerKeybind(keybind);
                 }
 
-                MyLogger.LogInfo($"Registered new keybind! {keybind}");
+                Logger.LogInfo($"Registered new keybind! {keybind}");
             }
             catch (Exception ex)
             {
-                MyLogger.LogError($"Failed to register keybind: {keybind}!", ex);
+                Logger.LogError($"Failed to register keybind: {keybind}!", ex);
             }
         }
 
@@ -94,18 +94,18 @@ public static class InputHandler
     /// </summary>
     public static class Keys
     {
-        public static Keybind POSSESS { get; private set; }
+        public static Keybind EXAMPLE_KEY { get; private set; }
 
         static Keys()
         {
-            POSSESS = RegisterKeybind("possess", "Possess", KeyCode.V, KeyCode.Joystick1Button0);
+            EXAMPLE_KEY = RegisterKeybind("example", "Example", KeyCode.V, KeyCode.Joystick1Button0);
         }
 
         /// <summary>
         /// Initializes all keybinds of the mod. A dummy method for the sake of registering keybinds as early as possible.
         /// </summary>
         public static void InitKeybinds() =>
-            MyLogger.LogDebug($"Initialized keybinds successfully. IIC support enabled? {IsIICEnabled()}");
+            Logger.LogDebug($"Initialized keybinds successfully. IIC support enabled? {IsIICEnabled()}");
     }
 }
 
@@ -118,7 +118,7 @@ public static class InputHandler
 /// <param name="GamepadKey">The default key for gamepad users. Can only be edited in-game with IIC/IIC:E.</param>
 public record class Keybind(string ID, string Name, KeyCode KeyboardKey, KeyCode GamepadKey)
 {
-    public string ID { get; } = $"Martyr:{ID}";
+    public string ID { get; } = $"{Main.MOD_NAME}:{ID}";
     public string Name { get; } = Name;
     public KeyCode KeyboardKey { get; } = KeyboardKey;
     public KeyCode GamepadKey { get; } = GamepadKey;

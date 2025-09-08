@@ -1,7 +1,7 @@
+using MyMod.Utils.Meadow;
 using RainMeadow;
-using Martyr.Possession.Meadow;
 
-namespace Martyr.Possession;
+namespace MyMod.Utils;
 
 public static class MeadowUtils
 {
@@ -29,33 +29,23 @@ public static class MeadowUtils
     {
         if (!IsOnline || IsHost) return;
 
-        OnlineManager.lobby.owner.SendRPCEvent(PossessionRPCs.RequestRemixOptionsSync, OnlineManager.mePlayer);
+        OnlineManager.lobby.owner.SendRPCEvent(MyRPCs.RequestRemixOptionsSync, OnlineManager.mePlayer);
     }
 
     public static void RequestOwnership(PhysicalObject physicalObject)
     {
         try
         {
-            MyLogger.LogDebug($"Requesting ownership of {physicalObject}...");
+            Logger.LogDebug($"Requesting ownership of {physicalObject}...");
 
             physicalObject.abstractPhysicalObject.GetOnlineObject()?.Request();
 
-            MyLogger.LogDebug($"New owner is: {physicalObject.abstractPhysicalObject.GetOnlineObject()?.owner}");
+            Logger.LogDebug($"New owner is: {physicalObject.abstractPhysicalObject.GetOnlineObject()?.owner}");
         }
         catch (System.Exception ex)
         {
-            MyLogger.LogError($"Failed to request ownership of {physicalObject}!", ex);
+            Logger.LogError($"Failed to request ownership of {physicalObject}!", ex);
         }
-    }
-
-    public static void SyncCreaturePossession(Creature target, bool isPossession)
-    {
-        if (!IsOnline) return;
-
-        MyLogger.LogDebug($"Syncing possession of {target} with all players.");
-
-        PossessionRPCs.SendCreatureRPC(target, PossessionRPCs.ApplyPossessionEffects, isPossession);
-        PossessionRPCs.SendCreatureRPC(target, PossessionRPCs.SetCreatureControl, isPossession);
     }
 
     public enum MeadowGameModes

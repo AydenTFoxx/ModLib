@@ -4,16 +4,18 @@ using System.IO;
 using System.Text;
 using BepInEx.Logging;
 using UnityEngine;
-using static Martyr.Utils.CompatibilityManager;
+using static MyMod.Utils.CompatibilityManager;
 
-namespace Martyr;
+namespace MyMod;
 
 /// <summary>
 /// A custom logger which sends messages to both the game's and this mod's log files.
 /// </summary>
-/// <remarks>The generated logs for this mod can be found at <c>"%HOMEPATH%\AppData\LocalLow\Videocult\Rain World\Martyr.log"</c></remarks>
-internal static class MyLogger
+/// <remarks>The generated logs for this mod can be found at <c>"%HOMEPATH%\AppData\LocalLow\Videocult\Rain World\MyMod.log"</c></remarks>
+internal static class Logger
 {
+    private const string LogPrefix = "EX";
+
     private static string _logPath = "";
     private static string LogPath
     {
@@ -21,12 +23,18 @@ internal static class MyLogger
         {
             if (string.IsNullOrEmpty(_logPath))
             {
-                _logPath = Path.Combine(Path.GetFullPath(Application.persistentDataPath), "Martyr.log");
+                _logPath = Path.Combine(Path.GetFullPath(Application.persistentDataPath), "MyMod.log");
             }
 
             return _logPath!;
         }
     }
+
+    /// <summary>
+    /// Clears the mod's log file.
+    /// </summary>
+    /// <remarks>This should be called before any other <c>Log</c> function to avoid loss of data.</remarks>
+    public static void CleanLogFile() => File.WriteAllText(LogPath, "");
 
     /// <summary>
     /// Logs a message to this mod logger, optionally also sending the same message to Unity's <c>Debug</c> logger.
@@ -81,8 +89,11 @@ internal static class MyLogger
     /// </summary>
     /// <param name="message">The message to be written.</param>
     /// <seealso cref="Log"/>
-    /// <remarks>Note: This uses a custom format for including exception and stack trace, and should be preferred when handling errors.</remarks>
-    public static void LogError(object message, Exception? exception = null)
+    /// <remarks>
+    ///     Note: This uses a custom format for including exception and stack trace, and should be preferred when handling errors.
+    ///     If no exception is provided, the stack trace of the method's invocation is used instead.
+    /// </remarks>
+    public static void LogError(object message, Exception? exception)
     {
         if (exception is not null)
             Log(LogLevel.Error, FormatErrorMessage(message, exception), useUnityLogger: false);
@@ -92,6 +103,11 @@ internal static class MyLogger
         Debug.LogError(FormatMessage($"{message} (See details at log file)", LogLevel.Error, addNewLine: false, addDateTime: false));
     }
 
+    /// <summary>
+    /// Appends the stack trace of the logging method to the given message.
+    /// </summary>
+    /// <param name="message">The original message object.</param>
+    /// <returns>A <c>String</c> detailing the stack trace of the called <c>Log</c> method.</returns>
     private static string AppendStackTrace(object message) =>
         $"{message}{Environment.NewLine}-- Stack trace:{Environment.NewLine}{Environment.StackTrace}";
 
@@ -100,7 +116,7 @@ internal static class MyLogger
     /// </summary>
     /// <returns>A new <c>String</c> object with the formatted prefix for usage.</returns>
     /// <remarks>If a mod with special compatibility support is detected, a suffix is also added to the acronym itself.</remarks>
-    private static string BuildLogPrefix(string acronym) => acronym + (IsRainMeadowEnabled() ? "+M" : "");
+    private static string BuildLogPrefix() => LogPrefix + (IsRainMeadowEnabled() ? "+M" : "");
 
     /// <summary>
     /// Obtains and formats the current time when the log was created.
@@ -116,7 +132,7 @@ internal static class MyLogger
     /// <param name="addNewLine">Whether to add a newline character at the end of the formatted string.</param>
     /// <returns>A new formatted <c>String</c> object ready to be logged.</returns>
     private static string FormatMessage(object message, LogLevel logLevel, bool addNewLine = true, bool addDateTime = true) =>
-        $"{(addDateTime ? GetDateTime() : "")} [{BuildLogPrefix("MY")}: {logLevel}] {message}".Trim() + (addNewLine ? Environment.NewLine : "");
+        $"{(addDateTime ? GetDateTime() : "")} [{BuildLogPrefix()}: {logLevel}] {message}".Trim() + (addNewLine ? Environment.NewLine : "");
 
     private static string FormatErrorMessage(object message, Exception exception)
     {
@@ -141,10 +157,4 @@ internal static class MyLogger
     /// <param name="contents">The formatted message to be written.</param>
     /// <seealso cref="FormatMessage"/>
     private static void WriteToLogFile(string contents) => File.AppendAllText(LogPath, contents);
-
-    /// <summary>
-    /// Clears the mod's log file.
-    /// </summary>
-    /// <remarks>This should be called before any other <c>Log</c> function to avoid loss of data.</remarks>
-    public static void CleanLogFile() => File.WriteAllText(LogPath, "");
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Martyr.Utils.Options;
+namespace MyMod.Utils.Options;
 
 public class ServerOptions
 {
@@ -12,9 +12,9 @@ public class ServerOptions
 
     public void RefreshOptions(bool isOnline = false)
     {
-        foreach (FieldInfo? field in typeof(Martyr.MyOptions).GetFields(BindingFlags.Public | BindingFlags.Static))
+        foreach (FieldInfo field in typeof(MyMod.Options).GetFields(BindingFlags.Public | BindingFlags.Static))
         {
-            if (field?.GetValue(null) is not Configurable<bool> configurable
+            if (field.GetValue(null) is not Configurable<bool> configurable
                 || Attribute.GetCustomAttribute(field, typeof(ClientOptionAttribute)) is not null)
             {
                 continue;
@@ -22,7 +22,7 @@ public class ServerOptions
             MyOptions[configurable.key] = configurable.Value;
         }
 
-        MyLogger.LogDebug($"{(isOnline ? "Online " : "")}REMIX options are: {this}");
+        Logger.LogDebug($"{(isOnline ? "Online " : "")}REMIX options are: {this}");
     }
 
     public void SetOptions(ServerOptions? options)
@@ -33,7 +33,7 @@ public class ServerOptions
         {
             bool value = options is not null && opts[key];
 
-            MyLogger.LogDebug($"Setting key {MyOptions[key]} to {value}.");
+            Logger.LogDebug($"Setting key {MyOptions[key]} to {value}.");
 
             MyOptions[key] = value;
         }

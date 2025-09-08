@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Martyr.Utils.Generics;
+namespace MyMod.Utils.Generics;
 
 public class WeakList<T> : WeakCollection<T>, IList<T> where T : class
 {
@@ -23,7 +23,7 @@ public class WeakList<T> : WeakCollection<T>, IList<T> where T : class
         {
             if (!list[index].TryGetTarget(out T target))
             {
-                MyLogger.LogWarning($"Returning an empty value: {this}");
+                Logger.LogWarning($"Returning an empty value: {this}");
             }
 
             return target;

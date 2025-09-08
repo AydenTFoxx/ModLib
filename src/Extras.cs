@@ -1,13 +1,8 @@
 using System;
 using System.Security.Permissions;
-using Martyr.Possession;
-using Martyr.Utils;
 using MonoMod.Cil;
-
-/*
- * This file contains fixes to some common problems when modding Rain World.
- * Unless you know what you're doing, you shouldn't modify anything here.
- */
+using MyMod.Utils;
+using MyMod.Utils.Options;
 
 // Allows access to private members
 #pragma warning disable CS0618
@@ -15,9 +10,9 @@ using MonoMod.Cil;
 #pragma warning restore CS0618
 
 
-namespace Martyr;
+namespace MyMod;
 
-internal static class MyExtras
+internal static class Extras
 {
     /// <summary>
     /// Wraps a given action in a try-catch, safely performing its code while handling potential exceptions.
@@ -32,7 +27,7 @@ internal static class MyExtras
         }
         catch (Exception ex)
         {
-            MyLogger.LogError($"Failed to run wrapped action: {action.Method.Name}", ex);
+            Logger.LogError($"Failed to run wrapped action: {action.Method.Name}", ex);
         }
     }
 
@@ -52,7 +47,7 @@ internal static class MyExtras
             }
             catch (Exception ex)
             {
-                MyLogger.LogError($"Failed to apply IL hook: {action.Method.Name}", ex);
+                Logger.LogError($"Failed to apply IL hook: {action.Method.Name}", ex);
             }
         };
     }
@@ -72,7 +67,7 @@ internal static class MyExtras
         }
         else
         {
-            MyLogger.LogDebug($"{self.game.FirstAnyPlayer} is already present, ignoring.");
+            Logger.LogDebug($"{self.game.FirstAnyPlayer} is already present, ignoring.");
         }
     }
 

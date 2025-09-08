@@ -7,7 +7,7 @@ using System.Threading;
 
 #nullable disable
 
-namespace Martyr.Utils.Generics;
+namespace MyMod.Utils.Generics;
 
 // Credits to N73k for original script
 public class WeakDictionary<TKey, TValue> : IDictionary<TKey, TValue>, IDisposable

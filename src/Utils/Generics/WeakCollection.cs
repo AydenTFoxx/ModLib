@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Martyr.Utils.Generics;
+namespace MyMod.Utils.Generics;
 
 public class WeakCollection<T> : ICollection<T> where T : class
 {
