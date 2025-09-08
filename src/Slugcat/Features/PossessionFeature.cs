@@ -11,14 +11,14 @@ namespace Martyr.Slugcat.Features;
 /// <summary>
 /// A collection of hooks for updating creatures' possession states.
 /// </summary>
-public class PossessionFeature() : Feature()
+public class PossessionFeature : IFeature
 {
     public static readonly PlayerFeature<bool> AllowPossession = PlayerBool($"{MartyrMain.MOD_GUID}/allow_possession");
 
     /// <summary>
     /// Applies the Possession module's hooks to the game.
     /// </summary>
-    public override void ApplyHooks()
+    public void ApplyHooks()
     {
         IL.Creature.Update += UpdatePossessedCreatureILHook;
 
@@ -30,7 +30,7 @@ public class PossessionFeature() : Feature()
     /// <summary>
     /// Removes the Possession module's hooks from the game.
     /// </summary>
-    public override void RemoveHooks()
+    public void RemoveHooks()
     {
         IL.Creature.Update -= UpdatePossessedCreatureILHook;
 
