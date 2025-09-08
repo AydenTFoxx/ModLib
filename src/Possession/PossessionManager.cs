@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Martyr.Possession.Graphics;
 using Martyr.Utils;
@@ -18,12 +19,22 @@ namespace Martyr.Possession;
 /// <param name="player">The player itself.</param>
 public sealed class PossessionManager
 {
-    private static readonly List<Type> BannedCreatureTypes = [typeof(Player), typeof(Overseer)];
+    private static readonly Type[] BannedCreatureTypes = [typeof(Player), typeof(Overseer)];
+    private static readonly SlugcatStats.Name[] AttunedSlugcatNames = [
+        MoreSlugcatsEnums.SlugcatStatsName.Saint,
+        SlugcatStats.Name.Yellow,
+        MartyrMain.Martyr
+    ];
+    private static readonly SlugcatStats.Name[] HardmodeSlugcatNames = [
+        SlugcatStats.Name.Red,
+        MoreSlugcatsEnums.SlugcatStatsName.Artificer,
+        MoreSlugcatsEnums.SlugcatStatsName.Sofanthiel
+    ];
 
     public int PossessionTimePotential { get; }
     public bool IsHardmodeSlugcat { get; }
     public bool IsAttunedSlugcat { get; }
-    public int MaxPossessionTime => PossessionTimePotential + ((player.room?.game.session is StoryGameSession storySession ? storySession.saveState.deathPersistentSaveData.karma : 0) * 40);
+    public int MaxPossessionTime { get; }
 
     private readonly WeakCollection<Creature> MyPossessions = [];
     private readonly Player player;
@@ -41,12 +52,8 @@ public sealed class PossessionManager
     {
         this.player = player;
 
-        IsHardmodeSlugcat = player.SlugCatClass == SlugcatStats.Name.Red
-            || player.SlugCatClass == MoreSlugcatsEnums.SlugcatStatsName.Artificer
-            || player.SlugCatClass == MoreSlugcatsEnums.SlugcatStatsName.Sofanthiel;
-
-        IsAttunedSlugcat = player.SlugCatClass == SlugcatStats.Name.Yellow
-            || player.SlugCatClass == MoreSlugcatsEnums.SlugcatStatsName.Saint;
+        IsAttunedSlugcat = AttunedSlugcatNames.Contains(player.SlugCatClass);
+        IsHardmodeSlugcat = HardmodeSlugcatNames.Contains(player.SlugCatClass);
 
         PossessionTimePotential = player.SlugCatClass == MoreSlugcatsEnums.SlugcatStatsName.Sofanthiel
             ? 1
@@ -56,7 +63,7 @@ public sealed class PossessionManager
                     ? 180
                     : 360;
 
-        PossessionTime = MaxPossessionTime;
+        PossessionTime = MaxPossessionTime = PossessionTimePotential + ((player.room?.game.session is StoryGameSession storySession ? storySession.saveState.deathPersistentSaveData.karma : 0) * 40);
 
         TargetSelector = new(player, this);
 
@@ -73,7 +80,9 @@ public sealed class PossessionManager
     /// Determines if the player is allowed to start a new possession.
     /// </summary>
     /// <returns><c>true</c> if the player can use their possession ability, <c>false</c> otherwise.</returns>
-    public bool CanPossessCreature() => PossessionTime > 0 && PossessionCooldown == 0;
+    public bool CanPossessCreature() =>
+        !((player.room?.game.IsStorySession ?? false) && player.FoodInStomach <= 0)
+        && PossessionTime > 0 && PossessionCooldown == 0;
 
     /// <summary>
     /// Determines if the player can possess the given creature.
@@ -147,6 +156,8 @@ public sealed class PossessionManager
         target.room?.AddObject(new TemplarCircle(target, target.mainBodyChunk.pos, 48f, 8f, 2f, 12, true));
         target.room?.AddObject(new ShockWave(target.mainBodyChunk.pos, 100f, 0.08f, 4, false));
         target.room?.PlaySound(SoundID.SS_AI_Give_The_Mark_Boom, target.mainBodyChunk, loop: false, 1f, 1.25f + (Random.value * 1.25f));
+
+        player.AddFood(-1);
 
         player.controller ??= GetFadeOutController(player);
 
@@ -249,7 +260,7 @@ public sealed class PossessionManager
                     player.lungsExhausted = true;
                     player.Stun(35);
 
-                    PossessionTime = -40;
+                    PossessionTime = -80;
                 }
 
                 PossessionCooldown = 40;
@@ -261,13 +272,9 @@ public sealed class PossessionManager
         {
             PossessionCooldown--;
         }
-        else if (PossessionTime < MaxPossessionTime)
+        else if (PossessionTime != MaxPossessionTime)
         {
-            PossessionTime += IsHardmodeSlugcat ? 0.25f : 0.5f;
-        }
-        else if (PossessionTime > MaxPossessionTime)
-        {
-            PossessionTime = MaxPossessionTime;
+            PossessionTime = Math.Min(MaxPossessionTime, PossessionTime + (IsHardmodeSlugcat ? 0.25f : 0.5f));
         }
 
         if (player.room is not null && possessionTimer.room != player.room)
@@ -319,6 +326,6 @@ public sealed class PossessionManager
         public int FadeOutY() => y = (int)Mathf.Lerp(y, 0f, 0.5f);
 
         public override Player.InputPackage GetInput() =>
-            new(gamePad: false, MyOptions.ControlSetup.Preset.None, FadeOutX(), FadeOutY(), jmp: false, thrw: false, pckp: false, mp: false, crouchToggle: false);
+            new(gamePad: false, Options.ControlSetup.Preset.None, FadeOutX(), FadeOutY(), jmp: false, thrw: false, pckp: false, mp: false, crouchToggle: false);
     }
 }

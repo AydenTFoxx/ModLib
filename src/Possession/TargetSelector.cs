@@ -46,7 +46,8 @@ public partial class TargetSelector(Player player, PossessionManager manager)
     {
         get
         {
-            if (Input.InputTime > PossessionManager.PossessionTimePotential)
+            if (Input.InputTime > PossessionManager.PossessionTimePotential
+                || ((player.room?.game.IsStorySession ?? false) && player.FoodInStomach < 1))
             {
                 _exceededTimeLimit = true;
             }
