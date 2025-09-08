@@ -1,0 +1,5 @@
+{
+    "id": "Martyr",
+    "base": [ "Saint", "Rivulet", "Red" ],
+    "insert_after": "Rivulet"
+}

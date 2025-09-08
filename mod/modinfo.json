@@ -1,10 +1,25 @@
 ﻿{
 	"id": "ynhzrfxn.martyr",
 	"name": "The Martyr",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"authors": "YannahTFoxx",
 	"description": "A template for making SlugBase mods.",
-	"requirements": [ "slime-cubed.slugbase", "moreslugcats" ],
-	"requirements_names": [ "SlugBase", "More Slugcats Expansion" ],
-	"tags": [ "Custom Slugcat", "Downpour" ]
+	"requirements": [
+		"slime-cubed.slugbase",
+		"magica.extendedslugbasefeatures",
+		"moreslugcats"
+	],
+	"requirements_names": [
+		"SlugBase",
+		"Extended Slugbase Features",
+		"More Slugcats Expansion"
+	],
+	"priorities": [
+		"improved-input-config",
+		"henpemaz_rainmeadow"
+	],
+	"tags": [
+		"Custom Slugcat",
+		"Downpour"
+	]
 }
