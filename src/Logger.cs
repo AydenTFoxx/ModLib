@@ -23,7 +23,7 @@ public static class MyLogger
         {
             if (string.IsNullOrEmpty(_logPath))
             {
-                _logPath = Path.Combine(Path.GetFullPath(Application.persistentDataPath), "Example.log");
+                _logPath = Path.Combine(Path.GetFullPath(Application.persistentDataPath), "MyMod.log");
             }
 
             return _logPath!;

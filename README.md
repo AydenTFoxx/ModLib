@@ -25,4 +25,4 @@ Use this template on GitHub or [download the code](https://github.com/AydenTFoxx
 
 Links:
 
-- [Modding Wiki](https://rainworldmodding.miraheze.org/wiki/Downpour_Reference/Mod_Directories) for `modinfo.json` documentation.
+- [Modding Wiki](https://rainworldmodding.miraheze.org/wiki/Main_Page) for general-use documentation.
