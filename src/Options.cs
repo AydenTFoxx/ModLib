@@ -11,24 +11,25 @@ namespace MyMod;
 public class Options : OptionInterface
 {
     [ClientOption]
-    public static Configurable<string>? EXAMPLE_CLIENT_OPTION;
-    public static Configurable<bool>? EXAMPLE_SERVER_OPTION;
+    public static Configurable<string>? SLUGCAT_FASHION; // Client-only; Not synced with other players
+
+    public static Configurable<bool>? CAN_EXPLODE_SELF; // Server-side; Synced from host player to clients upon joining a lobby
 
     public Options()
     {
-        EXAMPLE_CLIENT_OPTION = config.Bind(
-            "ex_client_option",
+        SLUGCAT_FASHION = config.Bind(
+            "slugcat_fashion",
             "classic",
             new ConfigurableInfo(
-                "An example setting which is not synced with other clients. This option has no effects.",
+                "Unlocks a new fashion sense for slugcats. \"Classic\" is vanilla; \"Overhauled\" is pure chaos.",
                 new ConfigAcceptableList<string>("classic", "overhauled")
             )
         );
-        EXAMPLE_SERVER_OPTION = config.Bind(
-            "ex_server_option",
+        CAN_EXPLODE_SELF = config.Bind(
+            "can_explode_self",
             false,
             new ConfigurableInfo(
-                "An example setting which is synced with clients in an online lobby. This option has no effects."
+                "If enabled, pressing the \"Explode\" keybind (default: E) explodes the player."
             )
         );
     }
@@ -41,9 +42,9 @@ public class Options : OptionInterface
         Tabs = new OpTab[1];
 
         Tabs[0] = new OptionBuilder(this, "Main Options")
-            .AddComboBoxOption("Example Client Option", EXAMPLE_CLIENT_OPTION!, width: 120)
+            .AddComboBoxOption("Slugcat Fashion", SLUGCAT_FASHION!, width: 120)
             .AddPadding(Vector2.up * 10)
-            .AddCheckBoxOption("Example Server Option", EXAMPLE_SERVER_OPTION!)
+            .AddCheckBoxOption("Can Explode Self", CAN_EXPLODE_SELF!)
             .Build();
     }
 }

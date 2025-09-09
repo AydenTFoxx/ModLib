@@ -94,11 +94,11 @@ public static class InputHandler
     /// </summary>
     public static class Keys
     {
-        public static Keybind EXAMPLE_KEY { get; private set; }
+        public static Keybind EXPLODE { get; private set; }
 
         static Keys()
         {
-            EXAMPLE_KEY = RegisterKeybind("example", "Example", KeyCode.V, KeyCode.Joystick1Button0);
+            EXPLODE = RegisterKeybind("explode", "Explode", KeyCode.E, KeyCode.Joystick1Button0);
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
 ﻿using BepInEx;
+using MyMod.Slugcat;
 using MyMod.Utils;
 
 namespace MyMod;
@@ -45,7 +46,7 @@ public class Main : BaseUnityPlugin
     public void OnDisable()
     {
         if (!isModEnabled) return;
-        isModEnabled = !isModEnabled;
+        isModEnabled = false;
 
         Extras.WrapAction(() =>
         {
@@ -69,6 +70,8 @@ public class Main : BaseUnityPlugin
 
         On.GameSession.ctor += Extras.GameSessionHook;
         On.GameSession.AddPlayer += Extras.AddPlayerHook;
+
+        PlayerHooks.AddHooks();
     }
 
     private static void RemoveAllHooks()
@@ -77,6 +80,8 @@ public class Main : BaseUnityPlugin
 
         On.GameSession.ctor -= Extras.GameSessionHook;
         On.GameSession.AddPlayer -= Extras.AddPlayerHook;
+
+        PlayerHooks.RemoveHooks();
     }
 
     private static void OnModsInitHook(On.RainWorld.orig_OnModsInit orig, RainWorld self)

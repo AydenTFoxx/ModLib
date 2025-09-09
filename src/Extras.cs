@@ -32,10 +32,10 @@ internal static class Extras
     }
 
     /// <summary>
-    /// Wraps a given IL hook into a try-catch, preventing it from breaking other code when applied.
+    /// Wraps a given IL hook in a try-catch, preventing it from breaking other code when applied.
     /// </summary>
     /// <param name="action">The hook method to be wrapped.</param>
-    /// <returns>An <c>ILContext.Manipulator</c> instance to be passed in place of the method group.</returns>
+    /// <returns>An <c>ILContext.Manipulator</c> instance to be passed in place of the method itself.</returns>
     /// <remarks>Usage of this method is akin to the original <c>WrapInit</c> method; See SlugTemplate for an example of this.</remarks>
     public static ILContext.Manipulator WrapILHook(Action<ILContext> action)
     {
