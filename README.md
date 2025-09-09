@@ -2,7 +2,7 @@
 
 A not-so-basic skeleton of a Rain World mod, with a variety of utility classes for compatibility and quality of life.
 
-For a version of this using SlimeCubed's [SlugTemplate](https://github.com/SlimeCubed/SlugTemplate), see the [template-slugbase](https://github.com/AydenTFoxx/Martyr/tree/template-slugbase/README.md) branch.
+Also see the [slugbase](https://github.com/AydenTFoxx/ModTemplate/tree/slugbase) branch for a basic SlugBase integration with this mod (mostly inherited from [SlugTemplate](https://github.com/SlimeCubed/SlugTemplate)).
 
 ## Features
 
