@@ -28,10 +28,9 @@ public static class PlayerHooks
     {
         orig.Invoke(self, eu);
 
-        if (InputHandler.IsKeyPressed(self, InputHandler.Keys.EXPLODE)) // Using a registered keybind
+        if (InputHandler.IsKeyPressed(self, InputHandler.Keys.EXPLODE) // Using a registered keybind
+            && OptionUtils.IsOptionEnabled(Options.CAN_EXPLODE_SELF)) // Testing for a server-side option
         {
-            if (!OptionUtils.IsOptionEnabled(Options.CAN_EXPLODE_SELF)) return; // Testing for a server-side option
-
             if (self.dead || self.room is null) return;
 
             if (CompatibilityManager.IsModEnabled("slime-cubed.slugbase") // Checking for a mod's presence
@@ -63,25 +62,27 @@ public static class PlayerHooks
 
     private static void RecolorSlugcatHook(On.PlayerGraphics.orig_DrawSprites orig, PlayerGraphics self, RoomCamera.SpriteLeaser sLeaser, RoomCamera rCam, float timeStacker, Vector2 camPos)
     {
-        if (OptionUtils.IsClientOptionValue(Options.SLUGCAT_FASHION, "overhauled")) // Testing for a client-side option
-        {
-            Color nextColor = CalculateNextColor(self.player);
-
-            for (int i = 0; i < sLeaser.sprites.Length; i++)
-            {
-                if (i == 9) continue;
-
-                sLeaser.sprites[i].color = nextColor;
-            }
-        }
-
         orig.Invoke(self, sLeaser, rCam, timeStacker, camPos);
+
+        if (!OptionUtils.IsClientOptionValue(Options.SLUGCAT_FASHION, "overhauled")) return; // Testing for a client-side option
+
+        Color nextColor = CalculateNextColor(self.player, out PlayerColor playerColor);
+
+        playerColor.UpdateTimeStacker();
+
+        foreach (FSprite sprite in sLeaser.sprites)
+        {
+            if (sLeaser.sprites.IndexOf(sprite) == 9) continue;
+
+            sprite.color = nextColor;
+
+        }
     }
 
     // An over-engineered example of a client-only feature.
-    private static Color CalculateNextColor(Player player)
+    private static Color CalculateNextColor(Player player, out PlayerColor playerColor)
     {
-        PlayerColor playerColor = PlayerColors.GetValue(player, _ =>
+        playerColor = PlayerColors.GetValue(player, _ =>
             new(
                 PlayerGraphics.SlugcatColor(player.SlugCatClass),
                 PlayerGraphics.SlugcatColor(GetRandomSlugcat())
@@ -91,7 +92,7 @@ public static class PlayerHooks
         if (player.dead)
             playerColor.TargetColor = PlayerGraphics.SlugcatColor(player.SlugCatClass);
 
-        return Color.Lerp(playerColor.CurrentColor, playerColor.TargetColor, playerColor.GetTimeStacker());
+        return Color.Lerp(playerColor.CurrentColor, playerColor.TargetColor, playerColor.TimeStacker);
     }
 
     public static SlugcatStats.Name GetRandomSlugcat()
@@ -120,9 +121,9 @@ public static class PlayerHooks
         public Color CurrentColor { get; set; } = CurrentColor;
         public Color TargetColor { get; set; } = TargetColor;
 
-        private float TimeStacker;
+        public float TimeStacker { get; private set; }
 
-        public float GetTimeStacker(float delta = 0.025f)
+        public float UpdateTimeStacker(float delta = 0.025f)
         {
             TimeStacker += delta;
 
