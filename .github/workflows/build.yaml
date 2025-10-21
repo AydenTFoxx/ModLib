@@ -1,0 +1,24 @@
+on:
+  push:
+    branches:
+      - main
+jobs:
+  generate-docs:
+    runs-on: windows-latest
+    name: Generate Docs
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup .NET Core 3.1
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "3.1.300"
+      - name: Generate Documentation
+        uses: FuLagann/csharp-docs-generator@v1.0
+        with:
+          build-tasks: dotnet build ModLib.Loader,dotnet build ModLib
+          cleanup-tasks: dotnet clean
+          binaries: mod/newest/plugins/ModLib.dll
+          output-path: docs/api
+          user-email: aydentfox@gmail.com
+          user-name: AydenTFoxx
