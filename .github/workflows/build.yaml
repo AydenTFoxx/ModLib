@@ -16,7 +16,7 @@ jobs:
       - name: Generate Documentation
         uses: FuLagann/csharp-docs-generator@v1.0
         with:
-          build-tasks: dotnet build ModLib.Loader,dotnet build ModLib
+          build-tasks:
           cleanup-tasks: dotnet clean
           binaries: mod/newest/plugins/ModLib.dll
           output-path: docs/api
