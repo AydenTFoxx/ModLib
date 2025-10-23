@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -17,7 +15,7 @@ public class ServerOptions
     /// <summary>
     ///     The local holder of REMIX options' values.
     /// </summary>
-    public Dictionary<string, int> MyOptions { get; } = [];
+    public Dictionary<string, ConfigValue> MyOptions { get; } = [];
 
     /// <summary>
     ///     Sets the local holder's values to those from the REMIX option interface.
@@ -27,7 +25,7 @@ public class ServerOptions
     {
         foreach (ConfigurableBase configurable in OptionHolders.Keys)
         {
-            MyOptions[configurable.key] = resetValues ? default : CastOptionValue(configurable.BoxedValue);
+            MyOptions[configurable.key] = resetValues ? default : ConfigValue.FromObject(configurable.BoxedValue);
         }
 
         Core.Logger.LogDebug($"{(Extras.IsOnlineSession ? "Online " : "")}REMIX options are: {this}");
@@ -43,9 +41,9 @@ public class ServerOptions
     ///     Sets the local holder's values to those from the provided dictionary.
     /// </summary>
     /// <param name="options">The dictionary whose values will be copied.</param>
-    public void SetOptions(Dictionary<string, int> options)
+    public void SetOptions(Dictionary<string, ConfigValue> options)
     {
-        foreach (KeyValuePair<string, int> pair in options)
+        foreach (KeyValuePair<string, ConfigValue> pair in options)
         {
             if (!MyOptions.TryGetValue(pair.Key, out _))
             {
@@ -64,30 +62,6 @@ public class ServerOptions
     /// </summary>
     /// <returns>A string containing the <see cref="ServerOptions"/>' local values.</returns>
     public override string ToString() => $"[{FormatOptions()}]";
-
-    /// <summary>
-    ///     Casts the provided object to an equivalent integer value.
-    /// </summary>
-    /// <param name="value">The value to be cast.</param>
-    /// <returns>The integer equivalent of the provided object.</returns>
-    public static int CastOptionValue(object? value)
-    {
-        try
-        {
-            return value is IConvertible convertible
-                ? convertible.ToInt32(CultureInfo.InvariantCulture)
-                : int.TryParse(value?.ToString(), out int result)
-                    ? result
-                    : default;
-        }
-        catch (Exception ex)
-        {
-            Core.Logger.LogError($"Failed to cast option value: {value}");
-            Core.Logger.LogError(ex);
-
-            return 0;
-        }
-    }
 
     internal static void AddOptionSource(Type optionSource)
     {
@@ -114,17 +88,16 @@ public class ServerOptions
         }
     }
 
-    private string GetOptionAcronym(string optionName) =>
-        string.Concat(optionName.Split('_').Select(s => s.First())).ToUpperInvariant();
-
     private string FormatOptions()
     {
-        StringBuilder stringBuilder = new();
+        StringBuilder stringBuilder = new(Environment.NewLine);
 
-        foreach (KeyValuePair<string, int> kvp in MyOptions)
+        foreach (KeyValuePair<string, ConfigValue> kvp in MyOptions)
         {
-            stringBuilder.Append($"{GetOptionAcronym(kvp.Key)}: {kvp.Value}; ");
+            stringBuilder.Append($"{kvp.Key}: {kvp.Value};{Environment.NewLine}");
         }
+
+        stringBuilder.Append(Environment.NewLine);
 
         return stringBuilder.ToString().Trim();
     }

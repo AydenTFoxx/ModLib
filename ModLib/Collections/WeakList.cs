@@ -10,6 +10,23 @@ namespace ModLib.Collections;
 public class WeakList<T> : WeakCollection<T>, IList<T> where T : class
 {
     /// <inheritdoc/>
+    public WeakList()
+    {
+    }
+
+    /// <inheritdoc/>
+    public WeakList(int capacity)
+        : base(capacity)
+    {
+    }
+
+    /// <inheritdoc/>
+    public WeakList(IEnumerable<T> collection)
+        : base(collection)
+    {
+    }
+
+    /// <inheritdoc/>
     public T this[int index]
     {
         get => values[index].TryGetTarget(out T target) ? target : null!;

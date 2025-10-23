@@ -5,8 +5,8 @@ using System.Text;
 using BepInEx;
 using BepInEx.Logging;
 using LogUtils.Enums;
+using ModLib.Input;
 using ModLib.Meadow;
-using ModLib.Options;
 using UnityEngine;
 
 namespace ModLib;
@@ -26,8 +26,6 @@ internal static class Core
     public static readonly LogUtils.Logger Logger = new(MyLogID, LogID.BepInEx) { LogSource = LogSource };
 
     private static bool _initialized;
-
-    private static readonly WeakReference<GameSession> LastGameSession = new(null!);
 
     static Core()
     {
@@ -65,9 +63,10 @@ internal static class Core
         {
             MeadowHooks.AddHooks();
         }
-        else
+
+        if (Extras.IsIICEnabled || Extras.IsMeadowEnabled)
         {
-            On.GameSession.ctor += GameSessionHook;
+            On.RainWorldGame.Update += GameUpdateHook;
         }
 
         PatchLoader.Initialize();
@@ -85,21 +84,25 @@ internal static class Core
         {
             MeadowHooks.RemoveHooks();
         }
-        else
+
+        if (Extras.IsIICEnabled || Extras.IsMeadowEnabled)
         {
-            On.GameSession.ctor -= GameSessionHook;
+            On.RainWorldGame.Update -= GameUpdateHook;
         }
     }
 
-    private static void GameSessionHook(On.GameSession.orig_ctor orig, GameSession self, RainWorldGame game)
+    private static void GameUpdateHook(On.RainWorldGame.orig_Update orig, RainWorldGame self)
     {
-        orig.Invoke(self, game);
-
-        if (!LastGameSession.TryGetTarget(out _))
+        if (Extras.IsIICEnabled)
         {
-            OptionUtils.SharedOptions.RefreshOptions();
+            ImprovedInputHelper.UpdateInput();
+        }
 
-            LastGameSession.SetTarget(self);
+        orig.Invoke(self);
+
+        if (Extras.IsMeadowEnabled)
+        {
+            ModRPCManager.UpdateRPCs();
         }
     }
 

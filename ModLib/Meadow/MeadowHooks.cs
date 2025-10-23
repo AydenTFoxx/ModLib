@@ -1,5 +1,3 @@
-using System;
-using ModLib.Options;
 using RainMeadow;
 
 namespace ModLib.Meadow;
@@ -9,15 +7,13 @@ namespace ModLib.Meadow;
 /// </summary>
 internal static class MeadowHooks
 {
-    private static readonly WeakReference<GameSession> LastGameSession = new(null!);
-
     /// <summary>
     ///     Applies all Rain Meadow-specific hooks to the game.
     /// </summary>
     public static void AddHooks()
     {
         On.GameSession.ctor += GameSessionHook;
-        On.RainWorldGame.Update += GameUpdateHook;
+        On.RainWorldGame.ExitGame += ExitGameHook;
     }
 
     /// <summary>
@@ -26,32 +22,29 @@ internal static class MeadowHooks
     public static void RemoveHooks()
     {
         On.GameSession.ctor -= GameSessionHook;
-        On.RainWorldGame.Update -= GameUpdateHook;
+        On.RainWorldGame.ExitGame -= ExitGameHook;
+    }
+
+    private static void ExitGameHook(On.RainWorldGame.orig_ExitGame orig, RainWorldGame self, bool asDeath, bool asQuit)
+    {
+        orig.Invoke(self, asDeath, asQuit);
+
+        Extras.InGameSession = false;
+
+        ModRPCManager.ClearRPCs();
     }
 
     private static void GameSessionHook(On.GameSession.orig_ctor orig, GameSession self, RainWorldGame game)
     {
         orig.Invoke(self, game);
 
-        if (LastGameSession.TryGetTarget(out _)) return;
+        if (Extras.InGameSession) return;
 
-        OptionUtils.SharedOptions.RefreshOptions(!MeadowUtils.IsHost);
+        Extras.InGameSession = true;
 
         if (!MeadowUtils.IsHost)
         {
             OnlineManager.lobby.owner.SendRPCEvent(ModRPCs.RequestSyncRemixOptions, OnlineManager.mePlayer);
         }
-
-        LastGameSession.SetTarget(self);
-    }
-
-    /// <summary>
-    ///     Updates the RPC manager on every game tick.
-    /// </summary>
-    private static void GameUpdateHook(On.RainWorldGame.orig_Update orig, RainWorldGame self)
-    {
-        orig.Invoke(self);
-
-        ModRPCManager.UpdateRPCs();
     }
 }

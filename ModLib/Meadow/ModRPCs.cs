@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ModLib.Options;
 using RainMeadow;
 using static ModLib.Options.OptionUtils;
 
@@ -51,7 +52,7 @@ public static class ModRPCs
     ///     Overrides the player's local <see cref="SharedOptions"/> instance with the host's own REMIX options.
     /// </summary>
     /// <param name="rpcEvent">The RPC event itself.</param>
-    /// <param name="options">The serializable values of the host's <see cref="Options.ServerOptions"/> instance.</param>
+    /// <param name="options">The serializable values of the host's <see cref="ServerOptions"/> instance.</param>
     [SoftRPCMethod]
     public static void SyncRemixOptions(RPCEvent rpcEvent, SerializableOptions options)
     {
@@ -69,14 +70,14 @@ public static class ModRPCs
     }
 
     /// <summary>
-    ///     A serializable wrapper around a <see cref="Options.ServerOptions"/>' local options dictionary.
+    ///     A serializable wrapper around a <see cref="ServerOptions"/>' local options dictionary.
     /// </summary>
     public record SerializableOptions : Serializer.ICustomSerializable
     {
         /// <summary>
         ///     The internally held option values;
         /// </summary>
-        public Dictionary<string, int> Options = [];
+        public Dictionary<string, ConfigValue> Options = [];
 
         /// <summary>
         ///     Serializes or de-serializes the referenced local options, using the provided serializer object.

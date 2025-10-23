@@ -48,4 +48,21 @@ public static class InputHandler
         Extras.IsIICEnabled
             ? ImprovedInputHelper.WasKeyJustPressed(playerNumber, keybind)
             : keybind.JustPressed(playerNumber);
+
+    /// <summary>
+    ///     Enables or disables input handling for non-player objects.
+    ///     If enabled, a <see cref="CustomInputData"/> can be retrieved from the player's index to obtain their current input.
+    /// </summary>
+    /// <remarks>
+    ///     This requires the Improved Input Config: Extended mod to work, and will do nothing otherwise.
+    /// </remarks>
+    /// <param name="playerNumber">The player index to be checked.</param>
+    public static void ToggleInputListener(int playerNumber)
+    {
+        if (!Extras.IsIICEnabled) return;
+
+        CustomInputData? listener = ImprovedInputHelper.GetInputListener(playerNumber);
+
+        ImprovedInputHelper.SetInputListener(playerNumber, listener is null);
+    }
 }

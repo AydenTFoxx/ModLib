@@ -20,12 +20,12 @@ public static class Extras
     /// <summary>
     ///     Whether or not the Rain Meadow mod is present. This value is cached for performance purposes.
     /// </summary>
-    public static bool IsMeadowEnabled { get; set; }
+    public static bool IsMeadowEnabled { get; internal set; }
 
     /// <summary>
     ///     Whether or not the Improved Input Config: Extended mod is present. This value is cached for performance purposes.
     /// </summary>
-    public static bool IsIICEnabled { get; set; }
+    public static bool IsIICEnabled { get; internal set; }
 
     /// <summary>
     ///     If the current game session is in an online lobby.
@@ -36,6 +36,11 @@ public static class Extras
     ///     If the player is the host of the current game session. On Singleplayer, this is always true.
     /// </summary>
     public static bool IsHostPlayer => !IsMeadowEnabled || MeadowUtils.IsHost;
+
+    /// <summary>
+    ///     If the player is currently in-game and not on the main menu.
+    /// </summary>
+    public static bool InGameSession { get; internal set; }
 
     /// <summary>
     ///     Wraps a given action in a try-catch, safely performing its code while handling potential exceptions.

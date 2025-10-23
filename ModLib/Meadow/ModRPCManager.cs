@@ -41,9 +41,14 @@ public static class ModRPCManager
     }
 
     /// <summary>
+    ///     Clears all unresolved RPCs from the manager.
+    /// </summary>
+    internal static void ClearRPCs() => _activeRPCs.Clear();
+
+    /// <summary>
     ///     Updates all pending <see cref="RPCEvent"/> instances, removing them on expiration.
     /// </summary>
-    public static void UpdateRPCs()
+    internal static void UpdateRPCs()
     {
         if (_activeRPCs.Count < 1) return;
 

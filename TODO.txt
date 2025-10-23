@@ -1,5 +1,6 @@
 ModLib:
     ServerOptions.MyOptions only supports integers for values. In particular, strings are impossible to store.
+        Fixed! But at what cost?
 
     Registry only supports one loaded mod at a time; If multiple mods reference ModLib, the first mod registered is used for metadata purposes.
         Fixed!
@@ -9,10 +10,12 @@ ModLib:
         Done!
 
     ServerOptions is not synced in an online context; Instead, the client's MyOptions is cleared entirely.
+        Fixed!
 
     Core.PatchLoader._latestPatcherVersion could be assigned at compile-time, somehow. Would help a lot with not forgetting to change it after an update.
 
     ServerOptions.ToString() should be more descriptive, but not too verbose. Acronyms worked great for single-mod projects, but as a library, either properly display options or abstract it away entirely.
+        Done? Might change in the future, if the current implementation becomes too verbose.
 
 AscendedSaint:
     Player sees their own name in the ascension/revival messages, instead of the actual ascended/revived target.
@@ -22,3 +25,4 @@ AscendedSaint:
     Self-ascension is disabled in an online lobby, regardless of the client or host's settings (possibly due to above ServerOptions issue)
     Ascension effects are also not played; None of the aforementioned issues occur in singleplayer.
         A potential fix has been provided; Playtest is pending.
+        Fix is not enough; Now the game freezes waiting for the creature's revival. Non-players don't work either.

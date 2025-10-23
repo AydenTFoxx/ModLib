@@ -20,23 +20,7 @@ public static class OptionUtils
     /// <typeparam name="T">The type of the configurable itself.</typeparam>
     /// <param name="option">The option to be queried.</param>
     /// <returns>The configured value for the given option.</returns>
-    public static T? GetClientOptionValue<T>(Configurable<T>? option) => option is null ? default : option.Value;
-
-    /// <summary>
-    ///     Determines if a given option is enabled in the client's REMIX options, or the host's if in an online lobby.
-    /// </summary>
-    /// <remarks>
-    ///     If the client is not in an online lobby, this has the same effect as directly checking the configurable itself.
-    /// </remarks>
-    /// <typeparam name="T">The type of the configurable itself.</typeparam>
-    /// <param name="option">The option to be queried.</param>
-    /// <returns>The local value for the given option.</returns>
-    public static int GetOptionValue<T>(Configurable<T>? option) =>
-        Extras.IsHostPlayer
-            ? option is not null
-                ? ServerOptions.CastOptionValue(option.Value)
-                : 0
-            : GetOptionValue(option?.key ?? "none");
+    public static T? GetClientOptionValue<T>(Configurable<T>? option) => option is not null ? option.Value : default;
 
     /// <summary>
     ///     Directly requests for the client's REMIX options, then determines whether it is enabled or not.
@@ -66,12 +50,26 @@ public static class OptionUtils
     /// <remarks>
     ///     If the client is not in an online lobby, this has the same effect as directly checking the configurable itself.
     /// </remarks>
+    /// <typeparam name="T">The type of the configurable itself.</typeparam>
+    /// <param name="option">The option to be queried.</param>
+    /// <returns>The local value for the given option.</returns>
+    public static T? GetOptionValue<T>(Configurable<T>? option) =>
+        !Extras.IsOnlineSession || Extras.IsHostPlayer
+            ? GetClientOptionValue(option)
+            : GetOptionValue<T>(option?.key ?? "none");
+
+    /// <summary>
+    ///     Determines if a given option is enabled in the client's REMIX options, or the host's if in an online lobby.
+    /// </summary>
+    /// <remarks>
+    ///     If the client is not in an online lobby, this has the same effect as directly checking the configurable itself.
+    /// </remarks>
     /// <param name="option">The option to be queried. Must be of <c>bool</c> type.</param>
     /// <returns>The configured value for the given option.</returns>
     /// <seealso cref="IsClientOptionEnabled(Configurable{bool}?)"/>
     public static bool IsOptionEnabled(Configurable<bool>? option) =>
-        Extras.IsHostPlayer
-            ? option?.Value ?? false
+        !Extras.IsOnlineSession || Extras.IsHostPlayer
+            ? IsClientOptionEnabled(option)
             : IsOptionEnabled(option?.key ?? "none");
 
     /// <summary>
@@ -86,8 +84,8 @@ public static class OptionUtils
     /// <returns><c>true</c> if the option's value matches the given argument, <c>false</c> otherwise.</returns>
     /// <seealso cref="IsClientOptionValue{T}(Configurable{T}?, T)"/>
     public static bool IsOptionValue<T>(Configurable<T>? option, T value) =>
-        Extras.IsHostPlayer
-            ? option?.Value?.Equals(value) ?? false
+        !Extras.IsOnlineSession || Extras.IsHostPlayer
+            ? IsClientOptionValue(option, value)
             : IsOptionValue(option?.key ?? "none", value);
 
     /// <summary>
@@ -95,14 +93,17 @@ public static class OptionUtils
     /// </summary>
     /// <param name="option">The name of the option to be queried.</param>
     /// <returns>The value stored in the local <c>SharedOptions</c> property.</returns>
-    private static int GetOptionValue(string option) => SharedOptions.MyOptions.TryGetValue(option, out int value) ? value : default;
+    private static T? GetOptionValue<T>(string option) =>
+        SharedOptions.MyOptions.TryGetValue(option, out ConfigValue value)
+            ? (T?)value.GetBoxedValue() : default;
 
     /// <summary>
     ///     Determines if the local <c>SharedOptions</c> property has the given option enabled.
     /// </summary>
     /// <param name="option">The name of the option to be queried.</param>
     /// <returns><c>true</c> if the given option is enabled, <c>false</c> otherwise.</returns>
-    private static bool IsOptionEnabled(string option) => SharedOptions.MyOptions.TryGetValue(option, out int value) && value != default;
+    private static bool IsOptionEnabled(string option) =>
+        SharedOptions.MyOptions.TryGetValue(option, out ConfigValue value) && value.TryGetBool(out bool v) && v;
 
     /// <summary>
     ///     Determines if the local <c>SharedOptions</c> property has the given option set to the provided value.
@@ -111,5 +112,6 @@ public static class OptionUtils
     /// <param name="option">The name of the option to be queried.</param>
     /// <param name="value">The expected value to be checked.</param>
     /// <returns><c>true</c> if the option's value matches the given argument, <c>false</c> otherwise.</returns>
-    private static bool IsOptionValue<T>(string option, T value) => SharedOptions.MyOptions.TryGetValue(option, out int v) && v.Equals(value);
+    private static bool IsOptionValue<T>(string option, T value) =>
+        SharedOptions.MyOptions.TryGetValue(option, out ConfigValue v) && (v.GetBoxedValue()?.Equals(value) ?? false);
 }

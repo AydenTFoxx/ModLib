@@ -13,7 +13,37 @@ public class WeakCollection<T> : ICollection<T> where T : class
     /// <summary>
     ///     The internal collection used for tracking <see cref="WeakReference{T}"/> objects.
     /// </summary>
-    protected readonly List<WeakReference<T>> values = [];
+    protected readonly List<WeakReference<T>> values;
+
+    /// <summary>
+    ///     Creates a new collection of weak references to a given type.
+    /// </summary>
+    public WeakCollection()
+    {
+        values = [];
+    }
+
+    /// <summary>
+    ///     Creates a new collection of weak references to a given type with the provided initial capacity.
+    /// </summary>
+    /// <param name="capacity">The number of elements the collection can initially store.</param>
+    public WeakCollection(int capacity)
+    {
+        values = new(capacity);
+    }
+
+    /// <summary>
+    ///     Creates a new collection of weak references to a given type containing elements copied from the provided collection.
+    /// </summary>
+    /// <param name="collection">The collection whose values will be copied.</param>
+    public WeakCollection(IEnumerable<T> collection)
+    {
+        values = [];
+        foreach (T item in collection)
+        {
+            values.Add(new WeakReference<T>(item));
+        }
+    }
 
     /// <summary>
     ///     Adds a new weak reference to the <see cref="WeakCollection{T}"/>.
