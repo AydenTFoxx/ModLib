@@ -15,7 +15,7 @@ internal static class Core
 {
     public const string MOD_GUID = "ynhzrfxn.modlib";
     public const string MOD_NAME = "ModLib";
-    public const string MOD_VERSION = "1.0.0.0";
+    public const string MOD_VERSION = "1.0.2.0";
 
     public static readonly BepInPlugin PluginData = new(MOD_GUID, MOD_NAME, MOD_VERSION);
     public static readonly ManualLogSource LogSource = BepInEx.Logging.Logger.CreateLogSource(MOD_NAME);

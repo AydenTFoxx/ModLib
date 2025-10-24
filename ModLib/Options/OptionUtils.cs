@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace ModLib.Options;
 
 /// <summary>
@@ -20,6 +22,7 @@ public static class OptionUtils
     /// <typeparam name="T">The type of the configurable itself.</typeparam>
     /// <param name="option">The option to be queried.</param>
     /// <returns>The configured value for the given option.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static T? GetClientOptionValue<T>(Configurable<T>? option) => option is not null ? option.Value : default;
 
     /// <summary>
@@ -30,6 +33,7 @@ public static class OptionUtils
     /// </remarks>
     /// <param name="option">The option to be queried. Must be of <c>bool</c> type.</param>
     /// <returns><c>true</c> if the given option is enabled, <c>false</c> otherwise.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsClientOptionEnabled(Configurable<bool>? option) => option?.Value ?? false;
 
     /// <summary>
@@ -42,6 +46,7 @@ public static class OptionUtils
     /// <param name="option">The option to be queried.</param>
     /// <param name="value">The expected value to be checked.</param>
     /// <returns><c>true</c> if the option's value matches the given argument, <c>false</c> otherwise.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool IsClientOptionValue<T>(Configurable<T>? option, T value) => option?.Value?.Equals(value) ?? false;
 
     /// <summary>
@@ -53,6 +58,7 @@ public static class OptionUtils
     /// <typeparam name="T">The type of the configurable itself.</typeparam>
     /// <param name="option">The option to be queried.</param>
     /// <returns>The local value for the given option.</returns>
+    /// <seealso cref="GetClientOptionValue{T}(Configurable{T}?)"/>
     public static T? GetOptionValue<T>(Configurable<T>? option) =>
         !Extras.IsOnlineSession || Extras.IsHostPlayer
             ? GetClientOptionValue(option)
@@ -93,6 +99,7 @@ public static class OptionUtils
     /// </summary>
     /// <param name="option">The name of the option to be queried.</param>
     /// <returns>The value stored in the local <c>SharedOptions</c> property.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static T? GetOptionValue<T>(string option) =>
         SharedOptions.MyOptions.TryGetValue(option, out ConfigValue value)
             ? (T?)value.GetBoxedValue() : default;
@@ -102,6 +109,7 @@ public static class OptionUtils
     /// </summary>
     /// <param name="option">The name of the option to be queried.</param>
     /// <returns><c>true</c> if the given option is enabled, <c>false</c> otherwise.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static bool IsOptionEnabled(string option) =>
         SharedOptions.MyOptions.TryGetValue(option, out ConfigValue value) && value.TryGetBool(out bool v) && v;
 
@@ -112,6 +120,7 @@ public static class OptionUtils
     /// <param name="option">The name of the option to be queried.</param>
     /// <param name="value">The expected value to be checked.</param>
     /// <returns><c>true</c> if the option's value matches the given argument, <c>false</c> otherwise.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static bool IsOptionValue<T>(string option, T value) =>
         SharedOptions.MyOptions.TryGetValue(option, out ConfigValue v) && (v.GetBoxedValue()?.Equals(value) ?? false);
 }

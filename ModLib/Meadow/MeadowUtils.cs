@@ -106,6 +106,24 @@ public static class MeadowUtils
     }
 
     /// <summary>
+    ///     Requests the owner of a given realized object for its ownership.
+    /// </summary>
+    /// <remarks>
+    ///     Use this overload when running code in an environment where Rain Meadow may or may not be enabled.
+    /// </remarks>
+    /// <param name="physicalObject">The realized object whose ownership will be requested.</param>
+    public static void RequestOwnership(PhysicalObject physicalObject) =>
+        RequestOwnership(physicalObject.abstractPhysicalObject.GetOnlineObject()!, null);
+
+    /// <summary>
+    ///     Requests the owner of a given realized object for its ownership, then runs a given callback method after resolving the request.
+    /// </summary>
+    /// <param name="physicalObject">The realized object whose ownership will be requested.</param>
+    /// <param name="callback">The callback method to be executed after resolving the request.</param>
+    public static void RequestOwnership(PhysicalObject physicalObject, Action<GenericResult> callback) =>
+        RequestOwnership(physicalObject.abstractPhysicalObject.GetOnlineObject()!, callback);
+
+    /// <summary>
     ///     Requests the owner of a given online object for its ownership, then optionally runs a callback method after resolving the request.
     /// </summary>
     /// <param name="onlineObject">The online object whose ownership will be requested.</param>
@@ -139,11 +157,11 @@ public static class MeadowUtils
         }
     }
 
-    private static bool ValidateOwnershipRequest(OnlinePhysicalObject onlineObject)
+    private static bool ValidateOwnershipRequest(OnlinePhysicalObject? onlineObject)
     {
         if (onlineObject is null)
         {
-            Core.Logger.LogWarning($"Cannot request the ownership of a null object; Aborting operation.");
+            Core.Logger.LogWarning("Cannot request the ownership of a null object; Aborting operation.");
         }
         else if (onlineObject.isMine)
         {

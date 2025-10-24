@@ -3,8 +3,8 @@
 	<!-- Assembly metadata -->
 	<PropertyGroup>
 		<Title>Generic Modding Library</Title>
-		<AssemblyVersion>1.0.1.2</AssemblyVersion>
-		<FileVersion>1.0.1.2</FileVersion>
+		<AssemblyVersion>1.0.2.0</AssemblyVersion>
+		<FileVersion>1.0.2.0</FileVersion>
 	</PropertyGroup>
 
 	<!-- .NET options -->
@@ -22,10 +22,10 @@
 
 	<!-- Referenced assemblies -->
 	<ItemGroup>
-		<Reference Include="../lib/*.dll">
+		<Reference Include="../lib/Rain World/**/*.dll">
 			<Private>false</Private>
 		</Reference>
-		<Reference Include="../lib/**/*.dll">
+		<Reference Include="../lib/Mods/*.dll">
 			<Private>false</Private>
 		</Reference>
 	</ItemGroup>
@@ -40,12 +40,17 @@
 		<ItemGroup>
 			<CopyPlugins Include="$(TargetDir)$(TargetName).dll" />
 			<CopyPlugins Include="$(TargetDir)$(TargetName).pdb" />
+
+			<CopyPlugins Include="../lib/Mods/LogUtils.dll" />
+			<CopyPlugins Include="../lib/Mods/LogUtils.pdb" />
+
+			<CopyDocs Include="$(TargetDir)$(TargetName).xml" />
 		</ItemGroup>
 
-		<Copy SourceFiles="@(CopyPlugins)" DestinationFolder="../mod/newest/plugins/" />
+		<Copy SourceFiles="@(CopyPlugins)" DestinationFolder="../lib/Custom/" />
+		<Copy SourceFiles="@(CopyDocs)" DestinationFolder="../lib/Custom/" />
 
-		<Copy SourceFiles="../lib/LogUtils.dll" DestinationFolder="../mod/newest/plugins/" />
-		<Copy SourceFiles="../lib/LogUtils.pdb" DestinationFolder="../mod/newest/plugins/" />
+		<Copy SourceFiles="@(CopyPlugins)" DestinationFolder="../mod/newest/plugins/" />
 	</Target>
 
 </Project>

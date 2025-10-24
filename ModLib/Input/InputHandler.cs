@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace ModLib.Input;
 
 /// <summary>
@@ -5,6 +7,22 @@ namespace ModLib.Input;
 /// </summary>
 public static class InputHandler
 {
+    /// <summary>
+    ///     Retrieves the raw input package for the given player.
+    /// </summary>
+    /// <param name="self">The player whose input will be queried.</param>
+    /// <returns>A <see cref="Player.InputPackage"/> containing the input for the given player.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Player.InputPackage GetRawInput(this Player self) => GetRawInput(self.playerState.playerNumber);
+
+    /// <summary>
+    ///     Retrieves the raw input package for the given player index.
+    /// </summary>
+    /// <param name="playerNumber">The player index whose input will be queried.</param>
+    /// <returns>A <see cref="Player.InputPackage"/> containing the input for the given player index.</returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static Player.InputPackage GetRawInput(int playerNumber) => RWInput.PlayerInput(playerNumber);
+
     /// <summary>
     ///     Determines whether a given keybind is currently being held by the player.
     /// </summary>

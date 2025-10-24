@@ -97,7 +97,11 @@ public static class ModRPCManager
     /// <param name="args">Any arguments of the RPC method.</param>
     public static void BroadcastOnceRPCInRoom(this OnlineEntity source, Delegate del, params object[] args)
     {
-        if (source.currentlyJoinedResource is not RoomSession roomSession) return;
+        if (source.currentlyJoinedResource is not RoomSession roomSession)
+        {
+            Core.Logger.LogDebug($"{source} is not in a valid joined resource; Ignoring.");
+            return;
+        }
 
         foreach (OnlinePlayer participant in roomSession.participants)
         {

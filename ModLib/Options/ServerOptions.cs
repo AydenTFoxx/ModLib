@@ -104,7 +104,7 @@ public class ServerOptions
 }
 
 /// <summary>
-/// Determines a given REMIX option is not to be synced in an online context (e.g. in a Rain Meadow lobby).
+/// Determines a given REMIX option is not to be synced in an online context (e.g. a Rain Meadow lobby).
 /// </summary>
 [AttributeUsage(AttributeTargets.Field)]
 public sealed class ClientOptionAttribute : Attribute
