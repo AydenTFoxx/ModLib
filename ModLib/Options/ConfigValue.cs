@@ -14,7 +14,7 @@ public readonly struct ConfigValue
     [FieldOffset(0)] private readonly int _intValue;
     [FieldOffset(0)] private readonly float _floatValue;
     [FieldOffset(0)] private readonly bool _boolValue;
-    [FieldOffset(5)] private readonly string? _stringValue; // ref type stored separately
+    [FieldOffset(8)] private readonly string? _stringValue; // ref type stored separately
 
     /// <summary>
     ///     Determines the internally held type of this object.

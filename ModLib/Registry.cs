@@ -34,8 +34,6 @@ public static class Registry
 
     static Registry()
     {
-        Core.Initialize();
-
         RegisteredMods.Add(typeof(Registry).Assembly, new ModEntry(Core.PluginData, null, Core.Logger));
     }
 

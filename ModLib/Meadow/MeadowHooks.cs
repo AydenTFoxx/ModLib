@@ -1,3 +1,4 @@
+using ModLib.Options;
 using RainMeadow;
 
 namespace ModLib.Meadow;
@@ -41,6 +42,8 @@ internal static class MeadowHooks
         if (Extras.InGameSession) return;
 
         Extras.InGameSession = true;
+
+        OptionUtils.SharedOptions.RefreshOptions();
 
         if (!MeadowUtils.IsHost)
         {

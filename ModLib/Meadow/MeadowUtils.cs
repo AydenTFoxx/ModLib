@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using RainMeadow;
 
 namespace ModLib.Meadow;
@@ -112,6 +113,7 @@ public static class MeadowUtils
     ///     Use this overload when running code in an environment where Rain Meadow may or may not be enabled.
     /// </remarks>
     /// <param name="physicalObject">The realized object whose ownership will be requested.</param>
+    [MethodImpl(MethodImplOptions.NoInlining)]
     public static void RequestOwnership(PhysicalObject physicalObject) =>
         RequestOwnership(physicalObject.abstractPhysicalObject.GetOnlineObject()!, null);
 
@@ -120,6 +122,7 @@ public static class MeadowUtils
     /// </summary>
     /// <param name="physicalObject">The realized object whose ownership will be requested.</param>
     /// <param name="callback">The callback method to be executed after resolving the request.</param>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static void RequestOwnership(PhysicalObject physicalObject, Action<GenericResult> callback) =>
         RequestOwnership(physicalObject.abstractPhysicalObject.GetOnlineObject()!, callback);
 

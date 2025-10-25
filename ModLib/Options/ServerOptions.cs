@@ -20,12 +20,11 @@ public class ServerOptions
     /// <summary>
     ///     Sets the local holder's values to those from the REMIX option interface.
     /// </summary>
-    /// <param name="resetValues">If true, all values are set to the default underlying value (<c>0</c>) instead.</param>
-    public void RefreshOptions(bool resetValues = false)
+    public void RefreshOptions()
     {
         foreach (ConfigurableBase configurable in OptionHolders.Keys)
         {
-            MyOptions[configurable.key] = resetValues ? default : ConfigValue.FromObject(configurable.BoxedValue);
+            MyOptions[configurable.key] = ConfigValue.FromObject(configurable.BoxedValue);
         }
 
         Core.Logger.LogDebug($"{(Extras.IsOnlineSession ? "Online " : "")}REMIX options are: {this}");
@@ -90,16 +89,14 @@ public class ServerOptions
 
     private string FormatOptions()
     {
-        StringBuilder stringBuilder = new(Environment.NewLine);
+        StringBuilder stringBuilder = new();
 
         foreach (KeyValuePair<string, ConfigValue> kvp in MyOptions)
         {
-            stringBuilder.Append($"{kvp.Key}: {kvp.Value};{Environment.NewLine}");
+            stringBuilder.AppendLine($"- {kvp.Key}: {kvp.Value};");
         }
 
-        stringBuilder.Append(Environment.NewLine);
-
-        return stringBuilder.ToString().Trim();
+        return $"{Environment.NewLine}{stringBuilder}{Environment.NewLine}";
     }
 }
 

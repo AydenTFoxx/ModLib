@@ -59,10 +59,8 @@ public static class OptionUtils
     /// <param name="option">The option to be queried.</param>
     /// <returns>The local value for the given option.</returns>
     /// <seealso cref="GetClientOptionValue{T}(Configurable{T}?)"/>
-    public static T? GetOptionValue<T>(Configurable<T>? option) =>
-        !Extras.IsOnlineSession || Extras.IsHostPlayer
-            ? GetClientOptionValue(option)
-            : GetOptionValue<T>(option?.key ?? "none");
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static T? GetOptionValue<T>(Configurable<T>? option) => GetOptionValue<T>(option?.key ?? "none");
 
     /// <summary>
     ///     Determines if a given option is enabled in the client's REMIX options, or the host's if in an online lobby.
@@ -73,10 +71,8 @@ public static class OptionUtils
     /// <param name="option">The option to be queried. Must be of <c>bool</c> type.</param>
     /// <returns>The configured value for the given option.</returns>
     /// <seealso cref="IsClientOptionEnabled(Configurable{bool}?)"/>
-    public static bool IsOptionEnabled(Configurable<bool>? option) =>
-        !Extras.IsOnlineSession || Extras.IsHostPlayer
-            ? IsClientOptionEnabled(option)
-            : IsOptionEnabled(option?.key ?? "none");
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsOptionEnabled(Configurable<bool>? option) => IsOptionEnabled(option?.key ?? "none");
 
     /// <summary>
     ///     Determines if a given option has the provided value in the client's REMIX options, or the host's if in an online lobby.
@@ -89,18 +85,15 @@ public static class OptionUtils
     /// <param name="value">The expected value to be checked.</param>
     /// <returns><c>true</c> if the option's value matches the given argument, <c>false</c> otherwise.</returns>
     /// <seealso cref="IsClientOptionValue{T}(Configurable{T}?, T)"/>
-    public static bool IsOptionValue<T>(Configurable<T>? option, T value) =>
-        !Extras.IsOnlineSession || Extras.IsHostPlayer
-            ? IsClientOptionValue(option, value)
-            : IsOptionValue(option?.key ?? "none", value);
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsOptionValue<T>(Configurable<T>? option, T value) => IsOptionValue(option?.key ?? "none", value);
 
     /// <summary>
     ///     Retrieves the value of the given option from the local <c>SharedOptions</c> property.
     /// </summary>
     /// <param name="option">The name of the option to be queried.</param>
     /// <returns>The value stored in the local <c>SharedOptions</c> property.</returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static T? GetOptionValue<T>(string option) =>
+    public static T? GetOptionValue<T>(string option) =>
         SharedOptions.MyOptions.TryGetValue(option, out ConfigValue value)
             ? (T?)value.GetBoxedValue() : default;
 
@@ -109,8 +102,7 @@ public static class OptionUtils
     /// </summary>
     /// <param name="option">The name of the option to be queried.</param>
     /// <returns><c>true</c> if the given option is enabled, <c>false</c> otherwise.</returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static bool IsOptionEnabled(string option) =>
+    public static bool IsOptionEnabled(string option) =>
         SharedOptions.MyOptions.TryGetValue(option, out ConfigValue value) && value.TryGetBool(out bool v) && v;
 
     /// <summary>
@@ -120,7 +112,6 @@ public static class OptionUtils
     /// <param name="option">The name of the option to be queried.</param>
     /// <param name="value">The expected value to be checked.</param>
     /// <returns><c>true</c> if the option's value matches the given argument, <c>false</c> otherwise.</returns>
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static bool IsOptionValue<T>(string option, T value) =>
+    public static bool IsOptionValue<T>(string option, T value) =>
         SharedOptions.MyOptions.TryGetValue(option, out ConfigValue v) && (v.GetBoxedValue()?.Equals(value) ?? false);
 }

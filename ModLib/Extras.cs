@@ -42,6 +42,13 @@ public static class Extras
     /// </summary>
     public static bool InGameSession { get; internal set; }
 
+    static Extras()
+    {
+        bool wasEarlyInit = Assembly.GetCallingAssembly() != typeof(Extras).Assembly;
+
+        Core.Logger?.LogInfo($"Running ModLib v{Core.MOD_VERSION} | Early {nameof(Extras)} initialization? {wasEarlyInit}");
+    }
+
     /// <summary>
     ///     Wraps a given action in a try-catch, safely performing its code while handling potential exceptions.
     /// </summary>

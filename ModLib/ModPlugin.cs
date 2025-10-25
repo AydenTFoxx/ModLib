@@ -71,11 +71,11 @@ public abstract class ModPlugin : BaseUnityPlugin
                 LogSource = base.Logger
             };
 
-            string pathToLogFile = Path.Combine(Registry.DefaultLogsPath, Registry.ModEntry.SanitizeName(Info.Metadata.Name));
+            string pathToLogFile = Path.Combine(Registry.DefaultLogsPath, Registry.ModEntry.SanitizeName(Info.Metadata.Name) + ".log");
 
             if (File.Exists(pathToLogFile))
             {
-                File.WriteAllBytes(pathToLogFile, [0]);
+                File.WriteAllText(pathToLogFile, "");
             }
         }
 

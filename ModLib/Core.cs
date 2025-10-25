@@ -7,6 +7,7 @@ using BepInEx.Logging;
 using LogUtils.Enums;
 using ModLib.Input;
 using ModLib.Meadow;
+using ModLib.Options;
 using UnityEngine;
 
 namespace ModLib;
@@ -41,10 +42,15 @@ internal static class Core
             MyLogID.Properties.ShowCategories.IsEnabled = true;
             MyLogID.Properties.ShowLogTimestamp.IsEnabled = true;
 
-            MyLogID.Properties.IntroMessage = $"# Initialized ModLib successfully.";
-            MyLogID.Properties.OutroMessage = $"# Disabled ModLib successfully.";
+            MyLogID.Properties.IntroMessage = "# Initialized ModLib successfully.";
+            MyLogID.Properties.OutroMessage = "# Disabled ModLib successfully.";
 
             MyLogID.Properties.AddTag("ModLib");
+        }
+
+        if (!_initialized)
+        {
+            Initialize();
         }
     }
 
@@ -62,6 +68,11 @@ internal static class Core
         if (Extras.IsMeadowEnabled)
         {
             MeadowHooks.AddHooks();
+        }
+        else
+        {
+            On.GameSession.ctor += GameSessionHook;
+            On.RainWorldGame.ExitGame += ExitGameHook;
         }
 
         if (Extras.IsIICEnabled || Extras.IsMeadowEnabled)
@@ -84,11 +95,34 @@ internal static class Core
         {
             MeadowHooks.RemoveHooks();
         }
+        else
+        {
+            On.GameSession.ctor -= GameSessionHook;
+            On.RainWorldGame.ExitGame -= ExitGameHook;
+        }
 
         if (Extras.IsIICEnabled || Extras.IsMeadowEnabled)
         {
             On.RainWorldGame.Update -= GameUpdateHook;
         }
+    }
+
+    private static void ExitGameHook(On.RainWorldGame.orig_ExitGame orig, RainWorldGame self, bool asDeath, bool asQuit)
+    {
+        orig.Invoke(self, asDeath, asQuit);
+
+        Extras.InGameSession = false;
+    }
+
+    private static void GameSessionHook(On.GameSession.orig_ctor orig, GameSession self, RainWorldGame game)
+    {
+        orig.Invoke(self, game);
+
+        if (Extras.InGameSession) return;
+
+        Extras.InGameSession = true;
+
+        OptionUtils.SharedOptions.RefreshOptions();
     }
 
     private static void GameUpdateHook(On.RainWorldGame.orig_Update orig, RainWorldGame self)

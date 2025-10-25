@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Linq;
 using Menu;
 using Menu.Remix.MixedUI;
@@ -11,7 +12,9 @@ namespace ModLib.Options;
 /// <remarks>To return the generated <c>OpTab</c> object, use <see cref="Build()"/>.</remarks>
 public class OptionBuilder(OpTab opTab)
 {
-    private Vector2 vector2 = new(100f, 400f);
+    private static Vector2 DefaultOrigin = new(100f, 400f);
+
+    private Vector2 vector2 = DefaultOrigin;
 
     /// <summary>
     ///     Initializes a new <c>OptionBuilder</c> instance for creating option tabs.
@@ -184,6 +187,51 @@ public class OptionBuilder(OpTab opTab)
         opTab.AddItems(UIarrayOptions);
 
         vector2.y -= size.y + 30f;
+
+        return this;
+    }
+
+    /// <summary>
+    ///     Retrieves the origin at which elements will be added for this <see cref="OptionBuilder"/> instance.
+    /// </summary>
+    /// <returns>The position at which elements will be added for this builder instance.</returns>
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    public Vector2 GetOrigin() => vector2;
+
+    /// <summary>
+    ///     Sets the origin at which elements will be added for this <see cref="OptionBuilder"/> instance.
+    /// </summary>
+    /// <param name="origin">The position to be set.</param>
+    /// <returns>The <c>OptionBuilder</c> object.</returns>
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    public OptionBuilder SetOrigin(Vector2 origin)
+    {
+        vector2 = origin;
+
+        return this;
+    }
+
+    /// <summary>
+    ///     Resets the origin at which elements are added for this <see cref="OptionBuilder"/> instance.
+    /// </summary>
+    /// <returns>The <c>OptionBuilder</c> object.</returns>
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    public OptionBuilder ResetOrigin()
+    {
+        vector2 = DefaultOrigin;
+
+        return this;
+    }
+
+    /// <summary>
+    ///     Adds one or more <see cref="UIelement"/> objects to the <c>OpTab</c> instance.
+    /// </summary>
+    /// <param name="elements">The elements to be added.</param>
+    /// <returns>The <c>OptionBuilder</c> object.</returns>
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    public OptionBuilder AddElements(params UIelement[] elements)
+    {
+        opTab.AddItems(elements);
 
         return this;
     }
