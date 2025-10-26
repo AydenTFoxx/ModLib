@@ -89,14 +89,14 @@ public class ServerOptions
 
     private string FormatOptions()
     {
-        StringBuilder stringBuilder = new();
+        StringBuilder stringBuilder = new(Environment.NewLine);
 
         foreach (KeyValuePair<string, ConfigValue> kvp in MyOptions)
         {
             stringBuilder.AppendLine($"- {kvp.Key}: {kvp.Value};");
         }
 
-        return $"{Environment.NewLine}{stringBuilder}{Environment.NewLine}";
+        return stringBuilder.ToString();
     }
 }
 

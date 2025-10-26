@@ -61,12 +61,12 @@ internal static class AssemblyUtils
     }
 
     public static bool HasPath(this AssemblyCandidate candidate, string path) =>
-        candidate.Path != null && candidate.Path.StartsWith(path);
+        candidate.Path != null && candidate.Path.StartsWith(path, StringComparison.OrdinalIgnoreCase);
 
     public static string FormatCandidate(AssemblyCandidate candidate, bool includePathToAssembly = false) =>
         $"v{candidate.Version} {(includePathToAssembly ? "at" : "from")} {GetModName(candidate.Path, includePathToAssembly)}";
 
-    private static string? GetModName(string path, bool includePathToAssembly)
+    private static string GetModName(string path, bool includePathToAssembly)
     {
         string? result = path.Split(includePathToAssembly ? ["mods", "312520"] : RootPaths, StringSplitOptions.RemoveEmptyEntries).ElementAtOrDefault(1);
 

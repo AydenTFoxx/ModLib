@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using System.Security.Permissions;
+using ModLib.Logging;
 using ModLib.Meadow;
 using MonoMod.Cil;
 
@@ -20,12 +21,12 @@ public static class Extras
     /// <summary>
     ///     Whether or not the Rain Meadow mod is present. This value is cached for performance purposes.
     /// </summary>
-    public static bool IsMeadowEnabled { get; internal set; }
+    public static bool IsMeadowEnabled { get; }
 
     /// <summary>
     ///     Whether or not the Improved Input Config: Extended mod is present. This value is cached for performance purposes.
     /// </summary>
-    public static bool IsIICEnabled { get; internal set; }
+    public static bool IsIICEnabled { get; }
 
     /// <summary>
     ///     If the current game session is in an online lobby.
@@ -42,11 +43,30 @@ public static class Extras
     /// </summary>
     public static bool InGameSession { get; internal set; }
 
+    /// <summary>
+    ///     Determines if LogUtils is currently loaded and available for usage.
+    /// </summary>
+    public static bool LogUtilsAvailable { get; }
+
+    /// <summary>
+    ///     Determines if ModLib is currently loaded and available for usage.
+    ///     This property should always return <c>true</c>, and may be used by other mods to offer optional compatibility with ModLib itself when available.
+    /// </summary>
+    public static bool ModLibAvailable => Loader.Entrypoint.Initialized;
+
     static Extras()
     {
-        bool wasEarlyInit = Assembly.GetCallingAssembly() != typeof(Extras).Assembly;
+        IsMeadowEnabled = CompatibilityManager.IsRainMeadowEnabled();
+        IsIICEnabled = CompatibilityManager.IsIICEnabled();
 
-        Core.Logger?.LogInfo($"Running ModLib v{Core.MOD_VERSION} | Early {nameof(Extras)} initialization? {wasEarlyInit}");
+        try
+        {
+            LogUtilsAvailable = LogUtilsHelper.IsAvailable;
+        }
+        catch (Exception)
+        {
+            LogUtilsAvailable = false;
+        }
     }
 
     /// <summary>
@@ -62,9 +82,12 @@ public static class Extras
         }
         catch (Exception ex)
         {
-            LogUtils.Logger logger = Registry.GetMod(Assembly.GetCallingAssembly()).Logger;
+            IMyLogger? logger = Registry.GetMod(Assembly.GetCallingAssembly()).Logger;
 
-            logger.LogError($"Failed to run wrapped action: {action.Method.Name}", ex);
+            if (logger is null) return;
+
+            logger.LogError($"Failed to run wrapped action: {action.Method.Name}");
+            logger.LogError(ex);
         }
     }
 
@@ -84,14 +107,17 @@ public static class Extras
             }
             catch (Exception ex)
             {
-                LogUtils.Logger logger = Registry.GetMod(Assembly.GetCallingAssembly()).Logger;
+                IMyLogger? logger = Registry.GetMod(Assembly.GetCallingAssembly()).Logger;
 
-                logger.LogError($"Failed to apply IL hook: {action.Method.Name}", ex);
+                if (logger is null) return;
+
+                logger.LogError($"Failed to apply IL hook: {action.Method.Name}");
+                logger.LogError(ex);
             }
         };
     }
 
-    internal static void WrapAction(Action action, LogUtils.Logger logger)
+    internal static void WrapAction(Action action, IMyLogger logger)
     {
         try
         {
@@ -99,7 +125,8 @@ public static class Extras
         }
         catch (Exception ex)
         {
-            logger.LogError($"Failed to run wrapped action: {action.Method.Name}", ex);
+            logger.LogError($"Failed to run wrapped action: {action.Method.Name}");
+            logger.LogError(ex);
         }
     }
 }

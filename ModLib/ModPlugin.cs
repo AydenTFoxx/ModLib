@@ -2,8 +2,7 @@
 using System.IO;
 using System.Reflection;
 using BepInEx;
-using LogUtils;
-using LogUtils.Enums;
+using ModLib.Logging;
 
 namespace ModLib;
 
@@ -25,7 +24,7 @@ public abstract class ModPlugin : BaseUnityPlugin
     /// <summary>
     ///     The custom logger instance for this mod.
     /// </summary>
-    protected new Logger Logger { get; set; }
+    protected new IMyLogger Logger { get; set; }
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
@@ -45,7 +44,7 @@ public abstract class ModPlugin : BaseUnityPlugin
     {
         this.options = options;
 
-        Initialize(Assembly.GetCallingAssembly(), options?.GetType(), null);
+        Initialize(Assembly.GetCallingAssembly(), options?.GetType(), LoggingAdapter.CreateLogger(base.Logger));
     }
 
     /// <summary>
@@ -53,25 +52,20 @@ public abstract class ModPlugin : BaseUnityPlugin
     /// </summary>
     /// <param name="options">The mod's REMIX option interface class, if any.</param>
     /// <param name="logger">The logger instance to be used. If null, a new one is created and assigned to this mod.</param>
-    public ModPlugin(OptionInterface? options, Logger? logger)
+    public ModPlugin(OptionInterface? options, IMyLogger? logger)
     {
         this.options = options;
 
         Initialize(Assembly.GetCallingAssembly(), options?.GetType(), logger);
     }
 
-    private void Initialize(Assembly caller, Type? optionHolder, Logger? logger)
+    private void Initialize(Assembly caller, Type? optionHolder, IMyLogger? logger)
     {
-        if (logger is null)
+        logger ??= LoggingAdapter.CreateLogger(base.Logger);
+
+        if (Extras.LogUtilsAvailable && logger is LogUtilsAdapter)
         {
-            LogID myLogID = Registry.ModEntry.CreateLogID(Info.Metadata);
-
-            logger = new Logger(myLogID, LogID.Unity, LogID.BepInEx)
-            {
-                LogSource = base.Logger
-            };
-
-            string pathToLogFile = Path.Combine(Registry.DefaultLogsPath, Registry.ModEntry.SanitizeName(Info.Metadata.Name) + ".log");
+            string pathToLogFile = Path.Combine(Registry.DefaultLogsPath, LogUtilsHelper.SanitizeName(Info.Metadata.Name) + ".log");
 
             if (File.Exists(pathToLogFile))
             {

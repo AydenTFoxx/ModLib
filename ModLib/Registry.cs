@@ -1,12 +1,9 @@
 using System;
-using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
 using BepInEx;
-using LogUtils;
-using LogUtils.Enums;
+using BepInEx.Logging;
+using ModLib.Logging;
 using ModLib.Options;
 
 namespace ModLib;
@@ -34,12 +31,21 @@ public static class Registry
 
     static Registry()
     {
-        RegisteredMods.Add(typeof(Registry).Assembly, new ModEntry(Core.PluginData, null, Core.Logger));
+        Core.Initialize();
+
+        RegisteredMods.Add(Core.Assembly, new ModEntry(Core.PluginData, null, Core.Logger));
     }
 
-    /// <inheritdoc cref="RegisterMod(BaseUnityPlugin, Type, Logger)"/>
+    /// <inheritdoc cref="RegisterMod(BaseUnityPlugin, Type, ManualLogSource)"/>
     public static void RegisterMod(BaseUnityPlugin plugin, Type? optionHolder) =>
         RegisterAssembly(Assembly.GetCallingAssembly(), plugin.Info.Metadata, optionHolder, null);
+
+    /// <inheritdoc cref="RegisterMod(BaseUnityPlugin, Type, IMyLogger)"/>
+    /// <param name="plugin"></param>
+    /// <param name="optionHolder"></param>
+    /// <param name="logSource">The log source of this mod. If LogUtils is present, a <see cref="LogUtils.Logger"/> will be created with this parameter as its <c>LogSource</c> value.</param>
+    public static void RegisterMod(BaseUnityPlugin plugin, Type? optionHolder, ManualLogSource logSource) =>
+        RegisterAssembly(Assembly.GetCallingAssembly(), plugin.Info.Metadata, optionHolder, LoggingAdapter.CreateLogger(logSource));
 
     /// <summary>
     ///     Registers the current mod assembly to ModLib. This should be done sometime during the mod-loading process,
@@ -50,9 +56,9 @@ public static class Registry
     ///     A class with <c>public static</c> fields of type <see cref="Configurable{T}"/>,
     ///     which are retrieved via reflection to determine the mod's REMIX options.
     /// </param>
-    /// <param name="logger">The logger instance for usage by this mod. If <c>null</c>, a new one is created and assigned to it.</param>
+    /// <param name="logger">The wrapped logger for usage by this mod.</param>
     /// <exception cref="InvalidOperationException">The current mod assembly is already registered to ModLib.</exception>
-    public static void RegisterMod(BaseUnityPlugin plugin, Type? optionHolder, Logger? logger) =>
+    public static void RegisterMod(BaseUnityPlugin plugin, Type? optionHolder, IMyLogger? logger) =>
         RegisterAssembly(Assembly.GetCallingAssembly(), plugin.Info.Metadata, optionHolder, logger);
 
     /// <summary>
@@ -95,7 +101,7 @@ public static class Registry
     /// <param name="logger">The logger instance for this mod. If null, a new one is created.</param>
     /// <returns>The newly registered mod entry.</returns>
     /// <exception cref="InvalidOperationException">The given assembly is already registered to ModLib.</exception>
-    internal static void RegisterAssembly(Assembly caller, BepInPlugin plugin, Type? optionHolder, Logger? logger)
+    internal static void RegisterAssembly(Assembly caller, BepInPlugin plugin, Type? optionHolder, IMyLogger? logger)
     {
         if (RegisteredMods.TryGetValue(caller, out _))
             throw new InvalidOperationException($"{plugin.Name} is already registered to ModLib.");
@@ -126,57 +132,29 @@ public static class Registry
         /// <summary>
         ///     The unique LogID of this mod, if any.
         /// </summary>
-        public LogID? LogID { get; }
+        public object? LogID { get; set; }
 
         /// <summary>
-        ///     The logger instance of this mod.
+        ///     The logger instance of this mod, if any.
         /// </summary>
-        public Logger Logger { get; }
+        public IMyLogger? Logger { get; set; }
 
-        internal ModEntry(BepInPlugin plugin, Type? optionHolder, Logger? logger = null)
+        internal ModEntry(BepInPlugin plugin, Type? optionHolder, ManualLogSource logger)
+            : this(plugin, optionHolder, LoggingAdapter.CreateLogger(logger))
+        {
+        }
+
+        internal ModEntry(BepInPlugin plugin, Type? optionHolder, IMyLogger? logger)
         {
             Plugin = plugin;
             OptionHolder = optionHolder;
 
-            if (logger is null)
+            Logger = logger;
+
+            if (Extras.LogUtilsAvailable)
             {
-                LogID = CreateLogID(plugin, register: false);
-
-                Logger = new Logger(LogID, LogID.Unity);
+                LogUtilsHelper.InitLogID(this, logger is LogUtilsAdapter adapter && adapter.ModLibCreated);
             }
-            else
-            {
-                Logger = logger;
-
-                LogID = logger.LogTargets.FirstOrDefault(id => !id.IsGameControlled);
-            }
-        }
-
-        internal static LogID CreateLogID(BepInPlugin source, bool register = false)
-        {
-            LogID logID = new(SanitizeName(source.Name), DefaultLogsPath, LogAccess.FullAccess, register);
-
-            logID.Properties.ShowCategories.IsEnabled = true;
-            logID.Properties.ShowLogTimestamp.IsEnabled = true;
-
-            logID.Properties.AddTag("ModLib");
-
-            return logID;
-        }
-
-        internal static string SanitizeName(string modName)
-        {
-            StringBuilder stringBuilder = new();
-            char[] forbiddenChars = [.. Path.GetInvalidPathChars(), ' '];
-
-            foreach (char c in modName)
-            {
-                if (forbiddenChars.Contains(c)) continue;
-
-                stringBuilder.Append(c);
-            }
-
-            return stringBuilder.ToString();
         }
     }
 

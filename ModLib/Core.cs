@@ -4,8 +4,8 @@ using System.Reflection;
 using System.Text;
 using BepInEx;
 using BepInEx.Logging;
-using LogUtils.Enums;
 using ModLib.Input;
+using ModLib.Logging;
 using ModLib.Meadow;
 using ModLib.Options;
 using UnityEngine;
@@ -23,47 +23,17 @@ internal static class Core
 
     public static readonly string LogsPath = Path.Combine(Application.streamingAssetsPath, "Logs");
 
-    public static readonly LogID MyLogID = new("ModLib.log", LogsPath, LogAccess.FullAccess, true);
-    public static readonly LogUtils.Logger Logger = new(MyLogID, LogID.BepInEx) { LogSource = LogSource };
+    public static readonly IMyLogger Logger = LoggingAdapter.CreateLogger(LogSource);
+
+    public static readonly Assembly Assembly = typeof(Core).Assembly;
 
     private static bool _initialized;
-
-    static Core()
-    {
-        if (!Directory.Exists(LogsPath))
-        {
-            Directory.CreateDirectory(LogsPath);
-        }
-
-        if (!MyLogID.Properties.ReadOnly)
-        {
-            MyLogID.Properties.AltFilename = new LogUtils.LogFilename("ynhzrfxn.modlib", ".log");
-
-            MyLogID.Properties.ShowCategories.IsEnabled = true;
-            MyLogID.Properties.ShowLogTimestamp.IsEnabled = true;
-
-            MyLogID.Properties.IntroMessage = "# Initialized ModLib successfully.";
-            MyLogID.Properties.OutroMessage = "# Disabled ModLib successfully.";
-
-            MyLogID.Properties.AddTag("ModLib");
-        }
-
-        if (!_initialized)
-        {
-            Initialize();
-        }
-    }
 
     public static void Initialize()
     {
         if (_initialized) return;
 
         _initialized = true;
-
-        CompatibilityManager.CheckModCompats();
-
-        Extras.IsMeadowEnabled = CompatibilityManager.IsRainMeadowEnabled();
-        Extras.IsIICEnabled = CompatibilityManager.IsIICEnabled();
 
         if (Extras.IsMeadowEnabled)
         {
@@ -144,7 +114,7 @@ internal static class Core
     {
         private const string TARGET_DLL = "ModLib.Loader.dll";
 
-        private static readonly Version _latestLoaderVersion = new("1.0.0.7");
+        private static readonly Version _latestLoaderVersion = new("0.2.0.0");
 
         private static readonly string _targetPath = Path.Combine(Paths.PatcherPluginPath, TARGET_DLL);
 
@@ -188,7 +158,7 @@ internal static class Core
             {
                 Logger.LogInfo("Deploying new ModLib.Loader assembly to the game.");
 
-                using Stream stream = typeof(Registry).Assembly.GetManifestResourceStream("ModLib.ModLib.Loader.dll");
+                using Stream stream = Assembly.GetManifestResourceStream("ModLib.ModLib.Loader.dll");
 
                 byte[] block = new byte[stream.Length];
                 stream.Read(block, 0, block.Length);

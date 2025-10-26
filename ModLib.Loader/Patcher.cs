@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 using BepInEx.Logging;
 using BepInEx.MultiFolderLoader;
@@ -13,6 +15,9 @@ public static class Patcher
 
 {
     internal static readonly ManualLogSource Logger = BepInEx.Logging.Logger.CreateLogSource("ModLib.Loader");
+
+    private static bool loadedAssembly;
+    private static readonly List<string> CompatibilityPaths = [];
 
     public static IEnumerable<string> TargetDLLs => GetDLLs();
 
@@ -29,6 +34,8 @@ public static class Patcher
             Logger.LogMessage($"Loading latest ModLib DLL: {AssemblyUtils.FormatCandidate(target, true)}");
 
             Assembly.LoadFrom(target.Path);
+
+            loadedAssembly = true;
         }
         else
         {
@@ -40,15 +47,34 @@ public static class Patcher
     {
         foreach (Mod mod in ModManager.Mods)
         {
+            // Retrieve the mod's CompatibilityMods.txt file, if there is any
+            string compatFilePath = Directory.EnumerateFiles(mod.ModDir, "CompatibilityMods.txt", SearchOption.TopDirectoryOnly).FirstOrDefault();
+
+            if (compatFilePath is not null)
+            {
+                CompatibilityPaths.Add(compatFilePath);
+            }
+
             yield return mod.PluginsPath;
 
             //Check the mod's root directory only if we did not find results in the current plugin directory
             if (!AssemblyUtils.LastFoundAssembly.HasPath(mod.PluginsPath))
+            {
                 yield return mod.ModDir;
+            }
         }
     }
 
     public static void Patch(AssemblyDefinition _)
     {
+    }
+
+    public static void Finish()
+    {
+        if (!loadedAssembly) return;
+
+        Entrypoint.Initialize(CompatibilityPaths);
+
+        CompatibilityPaths.Clear();
     }
 }

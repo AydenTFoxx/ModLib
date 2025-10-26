@@ -11,16 +11,13 @@ namespace ModLib;
 /// </summary>
 public static class CompatibilityManager
 {
-    private static string[][] SupportedModIDs { get; } = [
-        ["henpemaz_rainmeadow", "3388224007"],  // Rain Meadow
-        ["improved-input-config", "3458119961"] // Improved Input Config: Extended
-    ];
-    private static Dictionary<string, bool> ManagedMods { get; } = [];
+    private static readonly Dictionary<string, bool> ManagedMods = [];
 
     /// <summary>
     ///     Queries the client's list of enabled mods for toggling compatibility features.
     /// </summary>
-    public static void CheckModCompats()
+    /// <param name="supportedModIDs">The list of mod IDs to be queried.</param>
+    internal static void CheckModCompats(IEnumerable<string[]> supportedModIDs)
     {
         Core.Logger.LogDebug("Checking compatibility mods...");
 
@@ -35,7 +32,7 @@ public static class CompatibilityManager
                 if (modID.StartsWith("[WORKSHOP]"))
                     modID = modID.Split('\\').Last();
 
-                foreach (string[] supportedIDs in SupportedModIDs)
+                foreach (string[] supportedIDs in supportedModIDs)
                 {
                     if (supportedIDs.Contains(modID))
                     {
@@ -86,5 +83,5 @@ public static class CompatibilityManager
     /// </summary>
     /// <param name="modID">The identifier of the mod.</param>
     /// <param name="enable">Whether or not compatibility with the given mod should be enabled.</param>
-    public static void ToggleModCompatibility(string modID, bool enable = true) => ManagedMods[modID] = enable;
+    public static void SetModCompatibility(string modID, bool enable) => ManagedMods[modID] = enable;
 }

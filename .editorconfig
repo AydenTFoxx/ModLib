@@ -17,5 +17,5 @@ dotnet_diagnostic.IDE0058.severity = none
 # IDE0008: Use explicit type
 dotnet_diagnostic.IDE0008.severity = suggestion
 
-# Default severity for analyzer diagnostics with category 'Style'
-dotnet_analyzer_diagnostic.category-Style.severity = warning
+# Default severity for all analyzer diagnostics
+dotnet_analyzer_diagnostic.severity = warning
