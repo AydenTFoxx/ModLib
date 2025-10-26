@@ -149,7 +149,8 @@ public static class MeadowUtils
         }
         catch (Exception ex)
         {
-            Core.Logger.LogError($"Failed to request ownership of {onlineObject}!", ex);
+            Core.Logger.LogError($"Failed to request ownership of {onlineObject}!");
+            Core.Logger.LogError(ex);
 
             callback?.Invoke(new GenericResult.Error());
         }

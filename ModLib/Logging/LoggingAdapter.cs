@@ -25,10 +25,9 @@ public static class LoggingAdapter
             //These represent the log files you want to target for logging
             CompositeLogTarget myLogTargets = LogID.BepInEx | LogID.Unity;
 
-            LogUtilsAdapter adapter = new()
-            {
-                Logger = new LogUtils.Logger(myLogTargets) { LogSource = logSource }
-            };
+            LogUtilsAdapter adapter = new(
+                new LogUtils.Logger(myLogTargets) { LogSource = logSource }
+            );
             return adapter;
         }
     }
