@@ -53,24 +53,14 @@ public class ServerOptions
     ///     Temporary options are raw representations of option values;
     ///     They can be used like any other option key, but are not saved to disk.
     /// </remarks>
-    /// <param name="optionKey">The unique key for identifying the temporary option. If a non-temporary option has the same key, it is overriden.</param>
+    /// <param name="optionKey">The unique key for identifying the temporary option. If an existing option has the same key, it is overriden.</param>
     /// <param name="optionValue">The value to be saved with the given option key.</param>
-    /// <returns>
-    ///     <c>true</c> if the option was successfully added, <c>false</c> otherwise.
-    ///     This method returns <c>false</c> if a temporary option already has the given key.
-    /// </returns>
+    /// <returns><c>true</c> if the option was successfully added, <c>false</c> otherwise.</returns>
     public bool AddTemporaryOption(string optionKey, ConfigValue optionValue)
     {
-        if (_options.ContainsKey(optionKey) && IsTemporaryOption(optionKey)) return false;
+        _options[optionKey] = optionValue;
 
-        if (_tempOptions.Add(optionKey))
-        {
-            _options[optionKey] = optionValue;
-
-            return true;
-        }
-
-        return false;
+        return _tempOptions.Add(optionKey);
     }
 
     /// <summary>

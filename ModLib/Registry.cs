@@ -40,10 +40,17 @@ public static class Registry
     public static void RegisterMod(BaseUnityPlugin plugin, Type? optionHolder) =>
         RegisterAssembly(Assembly.GetCallingAssembly(), plugin.Info.Metadata, optionHolder, null);
 
-    /// <inheritdoc cref="RegisterMod(BaseUnityPlugin, Type, IMyLogger)"/>
-    /// <param name="plugin"></param>
-    /// <param name="optionHolder"></param>
+    /// <summary>
+    ///     Registers the current mod assembly to ModLib. This should be done sometime during the mod-loading process,
+    ///     typically from the <c>Main</c>/<c>Plugin</c> class constructor, <c>Awake()</c> or <c>OnEnable()</c> methods.
+    /// </summary>
+    /// <param name="plugin">The <c>Plugin</c> class from which this mod is being registered.</param>
+    /// <param name="optionHolder">
+    ///     A class with <c>public static</c> fields of type <see cref="Configurable{T}"/>,
+    ///     which are retrieved via reflection to determine the mod's REMIX options.
+    /// </param>
     /// <param name="logSource">The log source of this mod. If LogUtils is present, a <see cref="LogUtils.Logger"/> will be created with this parameter as its <c>LogSource</c> value.</param>
+    /// <exception cref="InvalidOperationException">The current mod assembly is already registered to ModLib.</exception>
     public static void RegisterMod(BaseUnityPlugin plugin, Type? optionHolder, ManualLogSource logSource) =>
         RegisterAssembly(Assembly.GetCallingAssembly(), plugin.Info.Metadata, optionHolder, LoggingAdapter.CreateLogger(logSource));
 
