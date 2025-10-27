@@ -45,7 +45,7 @@ public static class ModRPCs
 
         Core.Logger.LogDebug($"Syncing local REMIX options with client {onlinePlayer}...");
 
-        onlinePlayer.SendRPCEvent(SyncRemixOptions, new SerializableOptions() { Options = SharedOptions.MyOptions });
+        onlinePlayer.SendRPCEvent(SyncRemixOptions, new SerializableOptions(SharedOptions.MyOptions));
     }
 
     /// <summary>
@@ -72,12 +72,36 @@ public static class ModRPCs
     /// <summary>
     ///     A serializable wrapper around a <see cref="ServerOptions"/>' local options dictionary.
     /// </summary>
-    public record SerializableOptions : Serializer.ICustomSerializable
+    public class SerializableOptions : Serializer.ICustomSerializable
     {
         /// <summary>
         ///     The internally held option values;
         /// </summary>
         public Dictionary<string, ConfigValue> Options = [];
+
+        /// <summary>
+        ///     Creates a new <see cref="SerializableOptions"/> instance with the provided options for serialization.
+        /// </summary>
+        /// <remarks>
+        ///     Options prefixed with an underscore (<c>_</c>) are ignored for serialization purposes.
+        /// </remarks>
+        /// <param name="options">The options dictionary for serialization.</param>
+        public SerializableOptions(IDictionary<string, ConfigValue> options)
+        {
+            foreach (KeyValuePair<string, ConfigValue> optionPair in options)
+            {
+                if (optionPair.Key.StartsWith("_", System.StringComparison.Ordinal)) continue;
+
+                Options.Add(optionPair.Key, optionPair.Value);
+            }
+        }
+
+        /// <summary>
+        ///     Creates a new <see cref="SerializableOptions"/> instance with an empty options dictionary for serialization.
+        /// </summary>
+        public SerializableOptions()
+        {
+        }
 
         /// <summary>
         ///     Serializes or de-serializes the referenced local options, using the provided serializer object.

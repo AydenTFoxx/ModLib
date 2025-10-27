@@ -50,9 +50,11 @@ public static class Extras
 
     /// <summary>
     ///     Determines if ModLib is currently loaded and available for usage.
-    ///     This property should always return <c>true</c>, and may be used by other mods to offer optional compatibility with ModLib itself when available.
     /// </summary>
-    public static bool ModLibAvailable => Loader.Entrypoint.Initialized;
+    /// <remarks>
+    ///     This property will always return <c>true</c>, and can be used by other mods to offer optional compatibility with ModLib itself when available.
+    /// </remarks>
+    public static bool ModLibAvailable => true;
 
     static Extras()
     {

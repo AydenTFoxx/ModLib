@@ -3,7 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Permissions;
 using AssemblyCandidate = (System.Version Version, string Path);
+
+// Allows access to private members
+#pragma warning disable CS0618
+[assembly: SecurityPermission(SecurityAction.RequestMinimum, SkipVerification = true)]
+#pragma warning restore CS0618
 
 // Credits to LogUtils by Fluffball (@TheVileOne) for original LogUtils.VersionLoader code
 

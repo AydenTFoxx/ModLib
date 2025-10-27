@@ -114,7 +114,7 @@ internal static class Core
     {
         private const string TARGET_DLL = "ModLib.Loader.dll";
 
-        private static readonly Version _latestLoaderVersion = new("0.2.0.0");
+        private static readonly Version _latestLoaderVersion = new("0.2.0.2");
 
         private static readonly string _targetPath = Path.Combine(Paths.PatcherPluginPath, TARGET_DLL);
 

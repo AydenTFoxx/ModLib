@@ -12,11 +12,10 @@ using AssemblyCandidate = (System.Version Version, string Path);
 namespace ModLib.Loader;
 
 public static class Patcher
-
 {
     internal static readonly ManualLogSource Logger = BepInEx.Logging.Logger.CreateLogSource("ModLib.Loader");
 
-    private static bool loadedAssembly;
+    private static Assembly? loadedAssembly;
     private static readonly List<string> CompatibilityPaths = [];
 
     public static IEnumerable<string> TargetDLLs => GetDLLs();
@@ -33,9 +32,7 @@ public static class Patcher
         {
             Logger.LogMessage($"Loading latest ModLib DLL: {AssemblyUtils.FormatCandidate(target, true)}");
 
-            Assembly.LoadFrom(target.Path);
-
-            loadedAssembly = true;
+            loadedAssembly = Assembly.LoadFrom(target.Path);
         }
         else
         {
@@ -48,7 +45,7 @@ public static class Patcher
         foreach (Mod mod in ModManager.Mods)
         {
             // Retrieve the mod's CompatibilityMods.txt file, if there is any
-            string compatFilePath = Directory.EnumerateFiles(mod.ModDir, "CompatibilityMods.txt", SearchOption.TopDirectoryOnly).FirstOrDefault();
+            string? compatFilePath = Directory.EnumerateFiles(mod.ModDir, "CompatibilityMods.txt", SearchOption.TopDirectoryOnly).FirstOrDefault();
 
             if (compatFilePath is not null)
             {
@@ -71,9 +68,7 @@ public static class Patcher
 
     public static void Finish()
     {
-        if (!loadedAssembly) return;
-
-        Entrypoint.Initialize(CompatibilityPaths);
+        loadedAssembly?.GetType("CompatibilityManager", false, true)?.GetMethod("Initialize")?.Invoke(null, [CompatibilityPaths]);
 
         CompatibilityPaths.Clear();
     }

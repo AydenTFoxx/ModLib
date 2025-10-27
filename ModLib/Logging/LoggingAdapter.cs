@@ -5,8 +5,10 @@ using System;
 
 namespace ModLib.Logging;
 
+// Credits to Fluffball (@TheVileOne) for the templates at LogUtils.Templates :P
+
 /// <summary>
-///
+///     Intermediary helper for creating loggers with the appropriate logging backend.
 /// </summary>
 public static class LoggingAdapter
 {
