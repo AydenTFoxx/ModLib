@@ -10,24 +10,20 @@ namespace ModLib.Logging;
 
 internal static class LogUtilsHelper
 {
-    public static object MyLogID = CreateLogID(Core.MOD_NAME, register: true);
-
-    public static bool IsAvailable => UtilityCore.IsInitialized;
+    public static object MyLogID;
 
     static LogUtilsHelper()
     {
-        UtilityCore.EnsureInitializedState();
-
-        if (!IsAvailable) return;
-
         if (!Directory.Exists(Core.LogsPath))
         {
             Directory.CreateDirectory(Core.LogsPath);
         }
 
-        LogProperties? properties = (MyLogID as LogID)?.Properties;
+        MyLogID = CreateLogID(Core.MOD_NAME, register: true);
 
-        if (properties is not null && !properties.ReadOnly)
+        LogProperties properties = ((LogID)MyLogID).Properties;
+
+        if (!properties.ReadOnly)
         {
             properties.AltFilename = new LogFilename("ynhzrfxn.modlib", ".log");
 

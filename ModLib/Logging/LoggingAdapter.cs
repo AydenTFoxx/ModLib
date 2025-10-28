@@ -24,7 +24,7 @@ public static class LoggingAdapter
         }
         catch (Exception ex)
         {
-            Core.LogSource.LogError("Failed to create logger instance: " + ex);
+            Core.LogSource?.LogError($"Failed to create logger instance: {ex}");
 
             return new FallbackLogger(logSource);
         }

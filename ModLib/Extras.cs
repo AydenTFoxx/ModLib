@@ -1,6 +1,8 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using System.Security.Permissions;
+using ModLib.Loader;
 using ModLib.Logging;
 using ModLib.Meadow;
 using MonoMod.Cil;
@@ -21,12 +23,12 @@ public static class Extras
     /// <summary>
     ///     Whether or not the Rain Meadow mod is present. This value is cached for performance purposes.
     /// </summary>
-    public static bool IsMeadowEnabled { get; }
+    public static bool IsMeadowEnabled { get; internal set; }
 
     /// <summary>
     ///     Whether or not the Improved Input Config: Extended mod is present. This value is cached for performance purposes.
     /// </summary>
-    public static bool IsIICEnabled { get; }
+    public static bool IsIICEnabled { get; internal set; }
 
     /// <summary>
     ///     If the current game session is in an online lobby.
@@ -46,30 +48,21 @@ public static class Extras
     /// <summary>
     ///     Determines if LogUtils is currently loaded and available for usage.
     /// </summary>
-    public static bool LogUtilsAvailable { get; }
+    public static bool LogUtilsAvailable { get; internal set; }
 
     /// <summary>
     ///     Determines if ModLib is currently loaded and available for usage.
     /// </summary>
-    public static bool ModLibAvailable { get; internal set; }
+    public static bool ModLibAvailable => Entrypoint.IsInitialized;
 
     static Extras()
     {
-        try
-        {
-            LogUtilsAvailable = LogUtilsHelper.IsAvailable;
-        }
-        catch (Exception)
-        {
-            LogUtilsAvailable = false;
-        }
+        Entrypoint.TryInitialize();
+    }
 
-        if (!CompatibilityManager.Initialized)
-        {
-            Core.LogSource.LogMessage($"{nameof(Extras)}: Forcing initialization of {nameof(CompatibilityManager)}.");
-
-            CompatibilityManager.Initialize([]);
-        }
+    internal static void Initialize()
+    {
+        LogUtilsAvailable = AppDomain.CurrentDomain.GetAssemblies().Any(a => a.FullName.Contains("LogUtils"));
 
         IsMeadowEnabled = CompatibilityManager.IsRainMeadowEnabled();
         IsIICEnabled = CompatibilityManager.IsIICEnabled();
@@ -79,21 +72,37 @@ public static class Extras
     ///     Wraps a given action in a try-catch, safely performing its code while handling potential exceptions.
     /// </summary>
     /// <param name="action">The action to be executed.</param>
-    /// <remarks>Use sparsely; If possible, avoid throwing an exception at all instead of using this method.</remarks>
-    public static void WrapAction(Action action)
+    /// <param name="autoInvoke">If true, the resulting action is invoked immediately, and <c>null</c> is returned instead.</param>
+    /// <returns>The wrapped <see cref="Action"/> object, or <c>null</c> if <paramref name="autoInvoke"/> was set to true.</returns>
+    public static Action? WrapAction(Action action, bool autoInvoke = true)
     {
-        try
+        Assembly caller = Assembly.GetCallingAssembly();
+
+        if (autoInvoke)
         {
-            action.Invoke();
+            WrappedResult();
+            return null;
         }
-        catch (Exception ex)
+        else
         {
-            IMyLogger? logger = Registry.GetMod(Assembly.GetCallingAssembly()).Logger;
+            return WrappedResult;
+        }
 
-            if (logger is null) return;
+        void WrappedResult()
+        {
+            try
+            {
+                action.Invoke();
+            }
+            catch (Exception ex)
+            {
+                IMyLogger? logger = Registry.GetMod(caller).Logger;
 
-            logger.LogError($"Failed to run wrapped action: {action.Method.Name}");
-            logger.LogError(ex);
+                if (logger is null) return;
+
+                logger.LogError($"Failed to run wrapped action: {action.Method.Name}");
+                logger.LogError(ex);
+            }
         }
     }
 
@@ -123,7 +132,7 @@ public static class Extras
         };
     }
 
-    internal static void WrapAction(Action action, IMyLogger logger)
+    internal static void WrapAction(Action action, IMyLogger? logger)
     {
         try
         {
@@ -131,6 +140,8 @@ public static class Extras
         }
         catch (Exception ex)
         {
+            if (logger is null) return;
+
             logger.LogError($"Failed to run wrapped action: {action.Method.Name}");
             logger.LogError(ex);
         }

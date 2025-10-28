@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using BepInEx.Logging;
 
 namespace ModLib;
 
@@ -12,8 +12,6 @@ namespace ModLib;
 public static class CompatibilityManager
 {
     private static readonly Dictionary<string, bool> ManagedMods = [];
-
-    internal static bool Initialized { get; private set; }
 
     /// <summary>
     ///     Clears the internal dictionary of cached mods.
@@ -49,43 +47,24 @@ public static class CompatibilityManager
     /// <param name="enable">Whether or not compatibility with the given mod should be enabled.</param>
     public static void SetModCompatibility(string modID, bool enable) => ManagedMods[modID] = enable;
 
-    /// <summary>
-    ///     Initializes compatibility checking with the provided paths to config files.
-    /// </summary>
-    /// <remarks>
-    ///     This is an internal method of ModLib, exposed for usage by <c>ModLib.Loader</c>.
-    ///     Unless working within that context, you should not have to call this function.
-    /// </remarks>
-    /// <param name="compatibilityPaths">The list of paths to config files, retrieved during the preloader process.</param>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public static void Initialize(IList<string> compatibilityPaths)
-    {
-        if (Initialized) return;
-
-        Core.Logger.LogInfo($"{nameof(CompatibilityManager)}: Reading {compatibilityPaths.Count} files for config overrides...");
-
-        ConfigLoader.Initialize(compatibilityPaths);
-
-        Initialized = true;
-    }
-
-    private static class ConfigLoader
+    internal sealed class ConfigLoader(ManualLogSource logger) : IDisposable
     {
         private static readonly string PathToLocalMods = Path.Combine(Core.StreamingAssetsPath, "mods");
 
-        private static readonly List<string> AdvancedSearchIDs = [];
+        private List<string> AdvancedSearchIDs = [];
+        private bool disposedValue;
 
         /// <summary>
         ///     Initializes the <see cref="CompatibilityManager"/> with the provided list of paths to config files.
         /// </summary>
         /// <param name="compatibilityPaths">The list of paths to config files for mod IDs.</param>
-        public static void Initialize(IList<string> compatibilityPaths)
+        public void Initialize(IList<string> compatibilityPaths)
         {
             List<string[]> userModIDs = [];
 
             foreach (string filePath in compatibilityPaths)
             {
-                Core.Logger.LogDebug($"Reading file: {filePath}");
+                logger.LogDebug($"Reading file: {filePath}");
 
                 userModIDs.AddRange(ReadCompatibilityFile(filePath));
             }
@@ -113,17 +92,15 @@ public static class CompatibilityManager
             }
 
             CheckModCompats(configuredModIDs);
-
-            AdvancedSearchIDs.Clear();
         }
 
         /// <summary>
         ///     Queries the client's list of enabled mods for toggling compatibility features.
         /// </summary>
         /// <param name="supportedModIDs">The list of mod IDs to be queried.</param>
-        private static void CheckModCompats(IEnumerable<string[]> supportedModIDs)
+        private void CheckModCompats(IEnumerable<string[]> supportedModIDs)
         {
-            Core.Logger.LogDebug("Checking compatibility mods...");
+            logger.LogDebug("Checking compatibility mods...");
 
             try
             {
@@ -159,7 +136,7 @@ public static class CompatibilityManager
 
                         if (AdvancedSearchIDs.Contains(trueModID))
                         {
-                            Core.Logger.LogDebug($"Found {trueModID} with advanced query.");
+                            logger.LogDebug($"Found {trueModID} with advanced query.");
 
                             AdvancedSearchIDs.Remove(trueModID);
                         }
@@ -173,27 +150,18 @@ public static class CompatibilityManager
 
                             ManagedMods.Add(modID, true);
 
-                            Core.Logger.LogInfo($"Added compatibility layer for: {modID}");
+                            logger.LogInfo($"Added compatibility layer for: {modID}");
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Core.Logger.LogError($"Failed to read enabled mods file! {ex}");
+                logger.LogError($"Failed to read enabled mods file! {ex}");
             }
         }
 
-        private static string GetModGuid(string pathToJson)
-        {
-            using StreamReader reader = File.OpenText(pathToJson);
-
-            return Json.Parser.Parse(reader.ReadToEnd()) is Dictionary<string, object> jsonObject
-                ? (string)jsonObject["id"]
-                : string.Empty;
-        }
-
-        private static List<string[]> ReadCompatibilityFile(string path)
+        private List<string[]> ReadCompatibilityFile(string path)
         {
             using StreamReader reader = File.OpenText(path);
 
@@ -218,6 +186,35 @@ public static class CompatibilityManager
             }
 
             return modIDs;
+        }
+
+        private static string GetModGuid(string pathToJson)
+        {
+            using StreamReader reader = File.OpenText(pathToJson);
+
+            return Json.Parser.Parse(reader.ReadToEnd()) is Dictionary<string, object> jsonObject
+                ? (string)jsonObject["id"]
+                : string.Empty;
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    AdvancedSearchIDs?.Clear();
+                    AdvancedSearchIDs = null!;
+                }
+
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
 
         private sealed class ModIDEqualityComparer : IEqualityComparer<string[]>

@@ -2,11 +2,11 @@
 
 	<PropertyGroup>
 		<Title>Generic Modding Library Loader</Title>
-		<AssemblyVersion>0.2.0.4</AssemblyVersion>
-		<FileVersion>0.2.0.4</FileVersion>
+		<AssemblyVersion>0.2.0.6</AssemblyVersion>
+		<FileVersion>0.2.0.6</FileVersion>
 	</PropertyGroup>
 
-    <PropertyGroup>
+	<PropertyGroup>
 		<TargetFramework>net481</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
@@ -15,11 +15,11 @@
 
 	<PropertyGroup>
 		<Deterministic>true</Deterministic>
-    	<DeterministicSourcePaths>true</DeterministicSourcePaths>
+		<DeterministicSourcePaths>true</DeterministicSourcePaths>
 	</PropertyGroup>
 
 	<ItemGroup>
-    	<SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
+		<SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
 	</ItemGroup>
 
 	<ItemGroup>

@@ -81,11 +81,11 @@ public static class Patcher
 
         try
         {
-            CompatibilityManager.Initialize(CompatibilityPaths);
+            ModLibAccess.TryLoadModLib(CompatibilityPaths);
         }
         catch (Exception ex)
         {
-            Logger.LogError($"Failed to initialize CompatibilityManager: {ex}");
+            Logger.LogError($"Failed to initialize ModLib entry point: {ex}");
         }
 
         CompatibilityPaths.Clear();
