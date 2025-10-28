@@ -1,19 +1,19 @@
 # ModLib | Rain World Modding Made Easier
 
 ModLib is a collection of tools and features made with the goal of streamlining Rain Worlds mod development.
-Features are created with usability as first priority, and designed to be compatible with common modding frameworks (e.g. Improved Input Config: Extended) out-of-the-box.
+Features are designed to be easy to use and fully compatible with other modding tools (e.g. Improved Input Config: Extended) with minimal work from the developer.
 
-A proper documentation/wiki is in the works, but the entirety of ModLib's API is documented in code;
+A proper documentation/wiki is still in the works; Nonetheless, the entirety of ModLib's API is documented as doc comments.
 To provide IntelliSense for ModLib classes and methods, include `ModLib.xml` in your references alongside the main DLL file.
 
 ## Features
 
-At its core, ModLib is not a revolutionary solution; Most of its features have been done (and inspired by) other mods, often in a manual, per-use-case approach.
-Instead, what ModLib primarily provides is a common API, a collection of time-tested solutions to common issues faced by modders alike.
+At its core, ModLib is no revolutionary solution; Most of its features have been done before (and inspired) by other mods, often in a manual, per use-case approach.
+Instead, what ModLib primarily provides is a common API, a collection of time-tested solutions to many common issues most modders will end up facing, sooner or later.
 
 > (TODO: Make greater use of this shared API, simplifying interoperability between mods)
 
-Nonetheless, some features (notably `CompatibilityManager`'s ability to detect mods even before the game initializes) are rarely seen elsewhere, and provide a convenient way for modders to use such tools without concerning themselves with their implementation.
+Nonetheless, some features (notably `CompatibilityManager`'s ability to detect enabled mods before the game initializes) are rarely seen elsewhere, and at times exceedingly hard to code to be worth the effort. In such cases, ModLib offers a convenient, ready-made solution for developers who may wish to use such tools in their mods, but cannot/do not want to implement those themselves.
 
 ### Logging
 
@@ -29,11 +29,11 @@ When LogUtils is not available, your mod's BepInEx logger is used as a fallback,
 ModLib has a variety of tools for creating and managing options from your mod's REMIX option interface.
 Option management, online sync, and even temporary overrides are all handled by ModLib, while requiring as little user input as possible.
 
-> (TODO: Return overrides values to their original values when a temporary option is removed)
+> (TODO: Return overrides values to their original values when a temporary option is removed)  
 > (TODO? Add a duration for temporary options? Feels more like a user responsibility... Too specific to be made into a general-purpose tool)
 
 - (Optional) Create REMIX interfaces in a familiar fashion with `OptionBuilder`. Chain methods to create simple yet effective interfaces, then convert them to an `OpTab` instance with `Build()`
-- At your mod registering[^registry], include a reference to the class where you implement your REMIX interface.
+- At your [mod registering](#usage), include a reference to the class where you implement your REMIX interface.
 - To access any given value at runtime, call one of OptionUtils' static methods: `IsOptionEnabled`, `IsOptionValue<T>`, or `GetOptionValue<T>`. You can either pass a reference to the `Configurable<T>` field, or use its ID value directly.
   - Additionally, cosmetic or client-sided options can instead be checked with the variants `IsClientOptionEnabled`, `IsClientOptionValue<T>`, and `GetClientOptionValue<T>`. Note these don't allow you to specify an ID directly, however.
 
@@ -73,11 +73,11 @@ Weak reference collections, compatibility management for implementing interopera
 To use ModLib in your projects, download the file `ModLib.dll` at `mod/newest/plugins`, then include it as a referenced assembly in your project:
 
 ```csproj
-<PropertyGroup>
+<ItemGroup>
     <Reference Include="path/to/ModLib.dll">
         <Private>false</Private>
     </Reference>
-</PropertyGroup>
+</ItemGroup>
 ```
 
 Optionally, you can also download `ModLib.xml` for IntelliSense support to all public classes and methods, if your editor of choice has such feature.
@@ -90,7 +90,7 @@ To use ModLib's features, you must first register your mod. This can be done in 
 1. Have your entry point class (the one with a `BepInPlugin` attribute) extend `ModLib.ModPlugin`. This will ensure your mod is registered as soon as it is loaded by BepInEx. Additionally, `ModPlugin` itself offers a general "interface" of virtual methods, which you can override to include your mod's content as well.
 2. Alternatively, you can register your mod directly by calling `Registry.RegisterMod`, including a reference to your entry point class, and optionally a reference to your REMIX option interface class and/or a logger instance for usage by your mod. If the last is not provided, ModLib creates a new one and assigns it to your mod during registering.
 
-Once registered, you can access your mod's data with `Registry.MyMod`. If for any reason you want to remove your mod from ModLib's registry, calling `Registry.RemoveMod()` will discard all saved data tied to your mod. However, you won't be able to use methods which require registry until you register your mod again.
+Once registered, you can access your mod's data with `Registry.MyMod`. If for any reason you want to remove your mod from ModLib's registry, calling `Registry.UnregisterMod()` will discard all saved data tied to your mod. However, you won't be able to use methods which require registry until you register your mod again.
 
 > ![WARN]
 > Registering a mod ties the calling *assembly* to the generated data. I.e. it is currently not supported to have more than one `BepInPlugin` registered per mod assembly.
