@@ -30,5 +30,5 @@ public class LogUtilsAdapter(ILogger logger) : IMyLogger
     public void Log(LogLevel category, object message) => logger.Log(category, message);
 
     /// <inheritdoc/>
-    public ILogSource GetLogSource() => (ILogSource)logger;
+    public object GetLogSource() => logger;
 }

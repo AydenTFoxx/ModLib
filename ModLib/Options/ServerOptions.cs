@@ -159,7 +159,7 @@ public class ServerOptions
 
         foreach (KeyValuePair<string, ConfigValue> kvp in _options)
         {
-            stringBuilder.AppendLine($"- {kvp.Key}: {kvp.Value};");
+            stringBuilder.AppendLine($"{(IsTemporaryOption(kvp.Key) ? "*" : "-")} {kvp.Key}: {kvp.Value};");
         }
 
         return stringBuilder.ToString();

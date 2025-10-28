@@ -1,6 +1,7 @@
 using System.IO;
 using System.Linq;
 using System.Text;
+using BepInEx.Logging;
 using LogUtils;
 using LogUtils.Enums;
 using LogUtils.Properties;
@@ -35,6 +36,20 @@ internal static class LogUtilsHelper
         }
     }
 
+    public static IMyLogger CreateLogger(ILogSource logSource)
+    {
+        CompositeLogTarget logTargets = logSource.SourceName == Core.MOD_NAME
+            ? (LogID)MyLogID | LogID.BepInEx
+            : CreateLogID(logSource.SourceName, register: false) | LogID.BepInEx | LogID.Unity;
+
+        return new LogUtilsAdapter(
+            new LogUtils.Logger(logTargets)
+            {
+                LogSource = logSource
+            }
+        );
+    }
+
     public static LogID CreateLogID(string name, bool register = false)
     {
         LogID logID = new(SanitizeName(name), Core.LogsPath, LogAccess.FullAccess, register);
@@ -62,17 +77,19 @@ internal static class LogUtilsHelper
         return stringBuilder.ToString();
     }
 
-    internal static void InitLogID(this Registry.ModEntry self, bool createLogID)
+    internal static void InitLogID(this Registry.ModEntry self)
     {
         if (self.LogID is not null
             || self.Logger is not LogUtilsAdapter adapter
-            || adapter.GetLogSource() is not Logger logger)
+            || adapter.GetLogSource() is not LogUtils.Logger logger)
         {
             return;
         }
 
-        self.LogID = createLogID
-            ? CreateLogID(self.Plugin.Name, register: false)
-            : logger.LogTargets.FirstOrDefault(id => !id.IsGameControlled);
+        self.LogID = self.Plugin == Core.PluginData
+            ? MyLogID
+            : adapter.ModLibCreated
+                ? CreateLogID(self.Plugin.Name, register: false)
+                : logger.LogTargets.FirstOrDefault(id => !id.IsGameControlled);
     }
 }

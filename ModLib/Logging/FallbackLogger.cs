@@ -26,5 +26,5 @@ public class FallbackLogger(ManualLogSource logSource) : IMyLogger
     public void LogWarning(object data) => Log(LogLevel.Warning, data);
 
     /// <inheritdoc/>
-    public ILogSource GetLogSource() => logSource;
+    public object GetLogSource() => logSource;
 }

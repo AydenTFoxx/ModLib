@@ -2,8 +2,8 @@
 
 	<PropertyGroup>
 		<Title>Generic Modding Library Loader</Title>
-		<AssemblyVersion>0.2.0.2</AssemblyVersion>
-		<FileVersion>0.2.0.2</FileVersion>
+		<AssemblyVersion>0.2.0.4</AssemblyVersion>
+		<FileVersion>0.2.0.4</FileVersion>
 	</PropertyGroup>
 
     <PropertyGroup>
@@ -13,6 +13,15 @@
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<Deterministic>true</Deterministic>
+    	<DeterministicSourcePaths>true</DeterministicSourcePaths>
+	</PropertyGroup>
+
+	<ItemGroup>
+    	<SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
+	</ItemGroup>
+
 	<ItemGroup>
 		<Reference Include="../lib/Rain World/BepInEx/core/BepInEx.dll">
 			<Private>false</Private>
@@ -21,6 +30,9 @@
 			<Private>false</Private>
 		</Reference>
 		<Reference Include="../lib/Rain World/RainWorld_Data/Managed/Mono.Cecil.dll">
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="../lib/Custom/ModLib.dll">
 			<Private>false</Private>
 		</Reference>
 	</ItemGroup>

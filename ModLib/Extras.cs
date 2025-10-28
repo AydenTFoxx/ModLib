@@ -51,16 +51,10 @@ public static class Extras
     /// <summary>
     ///     Determines if ModLib is currently loaded and available for usage.
     /// </summary>
-    /// <remarks>
-    ///     This property will always return <c>true</c>, and can be used by other mods to offer optional compatibility with ModLib itself when available.
-    /// </remarks>
-    public static bool ModLibAvailable => true;
+    public static bool ModLibAvailable { get; internal set; }
 
     static Extras()
     {
-        IsMeadowEnabled = CompatibilityManager.IsRainMeadowEnabled();
-        IsIICEnabled = CompatibilityManager.IsIICEnabled();
-
         try
         {
             LogUtilsAvailable = LogUtilsHelper.IsAvailable;
@@ -69,6 +63,16 @@ public static class Extras
         {
             LogUtilsAvailable = false;
         }
+
+        if (!CompatibilityManager.Initialized)
+        {
+            Core.LogSource.LogMessage($"{nameof(Extras)}: Forcing initialization of {nameof(CompatibilityManager)}.");
+
+            CompatibilityManager.Initialize([]);
+        }
+
+        IsMeadowEnabled = CompatibilityManager.IsRainMeadowEnabled();
+        IsIICEnabled = CompatibilityManager.IsIICEnabled();
     }
 
     /// <summary>

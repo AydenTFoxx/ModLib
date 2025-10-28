@@ -41,5 +41,5 @@ public interface IMyLogger
     ///     Retrieves the internal log source of this logger implementation.
     /// </summary>
     /// <returns>The log source of this logger implementation.</returns>
-    ILogSource GetLogSource();
+    object GetLogSource();
 }
