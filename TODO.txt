@@ -5,6 +5,7 @@ ModLib:
         Done!
     Rewrite ModLib initialization to allow mods interacting with certain systems before Core is initialized.
         Done-ish. Only CompatibilityManager has that feature so far
+        Done!
 
     Potentially have an individual ServerOptions instance per registered mod?
     Meadow sync would only be performed for mods which are present on both ends; ModLib could send a SoftRPC first to request the host for their list of enabled ModLib mods.
@@ -16,6 +17,7 @@ ModLib:
     Core.LogSource should not be used outside of the Core class; For the time being, however, it is being used to resolve circular dependencies like the above.
 
     Loader.Patcher cannot find the CompatibilityMods.txt files, rendering the new CompatibilityManager feature unusable
+        Fixed!
 
 AscendedSaint:
     Player sees their own name in the ascension/revival messages, instead of the actual ascended/revived target.

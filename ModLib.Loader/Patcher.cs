@@ -89,5 +89,7 @@ public static class Patcher
         }
 
         CompatibilityPaths.Clear();
+
+        BepInEx.Logging.Logger.Sources.Remove(Logger);
     }
 }

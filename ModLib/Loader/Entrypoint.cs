@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using BepInEx.Logging;
+using MonoMod.Cil;
+using MonoMod.RuntimeDetour;
 
 namespace ModLib.Loader;
 
@@ -21,21 +24,14 @@ public static class Entrypoint
     /// </summary>
     public static bool IsInitialized { get; private set; }
 
-    internal static bool CanInitialize { get; private set; } = true;
-
+    private static ILHook? _initHook;
     private static bool _initializing;
 
     internal static void TryInitialize([CallerFilePath] string callerPath = "")
     {
-        if (CanInitialize)
-        {
-            CanInitialize = false;
+        if (IsInitialized || _initializing) return;
 
-            if (!IsInitialized && !_initializing)
-                Initialize([], callerPath);
-
-            Extras.WrapAction(Core.Initialize, Core.Logger);
-        }
+        Initialize([], callerPath);
     }
 
     /// <summary>
@@ -64,6 +60,19 @@ public static class Entrypoint
 
             Extras.Initialize();
 
+            if (!isForcedInit)
+            {
+                _initHook ??= new ILHook(
+                    typeof(BepInEx.MultiFolderLoader.ChainloaderHandler).GetMethod("PostFindPluginTypes", BindingFlags.NonPublic | BindingFlags.Static),
+                    Extras.WrapILHook(InitializeCoreILHook)
+                );
+                _initHook.Apply();
+            }
+            else
+            {
+                Core.Initialize();
+            }
+
             IsInitialized = true;
         }
         catch (Exception ex)
@@ -88,10 +97,22 @@ public static class Entrypoint
         try
         {
             Core.Disable();
+
+            _initHook?.Undo();
         }
         catch { }
 
+        _initHook = null;
+
+        _initializing = false;
         IsInitialized = false;
+    }
+
+    private static void InitializeCoreILHook(ILContext context)
+    {
+        ILCursor c = new(context);
+
+        c.EmitDelegate(Core.Initialize);
     }
 
     /// <summary>
