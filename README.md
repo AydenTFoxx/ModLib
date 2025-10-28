@@ -92,8 +92,8 @@ To use ModLib's features, you must first register your mod. This can be done in 
 
 Once registered, you can access your mod's data with `Registry.MyMod`. If for any reason you want to remove your mod from ModLib's registry, calling `Registry.UnregisterMod()` will discard all saved data tied to your mod. However, you won't be able to use methods which require registry until you register your mod again.
 
-> ![WARN]
-> Registering a mod ties the calling *assembly* to the generated data. I.e. it is currently not supported to have more than one `BepInPlugin` registered per mod assembly.
+> [!WARNING]  
+> Registering a mod ties the calling *assembly* to the generated data. In other words, it is currently *not supported* to have more than one `BepInPlugin` registered per mod assembly.
 
 ## Licensing
 
