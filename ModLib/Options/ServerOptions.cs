@@ -13,8 +13,15 @@ public class ServerOptions
 {
     private static readonly Dictionary<ConfigurableBase, Type> OptionHolders = [];
 
+    /// <summary>
+    ///     Contains the actual option values of the client.
+    /// </summary>
     private readonly Dictionary<string, ConfigValue> _options = [];
-    private readonly HashSet<string> _tempOptions = [];
+
+    /// <summary>
+    ///     Contains the identifiers of overriden option keys, as well as their original values.
+    /// </summary>
+    private readonly Dictionary<string, ConfigValue> _tempOptions = [];
 
     /// <summary>
     ///     A read-only view of the local holder of option values.
@@ -55,12 +62,11 @@ public class ServerOptions
     /// </remarks>
     /// <param name="optionKey">The unique key for identifying the temporary option. If an existing option has the same key, it is overriden.</param>
     /// <param name="optionValue">The value to be saved with the given option key.</param>
-    /// <returns><c>true</c> if the option was successfully added, <c>false</c> otherwise.</returns>
-    public bool AddTemporaryOption(string optionKey, ConfigValue optionValue)
+    public void AddTemporaryOption(string optionKey, ConfigValue optionValue)
     {
-        _options[optionKey] = optionValue;
+        _tempOptions[optionKey] = _options.TryGetValue(optionKey, out ConfigValue value) ? value : default;
 
-        return _tempOptions.Add(optionKey);
+        _options[optionKey] = optionValue;
     }
 
     /// <summary>
@@ -71,15 +77,22 @@ public class ServerOptions
     ///     <c>true</c> if the option was successfully removed, <c>false</c> otherwise.
     ///     This method returns <c>false</c> if no temporary option is found with the given key.
     /// </returns>
-    public bool RemoveTemporaryOption(string optionKey) =>
-        _tempOptions.Remove(optionKey) && _options.Remove(optionKey);
+    public bool RemoveTemporaryOption(string optionKey)
+    {
+        if (_tempOptions.TryGetValue(optionKey, out ConfigValue value) && value != default)
+        {
+            _options[optionKey] = value;
+        }
+
+        return _tempOptions.Remove(optionKey);
+    }
 
     /// <summary>
     ///     Determines if a given option key is temporary or not.
     /// </summary>
     /// <param name="optionKey">The option key to be searched.</param>
     /// <returns><c>true</c> if the option is temporary, <c>false</c> otherwise.</returns>
-    public bool IsTemporaryOption(string optionKey) => _tempOptions.Contains(optionKey);
+    public bool IsTemporaryOption(string optionKey) => _tempOptions.TryGetValue(optionKey, out _);
 
     /// <summary>
     ///     Sets the local holder's values to those from the REMIX option interface.

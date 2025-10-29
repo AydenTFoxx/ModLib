@@ -1,0 +1,518 @@
+### YamlMime:ManagedReference
+items:
+- uid: ModLib.Meadow.ModRPCManager
+  commentId: T:ModLib.Meadow.ModRPCManager
+  id: ModRPCManager
+  parent: ModLib.Meadow
+  children:
+  - ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInRoom(RainMeadow.OnlineEntity,System.Delegate,System.Object[])
+  - ModLib.Meadow.ModRPCManager.ResolveRPCEvent(RainMeadow.GenericResult)
+  - ModLib.Meadow.ModRPCManager.SendRPCEvent``1(RainMeadow.OnlinePlayer,``0,System.Object[])
+  langs:
+  - csharp
+  - vb
+  name: ModRPCManager
+  nameWithType: ModRPCManager
+  fullName: ModLib.Meadow.ModRPCManager
+  type: Class
+  source:
+    remote:
+      path: ModLib/Meadow/ModRPCManager.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: ModRPCManager
+    path: ../ModLib/Meadow/ModRPCManager.cs
+    startLine: 10
+  assemblies:
+  - ModLib
+  namespace: ModLib.Meadow
+  summary: A simple tracker of sent RPC events, used to prevent unresolved SoftRPCs from hanging around indefinitely.
+  example: []
+  syntax:
+    content: public static class ModRPCManager
+    content.vb: Public Module ModRPCManager
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: ModLib.Meadow.ModRPCManager.SendRPCEvent``1(RainMeadow.OnlinePlayer,``0,System.Object[])
+  commentId: M:ModLib.Meadow.ModRPCManager.SendRPCEvent``1(RainMeadow.OnlinePlayer,``0,System.Object[])
+  id: SendRPCEvent``1(RainMeadow.OnlinePlayer,``0,System.Object[])
+  isExtensionMethod: true
+  parent: ModLib.Meadow.ModRPCManager
+  langs:
+  - csharp
+  - vb
+  name: SendRPCEvent<T>(OnlinePlayer, T, params object[])
+  nameWithType: ModRPCManager.SendRPCEvent<T>(OnlinePlayer, T, params object[])
+  fullName: ModLib.Meadow.ModRPCManager.SendRPCEvent<T>(RainMeadow.OnlinePlayer, T, params object[])
+  type: Method
+  source:
+    remote:
+      path: ModLib/Meadow/ModRPCManager.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: SendRPCEvent
+    path: ../ModLib/Meadow/ModRPCManager.cs
+    startLine: 76
+  assemblies:
+  - ModLib
+  namespace: ModLib.Meadow
+  summary: Sends an RPC event to the online player, which is automatically aborted if the recipient does not answer after a certain time limit.
+  example: []
+  syntax:
+    content: 'public static RPCEvent SendRPCEvent<T>(this OnlinePlayer onlinePlayer, T @delegate, params object[] args) where T : Delegate'
+    parameters:
+    - id: onlinePlayer
+      type: RainMeadow.OnlinePlayer
+      description: The recipient who will receive this RPC event.
+    - id: delegate
+      type: '{T}'
+      description: The RPC method to be sent.
+    - id: args
+      type: System.Object[]
+      description: Any arguments of the RPC method.
+    typeParameters:
+    - id: T
+      description: The type of the RPC delegate to be sent.
+    return:
+      type: RainMeadow.RPCEvent
+      description: The <xref href="RainMeadow.RPCEvent" data-throw-if-not-resolved="false"></xref> instance sent to the online player.
+    content.vb: Public Shared Function SendRPCEvent(Of T As [Delegate])(onlinePlayer As OnlinePlayer, [delegate] As T, ParamArray args As Object()) As RPCEvent
+  overload: ModLib.Meadow.ModRPCManager.SendRPCEvent*
+  nameWithType.vb: ModRPCManager.SendRPCEvent(Of T)(OnlinePlayer, T, ParamArray Object())
+  fullName.vb: ModLib.Meadow.ModRPCManager.SendRPCEvent(Of T)(RainMeadow.OnlinePlayer, T, ParamArray Object())
+  name.vb: SendRPCEvent(Of T)(OnlinePlayer, T, ParamArray Object())
+- uid: ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInRoom(RainMeadow.OnlineEntity,System.Delegate,System.Object[])
+  commentId: M:ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInRoom(RainMeadow.OnlineEntity,System.Delegate,System.Object[])
+  id: BroadcastOnceRPCInRoom(RainMeadow.OnlineEntity,System.Delegate,System.Object[])
+  isExtensionMethod: true
+  parent: ModLib.Meadow.ModRPCManager
+  langs:
+  - csharp
+  - vb
+  name: BroadcastOnceRPCInRoom(OnlineEntity, Delegate, params object[])
+  nameWithType: ModRPCManager.BroadcastOnceRPCInRoom(OnlineEntity, Delegate, params object[])
+  fullName: ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInRoom(RainMeadow.OnlineEntity, System.Delegate, params object[])
+  type: Method
+  source:
+    remote:
+      path: ModLib/Meadow/ModRPCManager.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: BroadcastOnceRPCInRoom
+    path: ../ModLib/Meadow/ModRPCManager.cs
+    startLine: 97
+  assemblies:
+  - ModLib
+  namespace: ModLib.Meadow
+  summary: Sends a single RPC event to all players in the same room as the online entity.
+  example: []
+  syntax:
+    content: public static void BroadcastOnceRPCInRoom(this OnlineEntity source, Delegate del, params object[] args)
+    parameters:
+    - id: source
+      type: RainMeadow.OnlineEntity
+      description: The online entity who will send the RPC events.
+    - id: del
+      type: System.Delegate
+      description: The RPC method to be sent.
+    - id: args
+      type: System.Object[]
+      description: Any arguments of the RPC method.
+    content.vb: Public Shared Sub BroadcastOnceRPCInRoom(source As OnlineEntity, del As [Delegate], ParamArray args As Object())
+  overload: ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInRoom*
+  nameWithType.vb: ModRPCManager.BroadcastOnceRPCInRoom(OnlineEntity, Delegate, ParamArray Object())
+  fullName.vb: ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInRoom(RainMeadow.OnlineEntity, System.Delegate, ParamArray Object())
+  name.vb: BroadcastOnceRPCInRoom(OnlineEntity, Delegate, ParamArray Object())
+- uid: ModLib.Meadow.ModRPCManager.ResolveRPCEvent(RainMeadow.GenericResult)
+  commentId: M:ModLib.Meadow.ModRPCManager.ResolveRPCEvent(RainMeadow.GenericResult)
+  id: ResolveRPCEvent(RainMeadow.GenericResult)
+  parent: ModLib.Meadow.ModRPCManager
+  langs:
+  - csharp
+  - vb
+  name: ResolveRPCEvent(GenericResult)
+  nameWithType: ModRPCManager.ResolveRPCEvent(GenericResult)
+  fullName: ModLib.Meadow.ModRPCManager.ResolveRPCEvent(RainMeadow.GenericResult)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Meadow/ModRPCManager.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: ResolveRPCEvent
+    path: ../ModLib/Meadow/ModRPCManager.cs
+    startLine: 117
+  assemblies:
+  - ModLib
+  namespace: ModLib.Meadow
+  summary: Logs the result of the resolved RPC event, then removes its timeout irrespective of its result.
+  example: []
+  syntax:
+    content: public static void ResolveRPCEvent(GenericResult result)
+    parameters:
+    - id: result
+      type: RainMeadow.GenericResult
+      description: The result of the resolved RPC event.
+    content.vb: Public Shared Sub ResolveRPCEvent(result As GenericResult)
+  overload: ModLib.Meadow.ModRPCManager.ResolveRPCEvent*
+references:
+- uid: ModLib.Meadow
+  commentId: N:ModLib.Meadow
+  href: ModLib.html
+  name: ModLib.Meadow
+  nameWithType: ModLib.Meadow
+  fullName: ModLib.Meadow
+  spec.csharp:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Meadow
+    name: Meadow
+    href: ModLib.Meadow.html
+  spec.vb:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Meadow
+    name: Meadow
+    href: ModLib.Meadow.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: RainMeadow.RPCEvent
+  commentId: T:RainMeadow.RPCEvent
+  parent: RainMeadow
+  isExternal: true
+  name: RPCEvent
+  nameWithType: RPCEvent
+  fullName: RainMeadow.RPCEvent
+- uid: ModLib.Meadow.ModRPCManager.SendRPCEvent*
+  commentId: Overload:ModLib.Meadow.ModRPCManager.SendRPCEvent
+  href: ModLib.Meadow.ModRPCManager.html#ModLib_Meadow_ModRPCManager_SendRPCEvent__1_RainMeadow_OnlinePlayer___0_System_Object___
+  name: SendRPCEvent
+  nameWithType: ModRPCManager.SendRPCEvent
+  fullName: ModLib.Meadow.ModRPCManager.SendRPCEvent
+- uid: RainMeadow.OnlinePlayer
+  commentId: T:RainMeadow.OnlinePlayer
+  parent: RainMeadow
+  isExternal: true
+  name: OnlinePlayer
+  nameWithType: OnlinePlayer
+  fullName: RainMeadow.OnlinePlayer
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: System.Object[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object[]
+  nameWithType: object[]
+  fullName: object[]
+  nameWithType.vb: Object()
+  fullName.vb: Object()
+  name.vb: Object()
+  spec.csharp:
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: (
+  - name: )
+- uid: RainMeadow
+  commentId: N:RainMeadow
+  isExternal: true
+  name: RainMeadow
+  nameWithType: RainMeadow
+  fullName: RainMeadow
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInRoom*
+  commentId: Overload:ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInRoom
+  href: ModLib.Meadow.ModRPCManager.html#ModLib_Meadow_ModRPCManager_BroadcastOnceRPCInRoom_RainMeadow_OnlineEntity_System_Delegate_System_Object___
+  name: BroadcastOnceRPCInRoom
+  nameWithType: ModRPCManager.BroadcastOnceRPCInRoom
+  fullName: ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInRoom
+- uid: RainMeadow.OnlineEntity
+  commentId: T:RainMeadow.OnlineEntity
+  parent: RainMeadow
+  isExternal: true
+  name: OnlineEntity
+  nameWithType: OnlineEntity
+  fullName: RainMeadow.OnlineEntity
+- uid: System.Delegate
+  commentId: T:System.Delegate
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.delegate
+  name: Delegate
+  nameWithType: Delegate
+  fullName: System.Delegate
+- uid: ModLib.Meadow.ModRPCManager.ResolveRPCEvent*
+  commentId: Overload:ModLib.Meadow.ModRPCManager.ResolveRPCEvent
+  href: ModLib.Meadow.ModRPCManager.html#ModLib_Meadow_ModRPCManager_ResolveRPCEvent_RainMeadow_GenericResult_
+  name: ResolveRPCEvent
+  nameWithType: ModRPCManager.ResolveRPCEvent
+  fullName: ModLib.Meadow.ModRPCManager.ResolveRPCEvent
+- uid: RainMeadow.GenericResult
+  commentId: T:RainMeadow.GenericResult
+  parent: RainMeadow
+  isExternal: true
+  name: GenericResult
+  nameWithType: GenericResult
+  fullName: RainMeadow.GenericResult

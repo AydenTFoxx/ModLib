@@ -1,0 +1,507 @@
+### YamlMime:ManagedReference
+items:
+- uid: ModLib.CompatibilityManager
+  commentId: T:ModLib.CompatibilityManager
+  id: CompatibilityManager
+  parent: ModLib
+  children:
+  - ModLib.CompatibilityManager.Clear
+  - ModLib.CompatibilityManager.IsIICEnabled
+  - ModLib.CompatibilityManager.IsModEnabled(System.String)
+  - ModLib.CompatibilityManager.IsRainMeadowEnabled
+  - ModLib.CompatibilityManager.SetModCompatibility(System.String,System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: CompatibilityManager
+  nameWithType: CompatibilityManager
+  fullName: ModLib.CompatibilityManager
+  type: Class
+  source:
+    remote:
+      path: ModLib/CompatibilityManager.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: CompatibilityManager
+    path: ../ModLib/CompatibilityManager.cs
+    startLine: 11
+  assemblies:
+  - ModLib
+  namespace: ModLib
+  summary: Simple helper for determining the presence of other mods and ensure mod compatibility.
+  example: []
+  syntax:
+    content: public static class CompatibilityManager
+    content.vb: Public Module CompatibilityManager
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: ModLib.CompatibilityManager.Clear
+  commentId: M:ModLib.CompatibilityManager.Clear
+  id: Clear
+  parent: ModLib.CompatibilityManager
+  langs:
+  - csharp
+  - vb
+  name: Clear()
+  nameWithType: CompatibilityManager.Clear()
+  fullName: ModLib.CompatibilityManager.Clear()
+  type: Method
+  source:
+    remote:
+      path: ModLib/CompatibilityManager.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Clear
+    path: ../ModLib/CompatibilityManager.cs
+    startLine: 18
+  assemblies:
+  - ModLib
+  namespace: ModLib
+  summary: Clears the internal dictionary of cached mods.
+  example: []
+  syntax:
+    content: public static void Clear()
+    content.vb: Public Shared Sub Clear()
+  overload: ModLib.CompatibilityManager.Clear*
+- uid: ModLib.CompatibilityManager.IsModEnabled(System.String)
+  commentId: M:ModLib.CompatibilityManager.IsModEnabled(System.String)
+  id: IsModEnabled(System.String)
+  parent: ModLib.CompatibilityManager
+  langs:
+  - csharp
+  - vb
+  name: IsModEnabled(string)
+  nameWithType: CompatibilityManager.IsModEnabled(string)
+  fullName: ModLib.CompatibilityManager.IsModEnabled(string)
+  type: Method
+  source:
+    remote:
+      path: ModLib/CompatibilityManager.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: IsModEnabled
+    path: ../ModLib/CompatibilityManager.cs
+    startLine: 25
+  assemblies:
+  - ModLib
+  namespace: ModLib
+  summary: Determines if a given mod is currently enabled.
+  example: []
+  syntax:
+    content: public static bool IsModEnabled(string modID)
+    parameters:
+    - id: modID
+      type: System.String
+      description: The ID of the mod to check for.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the given mod was found to be enabled, <code>false</code> otherwise.
+    content.vb: Public Shared Function IsModEnabled(modID As String) As Boolean
+  overload: ModLib.CompatibilityManager.IsModEnabled*
+  nameWithType.vb: CompatibilityManager.IsModEnabled(String)
+  fullName.vb: ModLib.CompatibilityManager.IsModEnabled(String)
+  name.vb: IsModEnabled(String)
+- uid: ModLib.CompatibilityManager.IsIICEnabled
+  commentId: M:ModLib.CompatibilityManager.IsIICEnabled
+  id: IsIICEnabled
+  parent: ModLib.CompatibilityManager
+  langs:
+  - csharp
+  - vb
+  name: IsIICEnabled()
+  nameWithType: CompatibilityManager.IsIICEnabled()
+  fullName: ModLib.CompatibilityManager.IsIICEnabled()
+  type: Method
+  source:
+    remote:
+      path: ModLib/CompatibilityManager.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: IsIICEnabled
+    path: ../ModLib/CompatibilityManager.cs
+    startLine: 34
+  assemblies:
+  - ModLib
+  namespace: ModLib
+  summary: 'Determines if either Improved Input Config or Improved Input Config: Extended are enabled.'
+  example: []
+  syntax:
+    content: public static bool IsIICEnabled()
+    return:
+      type: System.Boolean
+      description: <code>true</code> if one of these mods is enabled, <code>false</code> otherwise.
+    content.vb: Public Shared Function IsIICEnabled() As Boolean
+  overload: ModLib.CompatibilityManager.IsIICEnabled*
+- uid: ModLib.CompatibilityManager.IsRainMeadowEnabled
+  commentId: M:ModLib.CompatibilityManager.IsRainMeadowEnabled
+  id: IsRainMeadowEnabled
+  parent: ModLib.CompatibilityManager
+  langs:
+  - csharp
+  - vb
+  name: IsRainMeadowEnabled()
+  nameWithType: CompatibilityManager.IsRainMeadowEnabled()
+  fullName: ModLib.CompatibilityManager.IsRainMeadowEnabled()
+  type: Method
+  source:
+    remote:
+      path: ModLib/CompatibilityManager.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: IsRainMeadowEnabled
+    path: ../ModLib/CompatibilityManager.cs
+    startLine: 40
+  assemblies:
+  - ModLib
+  namespace: ModLib
+  summary: Determines if the Rain Meadow mod is enabled.
+  example: []
+  syntax:
+    content: public static bool IsRainMeadowEnabled()
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the mod is enabled, <code>false</code> otherwise.
+    content.vb: Public Shared Function IsRainMeadowEnabled() As Boolean
+  overload: ModLib.CompatibilityManager.IsRainMeadowEnabled*
+- uid: ModLib.CompatibilityManager.SetModCompatibility(System.String,System.Boolean)
+  commentId: M:ModLib.CompatibilityManager.SetModCompatibility(System.String,System.Boolean)
+  id: SetModCompatibility(System.String,System.Boolean)
+  parent: ModLib.CompatibilityManager
+  langs:
+  - csharp
+  - vb
+  name: SetModCompatibility(string, bool)
+  nameWithType: CompatibilityManager.SetModCompatibility(string, bool)
+  fullName: ModLib.CompatibilityManager.SetModCompatibility(string, bool)
+  type: Method
+  source:
+    remote:
+      path: ModLib/CompatibilityManager.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: SetModCompatibility
+    path: ../ModLib/CompatibilityManager.cs
+    startLine: 47
+  assemblies:
+  - ModLib
+  namespace: ModLib
+  summary: Overrides the configured compatibility features for a given mod.
+  example: []
+  syntax:
+    content: public static void SetModCompatibility(string modID, bool enable)
+    parameters:
+    - id: modID
+      type: System.String
+      description: The identifier of the mod.
+    - id: enable
+      type: System.Boolean
+      description: Whether or not compatibility with the given mod should be enabled.
+    content.vb: Public Shared Sub SetModCompatibility(modID As String, enable As Boolean)
+  overload: ModLib.CompatibilityManager.SetModCompatibility*
+  nameWithType.vb: CompatibilityManager.SetModCompatibility(String, Boolean)
+  fullName.vb: ModLib.CompatibilityManager.SetModCompatibility(String, Boolean)
+  name.vb: SetModCompatibility(String, Boolean)
+references:
+- uid: ModLib
+  commentId: N:ModLib
+  href: ModLib.html
+  name: ModLib
+  nameWithType: ModLib
+  fullName: ModLib
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: ModLib.CompatibilityManager.Clear*
+  commentId: Overload:ModLib.CompatibilityManager.Clear
+  href: ModLib.CompatibilityManager.html#ModLib_CompatibilityManager_Clear
+  name: Clear
+  nameWithType: CompatibilityManager.Clear
+  fullName: ModLib.CompatibilityManager.Clear
+- uid: ModLib.CompatibilityManager.IsModEnabled*
+  commentId: Overload:ModLib.CompatibilityManager.IsModEnabled
+  href: ModLib.CompatibilityManager.html#ModLib_CompatibilityManager_IsModEnabled_System_String_
+  name: IsModEnabled
+  nameWithType: CompatibilityManager.IsModEnabled
+  fullName: ModLib.CompatibilityManager.IsModEnabled
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: ModLib.CompatibilityManager.IsIICEnabled*
+  commentId: Overload:ModLib.CompatibilityManager.IsIICEnabled
+  href: ModLib.CompatibilityManager.html#ModLib_CompatibilityManager_IsIICEnabled
+  name: IsIICEnabled
+  nameWithType: CompatibilityManager.IsIICEnabled
+  fullName: ModLib.CompatibilityManager.IsIICEnabled
+- uid: ModLib.CompatibilityManager.IsRainMeadowEnabled*
+  commentId: Overload:ModLib.CompatibilityManager.IsRainMeadowEnabled
+  href: ModLib.CompatibilityManager.html#ModLib_CompatibilityManager_IsRainMeadowEnabled
+  name: IsRainMeadowEnabled
+  nameWithType: CompatibilityManager.IsRainMeadowEnabled
+  fullName: ModLib.CompatibilityManager.IsRainMeadowEnabled
+- uid: ModLib.CompatibilityManager.SetModCompatibility*
+  commentId: Overload:ModLib.CompatibilityManager.SetModCompatibility
+  href: ModLib.CompatibilityManager.html#ModLib_CompatibilityManager_SetModCompatibility_System_String_System_Boolean_
+  name: SetModCompatibility
+  nameWithType: CompatibilityManager.SetModCompatibility
+  fullName: ModLib.CompatibilityManager.SetModCompatibility

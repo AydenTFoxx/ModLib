@@ -1,0 +1,3271 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: ModLib
+  name: ModLib
+  href: api/ModLib.html
+  commentId: N:ModLib
+  fullName: ModLib
+  nameWithType: ModLib
+- uid: ModLib.Collections
+  name: ModLib.Collections
+  href: api/ModLib.Collections.html
+  commentId: N:ModLib.Collections
+  fullName: ModLib.Collections
+  nameWithType: ModLib.Collections
+- uid: ModLib.Collections.WeakCollection`1
+  name: WeakCollection<T>
+  href: api/ModLib.Collections.WeakCollection-1.html
+  commentId: T:ModLib.Collections.WeakCollection`1
+  name.vb: WeakCollection(Of T)
+  fullName: ModLib.Collections.WeakCollection<T>
+  fullName.vb: ModLib.Collections.WeakCollection(Of T)
+  nameWithType: WeakCollection<T>
+  nameWithType.vb: WeakCollection(Of T)
+- uid: ModLib.Collections.WeakCollection`1.#ctor
+  name: WeakCollection()
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1__ctor
+  commentId: M:ModLib.Collections.WeakCollection`1.#ctor
+  name.vb: New()
+  fullName: ModLib.Collections.WeakCollection<T>.WeakCollection()
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).New()
+  nameWithType: WeakCollection<T>.WeakCollection()
+  nameWithType.vb: WeakCollection(Of T).New()
+- uid: ModLib.Collections.WeakCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0})
+  name: WeakCollection(IEnumerable<T>)
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1__ctor_System_Collections_Generic_IEnumerable__0__
+  commentId: M:ModLib.Collections.WeakCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0})
+  name.vb: New(IEnumerable(Of T))
+  fullName: ModLib.Collections.WeakCollection<T>.WeakCollection(System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).New(System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: WeakCollection<T>.WeakCollection(IEnumerable<T>)
+  nameWithType.vb: WeakCollection(Of T).New(IEnumerable(Of T))
+- uid: ModLib.Collections.WeakCollection`1.#ctor(System.Int32)
+  name: WeakCollection(int)
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1__ctor_System_Int32_
+  commentId: M:ModLib.Collections.WeakCollection`1.#ctor(System.Int32)
+  name.vb: New(Integer)
+  fullName: ModLib.Collections.WeakCollection<T>.WeakCollection(int)
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).New(Integer)
+  nameWithType: WeakCollection<T>.WeakCollection(int)
+  nameWithType.vb: WeakCollection(Of T).New(Integer)
+- uid: ModLib.Collections.WeakCollection`1.#ctor*
+  name: WeakCollection
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1__ctor_
+  commentId: Overload:ModLib.Collections.WeakCollection`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: ModLib.Collections.WeakCollection<T>.WeakCollection
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).New
+  nameWithType: WeakCollection<T>.WeakCollection
+  nameWithType.vb: WeakCollection(Of T).New
+- uid: ModLib.Collections.WeakCollection`1.Add(`0)
+  name: Add(T)
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1_Add__0_
+  commentId: M:ModLib.Collections.WeakCollection`1.Add(`0)
+  fullName: ModLib.Collections.WeakCollection<T>.Add(T)
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).Add(T)
+  nameWithType: WeakCollection<T>.Add(T)
+  nameWithType.vb: WeakCollection(Of T).Add(T)
+- uid: ModLib.Collections.WeakCollection`1.Add*
+  name: Add
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1_Add_
+  commentId: Overload:ModLib.Collections.WeakCollection`1.Add
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakCollection<T>.Add
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).Add
+  nameWithType: WeakCollection<T>.Add
+  nameWithType.vb: WeakCollection(Of T).Add
+- uid: ModLib.Collections.WeakCollection`1.Clear
+  name: Clear()
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1_Clear
+  commentId: M:ModLib.Collections.WeakCollection`1.Clear
+  fullName: ModLib.Collections.WeakCollection<T>.Clear()
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).Clear()
+  nameWithType: WeakCollection<T>.Clear()
+  nameWithType.vb: WeakCollection(Of T).Clear()
+- uid: ModLib.Collections.WeakCollection`1.Clear*
+  name: Clear
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1_Clear_
+  commentId: Overload:ModLib.Collections.WeakCollection`1.Clear
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakCollection<T>.Clear
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).Clear
+  nameWithType: WeakCollection<T>.Clear
+  nameWithType.vb: WeakCollection(Of T).Clear
+- uid: ModLib.Collections.WeakCollection`1.Contains(`0)
+  name: Contains(T)
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1_Contains__0_
+  commentId: M:ModLib.Collections.WeakCollection`1.Contains(`0)
+  fullName: ModLib.Collections.WeakCollection<T>.Contains(T)
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).Contains(T)
+  nameWithType: WeakCollection<T>.Contains(T)
+  nameWithType.vb: WeakCollection(Of T).Contains(T)
+- uid: ModLib.Collections.WeakCollection`1.Contains*
+  name: Contains
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1_Contains_
+  commentId: Overload:ModLib.Collections.WeakCollection`1.Contains
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakCollection<T>.Contains
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).Contains
+  nameWithType: WeakCollection<T>.Contains
+  nameWithType.vb: WeakCollection(Of T).Contains
+- uid: ModLib.Collections.WeakCollection`1.CopyTo(`0[],System.Int32)
+  name: CopyTo(T[], int)
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1_CopyTo__0___System_Int32_
+  commentId: M:ModLib.Collections.WeakCollection`1.CopyTo(`0[],System.Int32)
+  name.vb: CopyTo(T(), Integer)
+  fullName: ModLib.Collections.WeakCollection<T>.CopyTo(T[], int)
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).CopyTo(T(), Integer)
+  nameWithType: WeakCollection<T>.CopyTo(T[], int)
+  nameWithType.vb: WeakCollection(Of T).CopyTo(T(), Integer)
+- uid: ModLib.Collections.WeakCollection`1.CopyTo*
+  name: CopyTo
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1_CopyTo_
+  commentId: Overload:ModLib.Collections.WeakCollection`1.CopyTo
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakCollection<T>.CopyTo
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).CopyTo
+  nameWithType: WeakCollection<T>.CopyTo
+  nameWithType.vb: WeakCollection(Of T).CopyTo
+- uid: ModLib.Collections.WeakCollection`1.Count
+  name: Count
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1_Count
+  commentId: P:ModLib.Collections.WeakCollection`1.Count
+  fullName: ModLib.Collections.WeakCollection<T>.Count
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).Count
+  nameWithType: WeakCollection<T>.Count
+  nameWithType.vb: WeakCollection(Of T).Count
+- uid: ModLib.Collections.WeakCollection`1.Count*
+  name: Count
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1_Count_
+  commentId: Overload:ModLib.Collections.WeakCollection`1.Count
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakCollection<T>.Count
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).Count
+  nameWithType: WeakCollection<T>.Count
+  nameWithType.vb: WeakCollection(Of T).Count
+- uid: ModLib.Collections.WeakCollection`1.GetEnumerator
+  name: GetEnumerator()
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1_GetEnumerator
+  commentId: M:ModLib.Collections.WeakCollection`1.GetEnumerator
+  fullName: ModLib.Collections.WeakCollection<T>.GetEnumerator()
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).GetEnumerator()
+  nameWithType: WeakCollection<T>.GetEnumerator()
+  nameWithType.vb: WeakCollection(Of T).GetEnumerator()
+- uid: ModLib.Collections.WeakCollection`1.GetEnumerator*
+  name: GetEnumerator
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1_GetEnumerator_
+  commentId: Overload:ModLib.Collections.WeakCollection`1.GetEnumerator
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakCollection<T>.GetEnumerator
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).GetEnumerator
+  nameWithType: WeakCollection<T>.GetEnumerator
+  nameWithType.vb: WeakCollection(Of T).GetEnumerator
+- uid: ModLib.Collections.WeakCollection`1.IsReadOnly
+  name: IsReadOnly
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1_IsReadOnly
+  commentId: P:ModLib.Collections.WeakCollection`1.IsReadOnly
+  fullName: ModLib.Collections.WeakCollection<T>.IsReadOnly
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).IsReadOnly
+  nameWithType: WeakCollection<T>.IsReadOnly
+  nameWithType.vb: WeakCollection(Of T).IsReadOnly
+- uid: ModLib.Collections.WeakCollection`1.IsReadOnly*
+  name: IsReadOnly
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1_IsReadOnly_
+  commentId: Overload:ModLib.Collections.WeakCollection`1.IsReadOnly
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakCollection<T>.IsReadOnly
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).IsReadOnly
+  nameWithType: WeakCollection<T>.IsReadOnly
+  nameWithType.vb: WeakCollection(Of T).IsReadOnly
+- uid: ModLib.Collections.WeakCollection`1.Remove(`0)
+  name: Remove(T)
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1_Remove__0_
+  commentId: M:ModLib.Collections.WeakCollection`1.Remove(`0)
+  fullName: ModLib.Collections.WeakCollection<T>.Remove(T)
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).Remove(T)
+  nameWithType: WeakCollection<T>.Remove(T)
+  nameWithType.vb: WeakCollection(Of T).Remove(T)
+- uid: ModLib.Collections.WeakCollection`1.Remove*
+  name: Remove
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1_Remove_
+  commentId: Overload:ModLib.Collections.WeakCollection`1.Remove
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakCollection<T>.Remove
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).Remove
+  nameWithType: WeakCollection<T>.Remove
+  nameWithType.vb: WeakCollection(Of T).Remove
+- uid: ModLib.Collections.WeakCollection`1.values
+  name: values
+  href: api/ModLib.Collections.WeakCollection-1.html#ModLib_Collections_WeakCollection_1_values
+  commentId: F:ModLib.Collections.WeakCollection`1.values
+  fullName: ModLib.Collections.WeakCollection<T>.values
+  fullName.vb: ModLib.Collections.WeakCollection(Of T).values
+  nameWithType: WeakCollection<T>.values
+  nameWithType.vb: WeakCollection(Of T).values
+- uid: ModLib.Collections.WeakDictionary`2
+  name: WeakDictionary<TKey, TValue>
+  href: api/ModLib.Collections.WeakDictionary-2.html
+  commentId: T:ModLib.Collections.WeakDictionary`2
+  name.vb: WeakDictionary(Of TKey, TValue)
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue)
+  nameWithType: WeakDictionary<TKey, TValue>
+  nameWithType.vb: WeakDictionary(Of TKey, TValue)
+- uid: ModLib.Collections.WeakDictionary`2.Add(System.Collections.Generic.KeyValuePair{`0,`1})
+  name: Add(KeyValuePair<TKey, TValue>)
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Add_System_Collections_Generic_KeyValuePair__0__1__
+  commentId: M:ModLib.Collections.WeakDictionary`2.Add(System.Collections.Generic.KeyValuePair{`0,`1})
+  name.vb: Add(KeyValuePair(Of TKey, TValue))
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.Add(System.Collections.Generic.KeyValuePair<TKey, TValue>)
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).Add(System.Collections.Generic.KeyValuePair(Of TKey, TValue))
+  nameWithType: WeakDictionary<TKey, TValue>.Add(KeyValuePair<TKey, TValue>)
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).Add(KeyValuePair(Of TKey, TValue))
+- uid: ModLib.Collections.WeakDictionary`2.Add(`0,`1)
+  name: Add(TKey, TValue)
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Add__0__1_
+  commentId: M:ModLib.Collections.WeakDictionary`2.Add(`0,`1)
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.Add(TKey, TValue)
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).Add(TKey, TValue)
+  nameWithType: WeakDictionary<TKey, TValue>.Add(TKey, TValue)
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).Add(TKey, TValue)
+- uid: ModLib.Collections.WeakDictionary`2.Add*
+  name: Add
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Add_
+  commentId: Overload:ModLib.Collections.WeakDictionary`2.Add
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.Add
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).Add
+  nameWithType: WeakDictionary<TKey, TValue>.Add
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).Add
+- uid: ModLib.Collections.WeakDictionary`2.Clear
+  name: Clear()
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Clear
+  commentId: M:ModLib.Collections.WeakDictionary`2.Clear
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.Clear()
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).Clear()
+  nameWithType: WeakDictionary<TKey, TValue>.Clear()
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).Clear()
+- uid: ModLib.Collections.WeakDictionary`2.Clear*
+  name: Clear
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Clear_
+  commentId: Overload:ModLib.Collections.WeakDictionary`2.Clear
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.Clear
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).Clear
+  nameWithType: WeakDictionary<TKey, TValue>.Clear
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).Clear
+- uid: ModLib.Collections.WeakDictionary`2.Contains(System.Collections.Generic.KeyValuePair{`0,`1})
+  name: Contains(KeyValuePair<TKey, TValue>)
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Contains_System_Collections_Generic_KeyValuePair__0__1__
+  commentId: M:ModLib.Collections.WeakDictionary`2.Contains(System.Collections.Generic.KeyValuePair{`0,`1})
+  name.vb: Contains(KeyValuePair(Of TKey, TValue))
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.Contains(System.Collections.Generic.KeyValuePair<TKey, TValue>)
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).Contains(System.Collections.Generic.KeyValuePair(Of TKey, TValue))
+  nameWithType: WeakDictionary<TKey, TValue>.Contains(KeyValuePair<TKey, TValue>)
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).Contains(KeyValuePair(Of TKey, TValue))
+- uid: ModLib.Collections.WeakDictionary`2.Contains*
+  name: Contains
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Contains_
+  commentId: Overload:ModLib.Collections.WeakDictionary`2.Contains
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.Contains
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).Contains
+  nameWithType: WeakDictionary<TKey, TValue>.Contains
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).Contains
+- uid: ModLib.Collections.WeakDictionary`2.ContainsKey(`0)
+  name: ContainsKey(TKey)
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_ContainsKey__0_
+  commentId: M:ModLib.Collections.WeakDictionary`2.ContainsKey(`0)
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.ContainsKey(TKey)
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).ContainsKey(TKey)
+  nameWithType: WeakDictionary<TKey, TValue>.ContainsKey(TKey)
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).ContainsKey(TKey)
+- uid: ModLib.Collections.WeakDictionary`2.ContainsKey*
+  name: ContainsKey
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_ContainsKey_
+  commentId: Overload:ModLib.Collections.WeakDictionary`2.ContainsKey
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.ContainsKey
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).ContainsKey
+  nameWithType: WeakDictionary<TKey, TValue>.ContainsKey
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).ContainsKey
+- uid: ModLib.Collections.WeakDictionary`2.CopyTo(System.Collections.Generic.KeyValuePair{`0,`1}[],System.Int32)
+  name: CopyTo(KeyValuePair<TKey, TValue>[], int)
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_CopyTo_System_Collections_Generic_KeyValuePair__0__1____System_Int32_
+  commentId: M:ModLib.Collections.WeakDictionary`2.CopyTo(System.Collections.Generic.KeyValuePair{`0,`1}[],System.Int32)
+  name.vb: CopyTo(KeyValuePair(Of TKey, TValue)(), Integer)
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.CopyTo(System.Collections.Generic.KeyValuePair<TKey, TValue>[], int)
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).CopyTo(System.Collections.Generic.KeyValuePair(Of TKey, TValue)(), Integer)
+  nameWithType: WeakDictionary<TKey, TValue>.CopyTo(KeyValuePair<TKey, TValue>[], int)
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).CopyTo(KeyValuePair(Of TKey, TValue)(), Integer)
+- uid: ModLib.Collections.WeakDictionary`2.CopyTo*
+  name: CopyTo
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_CopyTo_
+  commentId: Overload:ModLib.Collections.WeakDictionary`2.CopyTo
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.CopyTo
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).CopyTo
+  nameWithType: WeakDictionary<TKey, TValue>.CopyTo
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).CopyTo
+- uid: ModLib.Collections.WeakDictionary`2.Count
+  name: Count
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Count
+  commentId: P:ModLib.Collections.WeakDictionary`2.Count
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.Count
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).Count
+  nameWithType: WeakDictionary<TKey, TValue>.Count
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).Count
+- uid: ModLib.Collections.WeakDictionary`2.Count*
+  name: Count
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Count_
+  commentId: Overload:ModLib.Collections.WeakDictionary`2.Count
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.Count
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).Count
+  nameWithType: WeakDictionary<TKey, TValue>.Count
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).Count
+- uid: ModLib.Collections.WeakDictionary`2.Dispose
+  name: Dispose()
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Dispose
+  commentId: M:ModLib.Collections.WeakDictionary`2.Dispose
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.Dispose()
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).Dispose()
+  nameWithType: WeakDictionary<TKey, TValue>.Dispose()
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).Dispose()
+- uid: ModLib.Collections.WeakDictionary`2.Dispose(System.Boolean)
+  name: Dispose(bool)
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Dispose_System_Boolean_
+  commentId: M:ModLib.Collections.WeakDictionary`2.Dispose(System.Boolean)
+  name.vb: Dispose(Boolean)
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.Dispose(bool)
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).Dispose(Boolean)
+  nameWithType: WeakDictionary<TKey, TValue>.Dispose(bool)
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).Dispose(Boolean)
+- uid: ModLib.Collections.WeakDictionary`2.Dispose*
+  name: Dispose
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Dispose_
+  commentId: Overload:ModLib.Collections.WeakDictionary`2.Dispose
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.Dispose
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).Dispose
+  nameWithType: WeakDictionary<TKey, TValue>.Dispose
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).Dispose
+- uid: ModLib.Collections.WeakDictionary`2.Finalize
+  name: ~WeakDictionary()
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Finalize
+  commentId: M:ModLib.Collections.WeakDictionary`2.Finalize
+  name.vb: ''
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.~WeakDictionary()
+  fullName.vb: ''
+  nameWithType: WeakDictionary<TKey, TValue>.~WeakDictionary()
+  nameWithType.vb: ''
+- uid: ModLib.Collections.WeakDictionary`2.Finalize*
+  name: ~WeakDictionary
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Finalize_
+  commentId: Overload:ModLib.Collections.WeakDictionary`2.Finalize
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.~WeakDictionary
+  nameWithType: WeakDictionary<TKey, TValue>.~WeakDictionary
+- uid: ModLib.Collections.WeakDictionary`2.GetEnumerator
+  name: GetEnumerator()
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_GetEnumerator
+  commentId: M:ModLib.Collections.WeakDictionary`2.GetEnumerator
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.GetEnumerator()
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).GetEnumerator()
+  nameWithType: WeakDictionary<TKey, TValue>.GetEnumerator()
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).GetEnumerator()
+- uid: ModLib.Collections.WeakDictionary`2.GetEnumerator*
+  name: GetEnumerator
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_GetEnumerator_
+  commentId: Overload:ModLib.Collections.WeakDictionary`2.GetEnumerator
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.GetEnumerator
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).GetEnumerator
+  nameWithType: WeakDictionary<TKey, TValue>.GetEnumerator
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).GetEnumerator
+- uid: ModLib.Collections.WeakDictionary`2.IsReadOnly
+  name: IsReadOnly
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_IsReadOnly
+  commentId: P:ModLib.Collections.WeakDictionary`2.IsReadOnly
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.IsReadOnly
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).IsReadOnly
+  nameWithType: WeakDictionary<TKey, TValue>.IsReadOnly
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).IsReadOnly
+- uid: ModLib.Collections.WeakDictionary`2.IsReadOnly*
+  name: IsReadOnly
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_IsReadOnly_
+  commentId: Overload:ModLib.Collections.WeakDictionary`2.IsReadOnly
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.IsReadOnly
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).IsReadOnly
+  nameWithType: WeakDictionary<TKey, TValue>.IsReadOnly
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).IsReadOnly
+- uid: ModLib.Collections.WeakDictionary`2.Item(`0)
+  name: this[TKey]
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Item__0_
+  commentId: P:ModLib.Collections.WeakDictionary`2.Item(`0)
+  name.vb: this[](TKey)
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.this[TKey]
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).this[](TKey)
+  nameWithType: WeakDictionary<TKey, TValue>.this[TKey]
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).this[](TKey)
+- uid: ModLib.Collections.WeakDictionary`2.Item*
+  name: this
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Item_
+  commentId: Overload:ModLib.Collections.WeakDictionary`2.Item
+  isSpec: "True"
+  name.vb: this[]
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.this
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).this[]
+  nameWithType: WeakDictionary<TKey, TValue>.this
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).this[]
+- uid: ModLib.Collections.WeakDictionary`2.Keys
+  name: Keys
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Keys
+  commentId: P:ModLib.Collections.WeakDictionary`2.Keys
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.Keys
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).Keys
+  nameWithType: WeakDictionary<TKey, TValue>.Keys
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).Keys
+- uid: ModLib.Collections.WeakDictionary`2.Keys*
+  name: Keys
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Keys_
+  commentId: Overload:ModLib.Collections.WeakDictionary`2.Keys
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.Keys
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).Keys
+  nameWithType: WeakDictionary<TKey, TValue>.Keys
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).Keys
+- uid: ModLib.Collections.WeakDictionary`2.Remove(System.Collections.Generic.KeyValuePair{`0,`1})
+  name: Remove(KeyValuePair<TKey, TValue>)
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Remove_System_Collections_Generic_KeyValuePair__0__1__
+  commentId: M:ModLib.Collections.WeakDictionary`2.Remove(System.Collections.Generic.KeyValuePair{`0,`1})
+  name.vb: Remove(KeyValuePair(Of TKey, TValue))
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.Remove(System.Collections.Generic.KeyValuePair<TKey, TValue>)
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).Remove(System.Collections.Generic.KeyValuePair(Of TKey, TValue))
+  nameWithType: WeakDictionary<TKey, TValue>.Remove(KeyValuePair<TKey, TValue>)
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).Remove(KeyValuePair(Of TKey, TValue))
+- uid: ModLib.Collections.WeakDictionary`2.Remove(`0)
+  name: Remove(TKey)
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Remove__0_
+  commentId: M:ModLib.Collections.WeakDictionary`2.Remove(`0)
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.Remove(TKey)
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).Remove(TKey)
+  nameWithType: WeakDictionary<TKey, TValue>.Remove(TKey)
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).Remove(TKey)
+- uid: ModLib.Collections.WeakDictionary`2.Remove*
+  name: Remove
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Remove_
+  commentId: Overload:ModLib.Collections.WeakDictionary`2.Remove
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.Remove
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).Remove
+  nameWithType: WeakDictionary<TKey, TValue>.Remove
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).Remove
+- uid: ModLib.Collections.WeakDictionary`2.TryGetValue(`0,`1@)
+  name: TryGetValue(TKey, out TValue)
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_TryGetValue__0__1__
+  commentId: M:ModLib.Collections.WeakDictionary`2.TryGetValue(`0,`1@)
+  name.vb: TryGetValue(TKey, TValue)
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.TryGetValue(TKey, out TValue)
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).TryGetValue(TKey, TValue)
+  nameWithType: WeakDictionary<TKey, TValue>.TryGetValue(TKey, out TValue)
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).TryGetValue(TKey, TValue)
+- uid: ModLib.Collections.WeakDictionary`2.TryGetValue*
+  name: TryGetValue
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_TryGetValue_
+  commentId: Overload:ModLib.Collections.WeakDictionary`2.TryGetValue
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.TryGetValue
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).TryGetValue
+  nameWithType: WeakDictionary<TKey, TValue>.TryGetValue
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).TryGetValue
+- uid: ModLib.Collections.WeakDictionary`2.Values
+  name: Values
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Values
+  commentId: P:ModLib.Collections.WeakDictionary`2.Values
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.Values
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).Values
+  nameWithType: WeakDictionary<TKey, TValue>.Values
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).Values
+- uid: ModLib.Collections.WeakDictionary`2.Values*
+  name: Values
+  href: api/ModLib.Collections.WeakDictionary-2.html#ModLib_Collections_WeakDictionary_2_Values_
+  commentId: Overload:ModLib.Collections.WeakDictionary`2.Values
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>.Values
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue).Values
+  nameWithType: WeakDictionary<TKey, TValue>.Values
+  nameWithType.vb: WeakDictionary(Of TKey, TValue).Values
+- uid: ModLib.Collections.WeakList`1
+  name: WeakList<T>
+  href: api/ModLib.Collections.WeakList-1.html
+  commentId: T:ModLib.Collections.WeakList`1
+  name.vb: WeakList(Of T)
+  fullName: ModLib.Collections.WeakList<T>
+  fullName.vb: ModLib.Collections.WeakList(Of T)
+  nameWithType: WeakList<T>
+  nameWithType.vb: WeakList(Of T)
+- uid: ModLib.Collections.WeakList`1.#ctor
+  name: WeakList()
+  href: api/ModLib.Collections.WeakList-1.html#ModLib_Collections_WeakList_1__ctor
+  commentId: M:ModLib.Collections.WeakList`1.#ctor
+  name.vb: New()
+  fullName: ModLib.Collections.WeakList<T>.WeakList()
+  fullName.vb: ModLib.Collections.WeakList(Of T).New()
+  nameWithType: WeakList<T>.WeakList()
+  nameWithType.vb: WeakList(Of T).New()
+- uid: ModLib.Collections.WeakList`1.#ctor(System.Collections.Generic.IEnumerable{`0})
+  name: WeakList(IEnumerable<T>)
+  href: api/ModLib.Collections.WeakList-1.html#ModLib_Collections_WeakList_1__ctor_System_Collections_Generic_IEnumerable__0__
+  commentId: M:ModLib.Collections.WeakList`1.#ctor(System.Collections.Generic.IEnumerable{`0})
+  name.vb: New(IEnumerable(Of T))
+  fullName: ModLib.Collections.WeakList<T>.WeakList(System.Collections.Generic.IEnumerable<T>)
+  fullName.vb: ModLib.Collections.WeakList(Of T).New(System.Collections.Generic.IEnumerable(Of T))
+  nameWithType: WeakList<T>.WeakList(IEnumerable<T>)
+  nameWithType.vb: WeakList(Of T).New(IEnumerable(Of T))
+- uid: ModLib.Collections.WeakList`1.#ctor(System.Int32)
+  name: WeakList(int)
+  href: api/ModLib.Collections.WeakList-1.html#ModLib_Collections_WeakList_1__ctor_System_Int32_
+  commentId: M:ModLib.Collections.WeakList`1.#ctor(System.Int32)
+  name.vb: New(Integer)
+  fullName: ModLib.Collections.WeakList<T>.WeakList(int)
+  fullName.vb: ModLib.Collections.WeakList(Of T).New(Integer)
+  nameWithType: WeakList<T>.WeakList(int)
+  nameWithType.vb: WeakList(Of T).New(Integer)
+- uid: ModLib.Collections.WeakList`1.#ctor*
+  name: WeakList
+  href: api/ModLib.Collections.WeakList-1.html#ModLib_Collections_WeakList_1__ctor_
+  commentId: Overload:ModLib.Collections.WeakList`1.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: ModLib.Collections.WeakList<T>.WeakList
+  fullName.vb: ModLib.Collections.WeakList(Of T).New
+  nameWithType: WeakList<T>.WeakList
+  nameWithType.vb: WeakList(Of T).New
+- uid: ModLib.Collections.WeakList`1.IndexOf(`0)
+  name: IndexOf(T)
+  href: api/ModLib.Collections.WeakList-1.html#ModLib_Collections_WeakList_1_IndexOf__0_
+  commentId: M:ModLib.Collections.WeakList`1.IndexOf(`0)
+  fullName: ModLib.Collections.WeakList<T>.IndexOf(T)
+  fullName.vb: ModLib.Collections.WeakList(Of T).IndexOf(T)
+  nameWithType: WeakList<T>.IndexOf(T)
+  nameWithType.vb: WeakList(Of T).IndexOf(T)
+- uid: ModLib.Collections.WeakList`1.IndexOf*
+  name: IndexOf
+  href: api/ModLib.Collections.WeakList-1.html#ModLib_Collections_WeakList_1_IndexOf_
+  commentId: Overload:ModLib.Collections.WeakList`1.IndexOf
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakList<T>.IndexOf
+  fullName.vb: ModLib.Collections.WeakList(Of T).IndexOf
+  nameWithType: WeakList<T>.IndexOf
+  nameWithType.vb: WeakList(Of T).IndexOf
+- uid: ModLib.Collections.WeakList`1.Insert(System.Int32,`0)
+  name: Insert(int, T)
+  href: api/ModLib.Collections.WeakList-1.html#ModLib_Collections_WeakList_1_Insert_System_Int32__0_
+  commentId: M:ModLib.Collections.WeakList`1.Insert(System.Int32,`0)
+  name.vb: Insert(Integer, T)
+  fullName: ModLib.Collections.WeakList<T>.Insert(int, T)
+  fullName.vb: ModLib.Collections.WeakList(Of T).Insert(Integer, T)
+  nameWithType: WeakList<T>.Insert(int, T)
+  nameWithType.vb: WeakList(Of T).Insert(Integer, T)
+- uid: ModLib.Collections.WeakList`1.Insert*
+  name: Insert
+  href: api/ModLib.Collections.WeakList-1.html#ModLib_Collections_WeakList_1_Insert_
+  commentId: Overload:ModLib.Collections.WeakList`1.Insert
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakList<T>.Insert
+  fullName.vb: ModLib.Collections.WeakList(Of T).Insert
+  nameWithType: WeakList<T>.Insert
+  nameWithType.vb: WeakList(Of T).Insert
+- uid: ModLib.Collections.WeakList`1.Item(System.Int32)
+  name: this[int]
+  href: api/ModLib.Collections.WeakList-1.html#ModLib_Collections_WeakList_1_Item_System_Int32_
+  commentId: P:ModLib.Collections.WeakList`1.Item(System.Int32)
+  name.vb: this[](Integer)
+  fullName: ModLib.Collections.WeakList<T>.this[int]
+  fullName.vb: ModLib.Collections.WeakList(Of T).this[](Integer)
+  nameWithType: WeakList<T>.this[int]
+  nameWithType.vb: WeakList(Of T).this[](Integer)
+- uid: ModLib.Collections.WeakList`1.Item*
+  name: this
+  href: api/ModLib.Collections.WeakList-1.html#ModLib_Collections_WeakList_1_Item_
+  commentId: Overload:ModLib.Collections.WeakList`1.Item
+  isSpec: "True"
+  name.vb: this[]
+  fullName: ModLib.Collections.WeakList<T>.this
+  fullName.vb: ModLib.Collections.WeakList(Of T).this[]
+  nameWithType: WeakList<T>.this
+  nameWithType.vb: WeakList(Of T).this[]
+- uid: ModLib.Collections.WeakList`1.RemoveAt(System.Int32)
+  name: RemoveAt(int)
+  href: api/ModLib.Collections.WeakList-1.html#ModLib_Collections_WeakList_1_RemoveAt_System_Int32_
+  commentId: M:ModLib.Collections.WeakList`1.RemoveAt(System.Int32)
+  name.vb: RemoveAt(Integer)
+  fullName: ModLib.Collections.WeakList<T>.RemoveAt(int)
+  fullName.vb: ModLib.Collections.WeakList(Of T).RemoveAt(Integer)
+  nameWithType: WeakList<T>.RemoveAt(int)
+  nameWithType.vb: WeakList(Of T).RemoveAt(Integer)
+- uid: ModLib.Collections.WeakList`1.RemoveAt*
+  name: RemoveAt
+  href: api/ModLib.Collections.WeakList-1.html#ModLib_Collections_WeakList_1_RemoveAt_
+  commentId: Overload:ModLib.Collections.WeakList`1.RemoveAt
+  isSpec: "True"
+  fullName: ModLib.Collections.WeakList<T>.RemoveAt
+  fullName.vb: ModLib.Collections.WeakList(Of T).RemoveAt
+  nameWithType: WeakList<T>.RemoveAt
+  nameWithType.vb: WeakList(Of T).RemoveAt
+- uid: ModLib.CompatibilityManager
+  name: CompatibilityManager
+  href: api/ModLib.CompatibilityManager.html
+  commentId: T:ModLib.CompatibilityManager
+  fullName: ModLib.CompatibilityManager
+  nameWithType: CompatibilityManager
+- uid: ModLib.CompatibilityManager.Clear
+  name: Clear()
+  href: api/ModLib.CompatibilityManager.html#ModLib_CompatibilityManager_Clear
+  commentId: M:ModLib.CompatibilityManager.Clear
+  fullName: ModLib.CompatibilityManager.Clear()
+  nameWithType: CompatibilityManager.Clear()
+- uid: ModLib.CompatibilityManager.Clear*
+  name: Clear
+  href: api/ModLib.CompatibilityManager.html#ModLib_CompatibilityManager_Clear_
+  commentId: Overload:ModLib.CompatibilityManager.Clear
+  isSpec: "True"
+  fullName: ModLib.CompatibilityManager.Clear
+  nameWithType: CompatibilityManager.Clear
+- uid: ModLib.CompatibilityManager.IsIICEnabled
+  name: IsIICEnabled()
+  href: api/ModLib.CompatibilityManager.html#ModLib_CompatibilityManager_IsIICEnabled
+  commentId: M:ModLib.CompatibilityManager.IsIICEnabled
+  fullName: ModLib.CompatibilityManager.IsIICEnabled()
+  nameWithType: CompatibilityManager.IsIICEnabled()
+- uid: ModLib.CompatibilityManager.IsIICEnabled*
+  name: IsIICEnabled
+  href: api/ModLib.CompatibilityManager.html#ModLib_CompatibilityManager_IsIICEnabled_
+  commentId: Overload:ModLib.CompatibilityManager.IsIICEnabled
+  isSpec: "True"
+  fullName: ModLib.CompatibilityManager.IsIICEnabled
+  nameWithType: CompatibilityManager.IsIICEnabled
+- uid: ModLib.CompatibilityManager.IsModEnabled(System.String)
+  name: IsModEnabled(string)
+  href: api/ModLib.CompatibilityManager.html#ModLib_CompatibilityManager_IsModEnabled_System_String_
+  commentId: M:ModLib.CompatibilityManager.IsModEnabled(System.String)
+  name.vb: IsModEnabled(String)
+  fullName: ModLib.CompatibilityManager.IsModEnabled(string)
+  fullName.vb: ModLib.CompatibilityManager.IsModEnabled(String)
+  nameWithType: CompatibilityManager.IsModEnabled(string)
+  nameWithType.vb: CompatibilityManager.IsModEnabled(String)
+- uid: ModLib.CompatibilityManager.IsModEnabled*
+  name: IsModEnabled
+  href: api/ModLib.CompatibilityManager.html#ModLib_CompatibilityManager_IsModEnabled_
+  commentId: Overload:ModLib.CompatibilityManager.IsModEnabled
+  isSpec: "True"
+  fullName: ModLib.CompatibilityManager.IsModEnabled
+  nameWithType: CompatibilityManager.IsModEnabled
+- uid: ModLib.CompatibilityManager.IsRainMeadowEnabled
+  name: IsRainMeadowEnabled()
+  href: api/ModLib.CompatibilityManager.html#ModLib_CompatibilityManager_IsRainMeadowEnabled
+  commentId: M:ModLib.CompatibilityManager.IsRainMeadowEnabled
+  fullName: ModLib.CompatibilityManager.IsRainMeadowEnabled()
+  nameWithType: CompatibilityManager.IsRainMeadowEnabled()
+- uid: ModLib.CompatibilityManager.IsRainMeadowEnabled*
+  name: IsRainMeadowEnabled
+  href: api/ModLib.CompatibilityManager.html#ModLib_CompatibilityManager_IsRainMeadowEnabled_
+  commentId: Overload:ModLib.CompatibilityManager.IsRainMeadowEnabled
+  isSpec: "True"
+  fullName: ModLib.CompatibilityManager.IsRainMeadowEnabled
+  nameWithType: CompatibilityManager.IsRainMeadowEnabled
+- uid: ModLib.CompatibilityManager.SetModCompatibility(System.String,System.Boolean)
+  name: SetModCompatibility(string, bool)
+  href: api/ModLib.CompatibilityManager.html#ModLib_CompatibilityManager_SetModCompatibility_System_String_System_Boolean_
+  commentId: M:ModLib.CompatibilityManager.SetModCompatibility(System.String,System.Boolean)
+  name.vb: SetModCompatibility(String, Boolean)
+  fullName: ModLib.CompatibilityManager.SetModCompatibility(string, bool)
+  fullName.vb: ModLib.CompatibilityManager.SetModCompatibility(String, Boolean)
+  nameWithType: CompatibilityManager.SetModCompatibility(string, bool)
+  nameWithType.vb: CompatibilityManager.SetModCompatibility(String, Boolean)
+- uid: ModLib.CompatibilityManager.SetModCompatibility*
+  name: SetModCompatibility
+  href: api/ModLib.CompatibilityManager.html#ModLib_CompatibilityManager_SetModCompatibility_
+  commentId: Overload:ModLib.CompatibilityManager.SetModCompatibility
+  isSpec: "True"
+  fullName: ModLib.CompatibilityManager.SetModCompatibility
+  nameWithType: CompatibilityManager.SetModCompatibility
+- uid: ModLib.Extras
+  name: Extras
+  href: api/ModLib.Extras.html
+  commentId: T:ModLib.Extras
+  fullName: ModLib.Extras
+  nameWithType: Extras
+- uid: ModLib.Extras.InGameSession
+  name: InGameSession
+  href: api/ModLib.Extras.html#ModLib_Extras_InGameSession
+  commentId: P:ModLib.Extras.InGameSession
+  fullName: ModLib.Extras.InGameSession
+  nameWithType: Extras.InGameSession
+- uid: ModLib.Extras.InGameSession*
+  name: InGameSession
+  href: api/ModLib.Extras.html#ModLib_Extras_InGameSession_
+  commentId: Overload:ModLib.Extras.InGameSession
+  isSpec: "True"
+  fullName: ModLib.Extras.InGameSession
+  nameWithType: Extras.InGameSession
+- uid: ModLib.Extras.IsHostPlayer
+  name: IsHostPlayer
+  href: api/ModLib.Extras.html#ModLib_Extras_IsHostPlayer
+  commentId: P:ModLib.Extras.IsHostPlayer
+  fullName: ModLib.Extras.IsHostPlayer
+  nameWithType: Extras.IsHostPlayer
+- uid: ModLib.Extras.IsHostPlayer*
+  name: IsHostPlayer
+  href: api/ModLib.Extras.html#ModLib_Extras_IsHostPlayer_
+  commentId: Overload:ModLib.Extras.IsHostPlayer
+  isSpec: "True"
+  fullName: ModLib.Extras.IsHostPlayer
+  nameWithType: Extras.IsHostPlayer
+- uid: ModLib.Extras.IsIICEnabled
+  name: IsIICEnabled
+  href: api/ModLib.Extras.html#ModLib_Extras_IsIICEnabled
+  commentId: P:ModLib.Extras.IsIICEnabled
+  fullName: ModLib.Extras.IsIICEnabled
+  nameWithType: Extras.IsIICEnabled
+- uid: ModLib.Extras.IsIICEnabled*
+  name: IsIICEnabled
+  href: api/ModLib.Extras.html#ModLib_Extras_IsIICEnabled_
+  commentId: Overload:ModLib.Extras.IsIICEnabled
+  isSpec: "True"
+  fullName: ModLib.Extras.IsIICEnabled
+  nameWithType: Extras.IsIICEnabled
+- uid: ModLib.Extras.IsMeadowEnabled
+  name: IsMeadowEnabled
+  href: api/ModLib.Extras.html#ModLib_Extras_IsMeadowEnabled
+  commentId: P:ModLib.Extras.IsMeadowEnabled
+  fullName: ModLib.Extras.IsMeadowEnabled
+  nameWithType: Extras.IsMeadowEnabled
+- uid: ModLib.Extras.IsMeadowEnabled*
+  name: IsMeadowEnabled
+  href: api/ModLib.Extras.html#ModLib_Extras_IsMeadowEnabled_
+  commentId: Overload:ModLib.Extras.IsMeadowEnabled
+  isSpec: "True"
+  fullName: ModLib.Extras.IsMeadowEnabled
+  nameWithType: Extras.IsMeadowEnabled
+- uid: ModLib.Extras.IsOnlineSession
+  name: IsOnlineSession
+  href: api/ModLib.Extras.html#ModLib_Extras_IsOnlineSession
+  commentId: P:ModLib.Extras.IsOnlineSession
+  fullName: ModLib.Extras.IsOnlineSession
+  nameWithType: Extras.IsOnlineSession
+- uid: ModLib.Extras.IsOnlineSession*
+  name: IsOnlineSession
+  href: api/ModLib.Extras.html#ModLib_Extras_IsOnlineSession_
+  commentId: Overload:ModLib.Extras.IsOnlineSession
+  isSpec: "True"
+  fullName: ModLib.Extras.IsOnlineSession
+  nameWithType: Extras.IsOnlineSession
+- uid: ModLib.Extras.LogUtilsAvailable
+  name: LogUtilsAvailable
+  href: api/ModLib.Extras.html#ModLib_Extras_LogUtilsAvailable
+  commentId: P:ModLib.Extras.LogUtilsAvailable
+  fullName: ModLib.Extras.LogUtilsAvailable
+  nameWithType: Extras.LogUtilsAvailable
+- uid: ModLib.Extras.LogUtilsAvailable*
+  name: LogUtilsAvailable
+  href: api/ModLib.Extras.html#ModLib_Extras_LogUtilsAvailable_
+  commentId: Overload:ModLib.Extras.LogUtilsAvailable
+  isSpec: "True"
+  fullName: ModLib.Extras.LogUtilsAvailable
+  nameWithType: Extras.LogUtilsAvailable
+- uid: ModLib.Extras.ModLibAvailable
+  name: ModLibAvailable
+  href: api/ModLib.Extras.html#ModLib_Extras_ModLibAvailable
+  commentId: P:ModLib.Extras.ModLibAvailable
+  fullName: ModLib.Extras.ModLibAvailable
+  nameWithType: Extras.ModLibAvailable
+- uid: ModLib.Extras.ModLibAvailable*
+  name: ModLibAvailable
+  href: api/ModLib.Extras.html#ModLib_Extras_ModLibAvailable_
+  commentId: Overload:ModLib.Extras.ModLibAvailable
+  isSpec: "True"
+  fullName: ModLib.Extras.ModLibAvailable
+  nameWithType: Extras.ModLibAvailable
+- uid: ModLib.Extras.WrapAction(System.Action,System.Boolean)
+  name: WrapAction(Action, bool)
+  href: api/ModLib.Extras.html#ModLib_Extras_WrapAction_System_Action_System_Boolean_
+  commentId: M:ModLib.Extras.WrapAction(System.Action,System.Boolean)
+  name.vb: WrapAction(Action, Boolean)
+  fullName: ModLib.Extras.WrapAction(System.Action, bool)
+  fullName.vb: ModLib.Extras.WrapAction(System.Action, Boolean)
+  nameWithType: Extras.WrapAction(Action, bool)
+  nameWithType.vb: Extras.WrapAction(Action, Boolean)
+- uid: ModLib.Extras.WrapAction*
+  name: WrapAction
+  href: api/ModLib.Extras.html#ModLib_Extras_WrapAction_
+  commentId: Overload:ModLib.Extras.WrapAction
+  isSpec: "True"
+  fullName: ModLib.Extras.WrapAction
+  nameWithType: Extras.WrapAction
+- uid: ModLib.Extras.WrapILHook(System.Action{MonoMod.Cil.ILContext})
+  name: WrapILHook(Action<ILContext>)
+  href: api/ModLib.Extras.html#ModLib_Extras_WrapILHook_System_Action_MonoMod_Cil_ILContext__
+  commentId: M:ModLib.Extras.WrapILHook(System.Action{MonoMod.Cil.ILContext})
+  name.vb: WrapILHook(Action(Of ILContext))
+  fullName: ModLib.Extras.WrapILHook(System.Action<MonoMod.Cil.ILContext>)
+  fullName.vb: ModLib.Extras.WrapILHook(System.Action(Of MonoMod.Cil.ILContext))
+  nameWithType: Extras.WrapILHook(Action<ILContext>)
+  nameWithType.vb: Extras.WrapILHook(Action(Of ILContext))
+- uid: ModLib.Extras.WrapILHook*
+  name: WrapILHook
+  href: api/ModLib.Extras.html#ModLib_Extras_WrapILHook_
+  commentId: Overload:ModLib.Extras.WrapILHook
+  isSpec: "True"
+  fullName: ModLib.Extras.WrapILHook
+  nameWithType: Extras.WrapILHook
+- uid: ModLib.Input
+  name: ModLib.Input
+  href: api/ModLib.Input.html
+  commentId: N:ModLib.Input
+  fullName: ModLib.Input
+  nameWithType: ModLib.Input
+- uid: ModLib.Input.CustomInputData
+  name: CustomInputData
+  href: api/ModLib.Input.CustomInputData.html
+  commentId: T:ModLib.Input.CustomInputData
+  fullName: ModLib.Input.CustomInputData
+  nameWithType: CustomInputData
+- uid: ModLib.Input.CustomInputData.#ctor
+  name: CustomInputData()
+  href: api/ModLib.Input.CustomInputData.html#ModLib_Input_CustomInputData__ctor
+  commentId: M:ModLib.Input.CustomInputData.#ctor
+  name.vb: New()
+  fullName: ModLib.Input.CustomInputData.CustomInputData()
+  fullName.vb: ModLib.Input.CustomInputData.New()
+  nameWithType: CustomInputData.CustomInputData()
+  nameWithType.vb: CustomInputData.New()
+- uid: ModLib.Input.CustomInputData.#ctor(ImprovedInput.Plugin.PlayerData,System.Int32)
+  name: CustomInputData(PlayerData, int)
+  href: api/ModLib.Input.CustomInputData.html#ModLib_Input_CustomInputData__ctor_ImprovedInput_Plugin_PlayerData_System_Int32_
+  commentId: M:ModLib.Input.CustomInputData.#ctor(ImprovedInput.Plugin.PlayerData,System.Int32)
+  name.vb: New(PlayerData, Integer)
+  fullName: ModLib.Input.CustomInputData.CustomInputData(ImprovedInput.Plugin.PlayerData, int)
+  fullName.vb: ModLib.Input.CustomInputData.New(ImprovedInput.Plugin.PlayerData, Integer)
+  nameWithType: CustomInputData.CustomInputData(Plugin.PlayerData, int)
+  nameWithType.vb: CustomInputData.New(Plugin.PlayerData, Integer)
+- uid: ModLib.Input.CustomInputData.#ctor(System.Int32)
+  name: CustomInputData(int)
+  href: api/ModLib.Input.CustomInputData.html#ModLib_Input_CustomInputData__ctor_System_Int32_
+  commentId: M:ModLib.Input.CustomInputData.#ctor(System.Int32)
+  name.vb: New(Integer)
+  fullName: ModLib.Input.CustomInputData.CustomInputData(int)
+  fullName.vb: ModLib.Input.CustomInputData.New(Integer)
+  nameWithType: CustomInputData.CustomInputData(int)
+  nameWithType.vb: CustomInputData.New(Integer)
+- uid: ModLib.Input.CustomInputData.#ctor*
+  name: CustomInputData
+  href: api/ModLib.Input.CustomInputData.html#ModLib_Input_CustomInputData__ctor_
+  commentId: Overload:ModLib.Input.CustomInputData.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: ModLib.Input.CustomInputData.CustomInputData
+  fullName.vb: ModLib.Input.CustomInputData.New
+  nameWithType: CustomInputData.CustomInputData
+  nameWithType.vb: CustomInputData.New
+- uid: ModLib.Input.CustomInputData.CopyFrom(ImprovedInput.CustomInput[],ImprovedInput.CustomInput[])
+  name: CopyFrom(CustomInput[], CustomInput[])
+  href: api/ModLib.Input.CustomInputData.html#ModLib_Input_CustomInputData_CopyFrom_ImprovedInput_CustomInput___ImprovedInput_CustomInput___
+  commentId: M:ModLib.Input.CustomInputData.CopyFrom(ImprovedInput.CustomInput[],ImprovedInput.CustomInput[])
+  name.vb: CopyFrom(CustomInput(), CustomInput())
+  fullName: ModLib.Input.CustomInputData.CopyFrom(ImprovedInput.CustomInput[], ImprovedInput.CustomInput[])
+  fullName.vb: ModLib.Input.CustomInputData.CopyFrom(ImprovedInput.CustomInput(), ImprovedInput.CustomInput())
+  nameWithType: CustomInputData.CopyFrom(CustomInput[], CustomInput[])
+  nameWithType.vb: CustomInputData.CopyFrom(CustomInput(), CustomInput())
+- uid: ModLib.Input.CustomInputData.CopyFrom(ImprovedInput.Plugin.PlayerData)
+  name: CopyFrom(PlayerData)
+  href: api/ModLib.Input.CustomInputData.html#ModLib_Input_CustomInputData_CopyFrom_ImprovedInput_Plugin_PlayerData_
+  commentId: M:ModLib.Input.CustomInputData.CopyFrom(ImprovedInput.Plugin.PlayerData)
+  fullName: ModLib.Input.CustomInputData.CopyFrom(ImprovedInput.Plugin.PlayerData)
+  nameWithType: CustomInputData.CopyFrom(Plugin.PlayerData)
+- uid: ModLib.Input.CustomInputData.CopyFrom*
+  name: CopyFrom
+  href: api/ModLib.Input.CustomInputData.html#ModLib_Input_CustomInputData_CopyFrom_
+  commentId: Overload:ModLib.Input.CustomInputData.CopyFrom
+  isSpec: "True"
+  fullName: ModLib.Input.CustomInputData.CopyFrom
+  nameWithType: CustomInputData.CopyFrom
+- uid: ModLib.Input.CustomInputData.CopyTo(ImprovedInput.CustomInput[],ImprovedInput.CustomInput[])
+  name: CopyTo(CustomInput[], CustomInput[])
+  href: api/ModLib.Input.CustomInputData.html#ModLib_Input_CustomInputData_CopyTo_ImprovedInput_CustomInput___ImprovedInput_CustomInput___
+  commentId: M:ModLib.Input.CustomInputData.CopyTo(ImprovedInput.CustomInput[],ImprovedInput.CustomInput[])
+  name.vb: CopyTo(CustomInput(), CustomInput())
+  fullName: ModLib.Input.CustomInputData.CopyTo(ImprovedInput.CustomInput[], ImprovedInput.CustomInput[])
+  fullName.vb: ModLib.Input.CustomInputData.CopyTo(ImprovedInput.CustomInput(), ImprovedInput.CustomInput())
+  nameWithType: CustomInputData.CopyTo(CustomInput[], CustomInput[])
+  nameWithType.vb: CustomInputData.CopyTo(CustomInput(), CustomInput())
+- uid: ModLib.Input.CustomInputData.CopyTo(ImprovedInput.Plugin.PlayerData)
+  name: CopyTo(PlayerData)
+  href: api/ModLib.Input.CustomInputData.html#ModLib_Input_CustomInputData_CopyTo_ImprovedInput_Plugin_PlayerData_
+  commentId: M:ModLib.Input.CustomInputData.CopyTo(ImprovedInput.Plugin.PlayerData)
+  fullName: ModLib.Input.CustomInputData.CopyTo(ImprovedInput.Plugin.PlayerData)
+  nameWithType: CustomInputData.CopyTo(Plugin.PlayerData)
+- uid: ModLib.Input.CustomInputData.CopyTo*
+  name: CopyTo
+  href: api/ModLib.Input.CustomInputData.html#ModLib_Input_CustomInputData_CopyTo_
+  commentId: Overload:ModLib.Input.CustomInputData.CopyTo
+  isSpec: "True"
+  fullName: ModLib.Input.CustomInputData.CopyTo
+  nameWithType: CustomInputData.CopyTo
+- uid: ModLib.Input.CustomInputData.input
+  name: input
+  href: api/ModLib.Input.CustomInputData.html#ModLib_Input_CustomInputData_input
+  commentId: F:ModLib.Input.CustomInputData.input
+  fullName: ModLib.Input.CustomInputData.input
+  nameWithType: CustomInputData.input
+- uid: ModLib.Input.CustomInputData.op_Implicit(ImprovedInput.Plugin.PlayerData)~ModLib.Input.CustomInputData
+  name: implicit operator CustomInputData(PlayerData)
+  href: api/ModLib.Input.CustomInputData.html#ModLib_Input_CustomInputData_op_Implicit_ImprovedInput_Plugin_PlayerData__ModLib_Input_CustomInputData
+  commentId: M:ModLib.Input.CustomInputData.op_Implicit(ImprovedInput.Plugin.PlayerData)~ModLib.Input.CustomInputData
+  name.vb: CType(PlayerData)
+  fullName: ModLib.Input.CustomInputData.implicit operator ModLib.Input.CustomInputData(ImprovedInput.Plugin.PlayerData)
+  fullName.vb: ModLib.Input.CustomInputData.CType(ImprovedInput.Plugin.PlayerData)
+  nameWithType: CustomInputData.implicit operator CustomInputData(Plugin.PlayerData)
+  nameWithType.vb: CustomInputData.CType(Plugin.PlayerData)
+- uid: ModLib.Input.CustomInputData.op_Implicit(ModLib.Input.CustomInputData)~ImprovedInput.Plugin.PlayerData
+  name: implicit operator PlayerData(CustomInputData)
+  href: api/ModLib.Input.CustomInputData.html#ModLib_Input_CustomInputData_op_Implicit_ModLib_Input_CustomInputData__ImprovedInput_Plugin_PlayerData
+  commentId: M:ModLib.Input.CustomInputData.op_Implicit(ModLib.Input.CustomInputData)~ImprovedInput.Plugin.PlayerData
+  name.vb: CType(CustomInputData)
+  fullName: ModLib.Input.CustomInputData.implicit operator ImprovedInput.Plugin.PlayerData(ModLib.Input.CustomInputData)
+  fullName.vb: ModLib.Input.CustomInputData.CType(ModLib.Input.CustomInputData)
+  nameWithType: CustomInputData.implicit operator Plugin.PlayerData(CustomInputData)
+  nameWithType.vb: CustomInputData.CType(CustomInputData)
+- uid: ModLib.Input.CustomInputData.op_Implicit*
+  name: implicit operator
+  href: api/ModLib.Input.CustomInputData.html#ModLib_Input_CustomInputData_op_Implicit_
+  commentId: Overload:ModLib.Input.CustomInputData.op_Implicit
+  isSpec: "True"
+  name.vb: CType
+  fullName: ModLib.Input.CustomInputData.implicit operator
+  fullName.vb: ModLib.Input.CustomInputData.CType
+  nameWithType: CustomInputData.implicit operator
+  nameWithType.vb: CustomInputData.CType
+- uid: ModLib.Input.CustomInputData.playerNumber
+  name: playerNumber
+  href: api/ModLib.Input.CustomInputData.html#ModLib_Input_CustomInputData_playerNumber
+  commentId: F:ModLib.Input.CustomInputData.playerNumber
+  fullName: ModLib.Input.CustomInputData.playerNumber
+  nameWithType: CustomInputData.playerNumber
+- uid: ModLib.Input.CustomInputData.rawInput
+  name: rawInput
+  href: api/ModLib.Input.CustomInputData.html#ModLib_Input_CustomInputData_rawInput
+  commentId: F:ModLib.Input.CustomInputData.rawInput
+  fullName: ModLib.Input.CustomInputData.rawInput
+  nameWithType: CustomInputData.rawInput
+- uid: ModLib.Input.CustomInputDataExts
+  name: CustomInputDataExts
+  href: api/ModLib.Input.CustomInputDataExts.html
+  commentId: T:ModLib.Input.CustomInputDataExts
+  fullName: ModLib.Input.CustomInputDataExts
+  nameWithType: CustomInputDataExts
+- uid: ModLib.Input.CustomInputDataExts.Input(ModLib.Input.CustomInputData)
+  name: Input(CustomInputData)
+  href: api/ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_Input_ModLib_Input_CustomInputData_
+  commentId: M:ModLib.Input.CustomInputDataExts.Input(ModLib.Input.CustomInputData)
+  fullName: ModLib.Input.CustomInputDataExts.Input(ModLib.Input.CustomInputData)
+  nameWithType: CustomInputDataExts.Input(CustomInputData)
+- uid: ModLib.Input.CustomInputDataExts.Input*
+  name: Input
+  href: api/ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_Input_
+  commentId: Overload:ModLib.Input.CustomInputDataExts.Input
+  isSpec: "True"
+  fullName: ModLib.Input.CustomInputDataExts.Input
+  nameWithType: CustomInputDataExts.Input
+- uid: ModLib.Input.CustomInputDataExts.InputHistory(ModLib.Input.CustomInputData)
+  name: InputHistory(CustomInputData)
+  href: api/ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_InputHistory_ModLib_Input_CustomInputData_
+  commentId: M:ModLib.Input.CustomInputDataExts.InputHistory(ModLib.Input.CustomInputData)
+  fullName: ModLib.Input.CustomInputDataExts.InputHistory(ModLib.Input.CustomInputData)
+  nameWithType: CustomInputDataExts.InputHistory(CustomInputData)
+- uid: ModLib.Input.CustomInputDataExts.InputHistory*
+  name: InputHistory
+  href: api/ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_InputHistory_
+  commentId: Overload:ModLib.Input.CustomInputDataExts.InputHistory
+  isSpec: "True"
+  fullName: ModLib.Input.CustomInputDataExts.InputHistory
+  nameWithType: CustomInputDataExts.InputHistory
+- uid: ModLib.Input.CustomInputDataExts.IsKeyBound(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  name: IsKeyBound(CustomInputData, PlayerKeybind)
+  href: api/ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsKeyBound_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  commentId: M:ModLib.Input.CustomInputDataExts.IsKeyBound(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  fullName: ModLib.Input.CustomInputDataExts.IsKeyBound(ModLib.Input.CustomInputData, ImprovedInput.PlayerKeybind)
+  nameWithType: CustomInputDataExts.IsKeyBound(CustomInputData, PlayerKeybind)
+- uid: ModLib.Input.CustomInputDataExts.IsKeyBound*
+  name: IsKeyBound
+  href: api/ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsKeyBound_
+  commentId: Overload:ModLib.Input.CustomInputDataExts.IsKeyBound
+  isSpec: "True"
+  fullName: ModLib.Input.CustomInputDataExts.IsKeyBound
+  nameWithType: CustomInputDataExts.IsKeyBound
+- uid: ModLib.Input.CustomInputDataExts.IsKeyUnbound(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  name: IsKeyUnbound(CustomInputData, PlayerKeybind)
+  href: api/ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsKeyUnbound_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  commentId: M:ModLib.Input.CustomInputDataExts.IsKeyUnbound(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  fullName: ModLib.Input.CustomInputDataExts.IsKeyUnbound(ModLib.Input.CustomInputData, ImprovedInput.PlayerKeybind)
+  nameWithType: CustomInputDataExts.IsKeyUnbound(CustomInputData, PlayerKeybind)
+- uid: ModLib.Input.CustomInputDataExts.IsKeyUnbound*
+  name: IsKeyUnbound
+  href: api/ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsKeyUnbound_
+  commentId: Overload:ModLib.Input.CustomInputDataExts.IsKeyUnbound
+  isSpec: "True"
+  fullName: ModLib.Input.CustomInputDataExts.IsKeyUnbound
+  nameWithType: CustomInputDataExts.IsKeyUnbound
+- uid: ModLib.Input.CustomInputDataExts.IsPressed(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  name: IsPressed(CustomInputData, PlayerKeybind)
+  href: api/ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsPressed_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  commentId: M:ModLib.Input.CustomInputDataExts.IsPressed(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  fullName: ModLib.Input.CustomInputDataExts.IsPressed(ModLib.Input.CustomInputData, ImprovedInput.PlayerKeybind)
+  nameWithType: CustomInputDataExts.IsPressed(CustomInputData, PlayerKeybind)
+- uid: ModLib.Input.CustomInputDataExts.IsPressed*
+  name: IsPressed
+  href: api/ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsPressed_
+  commentId: Overload:ModLib.Input.CustomInputDataExts.IsPressed
+  isSpec: "True"
+  fullName: ModLib.Input.CustomInputDataExts.IsPressed
+  nameWithType: CustomInputDataExts.IsPressed
+- uid: ModLib.Input.CustomInputDataExts.JustPressed(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  name: JustPressed(CustomInputData, PlayerKeybind)
+  href: api/ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_JustPressed_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  commentId: M:ModLib.Input.CustomInputDataExts.JustPressed(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  fullName: ModLib.Input.CustomInputDataExts.JustPressed(ModLib.Input.CustomInputData, ImprovedInput.PlayerKeybind)
+  nameWithType: CustomInputDataExts.JustPressed(CustomInputData, PlayerKeybind)
+- uid: ModLib.Input.CustomInputDataExts.JustPressed*
+  name: JustPressed
+  href: api/ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_JustPressed_
+  commentId: Overload:ModLib.Input.CustomInputDataExts.JustPressed
+  isSpec: "True"
+  fullName: ModLib.Input.CustomInputDataExts.JustPressed
+  nameWithType: CustomInputDataExts.JustPressed
+- uid: ModLib.Input.CustomInputDataExts.RawInput(ModLib.Input.CustomInputData)
+  name: RawInput(CustomInputData)
+  href: api/ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_RawInput_ModLib_Input_CustomInputData_
+  commentId: M:ModLib.Input.CustomInputDataExts.RawInput(ModLib.Input.CustomInputData)
+  fullName: ModLib.Input.CustomInputDataExts.RawInput(ModLib.Input.CustomInputData)
+  nameWithType: CustomInputDataExts.RawInput(CustomInputData)
+- uid: ModLib.Input.CustomInputDataExts.RawInput*
+  name: RawInput
+  href: api/ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_RawInput_
+  commentId: Overload:ModLib.Input.CustomInputDataExts.RawInput
+  isSpec: "True"
+  fullName: ModLib.Input.CustomInputDataExts.RawInput
+  nameWithType: CustomInputDataExts.RawInput
+- uid: ModLib.Input.CustomInputDataExts.RawInputHistory(ModLib.Input.CustomInputData)
+  name: RawInputHistory(CustomInputData)
+  href: api/ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_RawInputHistory_ModLib_Input_CustomInputData_
+  commentId: M:ModLib.Input.CustomInputDataExts.RawInputHistory(ModLib.Input.CustomInputData)
+  fullName: ModLib.Input.CustomInputDataExts.RawInputHistory(ModLib.Input.CustomInputData)
+  nameWithType: CustomInputDataExts.RawInputHistory(CustomInputData)
+- uid: ModLib.Input.CustomInputDataExts.RawInputHistory*
+  name: RawInputHistory
+  href: api/ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_RawInputHistory_
+  commentId: Overload:ModLib.Input.CustomInputDataExts.RawInputHistory
+  isSpec: "True"
+  fullName: ModLib.Input.CustomInputDataExts.RawInputHistory
+  nameWithType: CustomInputDataExts.RawInputHistory
+- uid: ModLib.Input.InputHandler
+  name: InputHandler
+  href: api/ModLib.Input.InputHandler.html
+  commentId: T:ModLib.Input.InputHandler
+  fullName: ModLib.Input.InputHandler
+  nameWithType: InputHandler
+- uid: ModLib.Input.InputHandler.GetRawInput(Player)
+  name: GetRawInput(Player)
+  href: api/ModLib.Input.InputHandler.html#ModLib_Input_InputHandler_GetRawInput_Player_
+  commentId: M:ModLib.Input.InputHandler.GetRawInput(Player)
+  fullName: ModLib.Input.InputHandler.GetRawInput(Player)
+  nameWithType: InputHandler.GetRawInput(Player)
+- uid: ModLib.Input.InputHandler.GetRawInput(System.Int32)
+  name: GetRawInput(int)
+  href: api/ModLib.Input.InputHandler.html#ModLib_Input_InputHandler_GetRawInput_System_Int32_
+  commentId: M:ModLib.Input.InputHandler.GetRawInput(System.Int32)
+  name.vb: GetRawInput(Integer)
+  fullName: ModLib.Input.InputHandler.GetRawInput(int)
+  fullName.vb: ModLib.Input.InputHandler.GetRawInput(Integer)
+  nameWithType: InputHandler.GetRawInput(int)
+  nameWithType.vb: InputHandler.GetRawInput(Integer)
+- uid: ModLib.Input.InputHandler.GetRawInput*
+  name: GetRawInput
+  href: api/ModLib.Input.InputHandler.html#ModLib_Input_InputHandler_GetRawInput_
+  commentId: Overload:ModLib.Input.InputHandler.GetRawInput
+  isSpec: "True"
+  fullName: ModLib.Input.InputHandler.GetRawInput
+  nameWithType: InputHandler.GetRawInput
+- uid: ModLib.Input.InputHandler.IsKeyDown(Player,ModLib.Input.Keybind)
+  name: IsKeyDown(Player, Keybind)
+  href: api/ModLib.Input.InputHandler.html#ModLib_Input_InputHandler_IsKeyDown_Player_ModLib_Input_Keybind_
+  commentId: M:ModLib.Input.InputHandler.IsKeyDown(Player,ModLib.Input.Keybind)
+  fullName: ModLib.Input.InputHandler.IsKeyDown(Player, ModLib.Input.Keybind)
+  nameWithType: InputHandler.IsKeyDown(Player, Keybind)
+- uid: ModLib.Input.InputHandler.IsKeyDown(System.Int32,ModLib.Input.Keybind)
+  name: IsKeyDown(int, Keybind)
+  href: api/ModLib.Input.InputHandler.html#ModLib_Input_InputHandler_IsKeyDown_System_Int32_ModLib_Input_Keybind_
+  commentId: M:ModLib.Input.InputHandler.IsKeyDown(System.Int32,ModLib.Input.Keybind)
+  name.vb: IsKeyDown(Integer, Keybind)
+  fullName: ModLib.Input.InputHandler.IsKeyDown(int, ModLib.Input.Keybind)
+  fullName.vb: ModLib.Input.InputHandler.IsKeyDown(Integer, ModLib.Input.Keybind)
+  nameWithType: InputHandler.IsKeyDown(int, Keybind)
+  nameWithType.vb: InputHandler.IsKeyDown(Integer, Keybind)
+- uid: ModLib.Input.InputHandler.IsKeyDown*
+  name: IsKeyDown
+  href: api/ModLib.Input.InputHandler.html#ModLib_Input_InputHandler_IsKeyDown_
+  commentId: Overload:ModLib.Input.InputHandler.IsKeyDown
+  isSpec: "True"
+  fullName: ModLib.Input.InputHandler.IsKeyDown
+  nameWithType: InputHandler.IsKeyDown
+- uid: ModLib.Input.InputHandler.ToggleInputListener(System.Int32)
+  name: ToggleInputListener(int)
+  href: api/ModLib.Input.InputHandler.html#ModLib_Input_InputHandler_ToggleInputListener_System_Int32_
+  commentId: M:ModLib.Input.InputHandler.ToggleInputListener(System.Int32)
+  name.vb: ToggleInputListener(Integer)
+  fullName: ModLib.Input.InputHandler.ToggleInputListener(int)
+  fullName.vb: ModLib.Input.InputHandler.ToggleInputListener(Integer)
+  nameWithType: InputHandler.ToggleInputListener(int)
+  nameWithType.vb: InputHandler.ToggleInputListener(Integer)
+- uid: ModLib.Input.InputHandler.ToggleInputListener*
+  name: ToggleInputListener
+  href: api/ModLib.Input.InputHandler.html#ModLib_Input_InputHandler_ToggleInputListener_
+  commentId: Overload:ModLib.Input.InputHandler.ToggleInputListener
+  isSpec: "True"
+  fullName: ModLib.Input.InputHandler.ToggleInputListener
+  nameWithType: InputHandler.ToggleInputListener
+- uid: ModLib.Input.InputHandler.WasKeyJustPressed(Player,ModLib.Input.Keybind)
+  name: WasKeyJustPressed(Player, Keybind)
+  href: api/ModLib.Input.InputHandler.html#ModLib_Input_InputHandler_WasKeyJustPressed_Player_ModLib_Input_Keybind_
+  commentId: M:ModLib.Input.InputHandler.WasKeyJustPressed(Player,ModLib.Input.Keybind)
+  fullName: ModLib.Input.InputHandler.WasKeyJustPressed(Player, ModLib.Input.Keybind)
+  nameWithType: InputHandler.WasKeyJustPressed(Player, Keybind)
+- uid: ModLib.Input.InputHandler.WasKeyJustPressed(System.Int32,ModLib.Input.Keybind)
+  name: WasKeyJustPressed(int, Keybind)
+  href: api/ModLib.Input.InputHandler.html#ModLib_Input_InputHandler_WasKeyJustPressed_System_Int32_ModLib_Input_Keybind_
+  commentId: M:ModLib.Input.InputHandler.WasKeyJustPressed(System.Int32,ModLib.Input.Keybind)
+  name.vb: WasKeyJustPressed(Integer, Keybind)
+  fullName: ModLib.Input.InputHandler.WasKeyJustPressed(int, ModLib.Input.Keybind)
+  fullName.vb: ModLib.Input.InputHandler.WasKeyJustPressed(Integer, ModLib.Input.Keybind)
+  nameWithType: InputHandler.WasKeyJustPressed(int, Keybind)
+  nameWithType.vb: InputHandler.WasKeyJustPressed(Integer, Keybind)
+- uid: ModLib.Input.InputHandler.WasKeyJustPressed*
+  name: WasKeyJustPressed
+  href: api/ModLib.Input.InputHandler.html#ModLib_Input_InputHandler_WasKeyJustPressed_
+  commentId: Overload:ModLib.Input.InputHandler.WasKeyJustPressed
+  isSpec: "True"
+  fullName: ModLib.Input.InputHandler.WasKeyJustPressed
+  nameWithType: InputHandler.WasKeyJustPressed
+- uid: ModLib.Input.Keybind
+  name: Keybind
+  href: api/ModLib.Input.Keybind.html
+  commentId: T:ModLib.Input.Keybind
+  fullName: ModLib.Input.Keybind
+  nameWithType: Keybind
+- uid: ModLib.Input.Keybind.GamepadPreset
+  name: GamepadPreset
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_GamepadPreset
+  commentId: P:ModLib.Input.Keybind.GamepadPreset
+  fullName: ModLib.Input.Keybind.GamepadPreset
+  nameWithType: Keybind.GamepadPreset
+- uid: ModLib.Input.Keybind.GamepadPreset*
+  name: GamepadPreset
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_GamepadPreset_
+  commentId: Overload:ModLib.Input.Keybind.GamepadPreset
+  isSpec: "True"
+  fullName: ModLib.Input.Keybind.GamepadPreset
+  nameWithType: Keybind.GamepadPreset
+- uid: ModLib.Input.Keybind.Get(System.String)
+  name: Get(string)
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_Get_System_String_
+  commentId: M:ModLib.Input.Keybind.Get(System.String)
+  name.vb: Get(String)
+  fullName: ModLib.Input.Keybind.Get(string)
+  fullName.vb: ModLib.Input.Keybind.Get(String)
+  nameWithType: Keybind.Get(string)
+  nameWithType.vb: Keybind.Get(String)
+- uid: ModLib.Input.Keybind.Get*
+  name: Get
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_Get_
+  commentId: Overload:ModLib.Input.Keybind.Get
+  isSpec: "True"
+  fullName: ModLib.Input.Keybind.Get
+  nameWithType: Keybind.Get
+- uid: ModLib.Input.Keybind.Id
+  name: Id
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_Id
+  commentId: P:ModLib.Input.Keybind.Id
+  fullName: ModLib.Input.Keybind.Id
+  nameWithType: Keybind.Id
+- uid: ModLib.Input.Keybind.Id*
+  name: Id
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_Id_
+  commentId: Overload:ModLib.Input.Keybind.Id
+  isSpec: "True"
+  fullName: ModLib.Input.Keybind.Id
+  nameWithType: Keybind.Id
+- uid: ModLib.Input.Keybind.Keybinds
+  name: Keybinds()
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_Keybinds
+  commentId: M:ModLib.Input.Keybind.Keybinds
+  fullName: ModLib.Input.Keybind.Keybinds()
+  nameWithType: Keybind.Keybinds()
+- uid: ModLib.Input.Keybind.Keybinds*
+  name: Keybinds
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_Keybinds_
+  commentId: Overload:ModLib.Input.Keybind.Keybinds
+  isSpec: "True"
+  fullName: ModLib.Input.Keybind.Keybinds
+  nameWithType: Keybind.Keybinds
+- uid: ModLib.Input.Keybind.KeyboardPreset
+  name: KeyboardPreset
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_KeyboardPreset
+  commentId: P:ModLib.Input.Keybind.KeyboardPreset
+  fullName: ModLib.Input.Keybind.KeyboardPreset
+  nameWithType: Keybind.KeyboardPreset
+- uid: ModLib.Input.Keybind.KeyboardPreset*
+  name: KeyboardPreset
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_KeyboardPreset_
+  commentId: Overload:ModLib.Input.Keybind.KeyboardPreset
+  isSpec: "True"
+  fullName: ModLib.Input.Keybind.KeyboardPreset
+  nameWithType: Keybind.KeyboardPreset
+- uid: ModLib.Input.Keybind.Mod
+  name: Mod
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_Mod
+  commentId: P:ModLib.Input.Keybind.Mod
+  fullName: ModLib.Input.Keybind.Mod
+  nameWithType: Keybind.Mod
+- uid: ModLib.Input.Keybind.Mod*
+  name: Mod
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_Mod_
+  commentId: Overload:ModLib.Input.Keybind.Mod
+  isSpec: "True"
+  fullName: ModLib.Input.Keybind.Mod
+  nameWithType: Keybind.Mod
+- uid: ModLib.Input.Keybind.Name
+  name: Name
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_Name
+  commentId: P:ModLib.Input.Keybind.Name
+  fullName: ModLib.Input.Keybind.Name
+  nameWithType: Keybind.Name
+- uid: ModLib.Input.Keybind.Name*
+  name: Name
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_Name_
+  commentId: Overload:ModLib.Input.Keybind.Name
+  isSpec: "True"
+  fullName: ModLib.Input.Keybind.Name
+  nameWithType: Keybind.Name
+- uid: ModLib.Input.Keybind.Register(System.String,System.String,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  name: Register(string?, string, KeyCode, KeyCode)
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_Register_System_String_System_String_UnityEngine_KeyCode_UnityEngine_KeyCode_
+  commentId: M:ModLib.Input.Keybind.Register(System.String,System.String,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  name.vb: Register(String, String, KeyCode, KeyCode)
+  fullName: ModLib.Input.Keybind.Register(string?, string, UnityEngine.KeyCode, UnityEngine.KeyCode)
+  fullName.vb: ModLib.Input.Keybind.Register(String, String, UnityEngine.KeyCode, UnityEngine.KeyCode)
+  nameWithType: Keybind.Register(string?, string, KeyCode, KeyCode)
+  nameWithType.vb: Keybind.Register(String, String, KeyCode, KeyCode)
+- uid: ModLib.Input.Keybind.Register(System.String,System.String,UnityEngine.KeyCode,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  name: Register(string?, string, KeyCode, KeyCode, KeyCode)
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_Register_System_String_System_String_UnityEngine_KeyCode_UnityEngine_KeyCode_UnityEngine_KeyCode_
+  commentId: M:ModLib.Input.Keybind.Register(System.String,System.String,UnityEngine.KeyCode,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  name.vb: Register(String, String, KeyCode, KeyCode, KeyCode)
+  fullName: ModLib.Input.Keybind.Register(string?, string, UnityEngine.KeyCode, UnityEngine.KeyCode, UnityEngine.KeyCode)
+  fullName.vb: ModLib.Input.Keybind.Register(String, String, UnityEngine.KeyCode, UnityEngine.KeyCode, UnityEngine.KeyCode)
+  nameWithType: Keybind.Register(string?, string, KeyCode, KeyCode, KeyCode)
+  nameWithType.vb: Keybind.Register(String, String, KeyCode, KeyCode, KeyCode)
+- uid: ModLib.Input.Keybind.Register(System.String,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  name: Register(string, KeyCode, KeyCode)
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_Register_System_String_UnityEngine_KeyCode_UnityEngine_KeyCode_
+  commentId: M:ModLib.Input.Keybind.Register(System.String,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  name.vb: Register(String, KeyCode, KeyCode)
+  fullName: ModLib.Input.Keybind.Register(string, UnityEngine.KeyCode, UnityEngine.KeyCode)
+  fullName.vb: ModLib.Input.Keybind.Register(String, UnityEngine.KeyCode, UnityEngine.KeyCode)
+  nameWithType: Keybind.Register(string, KeyCode, KeyCode)
+  nameWithType.vb: Keybind.Register(String, KeyCode, KeyCode)
+- uid: ModLib.Input.Keybind.Register(System.String,UnityEngine.KeyCode,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  name: Register(string, KeyCode, KeyCode, KeyCode)
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_Register_System_String_UnityEngine_KeyCode_UnityEngine_KeyCode_UnityEngine_KeyCode_
+  commentId: M:ModLib.Input.Keybind.Register(System.String,UnityEngine.KeyCode,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  name.vb: Register(String, KeyCode, KeyCode, KeyCode)
+  fullName: ModLib.Input.Keybind.Register(string, UnityEngine.KeyCode, UnityEngine.KeyCode, UnityEngine.KeyCode)
+  fullName.vb: ModLib.Input.Keybind.Register(String, UnityEngine.KeyCode, UnityEngine.KeyCode, UnityEngine.KeyCode)
+  nameWithType: Keybind.Register(string, KeyCode, KeyCode, KeyCode)
+  nameWithType.vb: Keybind.Register(String, KeyCode, KeyCode, KeyCode)
+- uid: ModLib.Input.Keybind.Register*
+  name: Register
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_Register_
+  commentId: Overload:ModLib.Input.Keybind.Register
+  isSpec: "True"
+  fullName: ModLib.Input.Keybind.Register
+  nameWithType: Keybind.Register
+- uid: ModLib.Input.Keybind.ToString
+  name: ToString()
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_ToString
+  commentId: M:ModLib.Input.Keybind.ToString
+  fullName: ModLib.Input.Keybind.ToString()
+  nameWithType: Keybind.ToString()
+- uid: ModLib.Input.Keybind.ToString*
+  name: ToString
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_ToString_
+  commentId: Overload:ModLib.Input.Keybind.ToString
+  isSpec: "True"
+  fullName: ModLib.Input.Keybind.ToString
+  nameWithType: Keybind.ToString
+- uid: ModLib.Input.Keybind.XboxPreset
+  name: XboxPreset
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_XboxPreset
+  commentId: P:ModLib.Input.Keybind.XboxPreset
+  fullName: ModLib.Input.Keybind.XboxPreset
+  nameWithType: Keybind.XboxPreset
+- uid: ModLib.Input.Keybind.XboxPreset*
+  name: XboxPreset
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_XboxPreset_
+  commentId: Overload:ModLib.Input.Keybind.XboxPreset
+  isSpec: "True"
+  fullName: ModLib.Input.Keybind.XboxPreset
+  nameWithType: Keybind.XboxPreset
+- uid: ModLib.Input.Keybind.op_Implicit(ImprovedInput.PlayerKeybind)~ModLib.Input.Keybind
+  name: implicit operator Keybind(PlayerKeybind)
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_op_Implicit_ImprovedInput_PlayerKeybind__ModLib_Input_Keybind
+  commentId: M:ModLib.Input.Keybind.op_Implicit(ImprovedInput.PlayerKeybind)~ModLib.Input.Keybind
+  name.vb: CType(PlayerKeybind)
+  fullName: ModLib.Input.Keybind.implicit operator ModLib.Input.Keybind(ImprovedInput.PlayerKeybind)
+  fullName.vb: ModLib.Input.Keybind.CType(ImprovedInput.PlayerKeybind)
+  nameWithType: Keybind.implicit operator Keybind(PlayerKeybind)
+  nameWithType.vb: Keybind.CType(PlayerKeybind)
+- uid: ModLib.Input.Keybind.op_Implicit(ModLib.Input.Keybind)~ImprovedInput.PlayerKeybind
+  name: implicit operator PlayerKeybind(Keybind)
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_op_Implicit_ModLib_Input_Keybind__ImprovedInput_PlayerKeybind
+  commentId: M:ModLib.Input.Keybind.op_Implicit(ModLib.Input.Keybind)~ImprovedInput.PlayerKeybind
+  name.vb: CType(Keybind)
+  fullName: ModLib.Input.Keybind.implicit operator ImprovedInput.PlayerKeybind(ModLib.Input.Keybind)
+  fullName.vb: ModLib.Input.Keybind.CType(ModLib.Input.Keybind)
+  nameWithType: Keybind.implicit operator PlayerKeybind(Keybind)
+  nameWithType.vb: Keybind.CType(Keybind)
+- uid: ModLib.Input.Keybind.op_Implicit*
+  name: implicit operator
+  href: api/ModLib.Input.Keybind.html#ModLib_Input_Keybind_op_Implicit_
+  commentId: Overload:ModLib.Input.Keybind.op_Implicit
+  isSpec: "True"
+  name.vb: CType
+  fullName: ModLib.Input.Keybind.implicit operator
+  fullName.vb: ModLib.Input.Keybind.CType
+  nameWithType: Keybind.implicit operator
+  nameWithType.vb: Keybind.CType
+- uid: ModLib.Logging
+  name: ModLib.Logging
+  href: api/ModLib.Logging.html
+  commentId: N:ModLib.Logging
+  fullName: ModLib.Logging
+  nameWithType: ModLib.Logging
+- uid: ModLib.Logging.FallbackLogger
+  name: FallbackLogger
+  href: api/ModLib.Logging.FallbackLogger.html
+  commentId: T:ModLib.Logging.FallbackLogger
+  fullName: ModLib.Logging.FallbackLogger
+  nameWithType: FallbackLogger
+- uid: ModLib.Logging.FallbackLogger.#ctor(BepInEx.Logging.ManualLogSource)
+  name: FallbackLogger(ManualLogSource)
+  href: api/ModLib.Logging.FallbackLogger.html#ModLib_Logging_FallbackLogger__ctor_BepInEx_Logging_ManualLogSource_
+  commentId: M:ModLib.Logging.FallbackLogger.#ctor(BepInEx.Logging.ManualLogSource)
+  name.vb: New(ManualLogSource)
+  fullName: ModLib.Logging.FallbackLogger.FallbackLogger(BepInEx.Logging.ManualLogSource)
+  fullName.vb: ModLib.Logging.FallbackLogger.New(BepInEx.Logging.ManualLogSource)
+  nameWithType: FallbackLogger.FallbackLogger(ManualLogSource)
+  nameWithType.vb: FallbackLogger.New(ManualLogSource)
+- uid: ModLib.Logging.FallbackLogger.#ctor*
+  name: FallbackLogger
+  href: api/ModLib.Logging.FallbackLogger.html#ModLib_Logging_FallbackLogger__ctor_
+  commentId: Overload:ModLib.Logging.FallbackLogger.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: ModLib.Logging.FallbackLogger.FallbackLogger
+  fullName.vb: ModLib.Logging.FallbackLogger.New
+  nameWithType: FallbackLogger.FallbackLogger
+  nameWithType.vb: FallbackLogger.New
+- uid: ModLib.Logging.FallbackLogger.GetLogSource
+  name: GetLogSource()
+  href: api/ModLib.Logging.FallbackLogger.html#ModLib_Logging_FallbackLogger_GetLogSource
+  commentId: M:ModLib.Logging.FallbackLogger.GetLogSource
+  fullName: ModLib.Logging.FallbackLogger.GetLogSource()
+  nameWithType: FallbackLogger.GetLogSource()
+- uid: ModLib.Logging.FallbackLogger.GetLogSource*
+  name: GetLogSource
+  href: api/ModLib.Logging.FallbackLogger.html#ModLib_Logging_FallbackLogger_GetLogSource_
+  commentId: Overload:ModLib.Logging.FallbackLogger.GetLogSource
+  isSpec: "True"
+  fullName: ModLib.Logging.FallbackLogger.GetLogSource
+  nameWithType: FallbackLogger.GetLogSource
+- uid: ModLib.Logging.FallbackLogger.Log(BepInEx.Logging.LogLevel,System.Object)
+  name: Log(LogLevel, object)
+  href: api/ModLib.Logging.FallbackLogger.html#ModLib_Logging_FallbackLogger_Log_BepInEx_Logging_LogLevel_System_Object_
+  commentId: M:ModLib.Logging.FallbackLogger.Log(BepInEx.Logging.LogLevel,System.Object)
+  name.vb: Log(LogLevel, Object)
+  fullName: ModLib.Logging.FallbackLogger.Log(BepInEx.Logging.LogLevel, object)
+  fullName.vb: ModLib.Logging.FallbackLogger.Log(BepInEx.Logging.LogLevel, Object)
+  nameWithType: FallbackLogger.Log(LogLevel, object)
+  nameWithType.vb: FallbackLogger.Log(LogLevel, Object)
+- uid: ModLib.Logging.FallbackLogger.Log(System.Object)
+  name: Log(object)
+  href: api/ModLib.Logging.FallbackLogger.html#ModLib_Logging_FallbackLogger_Log_System_Object_
+  commentId: M:ModLib.Logging.FallbackLogger.Log(System.Object)
+  name.vb: Log(Object)
+  fullName: ModLib.Logging.FallbackLogger.Log(object)
+  fullName.vb: ModLib.Logging.FallbackLogger.Log(Object)
+  nameWithType: FallbackLogger.Log(object)
+  nameWithType.vb: FallbackLogger.Log(Object)
+- uid: ModLib.Logging.FallbackLogger.Log*
+  name: Log
+  href: api/ModLib.Logging.FallbackLogger.html#ModLib_Logging_FallbackLogger_Log_
+  commentId: Overload:ModLib.Logging.FallbackLogger.Log
+  isSpec: "True"
+  fullName: ModLib.Logging.FallbackLogger.Log
+  nameWithType: FallbackLogger.Log
+- uid: ModLib.Logging.FallbackLogger.LogDebug(System.Object)
+  name: LogDebug(object)
+  href: api/ModLib.Logging.FallbackLogger.html#ModLib_Logging_FallbackLogger_LogDebug_System_Object_
+  commentId: M:ModLib.Logging.FallbackLogger.LogDebug(System.Object)
+  name.vb: LogDebug(Object)
+  fullName: ModLib.Logging.FallbackLogger.LogDebug(object)
+  fullName.vb: ModLib.Logging.FallbackLogger.LogDebug(Object)
+  nameWithType: FallbackLogger.LogDebug(object)
+  nameWithType.vb: FallbackLogger.LogDebug(Object)
+- uid: ModLib.Logging.FallbackLogger.LogDebug*
+  name: LogDebug
+  href: api/ModLib.Logging.FallbackLogger.html#ModLib_Logging_FallbackLogger_LogDebug_
+  commentId: Overload:ModLib.Logging.FallbackLogger.LogDebug
+  isSpec: "True"
+  fullName: ModLib.Logging.FallbackLogger.LogDebug
+  nameWithType: FallbackLogger.LogDebug
+- uid: ModLib.Logging.FallbackLogger.LogError(System.Object)
+  name: LogError(object)
+  href: api/ModLib.Logging.FallbackLogger.html#ModLib_Logging_FallbackLogger_LogError_System_Object_
+  commentId: M:ModLib.Logging.FallbackLogger.LogError(System.Object)
+  name.vb: LogError(Object)
+  fullName: ModLib.Logging.FallbackLogger.LogError(object)
+  fullName.vb: ModLib.Logging.FallbackLogger.LogError(Object)
+  nameWithType: FallbackLogger.LogError(object)
+  nameWithType.vb: FallbackLogger.LogError(Object)
+- uid: ModLib.Logging.FallbackLogger.LogError*
+  name: LogError
+  href: api/ModLib.Logging.FallbackLogger.html#ModLib_Logging_FallbackLogger_LogError_
+  commentId: Overload:ModLib.Logging.FallbackLogger.LogError
+  isSpec: "True"
+  fullName: ModLib.Logging.FallbackLogger.LogError
+  nameWithType: FallbackLogger.LogError
+- uid: ModLib.Logging.FallbackLogger.LogFatal(System.Object)
+  name: LogFatal(object)
+  href: api/ModLib.Logging.FallbackLogger.html#ModLib_Logging_FallbackLogger_LogFatal_System_Object_
+  commentId: M:ModLib.Logging.FallbackLogger.LogFatal(System.Object)
+  name.vb: LogFatal(Object)
+  fullName: ModLib.Logging.FallbackLogger.LogFatal(object)
+  fullName.vb: ModLib.Logging.FallbackLogger.LogFatal(Object)
+  nameWithType: FallbackLogger.LogFatal(object)
+  nameWithType.vb: FallbackLogger.LogFatal(Object)
+- uid: ModLib.Logging.FallbackLogger.LogFatal*
+  name: LogFatal
+  href: api/ModLib.Logging.FallbackLogger.html#ModLib_Logging_FallbackLogger_LogFatal_
+  commentId: Overload:ModLib.Logging.FallbackLogger.LogFatal
+  isSpec: "True"
+  fullName: ModLib.Logging.FallbackLogger.LogFatal
+  nameWithType: FallbackLogger.LogFatal
+- uid: ModLib.Logging.FallbackLogger.LogInfo(System.Object)
+  name: LogInfo(object)
+  href: api/ModLib.Logging.FallbackLogger.html#ModLib_Logging_FallbackLogger_LogInfo_System_Object_
+  commentId: M:ModLib.Logging.FallbackLogger.LogInfo(System.Object)
+  name.vb: LogInfo(Object)
+  fullName: ModLib.Logging.FallbackLogger.LogInfo(object)
+  fullName.vb: ModLib.Logging.FallbackLogger.LogInfo(Object)
+  nameWithType: FallbackLogger.LogInfo(object)
+  nameWithType.vb: FallbackLogger.LogInfo(Object)
+- uid: ModLib.Logging.FallbackLogger.LogInfo*
+  name: LogInfo
+  href: api/ModLib.Logging.FallbackLogger.html#ModLib_Logging_FallbackLogger_LogInfo_
+  commentId: Overload:ModLib.Logging.FallbackLogger.LogInfo
+  isSpec: "True"
+  fullName: ModLib.Logging.FallbackLogger.LogInfo
+  nameWithType: FallbackLogger.LogInfo
+- uid: ModLib.Logging.FallbackLogger.LogMessage(System.Object)
+  name: LogMessage(object)
+  href: api/ModLib.Logging.FallbackLogger.html#ModLib_Logging_FallbackLogger_LogMessage_System_Object_
+  commentId: M:ModLib.Logging.FallbackLogger.LogMessage(System.Object)
+  name.vb: LogMessage(Object)
+  fullName: ModLib.Logging.FallbackLogger.LogMessage(object)
+  fullName.vb: ModLib.Logging.FallbackLogger.LogMessage(Object)
+  nameWithType: FallbackLogger.LogMessage(object)
+  nameWithType.vb: FallbackLogger.LogMessage(Object)
+- uid: ModLib.Logging.FallbackLogger.LogMessage*
+  name: LogMessage
+  href: api/ModLib.Logging.FallbackLogger.html#ModLib_Logging_FallbackLogger_LogMessage_
+  commentId: Overload:ModLib.Logging.FallbackLogger.LogMessage
+  isSpec: "True"
+  fullName: ModLib.Logging.FallbackLogger.LogMessage
+  nameWithType: FallbackLogger.LogMessage
+- uid: ModLib.Logging.FallbackLogger.LogWarning(System.Object)
+  name: LogWarning(object)
+  href: api/ModLib.Logging.FallbackLogger.html#ModLib_Logging_FallbackLogger_LogWarning_System_Object_
+  commentId: M:ModLib.Logging.FallbackLogger.LogWarning(System.Object)
+  name.vb: LogWarning(Object)
+  fullName: ModLib.Logging.FallbackLogger.LogWarning(object)
+  fullName.vb: ModLib.Logging.FallbackLogger.LogWarning(Object)
+  nameWithType: FallbackLogger.LogWarning(object)
+  nameWithType.vb: FallbackLogger.LogWarning(Object)
+- uid: ModLib.Logging.FallbackLogger.LogWarning*
+  name: LogWarning
+  href: api/ModLib.Logging.FallbackLogger.html#ModLib_Logging_FallbackLogger_LogWarning_
+  commentId: Overload:ModLib.Logging.FallbackLogger.LogWarning
+  isSpec: "True"
+  fullName: ModLib.Logging.FallbackLogger.LogWarning
+  nameWithType: FallbackLogger.LogWarning
+- uid: ModLib.Logging.IMyLogger
+  name: IMyLogger
+  href: api/ModLib.Logging.IMyLogger.html
+  commentId: T:ModLib.Logging.IMyLogger
+  fullName: ModLib.Logging.IMyLogger
+  nameWithType: IMyLogger
+- uid: ModLib.Logging.IMyLogger.GetLogSource
+  name: GetLogSource()
+  href: api/ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_GetLogSource
+  commentId: M:ModLib.Logging.IMyLogger.GetLogSource
+  fullName: ModLib.Logging.IMyLogger.GetLogSource()
+  nameWithType: IMyLogger.GetLogSource()
+- uid: ModLib.Logging.IMyLogger.GetLogSource*
+  name: GetLogSource
+  href: api/ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_GetLogSource_
+  commentId: Overload:ModLib.Logging.IMyLogger.GetLogSource
+  isSpec: "True"
+  fullName: ModLib.Logging.IMyLogger.GetLogSource
+  nameWithType: IMyLogger.GetLogSource
+- uid: ModLib.Logging.IMyLogger.Log(BepInEx.Logging.LogLevel,System.Object)
+  name: Log(LogLevel, object)
+  href: api/ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_Log_BepInEx_Logging_LogLevel_System_Object_
+  commentId: M:ModLib.Logging.IMyLogger.Log(BepInEx.Logging.LogLevel,System.Object)
+  name.vb: Log(LogLevel, Object)
+  fullName: ModLib.Logging.IMyLogger.Log(BepInEx.Logging.LogLevel, object)
+  fullName.vb: ModLib.Logging.IMyLogger.Log(BepInEx.Logging.LogLevel, Object)
+  nameWithType: IMyLogger.Log(LogLevel, object)
+  nameWithType.vb: IMyLogger.Log(LogLevel, Object)
+- uid: ModLib.Logging.IMyLogger.Log(System.Object)
+  name: Log(object)
+  href: api/ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_Log_System_Object_
+  commentId: M:ModLib.Logging.IMyLogger.Log(System.Object)
+  name.vb: Log(Object)
+  fullName: ModLib.Logging.IMyLogger.Log(object)
+  fullName.vb: ModLib.Logging.IMyLogger.Log(Object)
+  nameWithType: IMyLogger.Log(object)
+  nameWithType.vb: IMyLogger.Log(Object)
+- uid: ModLib.Logging.IMyLogger.Log*
+  name: Log
+  href: api/ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_Log_
+  commentId: Overload:ModLib.Logging.IMyLogger.Log
+  isSpec: "True"
+  fullName: ModLib.Logging.IMyLogger.Log
+  nameWithType: IMyLogger.Log
+- uid: ModLib.Logging.IMyLogger.LogDebug(System.Object)
+  name: LogDebug(object)
+  href: api/ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogDebug_System_Object_
+  commentId: M:ModLib.Logging.IMyLogger.LogDebug(System.Object)
+  name.vb: LogDebug(Object)
+  fullName: ModLib.Logging.IMyLogger.LogDebug(object)
+  fullName.vb: ModLib.Logging.IMyLogger.LogDebug(Object)
+  nameWithType: IMyLogger.LogDebug(object)
+  nameWithType.vb: IMyLogger.LogDebug(Object)
+- uid: ModLib.Logging.IMyLogger.LogDebug*
+  name: LogDebug
+  href: api/ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogDebug_
+  commentId: Overload:ModLib.Logging.IMyLogger.LogDebug
+  isSpec: "True"
+  fullName: ModLib.Logging.IMyLogger.LogDebug
+  nameWithType: IMyLogger.LogDebug
+- uid: ModLib.Logging.IMyLogger.LogError(System.Object)
+  name: LogError(object)
+  href: api/ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogError_System_Object_
+  commentId: M:ModLib.Logging.IMyLogger.LogError(System.Object)
+  name.vb: LogError(Object)
+  fullName: ModLib.Logging.IMyLogger.LogError(object)
+  fullName.vb: ModLib.Logging.IMyLogger.LogError(Object)
+  nameWithType: IMyLogger.LogError(object)
+  nameWithType.vb: IMyLogger.LogError(Object)
+- uid: ModLib.Logging.IMyLogger.LogError*
+  name: LogError
+  href: api/ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogError_
+  commentId: Overload:ModLib.Logging.IMyLogger.LogError
+  isSpec: "True"
+  fullName: ModLib.Logging.IMyLogger.LogError
+  nameWithType: IMyLogger.LogError
+- uid: ModLib.Logging.IMyLogger.LogFatal(System.Object)
+  name: LogFatal(object)
+  href: api/ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogFatal_System_Object_
+  commentId: M:ModLib.Logging.IMyLogger.LogFatal(System.Object)
+  name.vb: LogFatal(Object)
+  fullName: ModLib.Logging.IMyLogger.LogFatal(object)
+  fullName.vb: ModLib.Logging.IMyLogger.LogFatal(Object)
+  nameWithType: IMyLogger.LogFatal(object)
+  nameWithType.vb: IMyLogger.LogFatal(Object)
+- uid: ModLib.Logging.IMyLogger.LogFatal*
+  name: LogFatal
+  href: api/ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogFatal_
+  commentId: Overload:ModLib.Logging.IMyLogger.LogFatal
+  isSpec: "True"
+  fullName: ModLib.Logging.IMyLogger.LogFatal
+  nameWithType: IMyLogger.LogFatal
+- uid: ModLib.Logging.IMyLogger.LogInfo(System.Object)
+  name: LogInfo(object)
+  href: api/ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogInfo_System_Object_
+  commentId: M:ModLib.Logging.IMyLogger.LogInfo(System.Object)
+  name.vb: LogInfo(Object)
+  fullName: ModLib.Logging.IMyLogger.LogInfo(object)
+  fullName.vb: ModLib.Logging.IMyLogger.LogInfo(Object)
+  nameWithType: IMyLogger.LogInfo(object)
+  nameWithType.vb: IMyLogger.LogInfo(Object)
+- uid: ModLib.Logging.IMyLogger.LogInfo*
+  name: LogInfo
+  href: api/ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogInfo_
+  commentId: Overload:ModLib.Logging.IMyLogger.LogInfo
+  isSpec: "True"
+  fullName: ModLib.Logging.IMyLogger.LogInfo
+  nameWithType: IMyLogger.LogInfo
+- uid: ModLib.Logging.IMyLogger.LogMessage(System.Object)
+  name: LogMessage(object)
+  href: api/ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogMessage_System_Object_
+  commentId: M:ModLib.Logging.IMyLogger.LogMessage(System.Object)
+  name.vb: LogMessage(Object)
+  fullName: ModLib.Logging.IMyLogger.LogMessage(object)
+  fullName.vb: ModLib.Logging.IMyLogger.LogMessage(Object)
+  nameWithType: IMyLogger.LogMessage(object)
+  nameWithType.vb: IMyLogger.LogMessage(Object)
+- uid: ModLib.Logging.IMyLogger.LogMessage*
+  name: LogMessage
+  href: api/ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogMessage_
+  commentId: Overload:ModLib.Logging.IMyLogger.LogMessage
+  isSpec: "True"
+  fullName: ModLib.Logging.IMyLogger.LogMessage
+  nameWithType: IMyLogger.LogMessage
+- uid: ModLib.Logging.IMyLogger.LogWarning(System.Object)
+  name: LogWarning(object)
+  href: api/ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogWarning_System_Object_
+  commentId: M:ModLib.Logging.IMyLogger.LogWarning(System.Object)
+  name.vb: LogWarning(Object)
+  fullName: ModLib.Logging.IMyLogger.LogWarning(object)
+  fullName.vb: ModLib.Logging.IMyLogger.LogWarning(Object)
+  nameWithType: IMyLogger.LogWarning(object)
+  nameWithType.vb: IMyLogger.LogWarning(Object)
+- uid: ModLib.Logging.IMyLogger.LogWarning*
+  name: LogWarning
+  href: api/ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogWarning_
+  commentId: Overload:ModLib.Logging.IMyLogger.LogWarning
+  isSpec: "True"
+  fullName: ModLib.Logging.IMyLogger.LogWarning
+  nameWithType: IMyLogger.LogWarning
+- uid: ModLib.Logging.LogUtilsAdapter
+  name: LogUtilsAdapter
+  href: api/ModLib.Logging.LogUtilsAdapter.html
+  commentId: T:ModLib.Logging.LogUtilsAdapter
+  fullName: ModLib.Logging.LogUtilsAdapter
+  nameWithType: LogUtilsAdapter
+- uid: ModLib.Logging.LogUtilsAdapter.#ctor(LogUtils.ILogger)
+  name: LogUtilsAdapter(ILogger)
+  href: api/ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter__ctor_LogUtils_ILogger_
+  commentId: M:ModLib.Logging.LogUtilsAdapter.#ctor(LogUtils.ILogger)
+  name.vb: New(ILogger)
+  fullName: ModLib.Logging.LogUtilsAdapter.LogUtilsAdapter(LogUtils.ILogger)
+  fullName.vb: ModLib.Logging.LogUtilsAdapter.New(LogUtils.ILogger)
+  nameWithType: LogUtilsAdapter.LogUtilsAdapter(ILogger)
+  nameWithType.vb: LogUtilsAdapter.New(ILogger)
+- uid: ModLib.Logging.LogUtilsAdapter.#ctor*
+  name: LogUtilsAdapter
+  href: api/ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter__ctor_
+  commentId: Overload:ModLib.Logging.LogUtilsAdapter.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: ModLib.Logging.LogUtilsAdapter.LogUtilsAdapter
+  fullName.vb: ModLib.Logging.LogUtilsAdapter.New
+  nameWithType: LogUtilsAdapter.LogUtilsAdapter
+  nameWithType.vb: LogUtilsAdapter.New
+- uid: ModLib.Logging.LogUtilsAdapter.GetLogSource
+  name: GetLogSource()
+  href: api/ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_GetLogSource
+  commentId: M:ModLib.Logging.LogUtilsAdapter.GetLogSource
+  fullName: ModLib.Logging.LogUtilsAdapter.GetLogSource()
+  nameWithType: LogUtilsAdapter.GetLogSource()
+- uid: ModLib.Logging.LogUtilsAdapter.GetLogSource*
+  name: GetLogSource
+  href: api/ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_GetLogSource_
+  commentId: Overload:ModLib.Logging.LogUtilsAdapter.GetLogSource
+  isSpec: "True"
+  fullName: ModLib.Logging.LogUtilsAdapter.GetLogSource
+  nameWithType: LogUtilsAdapter.GetLogSource
+- uid: ModLib.Logging.LogUtilsAdapter.Log(BepInEx.Logging.LogLevel,System.Object)
+  name: Log(LogLevel, object)
+  href: api/ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_Log_BepInEx_Logging_LogLevel_System_Object_
+  commentId: M:ModLib.Logging.LogUtilsAdapter.Log(BepInEx.Logging.LogLevel,System.Object)
+  name.vb: Log(LogLevel, Object)
+  fullName: ModLib.Logging.LogUtilsAdapter.Log(BepInEx.Logging.LogLevel, object)
+  fullName.vb: ModLib.Logging.LogUtilsAdapter.Log(BepInEx.Logging.LogLevel, Object)
+  nameWithType: LogUtilsAdapter.Log(LogLevel, object)
+  nameWithType.vb: LogUtilsAdapter.Log(LogLevel, Object)
+- uid: ModLib.Logging.LogUtilsAdapter.Log(System.Object)
+  name: Log(object)
+  href: api/ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_Log_System_Object_
+  commentId: M:ModLib.Logging.LogUtilsAdapter.Log(System.Object)
+  name.vb: Log(Object)
+  fullName: ModLib.Logging.LogUtilsAdapter.Log(object)
+  fullName.vb: ModLib.Logging.LogUtilsAdapter.Log(Object)
+  nameWithType: LogUtilsAdapter.Log(object)
+  nameWithType.vb: LogUtilsAdapter.Log(Object)
+- uid: ModLib.Logging.LogUtilsAdapter.Log*
+  name: Log
+  href: api/ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_Log_
+  commentId: Overload:ModLib.Logging.LogUtilsAdapter.Log
+  isSpec: "True"
+  fullName: ModLib.Logging.LogUtilsAdapter.Log
+  nameWithType: LogUtilsAdapter.Log
+- uid: ModLib.Logging.LogUtilsAdapter.LogDebug(System.Object)
+  name: LogDebug(object)
+  href: api/ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_LogDebug_System_Object_
+  commentId: M:ModLib.Logging.LogUtilsAdapter.LogDebug(System.Object)
+  name.vb: LogDebug(Object)
+  fullName: ModLib.Logging.LogUtilsAdapter.LogDebug(object)
+  fullName.vb: ModLib.Logging.LogUtilsAdapter.LogDebug(Object)
+  nameWithType: LogUtilsAdapter.LogDebug(object)
+  nameWithType.vb: LogUtilsAdapter.LogDebug(Object)
+- uid: ModLib.Logging.LogUtilsAdapter.LogDebug*
+  name: LogDebug
+  href: api/ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_LogDebug_
+  commentId: Overload:ModLib.Logging.LogUtilsAdapter.LogDebug
+  isSpec: "True"
+  fullName: ModLib.Logging.LogUtilsAdapter.LogDebug
+  nameWithType: LogUtilsAdapter.LogDebug
+- uid: ModLib.Logging.LogUtilsAdapter.LogError(System.Object)
+  name: LogError(object)
+  href: api/ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_LogError_System_Object_
+  commentId: M:ModLib.Logging.LogUtilsAdapter.LogError(System.Object)
+  name.vb: LogError(Object)
+  fullName: ModLib.Logging.LogUtilsAdapter.LogError(object)
+  fullName.vb: ModLib.Logging.LogUtilsAdapter.LogError(Object)
+  nameWithType: LogUtilsAdapter.LogError(object)
+  nameWithType.vb: LogUtilsAdapter.LogError(Object)
+- uid: ModLib.Logging.LogUtilsAdapter.LogError*
+  name: LogError
+  href: api/ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_LogError_
+  commentId: Overload:ModLib.Logging.LogUtilsAdapter.LogError
+  isSpec: "True"
+  fullName: ModLib.Logging.LogUtilsAdapter.LogError
+  nameWithType: LogUtilsAdapter.LogError
+- uid: ModLib.Logging.LogUtilsAdapter.LogFatal(System.Object)
+  name: LogFatal(object)
+  href: api/ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_LogFatal_System_Object_
+  commentId: M:ModLib.Logging.LogUtilsAdapter.LogFatal(System.Object)
+  name.vb: LogFatal(Object)
+  fullName: ModLib.Logging.LogUtilsAdapter.LogFatal(object)
+  fullName.vb: ModLib.Logging.LogUtilsAdapter.LogFatal(Object)
+  nameWithType: LogUtilsAdapter.LogFatal(object)
+  nameWithType.vb: LogUtilsAdapter.LogFatal(Object)
+- uid: ModLib.Logging.LogUtilsAdapter.LogFatal*
+  name: LogFatal
+  href: api/ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_LogFatal_
+  commentId: Overload:ModLib.Logging.LogUtilsAdapter.LogFatal
+  isSpec: "True"
+  fullName: ModLib.Logging.LogUtilsAdapter.LogFatal
+  nameWithType: LogUtilsAdapter.LogFatal
+- uid: ModLib.Logging.LogUtilsAdapter.LogInfo(System.Object)
+  name: LogInfo(object)
+  href: api/ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_LogInfo_System_Object_
+  commentId: M:ModLib.Logging.LogUtilsAdapter.LogInfo(System.Object)
+  name.vb: LogInfo(Object)
+  fullName: ModLib.Logging.LogUtilsAdapter.LogInfo(object)
+  fullName.vb: ModLib.Logging.LogUtilsAdapter.LogInfo(Object)
+  nameWithType: LogUtilsAdapter.LogInfo(object)
+  nameWithType.vb: LogUtilsAdapter.LogInfo(Object)
+- uid: ModLib.Logging.LogUtilsAdapter.LogInfo*
+  name: LogInfo
+  href: api/ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_LogInfo_
+  commentId: Overload:ModLib.Logging.LogUtilsAdapter.LogInfo
+  isSpec: "True"
+  fullName: ModLib.Logging.LogUtilsAdapter.LogInfo
+  nameWithType: LogUtilsAdapter.LogInfo
+- uid: ModLib.Logging.LogUtilsAdapter.LogMessage(System.Object)
+  name: LogMessage(object)
+  href: api/ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_LogMessage_System_Object_
+  commentId: M:ModLib.Logging.LogUtilsAdapter.LogMessage(System.Object)
+  name.vb: LogMessage(Object)
+  fullName: ModLib.Logging.LogUtilsAdapter.LogMessage(object)
+  fullName.vb: ModLib.Logging.LogUtilsAdapter.LogMessage(Object)
+  nameWithType: LogUtilsAdapter.LogMessage(object)
+  nameWithType.vb: LogUtilsAdapter.LogMessage(Object)
+- uid: ModLib.Logging.LogUtilsAdapter.LogMessage*
+  name: LogMessage
+  href: api/ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_LogMessage_
+  commentId: Overload:ModLib.Logging.LogUtilsAdapter.LogMessage
+  isSpec: "True"
+  fullName: ModLib.Logging.LogUtilsAdapter.LogMessage
+  nameWithType: LogUtilsAdapter.LogMessage
+- uid: ModLib.Logging.LogUtilsAdapter.LogWarning(System.Object)
+  name: LogWarning(object)
+  href: api/ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_LogWarning_System_Object_
+  commentId: M:ModLib.Logging.LogUtilsAdapter.LogWarning(System.Object)
+  name.vb: LogWarning(Object)
+  fullName: ModLib.Logging.LogUtilsAdapter.LogWarning(object)
+  fullName.vb: ModLib.Logging.LogUtilsAdapter.LogWarning(Object)
+  nameWithType: LogUtilsAdapter.LogWarning(object)
+  nameWithType.vb: LogUtilsAdapter.LogWarning(Object)
+- uid: ModLib.Logging.LogUtilsAdapter.LogWarning*
+  name: LogWarning
+  href: api/ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_LogWarning_
+  commentId: Overload:ModLib.Logging.LogUtilsAdapter.LogWarning
+  isSpec: "True"
+  fullName: ModLib.Logging.LogUtilsAdapter.LogWarning
+  nameWithType: LogUtilsAdapter.LogWarning
+- uid: ModLib.Logging.LoggingAdapter
+  name: LoggingAdapter
+  href: api/ModLib.Logging.LoggingAdapter.html
+  commentId: T:ModLib.Logging.LoggingAdapter
+  fullName: ModLib.Logging.LoggingAdapter
+  nameWithType: LoggingAdapter
+- uid: ModLib.Logging.LoggingAdapter.CreateLogger(BepInEx.Logging.ManualLogSource)
+  name: CreateLogger(ManualLogSource)
+  href: api/ModLib.Logging.LoggingAdapter.html#ModLib_Logging_LoggingAdapter_CreateLogger_BepInEx_Logging_ManualLogSource_
+  commentId: M:ModLib.Logging.LoggingAdapter.CreateLogger(BepInEx.Logging.ManualLogSource)
+  fullName: ModLib.Logging.LoggingAdapter.CreateLogger(BepInEx.Logging.ManualLogSource)
+  nameWithType: LoggingAdapter.CreateLogger(ManualLogSource)
+- uid: ModLib.Logging.LoggingAdapter.CreateLogger*
+  name: CreateLogger
+  href: api/ModLib.Logging.LoggingAdapter.html#ModLib_Logging_LoggingAdapter_CreateLogger_
+  commentId: Overload:ModLib.Logging.LoggingAdapter.CreateLogger
+  isSpec: "True"
+  fullName: ModLib.Logging.LoggingAdapter.CreateLogger
+  nameWithType: LoggingAdapter.CreateLogger
+- uid: ModLib.Meadow
+  name: ModLib.Meadow
+  href: api/ModLib.Meadow.html
+  commentId: N:ModLib.Meadow
+  fullName: ModLib.Meadow
+  nameWithType: ModLib.Meadow
+- uid: ModLib.Meadow.MeadowGameModes
+  name: MeadowGameModes
+  href: api/ModLib.Meadow.MeadowGameModes.html
+  commentId: T:ModLib.Meadow.MeadowGameModes
+  fullName: ModLib.Meadow.MeadowGameModes
+  nameWithType: MeadowGameModes
+- uid: ModLib.Meadow.MeadowGameModes.Arena
+  name: Arena
+  href: api/ModLib.Meadow.MeadowGameModes.html#ModLib_Meadow_MeadowGameModes_Arena
+  commentId: F:ModLib.Meadow.MeadowGameModes.Arena
+  fullName: ModLib.Meadow.MeadowGameModes.Arena
+  nameWithType: MeadowGameModes.Arena
+- uid: ModLib.Meadow.MeadowGameModes.Custom
+  name: Custom
+  href: api/ModLib.Meadow.MeadowGameModes.html#ModLib_Meadow_MeadowGameModes_Custom
+  commentId: F:ModLib.Meadow.MeadowGameModes.Custom
+  fullName: ModLib.Meadow.MeadowGameModes.Custom
+  nameWithType: MeadowGameModes.Custom
+- uid: ModLib.Meadow.MeadowGameModes.Meadow
+  name: Meadow
+  href: api/ModLib.Meadow.MeadowGameModes.html#ModLib_Meadow_MeadowGameModes_Meadow
+  commentId: F:ModLib.Meadow.MeadowGameModes.Meadow
+  fullName: ModLib.Meadow.MeadowGameModes.Meadow
+  nameWithType: MeadowGameModes.Meadow
+- uid: ModLib.Meadow.MeadowGameModes.Story
+  name: Story
+  href: api/ModLib.Meadow.MeadowGameModes.html#ModLib_Meadow_MeadowGameModes_Story
+  commentId: F:ModLib.Meadow.MeadowGameModes.Story
+  fullName: ModLib.Meadow.MeadowGameModes.Story
+  nameWithType: MeadowGameModes.Story
+- uid: ModLib.Meadow.MeadowUtils
+  name: MeadowUtils
+  href: api/ModLib.Meadow.MeadowUtils.html
+  commentId: T:ModLib.Meadow.MeadowUtils
+  fullName: ModLib.Meadow.MeadowUtils
+  nameWithType: MeadowUtils
+- uid: ModLib.Meadow.MeadowUtils.GetOnlineName(Player)
+  name: GetOnlineName(Player)
+  href: api/ModLib.Meadow.MeadowUtils.html#ModLib_Meadow_MeadowUtils_GetOnlineName_Player_
+  commentId: M:ModLib.Meadow.MeadowUtils.GetOnlineName(Player)
+  fullName: ModLib.Meadow.MeadowUtils.GetOnlineName(Player)
+  nameWithType: MeadowUtils.GetOnlineName(Player)
+- uid: ModLib.Meadow.MeadowUtils.GetOnlineName*
+  name: GetOnlineName
+  href: api/ModLib.Meadow.MeadowUtils.html#ModLib_Meadow_MeadowUtils_GetOnlineName_
+  commentId: Overload:ModLib.Meadow.MeadowUtils.GetOnlineName
+  isSpec: "True"
+  fullName: ModLib.Meadow.MeadowUtils.GetOnlineName
+  nameWithType: MeadowUtils.GetOnlineName
+- uid: ModLib.Meadow.MeadowUtils.IsGameMode(ModLib.Meadow.MeadowGameModes)
+  name: IsGameMode(MeadowGameModes)
+  href: api/ModLib.Meadow.MeadowUtils.html#ModLib_Meadow_MeadowUtils_IsGameMode_ModLib_Meadow_MeadowGameModes_
+  commentId: M:ModLib.Meadow.MeadowUtils.IsGameMode(ModLib.Meadow.MeadowGameModes)
+  fullName: ModLib.Meadow.MeadowUtils.IsGameMode(ModLib.Meadow.MeadowGameModes)
+  nameWithType: MeadowUtils.IsGameMode(MeadowGameModes)
+- uid: ModLib.Meadow.MeadowUtils.IsGameMode*
+  name: IsGameMode
+  href: api/ModLib.Meadow.MeadowUtils.html#ModLib_Meadow_MeadowUtils_IsGameMode_
+  commentId: Overload:ModLib.Meadow.MeadowUtils.IsGameMode
+  isSpec: "True"
+  fullName: ModLib.Meadow.MeadowUtils.IsGameMode
+  nameWithType: MeadowUtils.IsGameMode
+- uid: ModLib.Meadow.MeadowUtils.IsHost
+  name: IsHost
+  href: api/ModLib.Meadow.MeadowUtils.html#ModLib_Meadow_MeadowUtils_IsHost
+  commentId: P:ModLib.Meadow.MeadowUtils.IsHost
+  fullName: ModLib.Meadow.MeadowUtils.IsHost
+  nameWithType: MeadowUtils.IsHost
+- uid: ModLib.Meadow.MeadowUtils.IsHost*
+  name: IsHost
+  href: api/ModLib.Meadow.MeadowUtils.html#ModLib_Meadow_MeadowUtils_IsHost_
+  commentId: Overload:ModLib.Meadow.MeadowUtils.IsHost
+  isSpec: "True"
+  fullName: ModLib.Meadow.MeadowUtils.IsHost
+  nameWithType: MeadowUtils.IsHost
+- uid: ModLib.Meadow.MeadowUtils.IsMine(PhysicalObject)
+  name: IsMine(PhysicalObject)
+  href: api/ModLib.Meadow.MeadowUtils.html#ModLib_Meadow_MeadowUtils_IsMine_PhysicalObject_
+  commentId: M:ModLib.Meadow.MeadowUtils.IsMine(PhysicalObject)
+  fullName: ModLib.Meadow.MeadowUtils.IsMine(PhysicalObject)
+  nameWithType: MeadowUtils.IsMine(PhysicalObject)
+- uid: ModLib.Meadow.MeadowUtils.IsMine*
+  name: IsMine
+  href: api/ModLib.Meadow.MeadowUtils.html#ModLib_Meadow_MeadowUtils_IsMine_
+  commentId: Overload:ModLib.Meadow.MeadowUtils.IsMine
+  isSpec: "True"
+  fullName: ModLib.Meadow.MeadowUtils.IsMine
+  nameWithType: MeadowUtils.IsMine
+- uid: ModLib.Meadow.MeadowUtils.IsOnline
+  name: IsOnline
+  href: api/ModLib.Meadow.MeadowUtils.html#ModLib_Meadow_MeadowUtils_IsOnline
+  commentId: P:ModLib.Meadow.MeadowUtils.IsOnline
+  fullName: ModLib.Meadow.MeadowUtils.IsOnline
+  nameWithType: MeadowUtils.IsOnline
+- uid: ModLib.Meadow.MeadowUtils.IsOnline*
+  name: IsOnline
+  href: api/ModLib.Meadow.MeadowUtils.html#ModLib_Meadow_MeadowUtils_IsOnline_
+  commentId: Overload:ModLib.Meadow.MeadowUtils.IsOnline
+  isSpec: "True"
+  fullName: ModLib.Meadow.MeadowUtils.IsOnline
+  nameWithType: MeadowUtils.IsOnline
+- uid: ModLib.Meadow.MeadowUtils.LogSystemMessage(System.String)
+  name: LogSystemMessage(string)
+  href: api/ModLib.Meadow.MeadowUtils.html#ModLib_Meadow_MeadowUtils_LogSystemMessage_System_String_
+  commentId: M:ModLib.Meadow.MeadowUtils.LogSystemMessage(System.String)
+  name.vb: LogSystemMessage(String)
+  fullName: ModLib.Meadow.MeadowUtils.LogSystemMessage(string)
+  fullName.vb: ModLib.Meadow.MeadowUtils.LogSystemMessage(String)
+  nameWithType: MeadowUtils.LogSystemMessage(string)
+  nameWithType.vb: MeadowUtils.LogSystemMessage(String)
+- uid: ModLib.Meadow.MeadowUtils.LogSystemMessage*
+  name: LogSystemMessage
+  href: api/ModLib.Meadow.MeadowUtils.html#ModLib_Meadow_MeadowUtils_LogSystemMessage_
+  commentId: Overload:ModLib.Meadow.MeadowUtils.LogSystemMessage
+  isSpec: "True"
+  fullName: ModLib.Meadow.MeadowUtils.LogSystemMessage
+  nameWithType: MeadowUtils.LogSystemMessage
+- uid: ModLib.Meadow.MeadowUtils.RequestOwnership(PhysicalObject)
+  name: RequestOwnership(PhysicalObject)
+  href: api/ModLib.Meadow.MeadowUtils.html#ModLib_Meadow_MeadowUtils_RequestOwnership_PhysicalObject_
+  commentId: M:ModLib.Meadow.MeadowUtils.RequestOwnership(PhysicalObject)
+  fullName: ModLib.Meadow.MeadowUtils.RequestOwnership(PhysicalObject)
+  nameWithType: MeadowUtils.RequestOwnership(PhysicalObject)
+- uid: ModLib.Meadow.MeadowUtils.RequestOwnership(PhysicalObject,System.Action{RainMeadow.GenericResult})
+  name: RequestOwnership(PhysicalObject, Action<GenericResult>)
+  href: api/ModLib.Meadow.MeadowUtils.html#ModLib_Meadow_MeadowUtils_RequestOwnership_PhysicalObject_System_Action_RainMeadow_GenericResult__
+  commentId: M:ModLib.Meadow.MeadowUtils.RequestOwnership(PhysicalObject,System.Action{RainMeadow.GenericResult})
+  name.vb: RequestOwnership(PhysicalObject, Action(Of GenericResult))
+  fullName: ModLib.Meadow.MeadowUtils.RequestOwnership(PhysicalObject, System.Action<RainMeadow.GenericResult>)
+  fullName.vb: ModLib.Meadow.MeadowUtils.RequestOwnership(PhysicalObject, System.Action(Of RainMeadow.GenericResult))
+  nameWithType: MeadowUtils.RequestOwnership(PhysicalObject, Action<GenericResult>)
+  nameWithType.vb: MeadowUtils.RequestOwnership(PhysicalObject, Action(Of GenericResult))
+- uid: ModLib.Meadow.MeadowUtils.RequestOwnership(RainMeadow.OnlinePhysicalObject,System.Action{RainMeadow.GenericResult})
+  name: RequestOwnership(OnlinePhysicalObject, Action<GenericResult>?)
+  href: api/ModLib.Meadow.MeadowUtils.html#ModLib_Meadow_MeadowUtils_RequestOwnership_RainMeadow_OnlinePhysicalObject_System_Action_RainMeadow_GenericResult__
+  commentId: M:ModLib.Meadow.MeadowUtils.RequestOwnership(RainMeadow.OnlinePhysicalObject,System.Action{RainMeadow.GenericResult})
+  name.vb: RequestOwnership(OnlinePhysicalObject, Action(Of GenericResult))
+  fullName: ModLib.Meadow.MeadowUtils.RequestOwnership(RainMeadow.OnlinePhysicalObject, System.Action<RainMeadow.GenericResult>?)
+  fullName.vb: ModLib.Meadow.MeadowUtils.RequestOwnership(RainMeadow.OnlinePhysicalObject, System.Action(Of RainMeadow.GenericResult))
+  nameWithType: MeadowUtils.RequestOwnership(OnlinePhysicalObject, Action<GenericResult>?)
+  nameWithType.vb: MeadowUtils.RequestOwnership(OnlinePhysicalObject, Action(Of GenericResult))
+- uid: ModLib.Meadow.MeadowUtils.RequestOwnership*
+  name: RequestOwnership
+  href: api/ModLib.Meadow.MeadowUtils.html#ModLib_Meadow_MeadowUtils_RequestOwnership_
+  commentId: Overload:ModLib.Meadow.MeadowUtils.RequestOwnership
+  isSpec: "True"
+  fullName: ModLib.Meadow.MeadowUtils.RequestOwnership
+  nameWithType: MeadowUtils.RequestOwnership
+- uid: ModLib.Meadow.ModRPCManager
+  name: ModRPCManager
+  href: api/ModLib.Meadow.ModRPCManager.html
+  commentId: T:ModLib.Meadow.ModRPCManager
+  fullName: ModLib.Meadow.ModRPCManager
+  nameWithType: ModRPCManager
+- uid: ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInRoom(RainMeadow.OnlineEntity,System.Delegate,System.Object[])
+  name: BroadcastOnceRPCInRoom(OnlineEntity, Delegate, params object[])
+  href: api/ModLib.Meadow.ModRPCManager.html#ModLib_Meadow_ModRPCManager_BroadcastOnceRPCInRoom_RainMeadow_OnlineEntity_System_Delegate_System_Object___
+  commentId: M:ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInRoom(RainMeadow.OnlineEntity,System.Delegate,System.Object[])
+  name.vb: BroadcastOnceRPCInRoom(OnlineEntity, Delegate, ParamArray Object())
+  fullName: ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInRoom(RainMeadow.OnlineEntity, System.Delegate, params object[])
+  fullName.vb: ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInRoom(RainMeadow.OnlineEntity, System.Delegate, ParamArray Object())
+  nameWithType: ModRPCManager.BroadcastOnceRPCInRoom(OnlineEntity, Delegate, params object[])
+  nameWithType.vb: ModRPCManager.BroadcastOnceRPCInRoom(OnlineEntity, Delegate, ParamArray Object())
+- uid: ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInRoom*
+  name: BroadcastOnceRPCInRoom
+  href: api/ModLib.Meadow.ModRPCManager.html#ModLib_Meadow_ModRPCManager_BroadcastOnceRPCInRoom_
+  commentId: Overload:ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInRoom
+  isSpec: "True"
+  fullName: ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInRoom
+  nameWithType: ModRPCManager.BroadcastOnceRPCInRoom
+- uid: ModLib.Meadow.ModRPCManager.ResolveRPCEvent(RainMeadow.GenericResult)
+  name: ResolveRPCEvent(GenericResult)
+  href: api/ModLib.Meadow.ModRPCManager.html#ModLib_Meadow_ModRPCManager_ResolveRPCEvent_RainMeadow_GenericResult_
+  commentId: M:ModLib.Meadow.ModRPCManager.ResolveRPCEvent(RainMeadow.GenericResult)
+  fullName: ModLib.Meadow.ModRPCManager.ResolveRPCEvent(RainMeadow.GenericResult)
+  nameWithType: ModRPCManager.ResolveRPCEvent(GenericResult)
+- uid: ModLib.Meadow.ModRPCManager.ResolveRPCEvent*
+  name: ResolveRPCEvent
+  href: api/ModLib.Meadow.ModRPCManager.html#ModLib_Meadow_ModRPCManager_ResolveRPCEvent_
+  commentId: Overload:ModLib.Meadow.ModRPCManager.ResolveRPCEvent
+  isSpec: "True"
+  fullName: ModLib.Meadow.ModRPCManager.ResolveRPCEvent
+  nameWithType: ModRPCManager.ResolveRPCEvent
+- uid: ModLib.Meadow.ModRPCManager.SendRPCEvent*
+  name: SendRPCEvent
+  href: api/ModLib.Meadow.ModRPCManager.html#ModLib_Meadow_ModRPCManager_SendRPCEvent_
+  commentId: Overload:ModLib.Meadow.ModRPCManager.SendRPCEvent
+  isSpec: "True"
+  fullName: ModLib.Meadow.ModRPCManager.SendRPCEvent
+  nameWithType: ModRPCManager.SendRPCEvent
+- uid: ModLib.Meadow.ModRPCManager.SendRPCEvent``1(RainMeadow.OnlinePlayer,``0,System.Object[])
+  name: SendRPCEvent<T>(OnlinePlayer, T, params object[])
+  href: api/ModLib.Meadow.ModRPCManager.html#ModLib_Meadow_ModRPCManager_SendRPCEvent__1_RainMeadow_OnlinePlayer___0_System_Object___
+  commentId: M:ModLib.Meadow.ModRPCManager.SendRPCEvent``1(RainMeadow.OnlinePlayer,``0,System.Object[])
+  name.vb: SendRPCEvent(Of T)(OnlinePlayer, T, ParamArray Object())
+  fullName: ModLib.Meadow.ModRPCManager.SendRPCEvent<T>(RainMeadow.OnlinePlayer, T, params object[])
+  fullName.vb: ModLib.Meadow.ModRPCManager.SendRPCEvent(Of T)(RainMeadow.OnlinePlayer, T, ParamArray Object())
+  nameWithType: ModRPCManager.SendRPCEvent<T>(OnlinePlayer, T, params object[])
+  nameWithType.vb: ModRPCManager.SendRPCEvent(Of T)(OnlinePlayer, T, ParamArray Object())
+- uid: ModLib.Meadow.ModRPCs
+  name: ModRPCs
+  href: api/ModLib.Meadow.ModRPCs.html
+  commentId: T:ModLib.Meadow.ModRPCs
+  fullName: ModLib.Meadow.ModRPCs
+  nameWithType: ModRPCs
+- uid: ModLib.Meadow.ModRPCs.LogSystemMessage(System.String)
+  name: LogSystemMessage(string)
+  href: api/ModLib.Meadow.ModRPCs.html#ModLib_Meadow_ModRPCs_LogSystemMessage_System_String_
+  commentId: M:ModLib.Meadow.ModRPCs.LogSystemMessage(System.String)
+  name.vb: LogSystemMessage(String)
+  fullName: ModLib.Meadow.ModRPCs.LogSystemMessage(string)
+  fullName.vb: ModLib.Meadow.ModRPCs.LogSystemMessage(String)
+  nameWithType: ModRPCs.LogSystemMessage(string)
+  nameWithType.vb: ModRPCs.LogSystemMessage(String)
+- uid: ModLib.Meadow.ModRPCs.LogSystemMessage*
+  name: LogSystemMessage
+  href: api/ModLib.Meadow.ModRPCs.html#ModLib_Meadow_ModRPCs_LogSystemMessage_
+  commentId: Overload:ModLib.Meadow.ModRPCs.LogSystemMessage
+  isSpec: "True"
+  fullName: ModLib.Meadow.ModRPCs.LogSystemMessage
+  nameWithType: ModRPCs.LogSystemMessage
+- uid: ModLib.Meadow.ModRPCs.RequestSyncRemixOptions(RainMeadow.RPCEvent,RainMeadow.OnlinePlayer)
+  name: RequestSyncRemixOptions(RPCEvent, OnlinePlayer)
+  href: api/ModLib.Meadow.ModRPCs.html#ModLib_Meadow_ModRPCs_RequestSyncRemixOptions_RainMeadow_RPCEvent_RainMeadow_OnlinePlayer_
+  commentId: M:ModLib.Meadow.ModRPCs.RequestSyncRemixOptions(RainMeadow.RPCEvent,RainMeadow.OnlinePlayer)
+  fullName: ModLib.Meadow.ModRPCs.RequestSyncRemixOptions(RainMeadow.RPCEvent, RainMeadow.OnlinePlayer)
+  nameWithType: ModRPCs.RequestSyncRemixOptions(RPCEvent, OnlinePlayer)
+- uid: ModLib.Meadow.ModRPCs.RequestSyncRemixOptions*
+  name: RequestSyncRemixOptions
+  href: api/ModLib.Meadow.ModRPCs.html#ModLib_Meadow_ModRPCs_RequestSyncRemixOptions_
+  commentId: Overload:ModLib.Meadow.ModRPCs.RequestSyncRemixOptions
+  isSpec: "True"
+  fullName: ModLib.Meadow.ModRPCs.RequestSyncRemixOptions
+  nameWithType: ModRPCs.RequestSyncRemixOptions
+- uid: ModLib.Meadow.ModRPCs.SerializableOptions
+  name: ModRPCs.SerializableOptions
+  href: api/ModLib.Meadow.ModRPCs.SerializableOptions.html
+  commentId: T:ModLib.Meadow.ModRPCs.SerializableOptions
+  fullName: ModLib.Meadow.ModRPCs.SerializableOptions
+  nameWithType: ModRPCs.SerializableOptions
+- uid: ModLib.Meadow.ModRPCs.SerializableOptions.#ctor
+  name: SerializableOptions()
+  href: api/ModLib.Meadow.ModRPCs.SerializableOptions.html#ModLib_Meadow_ModRPCs_SerializableOptions__ctor
+  commentId: M:ModLib.Meadow.ModRPCs.SerializableOptions.#ctor
+  name.vb: New()
+  fullName: ModLib.Meadow.ModRPCs.SerializableOptions.SerializableOptions()
+  fullName.vb: ModLib.Meadow.ModRPCs.SerializableOptions.New()
+  nameWithType: ModRPCs.SerializableOptions.SerializableOptions()
+  nameWithType.vb: ModRPCs.SerializableOptions.New()
+- uid: ModLib.Meadow.ModRPCs.SerializableOptions.#ctor(System.Collections.Generic.IDictionary{System.String,ModLib.Options.ConfigValue})
+  name: SerializableOptions(IDictionary<string, ConfigValue>)
+  href: api/ModLib.Meadow.ModRPCs.SerializableOptions.html#ModLib_Meadow_ModRPCs_SerializableOptions__ctor_System_Collections_Generic_IDictionary_System_String_ModLib_Options_ConfigValue__
+  commentId: M:ModLib.Meadow.ModRPCs.SerializableOptions.#ctor(System.Collections.Generic.IDictionary{System.String,ModLib.Options.ConfigValue})
+  name.vb: New(IDictionary(Of String, ConfigValue))
+  fullName: ModLib.Meadow.ModRPCs.SerializableOptions.SerializableOptions(System.Collections.Generic.IDictionary<string, ModLib.Options.ConfigValue>)
+  fullName.vb: ModLib.Meadow.ModRPCs.SerializableOptions.New(System.Collections.Generic.IDictionary(Of String, ModLib.Options.ConfigValue))
+  nameWithType: ModRPCs.SerializableOptions.SerializableOptions(IDictionary<string, ConfigValue>)
+  nameWithType.vb: ModRPCs.SerializableOptions.New(IDictionary(Of String, ConfigValue))
+- uid: ModLib.Meadow.ModRPCs.SerializableOptions.#ctor*
+  name: SerializableOptions
+  href: api/ModLib.Meadow.ModRPCs.SerializableOptions.html#ModLib_Meadow_ModRPCs_SerializableOptions__ctor_
+  commentId: Overload:ModLib.Meadow.ModRPCs.SerializableOptions.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: ModLib.Meadow.ModRPCs.SerializableOptions.SerializableOptions
+  fullName.vb: ModLib.Meadow.ModRPCs.SerializableOptions.New
+  nameWithType: ModRPCs.SerializableOptions.SerializableOptions
+  nameWithType.vb: ModRPCs.SerializableOptions.New
+- uid: ModLib.Meadow.ModRPCs.SerializableOptions.CustomSerialize(RainMeadow.Serializer)
+  name: CustomSerialize(Serializer)
+  href: api/ModLib.Meadow.ModRPCs.SerializableOptions.html#ModLib_Meadow_ModRPCs_SerializableOptions_CustomSerialize_RainMeadow_Serializer_
+  commentId: M:ModLib.Meadow.ModRPCs.SerializableOptions.CustomSerialize(RainMeadow.Serializer)
+  fullName: ModLib.Meadow.ModRPCs.SerializableOptions.CustomSerialize(RainMeadow.Serializer)
+  nameWithType: ModRPCs.SerializableOptions.CustomSerialize(Serializer)
+- uid: ModLib.Meadow.ModRPCs.SerializableOptions.CustomSerialize*
+  name: CustomSerialize
+  href: api/ModLib.Meadow.ModRPCs.SerializableOptions.html#ModLib_Meadow_ModRPCs_SerializableOptions_CustomSerialize_
+  commentId: Overload:ModLib.Meadow.ModRPCs.SerializableOptions.CustomSerialize
+  isSpec: "True"
+  fullName: ModLib.Meadow.ModRPCs.SerializableOptions.CustomSerialize
+  nameWithType: ModRPCs.SerializableOptions.CustomSerialize
+- uid: ModLib.Meadow.ModRPCs.SerializableOptions.Options
+  name: Options
+  href: api/ModLib.Meadow.ModRPCs.SerializableOptions.html#ModLib_Meadow_ModRPCs_SerializableOptions_Options
+  commentId: F:ModLib.Meadow.ModRPCs.SerializableOptions.Options
+  fullName: ModLib.Meadow.ModRPCs.SerializableOptions.Options
+  nameWithType: ModRPCs.SerializableOptions.Options
+- uid: ModLib.Meadow.ModRPCs.SyncRemixOptions(RainMeadow.RPCEvent,ModLib.Meadow.ModRPCs.SerializableOptions)
+  name: SyncRemixOptions(RPCEvent, SerializableOptions)
+  href: api/ModLib.Meadow.ModRPCs.html#ModLib_Meadow_ModRPCs_SyncRemixOptions_RainMeadow_RPCEvent_ModLib_Meadow_ModRPCs_SerializableOptions_
+  commentId: M:ModLib.Meadow.ModRPCs.SyncRemixOptions(RainMeadow.RPCEvent,ModLib.Meadow.ModRPCs.SerializableOptions)
+  fullName: ModLib.Meadow.ModRPCs.SyncRemixOptions(RainMeadow.RPCEvent, ModLib.Meadow.ModRPCs.SerializableOptions)
+  nameWithType: ModRPCs.SyncRemixOptions(RPCEvent, ModRPCs.SerializableOptions)
+- uid: ModLib.Meadow.ModRPCs.SyncRemixOptions*
+  name: SyncRemixOptions
+  href: api/ModLib.Meadow.ModRPCs.html#ModLib_Meadow_ModRPCs_SyncRemixOptions_
+  commentId: Overload:ModLib.Meadow.ModRPCs.SyncRemixOptions
+  isSpec: "True"
+  fullName: ModLib.Meadow.ModRPCs.SyncRemixOptions
+  nameWithType: ModRPCs.SyncRemixOptions
+- uid: ModLib.ModPlugin
+  name: ModPlugin
+  href: api/ModLib.ModPlugin.html
+  commentId: T:ModLib.ModPlugin
+  fullName: ModLib.ModPlugin
+  nameWithType: ModPlugin
+- uid: ModLib.ModPlugin.#ctor
+  name: ModPlugin()
+  href: api/ModLib.ModPlugin.html#ModLib_ModPlugin__ctor
+  commentId: M:ModLib.ModPlugin.#ctor
+  name.vb: New()
+  fullName: ModLib.ModPlugin.ModPlugin()
+  fullName.vb: ModLib.ModPlugin.New()
+  nameWithType: ModPlugin.ModPlugin()
+  nameWithType.vb: ModPlugin.New()
+- uid: ModLib.ModPlugin.#ctor(OptionInterface)
+  name: ModPlugin(OptionInterface?)
+  href: api/ModLib.ModPlugin.html#ModLib_ModPlugin__ctor_OptionInterface_
+  commentId: M:ModLib.ModPlugin.#ctor(OptionInterface)
+  name.vb: New(OptionInterface)
+  fullName: ModLib.ModPlugin.ModPlugin(OptionInterface?)
+  fullName.vb: ModLib.ModPlugin.New(OptionInterface)
+  nameWithType: ModPlugin.ModPlugin(OptionInterface?)
+  nameWithType.vb: ModPlugin.New(OptionInterface)
+- uid: ModLib.ModPlugin.#ctor(OptionInterface,ModLib.Logging.IMyLogger)
+  name: ModPlugin(OptionInterface?, IMyLogger?)
+  href: api/ModLib.ModPlugin.html#ModLib_ModPlugin__ctor_OptionInterface_ModLib_Logging_IMyLogger_
+  commentId: M:ModLib.ModPlugin.#ctor(OptionInterface,ModLib.Logging.IMyLogger)
+  name.vb: New(OptionInterface, IMyLogger)
+  fullName: ModLib.ModPlugin.ModPlugin(OptionInterface?, ModLib.Logging.IMyLogger?)
+  fullName.vb: ModLib.ModPlugin.New(OptionInterface, ModLib.Logging.IMyLogger)
+  nameWithType: ModPlugin.ModPlugin(OptionInterface?, IMyLogger?)
+  nameWithType.vb: ModPlugin.New(OptionInterface, IMyLogger)
+- uid: ModLib.ModPlugin.#ctor*
+  name: ModPlugin
+  href: api/ModLib.ModPlugin.html#ModLib_ModPlugin__ctor_
+  commentId: Overload:ModLib.ModPlugin.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: ModLib.ModPlugin.ModPlugin
+  fullName.vb: ModLib.ModPlugin.New
+  nameWithType: ModPlugin.ModPlugin
+  nameWithType.vb: ModPlugin.New
+- uid: ModLib.ModPlugin.ApplyHooks
+  name: ApplyHooks()
+  href: api/ModLib.ModPlugin.html#ModLib_ModPlugin_ApplyHooks
+  commentId: M:ModLib.ModPlugin.ApplyHooks
+  fullName: ModLib.ModPlugin.ApplyHooks()
+  nameWithType: ModPlugin.ApplyHooks()
+- uid: ModLib.ModPlugin.ApplyHooks*
+  name: ApplyHooks
+  href: api/ModLib.ModPlugin.html#ModLib_ModPlugin_ApplyHooks_
+  commentId: Overload:ModLib.ModPlugin.ApplyHooks
+  isSpec: "True"
+  fullName: ModLib.ModPlugin.ApplyHooks
+  nameWithType: ModPlugin.ApplyHooks
+- uid: ModLib.ModPlugin.IsModEnabled
+  name: IsModEnabled
+  href: api/ModLib.ModPlugin.html#ModLib_ModPlugin_IsModEnabled
+  commentId: P:ModLib.ModPlugin.IsModEnabled
+  fullName: ModLib.ModPlugin.IsModEnabled
+  nameWithType: ModPlugin.IsModEnabled
+- uid: ModLib.ModPlugin.IsModEnabled*
+  name: IsModEnabled
+  href: api/ModLib.ModPlugin.html#ModLib_ModPlugin_IsModEnabled_
+  commentId: Overload:ModLib.ModPlugin.IsModEnabled
+  isSpec: "True"
+  fullName: ModLib.ModPlugin.IsModEnabled
+  nameWithType: ModPlugin.IsModEnabled
+- uid: ModLib.ModPlugin.LoadResources
+  name: LoadResources()
+  href: api/ModLib.ModPlugin.html#ModLib_ModPlugin_LoadResources
+  commentId: M:ModLib.ModPlugin.LoadResources
+  fullName: ModLib.ModPlugin.LoadResources()
+  nameWithType: ModPlugin.LoadResources()
+- uid: ModLib.ModPlugin.LoadResources*
+  name: LoadResources
+  href: api/ModLib.ModPlugin.html#ModLib_ModPlugin_LoadResources_
+  commentId: Overload:ModLib.ModPlugin.LoadResources
+  isSpec: "True"
+  fullName: ModLib.ModPlugin.LoadResources
+  nameWithType: ModPlugin.LoadResources
+- uid: ModLib.ModPlugin.Logger
+  name: Logger
+  href: api/ModLib.ModPlugin.html#ModLib_ModPlugin_Logger
+  commentId: P:ModLib.ModPlugin.Logger
+  fullName: ModLib.ModPlugin.Logger
+  nameWithType: ModPlugin.Logger
+- uid: ModLib.ModPlugin.Logger*
+  name: Logger
+  href: api/ModLib.ModPlugin.html#ModLib_ModPlugin_Logger_
+  commentId: Overload:ModLib.ModPlugin.Logger
+  isSpec: "True"
+  fullName: ModLib.ModPlugin.Logger
+  nameWithType: ModPlugin.Logger
+- uid: ModLib.ModPlugin.OnDisable
+  name: OnDisable()
+  href: api/ModLib.ModPlugin.html#ModLib_ModPlugin_OnDisable
+  commentId: M:ModLib.ModPlugin.OnDisable
+  fullName: ModLib.ModPlugin.OnDisable()
+  nameWithType: ModPlugin.OnDisable()
+- uid: ModLib.ModPlugin.OnDisable*
+  name: OnDisable
+  href: api/ModLib.ModPlugin.html#ModLib_ModPlugin_OnDisable_
+  commentId: Overload:ModLib.ModPlugin.OnDisable
+  isSpec: "True"
+  fullName: ModLib.ModPlugin.OnDisable
+  nameWithType: ModPlugin.OnDisable
+- uid: ModLib.ModPlugin.OnEnable
+  name: OnEnable()
+  href: api/ModLib.ModPlugin.html#ModLib_ModPlugin_OnEnable
+  commentId: M:ModLib.ModPlugin.OnEnable
+  fullName: ModLib.ModPlugin.OnEnable()
+  nameWithType: ModPlugin.OnEnable()
+- uid: ModLib.ModPlugin.OnEnable*
+  name: OnEnable
+  href: api/ModLib.ModPlugin.html#ModLib_ModPlugin_OnEnable_
+  commentId: Overload:ModLib.ModPlugin.OnEnable
+  isSpec: "True"
+  fullName: ModLib.ModPlugin.OnEnable
+  nameWithType: ModPlugin.OnEnable
+- uid: ModLib.ModPlugin.OnModsInitHook(On.RainWorld.orig_OnModsInit,RainWorld)
+  name: OnModsInitHook(orig_OnModsInit, RainWorld)
+  href: api/ModLib.ModPlugin.html#ModLib_ModPlugin_OnModsInitHook_On_RainWorld_orig_OnModsInit_RainWorld_
+  commentId: M:ModLib.ModPlugin.OnModsInitHook(On.RainWorld.orig_OnModsInit,RainWorld)
+  fullName: ModLib.ModPlugin.OnModsInitHook(On.RainWorld.orig_OnModsInit, RainWorld)
+  nameWithType: ModPlugin.OnModsInitHook(RainWorld.orig_OnModsInit, RainWorld)
+- uid: ModLib.ModPlugin.OnModsInitHook*
+  name: OnModsInitHook
+  href: api/ModLib.ModPlugin.html#ModLib_ModPlugin_OnModsInitHook_
+  commentId: Overload:ModLib.ModPlugin.OnModsInitHook
+  isSpec: "True"
+  fullName: ModLib.ModPlugin.OnModsInitHook
+  nameWithType: ModPlugin.OnModsInitHook
+- uid: ModLib.ModPlugin.RemoveHooks
+  name: RemoveHooks()
+  href: api/ModLib.ModPlugin.html#ModLib_ModPlugin_RemoveHooks
+  commentId: M:ModLib.ModPlugin.RemoveHooks
+  fullName: ModLib.ModPlugin.RemoveHooks()
+  nameWithType: ModPlugin.RemoveHooks()
+- uid: ModLib.ModPlugin.RemoveHooks*
+  name: RemoveHooks
+  href: api/ModLib.ModPlugin.html#ModLib_ModPlugin_RemoveHooks_
+  commentId: Overload:ModLib.ModPlugin.RemoveHooks
+  isSpec: "True"
+  fullName: ModLib.ModPlugin.RemoveHooks
+  nameWithType: ModPlugin.RemoveHooks
+- uid: ModLib.Options
+  name: ModLib.Options
+  href: api/ModLib.Options.html
+  commentId: N:ModLib.Options
+  fullName: ModLib.Options
+  nameWithType: ModLib.Options
+- uid: ModLib.Options.ClientOptionAttribute
+  name: ClientOptionAttribute
+  href: api/ModLib.Options.ClientOptionAttribute.html
+  commentId: T:ModLib.Options.ClientOptionAttribute
+  fullName: ModLib.Options.ClientOptionAttribute
+  nameWithType: ClientOptionAttribute
+- uid: ModLib.Options.ConfigValue
+  name: ConfigValue
+  href: api/ModLib.Options.ConfigValue.html
+  commentId: T:ModLib.Options.ConfigValue
+  fullName: ModLib.Options.ConfigValue
+  nameWithType: ConfigValue
+- uid: ModLib.Options.ConfigValue.#ctor(System.String)
+  name: ConfigValue(string)
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue__ctor_System_String_
+  commentId: M:ModLib.Options.ConfigValue.#ctor(System.String)
+  name.vb: New(String)
+  fullName: ModLib.Options.ConfigValue.ConfigValue(string)
+  fullName.vb: ModLib.Options.ConfigValue.New(String)
+  nameWithType: ConfigValue.ConfigValue(string)
+  nameWithType.vb: ConfigValue.New(String)
+- uid: ModLib.Options.ConfigValue.#ctor(System.ValueType)
+  name: ConfigValue(ValueType?)
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue__ctor_System_ValueType_
+  commentId: M:ModLib.Options.ConfigValue.#ctor(System.ValueType)
+  name.vb: New(ValueType)
+  fullName: ModLib.Options.ConfigValue.ConfigValue(System.ValueType?)
+  fullName.vb: ModLib.Options.ConfigValue.New(System.ValueType)
+  nameWithType: ConfigValue.ConfigValue(ValueType?)
+  nameWithType.vb: ConfigValue.New(ValueType)
+- uid: ModLib.Options.ConfigValue.#ctor*
+  name: ConfigValue
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue__ctor_
+  commentId: Overload:ModLib.Options.ConfigValue.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: ModLib.Options.ConfigValue.ConfigValue
+  fullName.vb: ModLib.Options.ConfigValue.New
+  nameWithType: ConfigValue.ConfigValue
+  nameWithType.vb: ConfigValue.New
+- uid: ModLib.Options.ConfigValue.CompareTo(ModLib.Options.ConfigValue)
+  name: CompareTo(ConfigValue)
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_CompareTo_ModLib_Options_ConfigValue_
+  commentId: M:ModLib.Options.ConfigValue.CompareTo(ModLib.Options.ConfigValue)
+  fullName: ModLib.Options.ConfigValue.CompareTo(ModLib.Options.ConfigValue)
+  nameWithType: ConfigValue.CompareTo(ConfigValue)
+- uid: ModLib.Options.ConfigValue.CompareTo(System.Object)
+  name: CompareTo(object)
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_CompareTo_System_Object_
+  commentId: M:ModLib.Options.ConfigValue.CompareTo(System.Object)
+  name.vb: CompareTo(Object)
+  fullName: ModLib.Options.ConfigValue.CompareTo(object)
+  fullName.vb: ModLib.Options.ConfigValue.CompareTo(Object)
+  nameWithType: ConfigValue.CompareTo(object)
+  nameWithType.vb: ConfigValue.CompareTo(Object)
+- uid: ModLib.Options.ConfigValue.CompareTo*
+  name: CompareTo
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_CompareTo_
+  commentId: Overload:ModLib.Options.ConfigValue.CompareTo
+  isSpec: "True"
+  fullName: ModLib.Options.ConfigValue.CompareTo
+  nameWithType: ConfigValue.CompareTo
+- uid: ModLib.Options.ConfigValue.Equals(ModLib.Options.ConfigValue)
+  name: Equals(ConfigValue)
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_Equals_ModLib_Options_ConfigValue_
+  commentId: M:ModLib.Options.ConfigValue.Equals(ModLib.Options.ConfigValue)
+  fullName: ModLib.Options.ConfigValue.Equals(ModLib.Options.ConfigValue)
+  nameWithType: ConfigValue.Equals(ConfigValue)
+- uid: ModLib.Options.ConfigValue.Equals(System.Object)
+  name: Equals(object)
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_Equals_System_Object_
+  commentId: M:ModLib.Options.ConfigValue.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: ModLib.Options.ConfigValue.Equals(object)
+  fullName.vb: ModLib.Options.ConfigValue.Equals(Object)
+  nameWithType: ConfigValue.Equals(object)
+  nameWithType.vb: ConfigValue.Equals(Object)
+- uid: ModLib.Options.ConfigValue.Equals*
+  name: Equals
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_Equals_
+  commentId: Overload:ModLib.Options.ConfigValue.Equals
+  isSpec: "True"
+  fullName: ModLib.Options.ConfigValue.Equals
+  nameWithType: ConfigValue.Equals
+- uid: ModLib.Options.ConfigValue.FromObject(System.Object)
+  name: FromObject(object?)
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_FromObject_System_Object_
+  commentId: M:ModLib.Options.ConfigValue.FromObject(System.Object)
+  name.vb: FromObject(Object)
+  fullName: ModLib.Options.ConfigValue.FromObject(object?)
+  fullName.vb: ModLib.Options.ConfigValue.FromObject(Object)
+  nameWithType: ConfigValue.FromObject(object?)
+  nameWithType.vb: ConfigValue.FromObject(Object)
+- uid: ModLib.Options.ConfigValue.FromObject*
+  name: FromObject
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_FromObject_
+  commentId: Overload:ModLib.Options.ConfigValue.FromObject
+  isSpec: "True"
+  fullName: ModLib.Options.ConfigValue.FromObject
+  nameWithType: ConfigValue.FromObject
+- uid: ModLib.Options.ConfigValue.GetBoxedValue
+  name: GetBoxedValue()
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_GetBoxedValue
+  commentId: M:ModLib.Options.ConfigValue.GetBoxedValue
+  fullName: ModLib.Options.ConfigValue.GetBoxedValue()
+  nameWithType: ConfigValue.GetBoxedValue()
+- uid: ModLib.Options.ConfigValue.GetBoxedValue*
+  name: GetBoxedValue
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_GetBoxedValue_
+  commentId: Overload:ModLib.Options.ConfigValue.GetBoxedValue
+  isSpec: "True"
+  fullName: ModLib.Options.ConfigValue.GetBoxedValue
+  nameWithType: ConfigValue.GetBoxedValue
+- uid: ModLib.Options.ConfigValue.GetHashCode
+  name: GetHashCode()
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_GetHashCode
+  commentId: M:ModLib.Options.ConfigValue.GetHashCode
+  fullName: ModLib.Options.ConfigValue.GetHashCode()
+  nameWithType: ConfigValue.GetHashCode()
+- uid: ModLib.Options.ConfigValue.GetHashCode*
+  name: GetHashCode
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_GetHashCode_
+  commentId: Overload:ModLib.Options.ConfigValue.GetHashCode
+  isSpec: "True"
+  fullName: ModLib.Options.ConfigValue.GetHashCode
+  nameWithType: ConfigValue.GetHashCode
+- uid: ModLib.Options.ConfigValue.IsNumeric
+  name: IsNumeric()
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_IsNumeric
+  commentId: M:ModLib.Options.ConfigValue.IsNumeric
+  fullName: ModLib.Options.ConfigValue.IsNumeric()
+  nameWithType: ConfigValue.IsNumeric()
+- uid: ModLib.Options.ConfigValue.IsNumeric*
+  name: IsNumeric
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_IsNumeric_
+  commentId: Overload:ModLib.Options.ConfigValue.IsNumeric
+  isSpec: "True"
+  fullName: ModLib.Options.ConfigValue.IsNumeric
+  nameWithType: ConfigValue.IsNumeric
+- uid: ModLib.Options.ConfigValue.Kind
+  name: Kind
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_Kind
+  commentId: P:ModLib.Options.ConfigValue.Kind
+  fullName: ModLib.Options.ConfigValue.Kind
+  nameWithType: ConfigValue.Kind
+- uid: ModLib.Options.ConfigValue.Kind*
+  name: Kind
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_Kind_
+  commentId: Overload:ModLib.Options.ConfigValue.Kind
+  isSpec: "True"
+  fullName: ModLib.Options.ConfigValue.Kind
+  nameWithType: ConfigValue.Kind
+- uid: ModLib.Options.ConfigValue.ToString
+  name: ToString()
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_ToString
+  commentId: M:ModLib.Options.ConfigValue.ToString
+  fullName: ModLib.Options.ConfigValue.ToString()
+  nameWithType: ConfigValue.ToString()
+- uid: ModLib.Options.ConfigValue.ToString*
+  name: ToString
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_ToString_
+  commentId: Overload:ModLib.Options.ConfigValue.ToString
+  isSpec: "True"
+  fullName: ModLib.Options.ConfigValue.ToString
+  nameWithType: ConfigValue.ToString
+- uid: ModLib.Options.ConfigValue.TryGetBool(System.Boolean@)
+  name: TryGetBool(out bool)
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_TryGetBool_System_Boolean__
+  commentId: M:ModLib.Options.ConfigValue.TryGetBool(System.Boolean@)
+  name.vb: TryGetBool(Boolean)
+  fullName: ModLib.Options.ConfigValue.TryGetBool(out bool)
+  fullName.vb: ModLib.Options.ConfigValue.TryGetBool(Boolean)
+  nameWithType: ConfigValue.TryGetBool(out bool)
+  nameWithType.vb: ConfigValue.TryGetBool(Boolean)
+- uid: ModLib.Options.ConfigValue.TryGetBool*
+  name: TryGetBool
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_TryGetBool_
+  commentId: Overload:ModLib.Options.ConfigValue.TryGetBool
+  isSpec: "True"
+  fullName: ModLib.Options.ConfigValue.TryGetBool
+  nameWithType: ConfigValue.TryGetBool
+- uid: ModLib.Options.ConfigValue.TryGetFloat(System.Single@)
+  name: TryGetFloat(out float)
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_TryGetFloat_System_Single__
+  commentId: M:ModLib.Options.ConfigValue.TryGetFloat(System.Single@)
+  name.vb: TryGetFloat(Single)
+  fullName: ModLib.Options.ConfigValue.TryGetFloat(out float)
+  fullName.vb: ModLib.Options.ConfigValue.TryGetFloat(Single)
+  nameWithType: ConfigValue.TryGetFloat(out float)
+  nameWithType.vb: ConfigValue.TryGetFloat(Single)
+- uid: ModLib.Options.ConfigValue.TryGetFloat*
+  name: TryGetFloat
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_TryGetFloat_
+  commentId: Overload:ModLib.Options.ConfigValue.TryGetFloat
+  isSpec: "True"
+  fullName: ModLib.Options.ConfigValue.TryGetFloat
+  nameWithType: ConfigValue.TryGetFloat
+- uid: ModLib.Options.ConfigValue.TryGetInt(System.Int32@)
+  name: TryGetInt(out int)
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_TryGetInt_System_Int32__
+  commentId: M:ModLib.Options.ConfigValue.TryGetInt(System.Int32@)
+  name.vb: TryGetInt(Integer)
+  fullName: ModLib.Options.ConfigValue.TryGetInt(out int)
+  fullName.vb: ModLib.Options.ConfigValue.TryGetInt(Integer)
+  nameWithType: ConfigValue.TryGetInt(out int)
+  nameWithType.vb: ConfigValue.TryGetInt(Integer)
+- uid: ModLib.Options.ConfigValue.TryGetInt*
+  name: TryGetInt
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_TryGetInt_
+  commentId: Overload:ModLib.Options.ConfigValue.TryGetInt
+  isSpec: "True"
+  fullName: ModLib.Options.ConfigValue.TryGetInt
+  nameWithType: ConfigValue.TryGetInt
+- uid: ModLib.Options.ConfigValue.TryGetNumber(System.ValueType@)
+  name: TryGetNumber(out ValueType?)
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_TryGetNumber_System_ValueType__
+  commentId: M:ModLib.Options.ConfigValue.TryGetNumber(System.ValueType@)
+  name.vb: TryGetNumber(ValueType)
+  fullName: ModLib.Options.ConfigValue.TryGetNumber(out System.ValueType?)
+  fullName.vb: ModLib.Options.ConfigValue.TryGetNumber(System.ValueType)
+  nameWithType: ConfigValue.TryGetNumber(out ValueType?)
+  nameWithType.vb: ConfigValue.TryGetNumber(ValueType)
+- uid: ModLib.Options.ConfigValue.TryGetNumber*
+  name: TryGetNumber
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_TryGetNumber_
+  commentId: Overload:ModLib.Options.ConfigValue.TryGetNumber
+  isSpec: "True"
+  fullName: ModLib.Options.ConfigValue.TryGetNumber
+  nameWithType: ConfigValue.TryGetNumber
+- uid: ModLib.Options.ConfigValue.TryGetString(System.String@)
+  name: TryGetString(out string)
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_TryGetString_System_String__
+  commentId: M:ModLib.Options.ConfigValue.TryGetString(System.String@)
+  name.vb: TryGetString(String)
+  fullName: ModLib.Options.ConfigValue.TryGetString(out string)
+  fullName.vb: ModLib.Options.ConfigValue.TryGetString(String)
+  nameWithType: ConfigValue.TryGetString(out string)
+  nameWithType.vb: ConfigValue.TryGetString(String)
+- uid: ModLib.Options.ConfigValue.TryGetString*
+  name: TryGetString
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_TryGetString_
+  commentId: Overload:ModLib.Options.ConfigValue.TryGetString
+  isSpec: "True"
+  fullName: ModLib.Options.ConfigValue.TryGetString
+  nameWithType: ConfigValue.TryGetString
+- uid: ModLib.Options.ConfigValue.ValueKind
+  name: ConfigValue.ValueKind
+  href: api/ModLib.Options.ConfigValue.ValueKind.html
+  commentId: T:ModLib.Options.ConfigValue.ValueKind
+  fullName: ModLib.Options.ConfigValue.ValueKind
+  nameWithType: ConfigValue.ValueKind
+- uid: ModLib.Options.ConfigValue.ValueKind.Bool
+  name: Bool
+  href: api/ModLib.Options.ConfigValue.ValueKind.html#ModLib_Options_ConfigValue_ValueKind_Bool
+  commentId: F:ModLib.Options.ConfigValue.ValueKind.Bool
+  fullName: ModLib.Options.ConfigValue.ValueKind.Bool
+  nameWithType: ConfigValue.ValueKind.Bool
+- uid: ModLib.Options.ConfigValue.ValueKind.Float
+  name: Float
+  href: api/ModLib.Options.ConfigValue.ValueKind.html#ModLib_Options_ConfigValue_ValueKind_Float
+  commentId: F:ModLib.Options.ConfigValue.ValueKind.Float
+  fullName: ModLib.Options.ConfigValue.ValueKind.Float
+  nameWithType: ConfigValue.ValueKind.Float
+- uid: ModLib.Options.ConfigValue.ValueKind.Int
+  name: Int
+  href: api/ModLib.Options.ConfigValue.ValueKind.html#ModLib_Options_ConfigValue_ValueKind_Int
+  commentId: F:ModLib.Options.ConfigValue.ValueKind.Int
+  fullName: ModLib.Options.ConfigValue.ValueKind.Int
+  nameWithType: ConfigValue.ValueKind.Int
+- uid: ModLib.Options.ConfigValue.ValueKind.String
+  name: String
+  href: api/ModLib.Options.ConfigValue.ValueKind.html#ModLib_Options_ConfigValue_ValueKind_String
+  commentId: F:ModLib.Options.ConfigValue.ValueKind.String
+  fullName: ModLib.Options.ConfigValue.ValueKind.String
+  nameWithType: ConfigValue.ValueKind.String
+- uid: ModLib.Options.ConfigValue.op_Equality(ModLib.Options.ConfigValue,ModLib.Options.ConfigValue)
+  name: operator ==(ConfigValue, ConfigValue)
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_op_Equality_ModLib_Options_ConfigValue_ModLib_Options_ConfigValue_
+  commentId: M:ModLib.Options.ConfigValue.op_Equality(ModLib.Options.ConfigValue,ModLib.Options.ConfigValue)
+  name.vb: =(ConfigValue, ConfigValue)
+  fullName: ModLib.Options.ConfigValue.operator ==(ModLib.Options.ConfigValue, ModLib.Options.ConfigValue)
+  fullName.vb: ModLib.Options.ConfigValue.=(ModLib.Options.ConfigValue, ModLib.Options.ConfigValue)
+  nameWithType: ConfigValue.operator ==(ConfigValue, ConfigValue)
+  nameWithType.vb: ConfigValue.=(ConfigValue, ConfigValue)
+- uid: ModLib.Options.ConfigValue.op_Equality*
+  name: operator ==
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_op_Equality_
+  commentId: Overload:ModLib.Options.ConfigValue.op_Equality
+  isSpec: "True"
+  name.vb: =
+  fullName: ModLib.Options.ConfigValue.operator ==
+  fullName.vb: ModLib.Options.ConfigValue.=
+  nameWithType: ConfigValue.operator ==
+  nameWithType.vb: ConfigValue.=
+- uid: ModLib.Options.ConfigValue.op_Inequality(ModLib.Options.ConfigValue,ModLib.Options.ConfigValue)
+  name: operator !=(ConfigValue, ConfigValue)
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_op_Inequality_ModLib_Options_ConfigValue_ModLib_Options_ConfigValue_
+  commentId: M:ModLib.Options.ConfigValue.op_Inequality(ModLib.Options.ConfigValue,ModLib.Options.ConfigValue)
+  name.vb: <>(ConfigValue, ConfigValue)
+  fullName: ModLib.Options.ConfigValue.operator !=(ModLib.Options.ConfigValue, ModLib.Options.ConfigValue)
+  fullName.vb: ModLib.Options.ConfigValue.<>(ModLib.Options.ConfigValue, ModLib.Options.ConfigValue)
+  nameWithType: ConfigValue.operator !=(ConfigValue, ConfigValue)
+  nameWithType.vb: ConfigValue.<>(ConfigValue, ConfigValue)
+- uid: ModLib.Options.ConfigValue.op_Inequality*
+  name: operator !=
+  href: api/ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_op_Inequality_
+  commentId: Overload:ModLib.Options.ConfigValue.op_Inequality
+  isSpec: "True"
+  name.vb: <>
+  fullName: ModLib.Options.ConfigValue.operator !=
+  fullName.vb: ModLib.Options.ConfigValue.<>
+  nameWithType: ConfigValue.operator !=
+  nameWithType.vb: ConfigValue.<>
+- uid: ModLib.Options.OptionBuilder
+  name: OptionBuilder
+  href: api/ModLib.Options.OptionBuilder.html
+  commentId: T:ModLib.Options.OptionBuilder
+  fullName: ModLib.Options.OptionBuilder
+  nameWithType: OptionBuilder
+- uid: ModLib.Options.OptionBuilder.#ctor(Menu.Remix.MixedUI.OpTab)
+  name: OptionBuilder(OpTab)
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder__ctor_Menu_Remix_MixedUI_OpTab_
+  commentId: M:ModLib.Options.OptionBuilder.#ctor(Menu.Remix.MixedUI.OpTab)
+  name.vb: New(OpTab)
+  fullName: ModLib.Options.OptionBuilder.OptionBuilder(Menu.Remix.MixedUI.OpTab)
+  fullName.vb: ModLib.Options.OptionBuilder.New(Menu.Remix.MixedUI.OpTab)
+  nameWithType: OptionBuilder.OptionBuilder(OpTab)
+  nameWithType.vb: OptionBuilder.New(OpTab)
+- uid: ModLib.Options.OptionBuilder.#ctor(OptionInterface,System.String,UnityEngine.Color[])
+  name: OptionBuilder(OptionInterface, string, params Color[])
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder__ctor_OptionInterface_System_String_UnityEngine_Color___
+  commentId: M:ModLib.Options.OptionBuilder.#ctor(OptionInterface,System.String,UnityEngine.Color[])
+  name.vb: New(OptionInterface, String, ParamArray Color())
+  fullName: ModLib.Options.OptionBuilder.OptionBuilder(OptionInterface, string, params UnityEngine.Color[])
+  fullName.vb: ModLib.Options.OptionBuilder.New(OptionInterface, String, ParamArray UnityEngine.Color())
+  nameWithType: OptionBuilder.OptionBuilder(OptionInterface, string, params Color[])
+  nameWithType.vb: OptionBuilder.New(OptionInterface, String, ParamArray Color())
+- uid: ModLib.Options.OptionBuilder.#ctor*
+  name: OptionBuilder
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder__ctor_
+  commentId: Overload:ModLib.Options.OptionBuilder.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: ModLib.Options.OptionBuilder.OptionBuilder
+  fullName.vb: ModLib.Options.OptionBuilder.New
+  nameWithType: OptionBuilder.OptionBuilder
+  nameWithType.vb: OptionBuilder.New
+- uid: ModLib.Options.OptionBuilder.AddCheckBoxOption(System.String,Configurable{System.Boolean},UnityEngine.Color[])
+  name: AddCheckBoxOption(string, Configurable<bool>, params Color[])
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder_AddCheckBoxOption_System_String_Configurable_System_Boolean__UnityEngine_Color___
+  commentId: M:ModLib.Options.OptionBuilder.AddCheckBoxOption(System.String,Configurable{System.Boolean},UnityEngine.Color[])
+  name.vb: AddCheckBoxOption(String, Configurable(Of Boolean), ParamArray Color())
+  fullName: ModLib.Options.OptionBuilder.AddCheckBoxOption(string, Configurable<bool>, params UnityEngine.Color[])
+  fullName.vb: ModLib.Options.OptionBuilder.AddCheckBoxOption(String, Configurable(Of Boolean), ParamArray UnityEngine.Color())
+  nameWithType: OptionBuilder.AddCheckBoxOption(string, Configurable<bool>, params Color[])
+  nameWithType.vb: OptionBuilder.AddCheckBoxOption(String, Configurable(Of Boolean), ParamArray Color())
+- uid: ModLib.Options.OptionBuilder.AddCheckBoxOption*
+  name: AddCheckBoxOption
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder_AddCheckBoxOption_
+  commentId: Overload:ModLib.Options.OptionBuilder.AddCheckBoxOption
+  isSpec: "True"
+  fullName: ModLib.Options.OptionBuilder.AddCheckBoxOption
+  nameWithType: OptionBuilder.AddCheckBoxOption
+- uid: ModLib.Options.OptionBuilder.AddComboBoxOption(System.String,Configurable{System.String},System.Single,UnityEngine.Color[])
+  name: AddComboBoxOption(string, Configurable<string>, float, params Color[])
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder_AddComboBoxOption_System_String_Configurable_System_String__System_Single_UnityEngine_Color___
+  commentId: M:ModLib.Options.OptionBuilder.AddComboBoxOption(System.String,Configurable{System.String},System.Single,UnityEngine.Color[])
+  name.vb: AddComboBoxOption(String, Configurable(Of String), Single, ParamArray Color())
+  fullName: ModLib.Options.OptionBuilder.AddComboBoxOption(string, Configurable<string>, float, params UnityEngine.Color[])
+  fullName.vb: ModLib.Options.OptionBuilder.AddComboBoxOption(String, Configurable(Of String), Single, ParamArray UnityEngine.Color())
+  nameWithType: OptionBuilder.AddComboBoxOption(string, Configurable<string>, float, params Color[])
+  nameWithType.vb: OptionBuilder.AddComboBoxOption(String, Configurable(Of String), Single, ParamArray Color())
+- uid: ModLib.Options.OptionBuilder.AddComboBoxOption*
+  name: AddComboBoxOption
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder_AddComboBoxOption_
+  commentId: Overload:ModLib.Options.OptionBuilder.AddComboBoxOption
+  isSpec: "True"
+  fullName: ModLib.Options.OptionBuilder.AddComboBoxOption
+  nameWithType: OptionBuilder.AddComboBoxOption
+- uid: ModLib.Options.OptionBuilder.AddElements(Menu.Remix.MixedUI.UIelement[])
+  name: AddElements(params UIelement[])
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder_AddElements_Menu_Remix_MixedUI_UIelement___
+  commentId: M:ModLib.Options.OptionBuilder.AddElements(Menu.Remix.MixedUI.UIelement[])
+  name.vb: AddElements(ParamArray UIelement())
+  fullName: ModLib.Options.OptionBuilder.AddElements(params Menu.Remix.MixedUI.UIelement[])
+  fullName.vb: ModLib.Options.OptionBuilder.AddElements(ParamArray Menu.Remix.MixedUI.UIelement())
+  nameWithType: OptionBuilder.AddElements(params UIelement[])
+  nameWithType.vb: OptionBuilder.AddElements(ParamArray UIelement())
+- uid: ModLib.Options.OptionBuilder.AddElements*
+  name: AddElements
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder_AddElements_
+  commentId: Overload:ModLib.Options.OptionBuilder.AddElements
+  isSpec: "True"
+  fullName: ModLib.Options.OptionBuilder.AddElements
+  nameWithType: OptionBuilder.AddElements
+- uid: ModLib.Options.OptionBuilder.AddPadding(UnityEngine.Vector2)
+  name: AddPadding(Vector2)
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder_AddPadding_UnityEngine_Vector2_
+  commentId: M:ModLib.Options.OptionBuilder.AddPadding(UnityEngine.Vector2)
+  fullName: ModLib.Options.OptionBuilder.AddPadding(UnityEngine.Vector2)
+  nameWithType: OptionBuilder.AddPadding(Vector2)
+- uid: ModLib.Options.OptionBuilder.AddPadding*
+  name: AddPadding
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder_AddPadding_
+  commentId: Overload:ModLib.Options.OptionBuilder.AddPadding
+  isSpec: "True"
+  fullName: ModLib.Options.OptionBuilder.AddPadding
+  nameWithType: OptionBuilder.AddPadding
+- uid: ModLib.Options.OptionBuilder.AddSliderOption(System.String,Configurable{System.Int32},System.Single,System.Boolean,UnityEngine.Color[])
+  name: AddSliderOption(string, Configurable<int>, float, bool, params Color[])
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder_AddSliderOption_System_String_Configurable_System_Int32__System_Single_System_Boolean_UnityEngine_Color___
+  commentId: M:ModLib.Options.OptionBuilder.AddSliderOption(System.String,Configurable{System.Int32},System.Single,System.Boolean,UnityEngine.Color[])
+  name.vb: AddSliderOption(String, Configurable(Of Integer), Single, Boolean, ParamArray Color())
+  fullName: ModLib.Options.OptionBuilder.AddSliderOption(string, Configurable<int>, float, bool, params UnityEngine.Color[])
+  fullName.vb: ModLib.Options.OptionBuilder.AddSliderOption(String, Configurable(Of Integer), Single, Boolean, ParamArray UnityEngine.Color())
+  nameWithType: OptionBuilder.AddSliderOption(string, Configurable<int>, float, bool, params Color[])
+  nameWithType.vb: OptionBuilder.AddSliderOption(String, Configurable(Of Integer), Single, Boolean, ParamArray Color())
+- uid: ModLib.Options.OptionBuilder.AddSliderOption*
+  name: AddSliderOption
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder_AddSliderOption_
+  commentId: Overload:ModLib.Options.OptionBuilder.AddSliderOption
+  isSpec: "True"
+  fullName: ModLib.Options.OptionBuilder.AddSliderOption
+  nameWithType: OptionBuilder.AddSliderOption
+- uid: ModLib.Options.OptionBuilder.AddText(System.String,UnityEngine.Vector2,System.Boolean,System.Nullable{UnityEngine.Color})
+  name: AddText(string, Vector2, bool, Color?)
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder_AddText_System_String_UnityEngine_Vector2_System_Boolean_System_Nullable_UnityEngine_Color__
+  commentId: M:ModLib.Options.OptionBuilder.AddText(System.String,UnityEngine.Vector2,System.Boolean,System.Nullable{UnityEngine.Color})
+  name.vb: AddText(String, Vector2, Boolean, Color?)
+  fullName: ModLib.Options.OptionBuilder.AddText(string, UnityEngine.Vector2, bool, UnityEngine.Color?)
+  fullName.vb: ModLib.Options.OptionBuilder.AddText(String, UnityEngine.Vector2, Boolean, UnityEngine.Color?)
+  nameWithType: OptionBuilder.AddText(string, Vector2, bool, Color?)
+  nameWithType.vb: OptionBuilder.AddText(String, Vector2, Boolean, Color?)
+- uid: ModLib.Options.OptionBuilder.AddText*
+  name: AddText
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder_AddText_
+  commentId: Overload:ModLib.Options.OptionBuilder.AddText
+  isSpec: "True"
+  fullName: ModLib.Options.OptionBuilder.AddText
+  nameWithType: OptionBuilder.AddText
+- uid: ModLib.Options.OptionBuilder.Build
+  name: Build()
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder_Build
+  commentId: M:ModLib.Options.OptionBuilder.Build
+  fullName: ModLib.Options.OptionBuilder.Build()
+  nameWithType: OptionBuilder.Build()
+- uid: ModLib.Options.OptionBuilder.Build*
+  name: Build
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder_Build_
+  commentId: Overload:ModLib.Options.OptionBuilder.Build
+  isSpec: "True"
+  fullName: ModLib.Options.OptionBuilder.Build
+  nameWithType: OptionBuilder.Build
+- uid: ModLib.Options.OptionBuilder.GetOrigin
+  name: GetOrigin()
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder_GetOrigin
+  commentId: M:ModLib.Options.OptionBuilder.GetOrigin
+  fullName: ModLib.Options.OptionBuilder.GetOrigin()
+  nameWithType: OptionBuilder.GetOrigin()
+- uid: ModLib.Options.OptionBuilder.GetOrigin*
+  name: GetOrigin
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder_GetOrigin_
+  commentId: Overload:ModLib.Options.OptionBuilder.GetOrigin
+  isSpec: "True"
+  fullName: ModLib.Options.OptionBuilder.GetOrigin
+  nameWithType: OptionBuilder.GetOrigin
+- uid: ModLib.Options.OptionBuilder.ResetOrigin
+  name: ResetOrigin()
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder_ResetOrigin
+  commentId: M:ModLib.Options.OptionBuilder.ResetOrigin
+  fullName: ModLib.Options.OptionBuilder.ResetOrigin()
+  nameWithType: OptionBuilder.ResetOrigin()
+- uid: ModLib.Options.OptionBuilder.ResetOrigin*
+  name: ResetOrigin
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder_ResetOrigin_
+  commentId: Overload:ModLib.Options.OptionBuilder.ResetOrigin
+  isSpec: "True"
+  fullName: ModLib.Options.OptionBuilder.ResetOrigin
+  nameWithType: OptionBuilder.ResetOrigin
+- uid: ModLib.Options.OptionBuilder.SetOrigin(UnityEngine.Vector2)
+  name: SetOrigin(Vector2)
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder_SetOrigin_UnityEngine_Vector2_
+  commentId: M:ModLib.Options.OptionBuilder.SetOrigin(UnityEngine.Vector2)
+  fullName: ModLib.Options.OptionBuilder.SetOrigin(UnityEngine.Vector2)
+  nameWithType: OptionBuilder.SetOrigin(Vector2)
+- uid: ModLib.Options.OptionBuilder.SetOrigin*
+  name: SetOrigin
+  href: api/ModLib.Options.OptionBuilder.html#ModLib_Options_OptionBuilder_SetOrigin_
+  commentId: Overload:ModLib.Options.OptionBuilder.SetOrigin
+  isSpec: "True"
+  fullName: ModLib.Options.OptionBuilder.SetOrigin
+  nameWithType: OptionBuilder.SetOrigin
+- uid: ModLib.Options.OptionUtils
+  name: OptionUtils
+  href: api/ModLib.Options.OptionUtils.html
+  commentId: T:ModLib.Options.OptionUtils
+  fullName: ModLib.Options.OptionUtils
+  nameWithType: OptionUtils
+- uid: ModLib.Options.OptionUtils.GetClientOptionValue*
+  name: GetClientOptionValue
+  href: api/ModLib.Options.OptionUtils.html#ModLib_Options_OptionUtils_GetClientOptionValue_
+  commentId: Overload:ModLib.Options.OptionUtils.GetClientOptionValue
+  isSpec: "True"
+  fullName: ModLib.Options.OptionUtils.GetClientOptionValue
+  nameWithType: OptionUtils.GetClientOptionValue
+- uid: ModLib.Options.OptionUtils.GetClientOptionValue``1(Configurable{``0})
+  name: GetClientOptionValue<T>(Configurable<T>?)
+  href: api/ModLib.Options.OptionUtils.html#ModLib_Options_OptionUtils_GetClientOptionValue__1_Configurable___0__
+  commentId: M:ModLib.Options.OptionUtils.GetClientOptionValue``1(Configurable{``0})
+  name.vb: GetClientOptionValue(Of T)(Configurable(Of T))
+  fullName: ModLib.Options.OptionUtils.GetClientOptionValue<T>(Configurable<T>?)
+  fullName.vb: ModLib.Options.OptionUtils.GetClientOptionValue(Of T)(Configurable(Of T))
+  nameWithType: OptionUtils.GetClientOptionValue<T>(Configurable<T>?)
+  nameWithType.vb: OptionUtils.GetClientOptionValue(Of T)(Configurable(Of T))
+- uid: ModLib.Options.OptionUtils.GetOptionValue*
+  name: GetOptionValue
+  href: api/ModLib.Options.OptionUtils.html#ModLib_Options_OptionUtils_GetOptionValue_
+  commentId: Overload:ModLib.Options.OptionUtils.GetOptionValue
+  isSpec: "True"
+  fullName: ModLib.Options.OptionUtils.GetOptionValue
+  nameWithType: OptionUtils.GetOptionValue
+- uid: ModLib.Options.OptionUtils.GetOptionValue``1(Configurable{``0})
+  name: GetOptionValue<T>(Configurable<T>?)
+  href: api/ModLib.Options.OptionUtils.html#ModLib_Options_OptionUtils_GetOptionValue__1_Configurable___0__
+  commentId: M:ModLib.Options.OptionUtils.GetOptionValue``1(Configurable{``0})
+  name.vb: GetOptionValue(Of T)(Configurable(Of T))
+  fullName: ModLib.Options.OptionUtils.GetOptionValue<T>(Configurable<T>?)
+  fullName.vb: ModLib.Options.OptionUtils.GetOptionValue(Of T)(Configurable(Of T))
+  nameWithType: OptionUtils.GetOptionValue<T>(Configurable<T>?)
+  nameWithType.vb: OptionUtils.GetOptionValue(Of T)(Configurable(Of T))
+- uid: ModLib.Options.OptionUtils.GetOptionValue``1(System.String)
+  name: GetOptionValue<T>(string)
+  href: api/ModLib.Options.OptionUtils.html#ModLib_Options_OptionUtils_GetOptionValue__1_System_String_
+  commentId: M:ModLib.Options.OptionUtils.GetOptionValue``1(System.String)
+  name.vb: GetOptionValue(Of T)(String)
+  fullName: ModLib.Options.OptionUtils.GetOptionValue<T>(string)
+  fullName.vb: ModLib.Options.OptionUtils.GetOptionValue(Of T)(String)
+  nameWithType: OptionUtils.GetOptionValue<T>(string)
+  nameWithType.vb: OptionUtils.GetOptionValue(Of T)(String)
+- uid: ModLib.Options.OptionUtils.IsClientOptionEnabled(Configurable{System.Boolean})
+  name: IsClientOptionEnabled(Configurable<bool>?)
+  href: api/ModLib.Options.OptionUtils.html#ModLib_Options_OptionUtils_IsClientOptionEnabled_Configurable_System_Boolean__
+  commentId: M:ModLib.Options.OptionUtils.IsClientOptionEnabled(Configurable{System.Boolean})
+  name.vb: IsClientOptionEnabled(Configurable(Of Boolean))
+  fullName: ModLib.Options.OptionUtils.IsClientOptionEnabled(Configurable<bool>?)
+  fullName.vb: ModLib.Options.OptionUtils.IsClientOptionEnabled(Configurable(Of Boolean))
+  nameWithType: OptionUtils.IsClientOptionEnabled(Configurable<bool>?)
+  nameWithType.vb: OptionUtils.IsClientOptionEnabled(Configurable(Of Boolean))
+- uid: ModLib.Options.OptionUtils.IsClientOptionEnabled*
+  name: IsClientOptionEnabled
+  href: api/ModLib.Options.OptionUtils.html#ModLib_Options_OptionUtils_IsClientOptionEnabled_
+  commentId: Overload:ModLib.Options.OptionUtils.IsClientOptionEnabled
+  isSpec: "True"
+  fullName: ModLib.Options.OptionUtils.IsClientOptionEnabled
+  nameWithType: OptionUtils.IsClientOptionEnabled
+- uid: ModLib.Options.OptionUtils.IsClientOptionValue*
+  name: IsClientOptionValue
+  href: api/ModLib.Options.OptionUtils.html#ModLib_Options_OptionUtils_IsClientOptionValue_
+  commentId: Overload:ModLib.Options.OptionUtils.IsClientOptionValue
+  isSpec: "True"
+  fullName: ModLib.Options.OptionUtils.IsClientOptionValue
+  nameWithType: OptionUtils.IsClientOptionValue
+- uid: ModLib.Options.OptionUtils.IsClientOptionValue``1(Configurable{``0},``0)
+  name: IsClientOptionValue<T>(Configurable<T>?, T)
+  href: api/ModLib.Options.OptionUtils.html#ModLib_Options_OptionUtils_IsClientOptionValue__1_Configurable___0____0_
+  commentId: M:ModLib.Options.OptionUtils.IsClientOptionValue``1(Configurable{``0},``0)
+  name.vb: IsClientOptionValue(Of T)(Configurable(Of T), T)
+  fullName: ModLib.Options.OptionUtils.IsClientOptionValue<T>(Configurable<T>?, T)
+  fullName.vb: ModLib.Options.OptionUtils.IsClientOptionValue(Of T)(Configurable(Of T), T)
+  nameWithType: OptionUtils.IsClientOptionValue<T>(Configurable<T>?, T)
+  nameWithType.vb: OptionUtils.IsClientOptionValue(Of T)(Configurable(Of T), T)
+- uid: ModLib.Options.OptionUtils.IsOptionEnabled(Configurable{System.Boolean})
+  name: IsOptionEnabled(Configurable<bool>?)
+  href: api/ModLib.Options.OptionUtils.html#ModLib_Options_OptionUtils_IsOptionEnabled_Configurable_System_Boolean__
+  commentId: M:ModLib.Options.OptionUtils.IsOptionEnabled(Configurable{System.Boolean})
+  name.vb: IsOptionEnabled(Configurable(Of Boolean))
+  fullName: ModLib.Options.OptionUtils.IsOptionEnabled(Configurable<bool>?)
+  fullName.vb: ModLib.Options.OptionUtils.IsOptionEnabled(Configurable(Of Boolean))
+  nameWithType: OptionUtils.IsOptionEnabled(Configurable<bool>?)
+  nameWithType.vb: OptionUtils.IsOptionEnabled(Configurable(Of Boolean))
+- uid: ModLib.Options.OptionUtils.IsOptionEnabled(System.String)
+  name: IsOptionEnabled(string)
+  href: api/ModLib.Options.OptionUtils.html#ModLib_Options_OptionUtils_IsOptionEnabled_System_String_
+  commentId: M:ModLib.Options.OptionUtils.IsOptionEnabled(System.String)
+  name.vb: IsOptionEnabled(String)
+  fullName: ModLib.Options.OptionUtils.IsOptionEnabled(string)
+  fullName.vb: ModLib.Options.OptionUtils.IsOptionEnabled(String)
+  nameWithType: OptionUtils.IsOptionEnabled(string)
+  nameWithType.vb: OptionUtils.IsOptionEnabled(String)
+- uid: ModLib.Options.OptionUtils.IsOptionEnabled*
+  name: IsOptionEnabled
+  href: api/ModLib.Options.OptionUtils.html#ModLib_Options_OptionUtils_IsOptionEnabled_
+  commentId: Overload:ModLib.Options.OptionUtils.IsOptionEnabled
+  isSpec: "True"
+  fullName: ModLib.Options.OptionUtils.IsOptionEnabled
+  nameWithType: OptionUtils.IsOptionEnabled
+- uid: ModLib.Options.OptionUtils.IsOptionValue*
+  name: IsOptionValue
+  href: api/ModLib.Options.OptionUtils.html#ModLib_Options_OptionUtils_IsOptionValue_
+  commentId: Overload:ModLib.Options.OptionUtils.IsOptionValue
+  isSpec: "True"
+  fullName: ModLib.Options.OptionUtils.IsOptionValue
+  nameWithType: OptionUtils.IsOptionValue
+- uid: ModLib.Options.OptionUtils.IsOptionValue``1(Configurable{``0},``0)
+  name: IsOptionValue<T>(Configurable<T>?, T)
+  href: api/ModLib.Options.OptionUtils.html#ModLib_Options_OptionUtils_IsOptionValue__1_Configurable___0____0_
+  commentId: M:ModLib.Options.OptionUtils.IsOptionValue``1(Configurable{``0},``0)
+  name.vb: IsOptionValue(Of T)(Configurable(Of T), T)
+  fullName: ModLib.Options.OptionUtils.IsOptionValue<T>(Configurable<T>?, T)
+  fullName.vb: ModLib.Options.OptionUtils.IsOptionValue(Of T)(Configurable(Of T), T)
+  nameWithType: OptionUtils.IsOptionValue<T>(Configurable<T>?, T)
+  nameWithType.vb: OptionUtils.IsOptionValue(Of T)(Configurable(Of T), T)
+- uid: ModLib.Options.OptionUtils.IsOptionValue``1(System.String,``0)
+  name: IsOptionValue<T>(string, T)
+  href: api/ModLib.Options.OptionUtils.html#ModLib_Options_OptionUtils_IsOptionValue__1_System_String___0_
+  commentId: M:ModLib.Options.OptionUtils.IsOptionValue``1(System.String,``0)
+  name.vb: IsOptionValue(Of T)(String, T)
+  fullName: ModLib.Options.OptionUtils.IsOptionValue<T>(string, T)
+  fullName.vb: ModLib.Options.OptionUtils.IsOptionValue(Of T)(String, T)
+  nameWithType: OptionUtils.IsOptionValue<T>(string, T)
+  nameWithType.vb: OptionUtils.IsOptionValue(Of T)(String, T)
+- uid: ModLib.Options.OptionUtils.SharedOptions
+  name: SharedOptions
+  href: api/ModLib.Options.OptionUtils.html#ModLib_Options_OptionUtils_SharedOptions
+  commentId: P:ModLib.Options.OptionUtils.SharedOptions
+  fullName: ModLib.Options.OptionUtils.SharedOptions
+  nameWithType: OptionUtils.SharedOptions
+- uid: ModLib.Options.OptionUtils.SharedOptions*
+  name: SharedOptions
+  href: api/ModLib.Options.OptionUtils.html#ModLib_Options_OptionUtils_SharedOptions_
+  commentId: Overload:ModLib.Options.OptionUtils.SharedOptions
+  isSpec: "True"
+  fullName: ModLib.Options.OptionUtils.SharedOptions
+  nameWithType: OptionUtils.SharedOptions
+- uid: ModLib.Options.ServerOptions
+  name: ServerOptions
+  href: api/ModLib.Options.ServerOptions.html
+  commentId: T:ModLib.Options.ServerOptions
+  fullName: ModLib.Options.ServerOptions
+  nameWithType: ServerOptions
+- uid: ModLib.Options.ServerOptions.#ctor
+  name: ServerOptions()
+  href: api/ModLib.Options.ServerOptions.html#ModLib_Options_ServerOptions__ctor
+  commentId: M:ModLib.Options.ServerOptions.#ctor
+  name.vb: New()
+  fullName: ModLib.Options.ServerOptions.ServerOptions()
+  fullName.vb: ModLib.Options.ServerOptions.New()
+  nameWithType: ServerOptions.ServerOptions()
+  nameWithType.vb: ServerOptions.New()
+- uid: ModLib.Options.ServerOptions.#ctor(ModLib.Options.ServerOptions)
+  name: ServerOptions(ServerOptions)
+  href: api/ModLib.Options.ServerOptions.html#ModLib_Options_ServerOptions__ctor_ModLib_Options_ServerOptions_
+  commentId: M:ModLib.Options.ServerOptions.#ctor(ModLib.Options.ServerOptions)
+  name.vb: New(ServerOptions)
+  fullName: ModLib.Options.ServerOptions.ServerOptions(ModLib.Options.ServerOptions)
+  fullName.vb: ModLib.Options.ServerOptions.New(ModLib.Options.ServerOptions)
+  nameWithType: ServerOptions.ServerOptions(ServerOptions)
+  nameWithType.vb: ServerOptions.New(ServerOptions)
+- uid: ModLib.Options.ServerOptions.#ctor*
+  name: ServerOptions
+  href: api/ModLib.Options.ServerOptions.html#ModLib_Options_ServerOptions__ctor_
+  commentId: Overload:ModLib.Options.ServerOptions.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: ModLib.Options.ServerOptions.ServerOptions
+  fullName.vb: ModLib.Options.ServerOptions.New
+  nameWithType: ServerOptions.ServerOptions
+  nameWithType.vb: ServerOptions.New
+- uid: ModLib.Options.ServerOptions.AddTemporaryOption(System.String,ModLib.Options.ConfigValue)
+  name: AddTemporaryOption(string, ConfigValue)
+  href: api/ModLib.Options.ServerOptions.html#ModLib_Options_ServerOptions_AddTemporaryOption_System_String_ModLib_Options_ConfigValue_
+  commentId: M:ModLib.Options.ServerOptions.AddTemporaryOption(System.String,ModLib.Options.ConfigValue)
+  name.vb: AddTemporaryOption(String, ConfigValue)
+  fullName: ModLib.Options.ServerOptions.AddTemporaryOption(string, ModLib.Options.ConfigValue)
+  fullName.vb: ModLib.Options.ServerOptions.AddTemporaryOption(String, ModLib.Options.ConfigValue)
+  nameWithType: ServerOptions.AddTemporaryOption(string, ConfigValue)
+  nameWithType.vb: ServerOptions.AddTemporaryOption(String, ConfigValue)
+- uid: ModLib.Options.ServerOptions.AddTemporaryOption*
+  name: AddTemporaryOption
+  href: api/ModLib.Options.ServerOptions.html#ModLib_Options_ServerOptions_AddTemporaryOption_
+  commentId: Overload:ModLib.Options.ServerOptions.AddTemporaryOption
+  isSpec: "True"
+  fullName: ModLib.Options.ServerOptions.AddTemporaryOption
+  nameWithType: ServerOptions.AddTemporaryOption
+- uid: ModLib.Options.ServerOptions.IsTemporaryOption(System.String)
+  name: IsTemporaryOption(string)
+  href: api/ModLib.Options.ServerOptions.html#ModLib_Options_ServerOptions_IsTemporaryOption_System_String_
+  commentId: M:ModLib.Options.ServerOptions.IsTemporaryOption(System.String)
+  name.vb: IsTemporaryOption(String)
+  fullName: ModLib.Options.ServerOptions.IsTemporaryOption(string)
+  fullName.vb: ModLib.Options.ServerOptions.IsTemporaryOption(String)
+  nameWithType: ServerOptions.IsTemporaryOption(string)
+  nameWithType.vb: ServerOptions.IsTemporaryOption(String)
+- uid: ModLib.Options.ServerOptions.IsTemporaryOption*
+  name: IsTemporaryOption
+  href: api/ModLib.Options.ServerOptions.html#ModLib_Options_ServerOptions_IsTemporaryOption_
+  commentId: Overload:ModLib.Options.ServerOptions.IsTemporaryOption
+  isSpec: "True"
+  fullName: ModLib.Options.ServerOptions.IsTemporaryOption
+  nameWithType: ServerOptions.IsTemporaryOption
+- uid: ModLib.Options.ServerOptions.MyOptions
+  name: MyOptions
+  href: api/ModLib.Options.ServerOptions.html#ModLib_Options_ServerOptions_MyOptions
+  commentId: P:ModLib.Options.ServerOptions.MyOptions
+  fullName: ModLib.Options.ServerOptions.MyOptions
+  nameWithType: ServerOptions.MyOptions
+- uid: ModLib.Options.ServerOptions.MyOptions*
+  name: MyOptions
+  href: api/ModLib.Options.ServerOptions.html#ModLib_Options_ServerOptions_MyOptions_
+  commentId: Overload:ModLib.Options.ServerOptions.MyOptions
+  isSpec: "True"
+  fullName: ModLib.Options.ServerOptions.MyOptions
+  nameWithType: ServerOptions.MyOptions
+- uid: ModLib.Options.ServerOptions.RefreshOptions
+  name: RefreshOptions()
+  href: api/ModLib.Options.ServerOptions.html#ModLib_Options_ServerOptions_RefreshOptions
+  commentId: M:ModLib.Options.ServerOptions.RefreshOptions
+  fullName: ModLib.Options.ServerOptions.RefreshOptions()
+  nameWithType: ServerOptions.RefreshOptions()
+- uid: ModLib.Options.ServerOptions.RefreshOptions*
+  name: RefreshOptions
+  href: api/ModLib.Options.ServerOptions.html#ModLib_Options_ServerOptions_RefreshOptions_
+  commentId: Overload:ModLib.Options.ServerOptions.RefreshOptions
+  isSpec: "True"
+  fullName: ModLib.Options.ServerOptions.RefreshOptions
+  nameWithType: ServerOptions.RefreshOptions
+- uid: ModLib.Options.ServerOptions.RemoveTemporaryOption(System.String)
+  name: RemoveTemporaryOption(string)
+  href: api/ModLib.Options.ServerOptions.html#ModLib_Options_ServerOptions_RemoveTemporaryOption_System_String_
+  commentId: M:ModLib.Options.ServerOptions.RemoveTemporaryOption(System.String)
+  name.vb: RemoveTemporaryOption(String)
+  fullName: ModLib.Options.ServerOptions.RemoveTemporaryOption(string)
+  fullName.vb: ModLib.Options.ServerOptions.RemoveTemporaryOption(String)
+  nameWithType: ServerOptions.RemoveTemporaryOption(string)
+  nameWithType.vb: ServerOptions.RemoveTemporaryOption(String)
+- uid: ModLib.Options.ServerOptions.RemoveTemporaryOption*
+  name: RemoveTemporaryOption
+  href: api/ModLib.Options.ServerOptions.html#ModLib_Options_ServerOptions_RemoveTemporaryOption_
+  commentId: Overload:ModLib.Options.ServerOptions.RemoveTemporaryOption
+  isSpec: "True"
+  fullName: ModLib.Options.ServerOptions.RemoveTemporaryOption
+  nameWithType: ServerOptions.RemoveTemporaryOption
+- uid: ModLib.Options.ServerOptions.SetOptions(ModLib.Options.ServerOptions)
+  name: SetOptions(ServerOptions)
+  href: api/ModLib.Options.ServerOptions.html#ModLib_Options_ServerOptions_SetOptions_ModLib_Options_ServerOptions_
+  commentId: M:ModLib.Options.ServerOptions.SetOptions(ModLib.Options.ServerOptions)
+  fullName: ModLib.Options.ServerOptions.SetOptions(ModLib.Options.ServerOptions)
+  nameWithType: ServerOptions.SetOptions(ServerOptions)
+- uid: ModLib.Options.ServerOptions.SetOptions(System.Collections.Generic.IDictionary{System.String,ModLib.Options.ConfigValue})
+  name: SetOptions(IDictionary<string, ConfigValue>)
+  href: api/ModLib.Options.ServerOptions.html#ModLib_Options_ServerOptions_SetOptions_System_Collections_Generic_IDictionary_System_String_ModLib_Options_ConfigValue__
+  commentId: M:ModLib.Options.ServerOptions.SetOptions(System.Collections.Generic.IDictionary{System.String,ModLib.Options.ConfigValue})
+  name.vb: SetOptions(IDictionary(Of String, ConfigValue))
+  fullName: ModLib.Options.ServerOptions.SetOptions(System.Collections.Generic.IDictionary<string, ModLib.Options.ConfigValue>)
+  fullName.vb: ModLib.Options.ServerOptions.SetOptions(System.Collections.Generic.IDictionary(Of String, ModLib.Options.ConfigValue))
+  nameWithType: ServerOptions.SetOptions(IDictionary<string, ConfigValue>)
+  nameWithType.vb: ServerOptions.SetOptions(IDictionary(Of String, ConfigValue))
+- uid: ModLib.Options.ServerOptions.SetOptions*
+  name: SetOptions
+  href: api/ModLib.Options.ServerOptions.html#ModLib_Options_ServerOptions_SetOptions_
+  commentId: Overload:ModLib.Options.ServerOptions.SetOptions
+  isSpec: "True"
+  fullName: ModLib.Options.ServerOptions.SetOptions
+  nameWithType: ServerOptions.SetOptions
+- uid: ModLib.Options.ServerOptions.ToString
+  name: ToString()
+  href: api/ModLib.Options.ServerOptions.html#ModLib_Options_ServerOptions_ToString
+  commentId: M:ModLib.Options.ServerOptions.ToString
+  fullName: ModLib.Options.ServerOptions.ToString()
+  nameWithType: ServerOptions.ToString()
+- uid: ModLib.Options.ServerOptions.ToString*
+  name: ToString
+  href: api/ModLib.Options.ServerOptions.html#ModLib_Options_ServerOptions_ToString_
+  commentId: Overload:ModLib.Options.ServerOptions.ToString
+  isSpec: "True"
+  fullName: ModLib.Options.ServerOptions.ToString
+  nameWithType: ServerOptions.ToString
+- uid: ModLib.Registry
+  name: Registry
+  href: api/ModLib.Registry.html
+  commentId: T:ModLib.Registry
+  fullName: ModLib.Registry
+  nameWithType: Registry
+- uid: ModLib.Registry.DefaultLogsPath
+  name: DefaultLogsPath
+  href: api/ModLib.Registry.html#ModLib_Registry_DefaultLogsPath
+  commentId: P:ModLib.Registry.DefaultLogsPath
+  fullName: ModLib.Registry.DefaultLogsPath
+  nameWithType: Registry.DefaultLogsPath
+- uid: ModLib.Registry.DefaultLogsPath*
+  name: DefaultLogsPath
+  href: api/ModLib.Registry.html#ModLib_Registry_DefaultLogsPath_
+  commentId: Overload:ModLib.Registry.DefaultLogsPath
+  isSpec: "True"
+  fullName: ModLib.Registry.DefaultLogsPath
+  nameWithType: Registry.DefaultLogsPath
+- uid: ModLib.Registry.ModEntry
+  name: Registry.ModEntry
+  href: api/ModLib.Registry.ModEntry.html
+  commentId: T:ModLib.Registry.ModEntry
+  fullName: ModLib.Registry.ModEntry
+  nameWithType: Registry.ModEntry
+- uid: ModLib.Registry.ModEntry.LogID
+  name: LogID
+  href: api/ModLib.Registry.ModEntry.html#ModLib_Registry_ModEntry_LogID
+  commentId: P:ModLib.Registry.ModEntry.LogID
+  fullName: ModLib.Registry.ModEntry.LogID
+  nameWithType: Registry.ModEntry.LogID
+- uid: ModLib.Registry.ModEntry.LogID*
+  name: LogID
+  href: api/ModLib.Registry.ModEntry.html#ModLib_Registry_ModEntry_LogID_
+  commentId: Overload:ModLib.Registry.ModEntry.LogID
+  isSpec: "True"
+  fullName: ModLib.Registry.ModEntry.LogID
+  nameWithType: Registry.ModEntry.LogID
+- uid: ModLib.Registry.ModEntry.Logger
+  name: Logger
+  href: api/ModLib.Registry.ModEntry.html#ModLib_Registry_ModEntry_Logger
+  commentId: P:ModLib.Registry.ModEntry.Logger
+  fullName: ModLib.Registry.ModEntry.Logger
+  nameWithType: Registry.ModEntry.Logger
+- uid: ModLib.Registry.ModEntry.Logger*
+  name: Logger
+  href: api/ModLib.Registry.ModEntry.html#ModLib_Registry_ModEntry_Logger_
+  commentId: Overload:ModLib.Registry.ModEntry.Logger
+  isSpec: "True"
+  fullName: ModLib.Registry.ModEntry.Logger
+  nameWithType: Registry.ModEntry.Logger
+- uid: ModLib.Registry.ModEntry.OptionHolder
+  name: OptionHolder
+  href: api/ModLib.Registry.ModEntry.html#ModLib_Registry_ModEntry_OptionHolder
+  commentId: P:ModLib.Registry.ModEntry.OptionHolder
+  fullName: ModLib.Registry.ModEntry.OptionHolder
+  nameWithType: Registry.ModEntry.OptionHolder
+- uid: ModLib.Registry.ModEntry.OptionHolder*
+  name: OptionHolder
+  href: api/ModLib.Registry.ModEntry.html#ModLib_Registry_ModEntry_OptionHolder_
+  commentId: Overload:ModLib.Registry.ModEntry.OptionHolder
+  isSpec: "True"
+  fullName: ModLib.Registry.ModEntry.OptionHolder
+  nameWithType: Registry.ModEntry.OptionHolder
+- uid: ModLib.Registry.ModEntry.Plugin
+  name: Plugin
+  href: api/ModLib.Registry.ModEntry.html#ModLib_Registry_ModEntry_Plugin
+  commentId: P:ModLib.Registry.ModEntry.Plugin
+  fullName: ModLib.Registry.ModEntry.Plugin
+  nameWithType: Registry.ModEntry.Plugin
+- uid: ModLib.Registry.ModEntry.Plugin*
+  name: Plugin
+  href: api/ModLib.Registry.ModEntry.html#ModLib_Registry_ModEntry_Plugin_
+  commentId: Overload:ModLib.Registry.ModEntry.Plugin
+  isSpec: "True"
+  fullName: ModLib.Registry.ModEntry.Plugin
+  nameWithType: Registry.ModEntry.Plugin
+- uid: ModLib.Registry.ModEntry.ToString
+  name: ToString()
+  href: api/ModLib.Registry.ModEntry.html#ModLib_Registry_ModEntry_ToString
+  commentId: M:ModLib.Registry.ModEntry.ToString
+  fullName: ModLib.Registry.ModEntry.ToString()
+  nameWithType: Registry.ModEntry.ToString()
+- uid: ModLib.Registry.ModEntry.ToString*
+  name: ToString
+  href: api/ModLib.Registry.ModEntry.html#ModLib_Registry_ModEntry_ToString_
+  commentId: Overload:ModLib.Registry.ModEntry.ToString
+  isSpec: "True"
+  fullName: ModLib.Registry.ModEntry.ToString
+  nameWithType: Registry.ModEntry.ToString
+- uid: ModLib.Registry.ModNotFoundException
+  name: Registry.ModNotFoundException
+  href: api/ModLib.Registry.ModNotFoundException.html
+  commentId: T:ModLib.Registry.ModNotFoundException
+  fullName: ModLib.Registry.ModNotFoundException
+  nameWithType: Registry.ModNotFoundException
+- uid: ModLib.Registry.ModNotFoundException.#ctor
+  name: ModNotFoundException()
+  href: api/ModLib.Registry.ModNotFoundException.html#ModLib_Registry_ModNotFoundException__ctor
+  commentId: M:ModLib.Registry.ModNotFoundException.#ctor
+  name.vb: New()
+  fullName: ModLib.Registry.ModNotFoundException.ModNotFoundException()
+  fullName.vb: ModLib.Registry.ModNotFoundException.New()
+  nameWithType: Registry.ModNotFoundException.ModNotFoundException()
+  nameWithType.vb: Registry.ModNotFoundException.New()
+- uid: ModLib.Registry.ModNotFoundException.#ctor(System.String)
+  name: ModNotFoundException(string)
+  href: api/ModLib.Registry.ModNotFoundException.html#ModLib_Registry_ModNotFoundException__ctor_System_String_
+  commentId: M:ModLib.Registry.ModNotFoundException.#ctor(System.String)
+  name.vb: New(String)
+  fullName: ModLib.Registry.ModNotFoundException.ModNotFoundException(string)
+  fullName.vb: ModLib.Registry.ModNotFoundException.New(String)
+  nameWithType: Registry.ModNotFoundException.ModNotFoundException(string)
+  nameWithType.vb: Registry.ModNotFoundException.New(String)
+- uid: ModLib.Registry.ModNotFoundException.#ctor(System.String,System.Exception)
+  name: ModNotFoundException(string, Exception)
+  href: api/ModLib.Registry.ModNotFoundException.html#ModLib_Registry_ModNotFoundException__ctor_System_String_System_Exception_
+  commentId: M:ModLib.Registry.ModNotFoundException.#ctor(System.String,System.Exception)
+  name.vb: New(String, Exception)
+  fullName: ModLib.Registry.ModNotFoundException.ModNotFoundException(string, System.Exception)
+  fullName.vb: ModLib.Registry.ModNotFoundException.New(String, System.Exception)
+  nameWithType: Registry.ModNotFoundException.ModNotFoundException(string, Exception)
+  nameWithType.vb: Registry.ModNotFoundException.New(String, Exception)
+- uid: ModLib.Registry.ModNotFoundException.#ctor*
+  name: ModNotFoundException
+  href: api/ModLib.Registry.ModNotFoundException.html#ModLib_Registry_ModNotFoundException__ctor_
+  commentId: Overload:ModLib.Registry.ModNotFoundException.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: ModLib.Registry.ModNotFoundException.ModNotFoundException
+  fullName.vb: ModLib.Registry.ModNotFoundException.New
+  nameWithType: Registry.ModNotFoundException.ModNotFoundException
+  nameWithType.vb: Registry.ModNotFoundException.New
+- uid: ModLib.Registry.MyMod
+  name: MyMod
+  href: api/ModLib.Registry.html#ModLib_Registry_MyMod
+  commentId: P:ModLib.Registry.MyMod
+  fullName: ModLib.Registry.MyMod
+  nameWithType: Registry.MyMod
+- uid: ModLib.Registry.MyMod*
+  name: MyMod
+  href: api/ModLib.Registry.html#ModLib_Registry_MyMod_
+  commentId: Overload:ModLib.Registry.MyMod
+  isSpec: "True"
+  fullName: ModLib.Registry.MyMod
+  nameWithType: Registry.MyMod
+- uid: ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin,System.Type)
+  name: RegisterMod(BaseUnityPlugin, Type?)
+  href: api/ModLib.Registry.html#ModLib_Registry_RegisterMod_BepInEx_BaseUnityPlugin_System_Type_
+  commentId: M:ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin,System.Type)
+  name.vb: RegisterMod(BaseUnityPlugin, Type)
+  fullName: ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin, System.Type?)
+  fullName.vb: ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin, System.Type)
+  nameWithType: Registry.RegisterMod(BaseUnityPlugin, Type?)
+  nameWithType.vb: Registry.RegisterMod(BaseUnityPlugin, Type)
+- uid: ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin,System.Type,BepInEx.Logging.ManualLogSource)
+  name: RegisterMod(BaseUnityPlugin, Type?, ManualLogSource)
+  href: api/ModLib.Registry.html#ModLib_Registry_RegisterMod_BepInEx_BaseUnityPlugin_System_Type_BepInEx_Logging_ManualLogSource_
+  commentId: M:ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin,System.Type,BepInEx.Logging.ManualLogSource)
+  name.vb: RegisterMod(BaseUnityPlugin, Type, ManualLogSource)
+  fullName: ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin, System.Type?, BepInEx.Logging.ManualLogSource)
+  fullName.vb: ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin, System.Type, BepInEx.Logging.ManualLogSource)
+  nameWithType: Registry.RegisterMod(BaseUnityPlugin, Type?, ManualLogSource)
+  nameWithType.vb: Registry.RegisterMod(BaseUnityPlugin, Type, ManualLogSource)
+- uid: ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin,System.Type,ModLib.Logging.IMyLogger)
+  name: RegisterMod(BaseUnityPlugin, Type?, IMyLogger?)
+  href: api/ModLib.Registry.html#ModLib_Registry_RegisterMod_BepInEx_BaseUnityPlugin_System_Type_ModLib_Logging_IMyLogger_
+  commentId: M:ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin,System.Type,ModLib.Logging.IMyLogger)
+  name.vb: RegisterMod(BaseUnityPlugin, Type, IMyLogger)
+  fullName: ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin, System.Type?, ModLib.Logging.IMyLogger?)
+  fullName.vb: ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin, System.Type, ModLib.Logging.IMyLogger)
+  nameWithType: Registry.RegisterMod(BaseUnityPlugin, Type?, IMyLogger?)
+  nameWithType.vb: Registry.RegisterMod(BaseUnityPlugin, Type, IMyLogger)
+- uid: ModLib.Registry.RegisterMod*
+  name: RegisterMod
+  href: api/ModLib.Registry.html#ModLib_Registry_RegisterMod_
+  commentId: Overload:ModLib.Registry.RegisterMod
+  isSpec: "True"
+  fullName: ModLib.Registry.RegisterMod
+  nameWithType: Registry.RegisterMod
+- uid: ModLib.Registry.UnregisterMod
+  name: UnregisterMod()
+  href: api/ModLib.Registry.html#ModLib_Registry_UnregisterMod
+  commentId: M:ModLib.Registry.UnregisterMod
+  fullName: ModLib.Registry.UnregisterMod()
+  nameWithType: Registry.UnregisterMod()
+- uid: ModLib.Registry.UnregisterMod*
+  name: UnregisterMod
+  href: api/ModLib.Registry.html#ModLib_Registry_UnregisterMod_
+  commentId: Overload:ModLib.Registry.UnregisterMod
+  isSpec: "True"
+  fullName: ModLib.Registry.UnregisterMod
+  nameWithType: Registry.UnregisterMod

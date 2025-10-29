@@ -1,0 +1,515 @@
+### YamlMime:ManagedReference
+items:
+- uid: ModLib.Logging.IMyLogger
+  commentId: T:ModLib.Logging.IMyLogger
+  id: IMyLogger
+  parent: ModLib.Logging
+  children:
+  - ModLib.Logging.IMyLogger.GetLogSource
+  - ModLib.Logging.IMyLogger.Log(BepInEx.Logging.LogLevel,System.Object)
+  - ModLib.Logging.IMyLogger.Log(System.Object)
+  - ModLib.Logging.IMyLogger.LogDebug(System.Object)
+  - ModLib.Logging.IMyLogger.LogError(System.Object)
+  - ModLib.Logging.IMyLogger.LogFatal(System.Object)
+  - ModLib.Logging.IMyLogger.LogInfo(System.Object)
+  - ModLib.Logging.IMyLogger.LogMessage(System.Object)
+  - ModLib.Logging.IMyLogger.LogWarning(System.Object)
+  langs:
+  - csharp
+  - vb
+  name: IMyLogger
+  nameWithType: IMyLogger
+  fullName: ModLib.Logging.IMyLogger
+  type: Interface
+  source:
+    remote:
+      path: ModLib/Logging/IMyLogger.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: IMyLogger
+    path: ../ModLib/Logging/IMyLogger.cs
+    startLine: 10
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Base interface providing the same methods of a <xref href="BepInEx.Logging.ManualLogSource" data-throw-if-not-resolved="false"></xref> object.
+  remarks: Implementation of this interface will depend on whether LogUtils is present at runtime.
+  example: []
+  syntax:
+    content: public interface IMyLogger
+    content.vb: Public Interface IMyLogger
+- uid: ModLib.Logging.IMyLogger.Log(System.Object)
+  commentId: M:ModLib.Logging.IMyLogger.Log(System.Object)
+  id: Log(System.Object)
+  parent: ModLib.Logging.IMyLogger
+  langs:
+  - csharp
+  - vb
+  name: Log(object)
+  nameWithType: IMyLogger.Log(object)
+  fullName: ModLib.Logging.IMyLogger.Log(object)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Logging/IMyLogger.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Log
+    path: ../ModLib/Logging/IMyLogger.cs
+    startLine: 16
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Logs a message with the default logging level.
+  example: []
+  syntax:
+    content: void Log(object message)
+    parameters:
+    - id: message
+      type: System.Object
+      description: Message to log.
+    content.vb: Sub Log(message As Object)
+  overload: ModLib.Logging.IMyLogger.Log*
+  nameWithType.vb: IMyLogger.Log(Object)
+  fullName.vb: ModLib.Logging.IMyLogger.Log(Object)
+  name.vb: Log(Object)
+- uid: ModLib.Logging.IMyLogger.Log(BepInEx.Logging.LogLevel,System.Object)
+  commentId: M:ModLib.Logging.IMyLogger.Log(BepInEx.Logging.LogLevel,System.Object)
+  id: Log(BepInEx.Logging.LogLevel,System.Object)
+  parent: ModLib.Logging.IMyLogger
+  langs:
+  - csharp
+  - vb
+  name: Log(LogLevel, object)
+  nameWithType: IMyLogger.Log(LogLevel, object)
+  fullName: ModLib.Logging.IMyLogger.Log(BepInEx.Logging.LogLevel, object)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Logging/IMyLogger.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Log
+    path: ../ModLib/Logging/IMyLogger.cs
+    startLine: 19
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Logs a message with the specified log level.
+  example: []
+  syntax:
+    content: void Log(LogLevel level, object data)
+    parameters:
+    - id: level
+      type: BepInEx.Logging.LogLevel
+      description: Log levels to attach to the message. Multiple can be used with bitwise ORing.
+    - id: data
+      type: System.Object
+      description: Data to log.
+    content.vb: Sub Log(level As LogLevel, data As Object)
+  overload: ModLib.Logging.IMyLogger.Log*
+  nameWithType.vb: IMyLogger.Log(LogLevel, Object)
+  fullName.vb: ModLib.Logging.IMyLogger.Log(BepInEx.Logging.LogLevel, Object)
+  name.vb: Log(LogLevel, Object)
+- uid: ModLib.Logging.IMyLogger.LogDebug(System.Object)
+  commentId: M:ModLib.Logging.IMyLogger.LogDebug(System.Object)
+  id: LogDebug(System.Object)
+  parent: ModLib.Logging.IMyLogger
+  langs:
+  - csharp
+  - vb
+  name: LogDebug(object)
+  nameWithType: IMyLogger.LogDebug(object)
+  fullName: ModLib.Logging.IMyLogger.LogDebug(object)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Logging/IMyLogger.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: LogDebug
+    path: ../ModLib/Logging/IMyLogger.cs
+    startLine: 22
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Logs a message with <xref href="BepInEx.Logging.LogLevel.Debug" data-throw-if-not-resolved="false"></xref> level.
+  example: []
+  syntax:
+    content: void LogDebug(object data)
+    parameters:
+    - id: data
+      type: System.Object
+      description: Data to log.
+    content.vb: Sub LogDebug(data As Object)
+  overload: ModLib.Logging.IMyLogger.LogDebug*
+  nameWithType.vb: IMyLogger.LogDebug(Object)
+  fullName.vb: ModLib.Logging.IMyLogger.LogDebug(Object)
+  name.vb: LogDebug(Object)
+- uid: ModLib.Logging.IMyLogger.LogError(System.Object)
+  commentId: M:ModLib.Logging.IMyLogger.LogError(System.Object)
+  id: LogError(System.Object)
+  parent: ModLib.Logging.IMyLogger
+  langs:
+  - csharp
+  - vb
+  name: LogError(object)
+  nameWithType: IMyLogger.LogError(object)
+  fullName: ModLib.Logging.IMyLogger.LogError(object)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Logging/IMyLogger.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: LogError
+    path: ../ModLib/Logging/IMyLogger.cs
+    startLine: 25
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Logs a message with <xref href="BepInEx.Logging.LogLevel.Error" data-throw-if-not-resolved="false"></xref> level.
+  example: []
+  syntax:
+    content: void LogError(object data)
+    parameters:
+    - id: data
+      type: System.Object
+      description: Data to log.
+    content.vb: Sub LogError(data As Object)
+  overload: ModLib.Logging.IMyLogger.LogError*
+  nameWithType.vb: IMyLogger.LogError(Object)
+  fullName.vb: ModLib.Logging.IMyLogger.LogError(Object)
+  name.vb: LogError(Object)
+- uid: ModLib.Logging.IMyLogger.LogFatal(System.Object)
+  commentId: M:ModLib.Logging.IMyLogger.LogFatal(System.Object)
+  id: LogFatal(System.Object)
+  parent: ModLib.Logging.IMyLogger
+  langs:
+  - csharp
+  - vb
+  name: LogFatal(object)
+  nameWithType: IMyLogger.LogFatal(object)
+  fullName: ModLib.Logging.IMyLogger.LogFatal(object)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Logging/IMyLogger.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: LogFatal
+    path: ../ModLib/Logging/IMyLogger.cs
+    startLine: 28
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Logs a message with <xref href="BepInEx.Logging.LogLevel.Fatal" data-throw-if-not-resolved="false"></xref> level.
+  example: []
+  syntax:
+    content: void LogFatal(object data)
+    parameters:
+    - id: data
+      type: System.Object
+      description: Data to log.
+    content.vb: Sub LogFatal(data As Object)
+  overload: ModLib.Logging.IMyLogger.LogFatal*
+  nameWithType.vb: IMyLogger.LogFatal(Object)
+  fullName.vb: ModLib.Logging.IMyLogger.LogFatal(Object)
+  name.vb: LogFatal(Object)
+- uid: ModLib.Logging.IMyLogger.LogInfo(System.Object)
+  commentId: M:ModLib.Logging.IMyLogger.LogInfo(System.Object)
+  id: LogInfo(System.Object)
+  parent: ModLib.Logging.IMyLogger
+  langs:
+  - csharp
+  - vb
+  name: LogInfo(object)
+  nameWithType: IMyLogger.LogInfo(object)
+  fullName: ModLib.Logging.IMyLogger.LogInfo(object)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Logging/IMyLogger.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: LogInfo
+    path: ../ModLib/Logging/IMyLogger.cs
+    startLine: 31
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Logs a message with <xref href="BepInEx.Logging.LogLevel.Info" data-throw-if-not-resolved="false"></xref> level.
+  example: []
+  syntax:
+    content: void LogInfo(object data)
+    parameters:
+    - id: data
+      type: System.Object
+      description: Data to log.
+    content.vb: Sub LogInfo(data As Object)
+  overload: ModLib.Logging.IMyLogger.LogInfo*
+  nameWithType.vb: IMyLogger.LogInfo(Object)
+  fullName.vb: ModLib.Logging.IMyLogger.LogInfo(Object)
+  name.vb: LogInfo(Object)
+- uid: ModLib.Logging.IMyLogger.LogMessage(System.Object)
+  commentId: M:ModLib.Logging.IMyLogger.LogMessage(System.Object)
+  id: LogMessage(System.Object)
+  parent: ModLib.Logging.IMyLogger
+  langs:
+  - csharp
+  - vb
+  name: LogMessage(object)
+  nameWithType: IMyLogger.LogMessage(object)
+  fullName: ModLib.Logging.IMyLogger.LogMessage(object)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Logging/IMyLogger.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: LogMessage
+    path: ../ModLib/Logging/IMyLogger.cs
+    startLine: 34
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Logs a message with <xref href="BepInEx.Logging.LogLevel.Message" data-throw-if-not-resolved="false"></xref> level.
+  example: []
+  syntax:
+    content: void LogMessage(object data)
+    parameters:
+    - id: data
+      type: System.Object
+      description: Data to log.
+    content.vb: Sub LogMessage(data As Object)
+  overload: ModLib.Logging.IMyLogger.LogMessage*
+  nameWithType.vb: IMyLogger.LogMessage(Object)
+  fullName.vb: ModLib.Logging.IMyLogger.LogMessage(Object)
+  name.vb: LogMessage(Object)
+- uid: ModLib.Logging.IMyLogger.LogWarning(System.Object)
+  commentId: M:ModLib.Logging.IMyLogger.LogWarning(System.Object)
+  id: LogWarning(System.Object)
+  parent: ModLib.Logging.IMyLogger
+  langs:
+  - csharp
+  - vb
+  name: LogWarning(object)
+  nameWithType: IMyLogger.LogWarning(object)
+  fullName: ModLib.Logging.IMyLogger.LogWarning(object)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Logging/IMyLogger.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: LogWarning
+    path: ../ModLib/Logging/IMyLogger.cs
+    startLine: 37
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Logs a message with <xref href="BepInEx.Logging.LogLevel.Warning" data-throw-if-not-resolved="false"></xref> level.
+  example: []
+  syntax:
+    content: void LogWarning(object data)
+    parameters:
+    - id: data
+      type: System.Object
+      description: Data to log.
+    content.vb: Sub LogWarning(data As Object)
+  overload: ModLib.Logging.IMyLogger.LogWarning*
+  nameWithType.vb: IMyLogger.LogWarning(Object)
+  fullName.vb: ModLib.Logging.IMyLogger.LogWarning(Object)
+  name.vb: LogWarning(Object)
+- uid: ModLib.Logging.IMyLogger.GetLogSource
+  commentId: M:ModLib.Logging.IMyLogger.GetLogSource
+  id: GetLogSource
+  parent: ModLib.Logging.IMyLogger
+  langs:
+  - csharp
+  - vb
+  name: GetLogSource()
+  nameWithType: IMyLogger.GetLogSource()
+  fullName: ModLib.Logging.IMyLogger.GetLogSource()
+  type: Method
+  source:
+    remote:
+      path: ModLib/Logging/IMyLogger.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: GetLogSource
+    path: ../ModLib/Logging/IMyLogger.cs
+    startLine: 43
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Retrieves the internal log source of this logger implementation.
+  example: []
+  syntax:
+    content: object GetLogSource()
+    return:
+      type: System.Object
+      description: The log source of this logger implementation.
+    content.vb: Function GetLogSource() As Object
+  overload: ModLib.Logging.IMyLogger.GetLogSource*
+references:
+- uid: BepInEx.Logging.ManualLogSource
+  commentId: T:BepInEx.Logging.ManualLogSource
+  parent: BepInEx.Logging
+  isExternal: true
+  name: ManualLogSource
+  nameWithType: ManualLogSource
+  fullName: BepInEx.Logging.ManualLogSource
+- uid: ModLib.Logging
+  commentId: N:ModLib.Logging
+  href: ModLib.html
+  name: ModLib.Logging
+  nameWithType: ModLib.Logging
+  fullName: ModLib.Logging
+  spec.csharp:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Logging
+    name: Logging
+    href: ModLib.Logging.html
+  spec.vb:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Logging
+    name: Logging
+    href: ModLib.Logging.html
+- uid: BepInEx.Logging
+  commentId: N:BepInEx.Logging
+  isExternal: true
+  name: BepInEx.Logging
+  nameWithType: BepInEx.Logging
+  fullName: BepInEx.Logging
+  spec.csharp:
+  - uid: BepInEx
+    name: BepInEx
+    isExternal: true
+  - name: .
+  - uid: BepInEx.Logging
+    name: Logging
+    isExternal: true
+  spec.vb:
+  - uid: BepInEx
+    name: BepInEx
+    isExternal: true
+  - name: .
+  - uid: BepInEx.Logging
+    name: Logging
+    isExternal: true
+- uid: ModLib.Logging.IMyLogger.Log*
+  commentId: Overload:ModLib.Logging.IMyLogger.Log
+  href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_Log_System_Object_
+  name: Log
+  nameWithType: IMyLogger.Log
+  fullName: ModLib.Logging.IMyLogger.Log
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: BepInEx.Logging.LogLevel
+  commentId: T:BepInEx.Logging.LogLevel
+  parent: BepInEx.Logging
+  isExternal: true
+  name: LogLevel
+  nameWithType: LogLevel
+  fullName: BepInEx.Logging.LogLevel
+- uid: BepInEx.Logging.LogLevel.Debug
+  commentId: F:BepInEx.Logging.LogLevel.Debug
+  isExternal: true
+  name: Debug
+  nameWithType: LogLevel.Debug
+  fullName: BepInEx.Logging.LogLevel.Debug
+- uid: ModLib.Logging.IMyLogger.LogDebug*
+  commentId: Overload:ModLib.Logging.IMyLogger.LogDebug
+  href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogDebug_System_Object_
+  name: LogDebug
+  nameWithType: IMyLogger.LogDebug
+  fullName: ModLib.Logging.IMyLogger.LogDebug
+- uid: BepInEx.Logging.LogLevel.Error
+  commentId: F:BepInEx.Logging.LogLevel.Error
+  isExternal: true
+  name: Error
+  nameWithType: LogLevel.Error
+  fullName: BepInEx.Logging.LogLevel.Error
+- uid: ModLib.Logging.IMyLogger.LogError*
+  commentId: Overload:ModLib.Logging.IMyLogger.LogError
+  href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogError_System_Object_
+  name: LogError
+  nameWithType: IMyLogger.LogError
+  fullName: ModLib.Logging.IMyLogger.LogError
+- uid: BepInEx.Logging.LogLevel.Fatal
+  commentId: F:BepInEx.Logging.LogLevel.Fatal
+  isExternal: true
+  name: Fatal
+  nameWithType: LogLevel.Fatal
+  fullName: BepInEx.Logging.LogLevel.Fatal
+- uid: ModLib.Logging.IMyLogger.LogFatal*
+  commentId: Overload:ModLib.Logging.IMyLogger.LogFatal
+  href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogFatal_System_Object_
+  name: LogFatal
+  nameWithType: IMyLogger.LogFatal
+  fullName: ModLib.Logging.IMyLogger.LogFatal
+- uid: BepInEx.Logging.LogLevel.Info
+  commentId: F:BepInEx.Logging.LogLevel.Info
+  isExternal: true
+  name: Info
+  nameWithType: LogLevel.Info
+  fullName: BepInEx.Logging.LogLevel.Info
+- uid: ModLib.Logging.IMyLogger.LogInfo*
+  commentId: Overload:ModLib.Logging.IMyLogger.LogInfo
+  href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogInfo_System_Object_
+  name: LogInfo
+  nameWithType: IMyLogger.LogInfo
+  fullName: ModLib.Logging.IMyLogger.LogInfo
+- uid: BepInEx.Logging.LogLevel.Message
+  commentId: F:BepInEx.Logging.LogLevel.Message
+  isExternal: true
+  name: Message
+  nameWithType: LogLevel.Message
+  fullName: BepInEx.Logging.LogLevel.Message
+- uid: ModLib.Logging.IMyLogger.LogMessage*
+  commentId: Overload:ModLib.Logging.IMyLogger.LogMessage
+  href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogMessage_System_Object_
+  name: LogMessage
+  nameWithType: IMyLogger.LogMessage
+  fullName: ModLib.Logging.IMyLogger.LogMessage
+- uid: BepInEx.Logging.LogLevel.Warning
+  commentId: F:BepInEx.Logging.LogLevel.Warning
+  isExternal: true
+  name: Warning
+  nameWithType: LogLevel.Warning
+  fullName: BepInEx.Logging.LogLevel.Warning
+- uid: ModLib.Logging.IMyLogger.LogWarning*
+  commentId: Overload:ModLib.Logging.IMyLogger.LogWarning
+  href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogWarning_System_Object_
+  name: LogWarning
+  nameWithType: IMyLogger.LogWarning
+  fullName: ModLib.Logging.IMyLogger.LogWarning
+- uid: ModLib.Logging.IMyLogger.GetLogSource*
+  commentId: Overload:ModLib.Logging.IMyLogger.GetLogSource
+  href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_GetLogSource
+  name: GetLogSource
+  nameWithType: IMyLogger.GetLogSource
+  fullName: ModLib.Logging.IMyLogger.GetLogSource

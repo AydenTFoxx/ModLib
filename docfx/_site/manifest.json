@@ -1,0 +1,564 @@
+{
+  "source_base_path": "C:/Users/YannahTFoxx/Projects/ModLib/docfx",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Collections.WeakCollection-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Collections.WeakCollection-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Collections.WeakCollection<T>",
+      "Summary": "<p sourcefile=\"api/ModLib.Collections.WeakCollection-1.yml\" sourcestartlinenumber=\"1\">A collection of weakly-referenced elements of a given type.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Collections.WeakDictionary-2.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Collections.WeakDictionary-2.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Collections.WeakDictionary<TKey, TValue>",
+      "Summary": "<p sourcefile=\"api/ModLib.Collections.WeakDictionary-2.yml\" sourcestartlinenumber=\"1\">A dictionary of weak references, akin to a <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable%602\" data-throw-if-not-resolved=\"false\"></xref>.\nWhen a key or value is disposed, its corresponding pair is automatically removed.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Collections.WeakList-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Collections.WeakList-1.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Collections.WeakList<T>",
+      "Summary": "<p sourcefile=\"api/ModLib.Collections.WeakList-1.yml\" sourcestartlinenumber=\"1\">A list of weakly-referenced values, which are removed when the underlying value is GC'ed.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Collections.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Collections.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Collections",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.CompatibilityManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.CompatibilityManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.CompatibilityManager",
+      "Summary": "<p sourcefile=\"api/ModLib.CompatibilityManager.yml\" sourcestartlinenumber=\"1\">Simple helper for determining the presence of other mods and ensure mod compatibility.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Extras.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Extras.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Extras",
+      "Summary": "<p sourcefile=\"api/ModLib.Extras.yml\" sourcestartlinenumber=\"1\">A collection of utilities and wrappers for common modding activities.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Input.CustomInputData.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Input.CustomInputData.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Input.CustomInputData",
+      "Summary": "<p sourcefile=\"api/ModLib.Input.CustomInputData.yml\" sourcestartlinenumber=\"1\">Provides simple representation of a given player's input data;\nA mirror of <xref href=\"ImprovedInput.Plugin.PlayerData\" data-throw-if-not-resolved=\"false\"></xref> which can be converted to and from its original class.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Input.CustomInputDataExts.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Input.CustomInputDataExts.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Input.CustomInputDataExts",
+      "Summary": "<p sourcefile=\"api/ModLib.Input.CustomInputDataExts.yml\" sourcestartlinenumber=\"1\">Extension methods for evaluating the input data of non-player objects.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Input.InputHandler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Input.InputHandler.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Input.InputHandler",
+      "Summary": "<p sourcefile=\"api/ModLib.Input.InputHandler.yml\" sourcestartlinenumber=\"1\">General interface for managing keybinds and retrieving player input.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Input.Keybind.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Input.Keybind.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Input.Keybind",
+      "Summary": "<p sourcefile=\"api/ModLib.Input.Keybind.yml\" sourcestartlinenumber=\"1\">An immutable representation of a player keybind, compatible with ImprovedInput's PlayerKeybind object.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Input.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Input.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Input",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Logging.FallbackLogger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Logging.FallbackLogger.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Logging.FallbackLogger",
+      "Summary": "<p sourcefile=\"api/ModLib.Logging.FallbackLogger.yml\" sourcestartlinenumber=\"1\">Default wrapper for a <xref href=\"BepInEx.Logging.ManualLogSource\" data-throw-if-not-resolved=\"false\"></xref>; Used when LogUtils is not avaliable at runtime.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Logging.IMyLogger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Logging.IMyLogger.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Logging.IMyLogger",
+      "Summary": "<p sourcefile=\"api/ModLib.Logging.IMyLogger.yml\" sourcestartlinenumber=\"1\">Base interface providing the same methods of a <xref href=\"BepInEx.Logging.ManualLogSource\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Logging.LogUtilsAdapter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Logging.LogUtilsAdapter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Logging.LogUtilsAdapter",
+      "Summary": "<p sourcefile=\"api/ModLib.Logging.LogUtilsAdapter.yml\" sourcestartlinenumber=\"1\">Wrapper class for a LogUtils logger instance.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Logging.LoggingAdapter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Logging.LoggingAdapter.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Logging.LoggingAdapter",
+      "Summary": "<p sourcefile=\"api/ModLib.Logging.LoggingAdapter.yml\" sourcestartlinenumber=\"1\">Intermediary helper for creating loggers with the appropriate logging backend.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Logging.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Logging.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Logging",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Meadow.MeadowGameModes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Meadow.MeadowGameModes.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Meadow.MeadowGameModes",
+      "Summary": "<p sourcefile=\"api/ModLib.Meadow.MeadowGameModes.yml\" sourcestartlinenumber=\"1\">Wrapper enum for representing potential <xref href=\"RainMeadow.OnlineGameMode\" data-throw-if-not-resolved=\"false\"></xref> types.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Meadow.MeadowUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Meadow.MeadowUtils.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Meadow.MeadowUtils",
+      "Summary": "<p sourcefile=\"api/ModLib.Meadow.MeadowUtils.yml\" sourcestartlinenumber=\"1\">Utilities for retrieving and evaluating data exclusive to the Rain Meadow mod.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Meadow.ModRPCManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Meadow.ModRPCManager.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Meadow.ModRPCManager",
+      "Summary": "<p sourcefile=\"api/ModLib.Meadow.ModRPCManager.yml\" sourcestartlinenumber=\"1\">A simple tracker of sent RPC events, used to prevent unresolved SoftRPCs from hanging around indefinitely.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Meadow.ModRPCs.SerializableOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Meadow.ModRPCs.SerializableOptions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Meadow.ModRPCs.SerializableOptions",
+      "Summary": "<p sourcefile=\"api/ModLib.Meadow.ModRPCs.SerializableOptions.yml\" sourcestartlinenumber=\"1\">A serializable wrapper around a <xref href=\"ModLib.Options.ServerOptions\" data-throw-if-not-resolved=\"false\"></xref>' local options dictionary.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Meadow.ModRPCs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Meadow.ModRPCs.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Meadow.ModRPCs",
+      "Summary": "<p sourcefile=\"api/ModLib.Meadow.ModRPCs.yml\" sourcestartlinenumber=\"1\">Events sent to and received by clients, used for syncing data in an online context.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Meadow.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Meadow.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Meadow",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.ModPlugin.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.ModPlugin.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.ModPlugin",
+      "Summary": "<p sourcefile=\"api/ModLib.ModPlugin.yml\" sourcestartlinenumber=\"1\">A BaseUnityPlugin skeleton for quick prototyping and development.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Options.ClientOptionAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Options.ClientOptionAttribute.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Options.ClientOptionAttribute",
+      "Summary": "<p sourcefile=\"api/ModLib.Options.ClientOptionAttribute.yml\" sourcestartlinenumber=\"1\">Determines a given REMIX option is not to be synced in an online context (e.g. a Rain Meadow lobby).</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Options.ConfigValue.ValueKind.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Options.ConfigValue.ValueKind.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Options.ConfigValue.ValueKind",
+      "Summary": "<p sourcefile=\"api/ModLib.Options.ConfigValue.ValueKind.yml\" sourcestartlinenumber=\"1\">The kind of the internally held value from the configurable struct.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Options.ConfigValue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Options.ConfigValue.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Options.ConfigValue",
+      "Summary": "<p sourcefile=\"api/ModLib.Options.ConfigValue.yml\" sourcestartlinenumber=\"1\">A holder of supported values for <xref href=\"Configurable%601\" data-throw-if-not-resolved=\"false\"></xref> options.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Options.OptionBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Options.OptionBuilder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Options.OptionBuilder",
+      "Summary": "<p sourcefile=\"api/ModLib.Options.OptionBuilder.yml\" sourcestartlinenumber=\"1\">Helper class for building <code>OpTab</code>s with a variety of chain-able methods.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Options.OptionUtils.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Options.OptionUtils.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Options.OptionUtils",
+      "Summary": "<p sourcefile=\"api/ModLib.Options.OptionUtils.yml\" sourcestartlinenumber=\"1\">Utility methods for retrieving the mod's REMIX options.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Options.ServerOptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Options.ServerOptions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Options.ServerOptions",
+      "Summary": "<p sourcefile=\"api/ModLib.Options.ServerOptions.yml\" sourcestartlinenumber=\"1\">Holds the client's current REMIX options; Provides the ability to override these options, as well as serialize them in an online context.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Options.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Options.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Options",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Registry.ModEntry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Registry.ModEntry.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Registry.ModEntry",
+      "Summary": "<p sourcefile=\"api/ModLib.Registry.ModEntry.yml\" sourcestartlinenumber=\"1\">Represents a mod entry within ModLib's registry.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Registry.ModNotFoundException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Registry.ModNotFoundException.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Registry.ModNotFoundException",
+      "Summary": "<p sourcefile=\"api/ModLib.Registry.ModNotFoundException.yml\" sourcestartlinenumber=\"1\">The exception that is thrown when a ModLib method is called from an unregistered mod assembly.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.Registry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.Registry.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib.Registry",
+      "Summary": "<p sourcefile=\"api/ModLib.Registry.yml\" sourcestartlinenumber=\"1\">The entrypoint for registering mods to ModLib.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/ModLib.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ModLib.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "ModLib",
+      "Summary": null
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        },
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/introduction.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/introduction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "docs/toc.html"
+        },
+        ".json": {
+          "relative_path": "docs/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

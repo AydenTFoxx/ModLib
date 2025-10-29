@@ -1,0 +1,100 @@
+### YamlMime:ManagedReference
+items:
+- uid: ModLib.Collections
+  commentId: N:ModLib.Collections
+  id: ModLib.Collections
+  children:
+  - ModLib.Collections.WeakCollection`1
+  - ModLib.Collections.WeakDictionary`2
+  - ModLib.Collections.WeakList`1
+  langs:
+  - csharp
+  - vb
+  name: ModLib.Collections
+  nameWithType: ModLib.Collections
+  fullName: ModLib.Collections
+  type: Namespace
+  assemblies:
+  - ModLib
+references:
+- uid: ModLib.Collections.WeakCollection`1
+  commentId: T:ModLib.Collections.WeakCollection`1
+  href: ModLib.Collections.WeakCollection-1.html
+  name: WeakCollection<T>
+  nameWithType: WeakCollection<T>
+  fullName: ModLib.Collections.WeakCollection<T>
+  nameWithType.vb: WeakCollection(Of T)
+  fullName.vb: ModLib.Collections.WeakCollection(Of T)
+  name.vb: WeakCollection(Of T)
+  spec.csharp:
+  - uid: ModLib.Collections.WeakCollection`1
+    name: WeakCollection
+    href: ModLib.Collections.WeakCollection-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: ModLib.Collections.WeakCollection`1
+    name: WeakCollection
+    href: ModLib.Collections.WeakCollection-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: ModLib.Collections.WeakDictionary`2
+  commentId: T:ModLib.Collections.WeakDictionary`2
+  href: ModLib.Collections.WeakDictionary-2.html
+  name: WeakDictionary<TKey, TValue>
+  nameWithType: WeakDictionary<TKey, TValue>
+  fullName: ModLib.Collections.WeakDictionary<TKey, TValue>
+  nameWithType.vb: WeakDictionary(Of TKey, TValue)
+  fullName.vb: ModLib.Collections.WeakDictionary(Of TKey, TValue)
+  name.vb: WeakDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: ModLib.Collections.WeakDictionary`2
+    name: WeakDictionary
+    href: ModLib.Collections.WeakDictionary-2.html
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: ModLib.Collections.WeakDictionary`2
+    name: WeakDictionary
+    href: ModLib.Collections.WeakDictionary-2.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: ModLib.Collections.WeakList`1
+  commentId: T:ModLib.Collections.WeakList`1
+  href: ModLib.Collections.WeakList-1.html
+  name: WeakList<T>
+  nameWithType: WeakList<T>
+  fullName: ModLib.Collections.WeakList<T>
+  nameWithType.vb: WeakList(Of T)
+  fullName.vb: ModLib.Collections.WeakList(Of T)
+  name.vb: WeakList(Of T)
+  spec.csharp:
+  - uid: ModLib.Collections.WeakList`1
+    name: WeakList
+    href: ModLib.Collections.WeakList-1.html
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: ModLib.Collections.WeakList`1
+    name: WeakList
+    href: ModLib.Collections.WeakList-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )

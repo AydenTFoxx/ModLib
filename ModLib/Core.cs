@@ -27,13 +27,13 @@ internal static class Core
 
     public static readonly Assembly MyAssembly = typeof(Core).Assembly;
 
-    private static bool _initialized;
+    public static bool Initialized { get; private set; }
 
     public static void Initialize()
     {
-        if (_initialized) return;
+        if (Initialized) return;
 
-        _initialized = true;
+        Initialized = true;
 
         if (Extras.LogUtilsAvailable)
         {
@@ -70,9 +70,9 @@ internal static class Core
 
     public static void Disable()
     {
-        if (!_initialized) return;
+        if (!Initialized) return;
 
-        _initialized = false;
+        Initialized = false;
 
         CompatibilityManager.Clear();
 

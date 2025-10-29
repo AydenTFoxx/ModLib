@@ -1,0 +1,1095 @@
+### YamlMime:ManagedReference
+items:
+- uid: ModLib.Logging.LogUtilsAdapter
+  commentId: T:ModLib.Logging.LogUtilsAdapter
+  id: LogUtilsAdapter
+  parent: ModLib.Logging
+  children:
+  - ModLib.Logging.LogUtilsAdapter.#ctor(LogUtils.ILogger)
+  - ModLib.Logging.LogUtilsAdapter.GetLogSource
+  - ModLib.Logging.LogUtilsAdapter.Log(BepInEx.Logging.LogLevel,System.Object)
+  - ModLib.Logging.LogUtilsAdapter.Log(System.Object)
+  - ModLib.Logging.LogUtilsAdapter.LogDebug(System.Object)
+  - ModLib.Logging.LogUtilsAdapter.LogError(System.Object)
+  - ModLib.Logging.LogUtilsAdapter.LogFatal(System.Object)
+  - ModLib.Logging.LogUtilsAdapter.LogInfo(System.Object)
+  - ModLib.Logging.LogUtilsAdapter.LogMessage(System.Object)
+  - ModLib.Logging.LogUtilsAdapter.LogWarning(System.Object)
+  langs:
+  - csharp
+  - vb
+  name: LogUtilsAdapter
+  nameWithType: LogUtilsAdapter
+  fullName: ModLib.Logging.LogUtilsAdapter
+  type: Class
+  source:
+    remote:
+      path: ModLib/Logging/LogUtilsAdapter.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: LogUtilsAdapter
+    path: ../ModLib/Logging/LogUtilsAdapter.cs
+    startLine: 9
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Wrapper class for a LogUtils logger instance.
+  example: []
+  syntax:
+    content: 'public class LogUtilsAdapter : IMyLogger'
+    content.vb: Public Class LogUtilsAdapter Implements IMyLogger
+  inheritance:
+  - System.Object
+  implements:
+  - ModLib.Logging.IMyLogger
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: ModLib.Logging.LogUtilsAdapter.#ctor(LogUtils.ILogger)
+  commentId: M:ModLib.Logging.LogUtilsAdapter.#ctor(LogUtils.ILogger)
+  id: '#ctor(LogUtils.ILogger)'
+  parent: ModLib.Logging.LogUtilsAdapter
+  langs:
+  - csharp
+  - vb
+  name: LogUtilsAdapter(ILogger)
+  nameWithType: LogUtilsAdapter.LogUtilsAdapter(ILogger)
+  fullName: ModLib.Logging.LogUtilsAdapter.LogUtilsAdapter(LogUtils.ILogger)
+  type: Constructor
+  source:
+    remote:
+      path: ModLib/Logging/LogUtilsAdapter.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: .ctor
+    path: ../ModLib/Logging/LogUtilsAdapter.cs
+    startLine: 9
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Wrapper class for a LogUtils logger instance.
+  example: []
+  syntax:
+    content: public LogUtilsAdapter(ILogger logger)
+    parameters:
+    - id: logger
+      type: LogUtils.ILogger
+    content.vb: Public Sub New(logger As ILogger)
+  overload: ModLib.Logging.LogUtilsAdapter.#ctor*
+  nameWithType.vb: LogUtilsAdapter.New(ILogger)
+  fullName.vb: ModLib.Logging.LogUtilsAdapter.New(LogUtils.ILogger)
+  name.vb: New(ILogger)
+- uid: ModLib.Logging.LogUtilsAdapter.LogDebug(System.Object)
+  commentId: M:ModLib.Logging.LogUtilsAdapter.LogDebug(System.Object)
+  id: LogDebug(System.Object)
+  parent: ModLib.Logging.LogUtilsAdapter
+  langs:
+  - csharp
+  - vb
+  name: LogDebug(object)
+  nameWithType: LogUtilsAdapter.LogDebug(object)
+  fullName: ModLib.Logging.LogUtilsAdapter.LogDebug(object)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Logging/LogUtilsAdapter.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: LogDebug
+    path: ../ModLib/Logging/LogUtilsAdapter.cs
+    startLine: 14
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Logs a message with <xref href="BepInEx.Logging.LogLevel.Debug" data-throw-if-not-resolved="false"></xref> level.
+  example: []
+  syntax:
+    content: public void LogDebug(object data)
+    parameters:
+    - id: data
+      type: System.Object
+      description: Data to log.
+    content.vb: Public Sub LogDebug(data As Object)
+  overload: ModLib.Logging.LogUtilsAdapter.LogDebug*
+  implements:
+  - ModLib.Logging.IMyLogger.LogDebug(System.Object)
+  nameWithType.vb: LogUtilsAdapter.LogDebug(Object)
+  fullName.vb: ModLib.Logging.LogUtilsAdapter.LogDebug(Object)
+  name.vb: LogDebug(Object)
+- uid: ModLib.Logging.LogUtilsAdapter.LogError(System.Object)
+  commentId: M:ModLib.Logging.LogUtilsAdapter.LogError(System.Object)
+  id: LogError(System.Object)
+  parent: ModLib.Logging.LogUtilsAdapter
+  langs:
+  - csharp
+  - vb
+  name: LogError(object)
+  nameWithType: LogUtilsAdapter.LogError(object)
+  fullName: ModLib.Logging.LogUtilsAdapter.LogError(object)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Logging/LogUtilsAdapter.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: LogError
+    path: ../ModLib/Logging/LogUtilsAdapter.cs
+    startLine: 16
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Logs a message with <xref href="BepInEx.Logging.LogLevel.Error" data-throw-if-not-resolved="false"></xref> level.
+  example: []
+  syntax:
+    content: public void LogError(object data)
+    parameters:
+    - id: data
+      type: System.Object
+      description: Data to log.
+    content.vb: Public Sub LogError(data As Object)
+  overload: ModLib.Logging.LogUtilsAdapter.LogError*
+  implements:
+  - ModLib.Logging.IMyLogger.LogError(System.Object)
+  nameWithType.vb: LogUtilsAdapter.LogError(Object)
+  fullName.vb: ModLib.Logging.LogUtilsAdapter.LogError(Object)
+  name.vb: LogError(Object)
+- uid: ModLib.Logging.LogUtilsAdapter.LogFatal(System.Object)
+  commentId: M:ModLib.Logging.LogUtilsAdapter.LogFatal(System.Object)
+  id: LogFatal(System.Object)
+  parent: ModLib.Logging.LogUtilsAdapter
+  langs:
+  - csharp
+  - vb
+  name: LogFatal(object)
+  nameWithType: LogUtilsAdapter.LogFatal(object)
+  fullName: ModLib.Logging.LogUtilsAdapter.LogFatal(object)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Logging/LogUtilsAdapter.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: LogFatal
+    path: ../ModLib/Logging/LogUtilsAdapter.cs
+    startLine: 18
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Logs a message with <xref href="BepInEx.Logging.LogLevel.Fatal" data-throw-if-not-resolved="false"></xref> level.
+  example: []
+  syntax:
+    content: public void LogFatal(object data)
+    parameters:
+    - id: data
+      type: System.Object
+      description: Data to log.
+    content.vb: Public Sub LogFatal(data As Object)
+  overload: ModLib.Logging.LogUtilsAdapter.LogFatal*
+  implements:
+  - ModLib.Logging.IMyLogger.LogFatal(System.Object)
+  nameWithType.vb: LogUtilsAdapter.LogFatal(Object)
+  fullName.vb: ModLib.Logging.LogUtilsAdapter.LogFatal(Object)
+  name.vb: LogFatal(Object)
+- uid: ModLib.Logging.LogUtilsAdapter.LogInfo(System.Object)
+  commentId: M:ModLib.Logging.LogUtilsAdapter.LogInfo(System.Object)
+  id: LogInfo(System.Object)
+  parent: ModLib.Logging.LogUtilsAdapter
+  langs:
+  - csharp
+  - vb
+  name: LogInfo(object)
+  nameWithType: LogUtilsAdapter.LogInfo(object)
+  fullName: ModLib.Logging.LogUtilsAdapter.LogInfo(object)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Logging/LogUtilsAdapter.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: LogInfo
+    path: ../ModLib/Logging/LogUtilsAdapter.cs
+    startLine: 20
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Logs a message with <xref href="BepInEx.Logging.LogLevel.Info" data-throw-if-not-resolved="false"></xref> level.
+  example: []
+  syntax:
+    content: public void LogInfo(object data)
+    parameters:
+    - id: data
+      type: System.Object
+      description: Data to log.
+    content.vb: Public Sub LogInfo(data As Object)
+  overload: ModLib.Logging.LogUtilsAdapter.LogInfo*
+  implements:
+  - ModLib.Logging.IMyLogger.LogInfo(System.Object)
+  nameWithType.vb: LogUtilsAdapter.LogInfo(Object)
+  fullName.vb: ModLib.Logging.LogUtilsAdapter.LogInfo(Object)
+  name.vb: LogInfo(Object)
+- uid: ModLib.Logging.LogUtilsAdapter.LogMessage(System.Object)
+  commentId: M:ModLib.Logging.LogUtilsAdapter.LogMessage(System.Object)
+  id: LogMessage(System.Object)
+  parent: ModLib.Logging.LogUtilsAdapter
+  langs:
+  - csharp
+  - vb
+  name: LogMessage(object)
+  nameWithType: LogUtilsAdapter.LogMessage(object)
+  fullName: ModLib.Logging.LogUtilsAdapter.LogMessage(object)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Logging/LogUtilsAdapter.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: LogMessage
+    path: ../ModLib/Logging/LogUtilsAdapter.cs
+    startLine: 22
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Logs a message with <xref href="BepInEx.Logging.LogLevel.Message" data-throw-if-not-resolved="false"></xref> level.
+  example: []
+  syntax:
+    content: public void LogMessage(object data)
+    parameters:
+    - id: data
+      type: System.Object
+      description: Data to log.
+    content.vb: Public Sub LogMessage(data As Object)
+  overload: ModLib.Logging.LogUtilsAdapter.LogMessage*
+  implements:
+  - ModLib.Logging.IMyLogger.LogMessage(System.Object)
+  nameWithType.vb: LogUtilsAdapter.LogMessage(Object)
+  fullName.vb: ModLib.Logging.LogUtilsAdapter.LogMessage(Object)
+  name.vb: LogMessage(Object)
+- uid: ModLib.Logging.LogUtilsAdapter.LogWarning(System.Object)
+  commentId: M:ModLib.Logging.LogUtilsAdapter.LogWarning(System.Object)
+  id: LogWarning(System.Object)
+  parent: ModLib.Logging.LogUtilsAdapter
+  langs:
+  - csharp
+  - vb
+  name: LogWarning(object)
+  nameWithType: LogUtilsAdapter.LogWarning(object)
+  fullName: ModLib.Logging.LogUtilsAdapter.LogWarning(object)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Logging/LogUtilsAdapter.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: LogWarning
+    path: ../ModLib/Logging/LogUtilsAdapter.cs
+    startLine: 24
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Logs a message with <xref href="BepInEx.Logging.LogLevel.Warning" data-throw-if-not-resolved="false"></xref> level.
+  example: []
+  syntax:
+    content: public void LogWarning(object data)
+    parameters:
+    - id: data
+      type: System.Object
+      description: Data to log.
+    content.vb: Public Sub LogWarning(data As Object)
+  overload: ModLib.Logging.LogUtilsAdapter.LogWarning*
+  implements:
+  - ModLib.Logging.IMyLogger.LogWarning(System.Object)
+  nameWithType.vb: LogUtilsAdapter.LogWarning(Object)
+  fullName.vb: ModLib.Logging.LogUtilsAdapter.LogWarning(Object)
+  name.vb: LogWarning(Object)
+- uid: ModLib.Logging.LogUtilsAdapter.Log(System.Object)
+  commentId: M:ModLib.Logging.LogUtilsAdapter.Log(System.Object)
+  id: Log(System.Object)
+  parent: ModLib.Logging.LogUtilsAdapter
+  langs:
+  - csharp
+  - vb
+  name: Log(object)
+  nameWithType: LogUtilsAdapter.Log(object)
+  fullName: ModLib.Logging.LogUtilsAdapter.Log(object)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Logging/LogUtilsAdapter.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Log
+    path: ../ModLib/Logging/LogUtilsAdapter.cs
+    startLine: 27
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Logs a message with the default logging level.
+  example: []
+  syntax:
+    content: public void Log(object message)
+    parameters:
+    - id: message
+      type: System.Object
+      description: Message to log.
+    content.vb: Public Sub Log(message As Object)
+  overload: ModLib.Logging.LogUtilsAdapter.Log*
+  implements:
+  - ModLib.Logging.IMyLogger.Log(System.Object)
+  nameWithType.vb: LogUtilsAdapter.Log(Object)
+  fullName.vb: ModLib.Logging.LogUtilsAdapter.Log(Object)
+  name.vb: Log(Object)
+- uid: ModLib.Logging.LogUtilsAdapter.Log(BepInEx.Logging.LogLevel,System.Object)
+  commentId: M:ModLib.Logging.LogUtilsAdapter.Log(BepInEx.Logging.LogLevel,System.Object)
+  id: Log(BepInEx.Logging.LogLevel,System.Object)
+  parent: ModLib.Logging.LogUtilsAdapter
+  langs:
+  - csharp
+  - vb
+  name: Log(LogLevel, object)
+  nameWithType: LogUtilsAdapter.Log(LogLevel, object)
+  fullName: ModLib.Logging.LogUtilsAdapter.Log(BepInEx.Logging.LogLevel, object)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Logging/LogUtilsAdapter.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Log
+    path: ../ModLib/Logging/LogUtilsAdapter.cs
+    startLine: 29
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Logs a message with the specified log level.
+  example: []
+  syntax:
+    content: public void Log(LogLevel category, object message)
+    parameters:
+    - id: category
+      type: BepInEx.Logging.LogLevel
+    - id: message
+      type: System.Object
+    content.vb: Public Sub Log(category As LogLevel, message As Object)
+  overload: ModLib.Logging.LogUtilsAdapter.Log*
+  implements:
+  - ModLib.Logging.IMyLogger.Log(BepInEx.Logging.LogLevel,System.Object)
+  nameWithType.vb: LogUtilsAdapter.Log(LogLevel, Object)
+  fullName.vb: ModLib.Logging.LogUtilsAdapter.Log(BepInEx.Logging.LogLevel, Object)
+  name.vb: Log(LogLevel, Object)
+- uid: ModLib.Logging.LogUtilsAdapter.GetLogSource
+  commentId: M:ModLib.Logging.LogUtilsAdapter.GetLogSource
+  id: GetLogSource
+  parent: ModLib.Logging.LogUtilsAdapter
+  langs:
+  - csharp
+  - vb
+  name: GetLogSource()
+  nameWithType: LogUtilsAdapter.GetLogSource()
+  fullName: ModLib.Logging.LogUtilsAdapter.GetLogSource()
+  type: Method
+  source:
+    remote:
+      path: ModLib/Logging/LogUtilsAdapter.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: GetLogSource
+    path: ../ModLib/Logging/LogUtilsAdapter.cs
+    startLine: 32
+  assemblies:
+  - ModLib
+  namespace: ModLib.Logging
+  summary: Retrieves the internal log source of this logger implementation.
+  example: []
+  syntax:
+    content: public object GetLogSource()
+    return:
+      type: System.Object
+      description: The log source of this logger implementation.
+    content.vb: Public Function GetLogSource() As Object
+  overload: ModLib.Logging.LogUtilsAdapter.GetLogSource*
+  implements:
+  - ModLib.Logging.IMyLogger.GetLogSource
+references:
+- uid: ModLib.Logging
+  commentId: N:ModLib.Logging
+  href: ModLib.html
+  name: ModLib.Logging
+  nameWithType: ModLib.Logging
+  fullName: ModLib.Logging
+  spec.csharp:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Logging
+    name: Logging
+    href: ModLib.Logging.html
+  spec.vb:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Logging
+    name: Logging
+    href: ModLib.Logging.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: ModLib.Logging.IMyLogger
+  commentId: T:ModLib.Logging.IMyLogger
+  parent: ModLib.Logging
+  href: ModLib.Logging.IMyLogger.html
+  name: IMyLogger
+  nameWithType: IMyLogger
+  fullName: ModLib.Logging.IMyLogger
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: ModLib.Logging.LogUtilsAdapter.#ctor*
+  commentId: Overload:ModLib.Logging.LogUtilsAdapter.#ctor
+  href: ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter__ctor_LogUtils_ILogger_
+  name: LogUtilsAdapter
+  nameWithType: LogUtilsAdapter.LogUtilsAdapter
+  fullName: ModLib.Logging.LogUtilsAdapter.LogUtilsAdapter
+  nameWithType.vb: LogUtilsAdapter.New
+  fullName.vb: ModLib.Logging.LogUtilsAdapter.New
+  name.vb: New
+- uid: LogUtils.ILogger
+  commentId: T:LogUtils.ILogger
+  parent: LogUtils
+  isExternal: true
+  name: ILogger
+  nameWithType: ILogger
+  fullName: LogUtils.ILogger
+- uid: LogUtils
+  commentId: N:LogUtils
+  isExternal: true
+  name: LogUtils
+  nameWithType: LogUtils
+  fullName: LogUtils
+- uid: BepInEx.Logging.LogLevel.Debug
+  commentId: F:BepInEx.Logging.LogLevel.Debug
+  isExternal: true
+  name: Debug
+  nameWithType: LogLevel.Debug
+  fullName: BepInEx.Logging.LogLevel.Debug
+- uid: ModLib.Logging.LogUtilsAdapter.LogDebug*
+  commentId: Overload:ModLib.Logging.LogUtilsAdapter.LogDebug
+  href: ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_LogDebug_System_Object_
+  name: LogDebug
+  nameWithType: LogUtilsAdapter.LogDebug
+  fullName: ModLib.Logging.LogUtilsAdapter.LogDebug
+- uid: ModLib.Logging.IMyLogger.LogDebug(System.Object)
+  commentId: M:ModLib.Logging.IMyLogger.LogDebug(System.Object)
+  parent: ModLib.Logging.IMyLogger
+  isExternal: true
+  href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogDebug_System_Object_
+  name: LogDebug(object)
+  nameWithType: IMyLogger.LogDebug(object)
+  fullName: ModLib.Logging.IMyLogger.LogDebug(object)
+  nameWithType.vb: IMyLogger.LogDebug(Object)
+  fullName.vb: ModLib.Logging.IMyLogger.LogDebug(Object)
+  name.vb: LogDebug(Object)
+  spec.csharp:
+  - uid: ModLib.Logging.IMyLogger.LogDebug(System.Object)
+    name: LogDebug
+    href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogDebug_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: ModLib.Logging.IMyLogger.LogDebug(System.Object)
+    name: LogDebug
+    href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogDebug_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: BepInEx.Logging.LogLevel.Error
+  commentId: F:BepInEx.Logging.LogLevel.Error
+  isExternal: true
+  name: Error
+  nameWithType: LogLevel.Error
+  fullName: BepInEx.Logging.LogLevel.Error
+- uid: ModLib.Logging.LogUtilsAdapter.LogError*
+  commentId: Overload:ModLib.Logging.LogUtilsAdapter.LogError
+  href: ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_LogError_System_Object_
+  name: LogError
+  nameWithType: LogUtilsAdapter.LogError
+  fullName: ModLib.Logging.LogUtilsAdapter.LogError
+- uid: ModLib.Logging.IMyLogger.LogError(System.Object)
+  commentId: M:ModLib.Logging.IMyLogger.LogError(System.Object)
+  parent: ModLib.Logging.IMyLogger
+  isExternal: true
+  href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogError_System_Object_
+  name: LogError(object)
+  nameWithType: IMyLogger.LogError(object)
+  fullName: ModLib.Logging.IMyLogger.LogError(object)
+  nameWithType.vb: IMyLogger.LogError(Object)
+  fullName.vb: ModLib.Logging.IMyLogger.LogError(Object)
+  name.vb: LogError(Object)
+  spec.csharp:
+  - uid: ModLib.Logging.IMyLogger.LogError(System.Object)
+    name: LogError
+    href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogError_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: ModLib.Logging.IMyLogger.LogError(System.Object)
+    name: LogError
+    href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogError_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: BepInEx.Logging.LogLevel.Fatal
+  commentId: F:BepInEx.Logging.LogLevel.Fatal
+  isExternal: true
+  name: Fatal
+  nameWithType: LogLevel.Fatal
+  fullName: BepInEx.Logging.LogLevel.Fatal
+- uid: ModLib.Logging.LogUtilsAdapter.LogFatal*
+  commentId: Overload:ModLib.Logging.LogUtilsAdapter.LogFatal
+  href: ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_LogFatal_System_Object_
+  name: LogFatal
+  nameWithType: LogUtilsAdapter.LogFatal
+  fullName: ModLib.Logging.LogUtilsAdapter.LogFatal
+- uid: ModLib.Logging.IMyLogger.LogFatal(System.Object)
+  commentId: M:ModLib.Logging.IMyLogger.LogFatal(System.Object)
+  parent: ModLib.Logging.IMyLogger
+  isExternal: true
+  href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogFatal_System_Object_
+  name: LogFatal(object)
+  nameWithType: IMyLogger.LogFatal(object)
+  fullName: ModLib.Logging.IMyLogger.LogFatal(object)
+  nameWithType.vb: IMyLogger.LogFatal(Object)
+  fullName.vb: ModLib.Logging.IMyLogger.LogFatal(Object)
+  name.vb: LogFatal(Object)
+  spec.csharp:
+  - uid: ModLib.Logging.IMyLogger.LogFatal(System.Object)
+    name: LogFatal
+    href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogFatal_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: ModLib.Logging.IMyLogger.LogFatal(System.Object)
+    name: LogFatal
+    href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogFatal_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: BepInEx.Logging.LogLevel.Info
+  commentId: F:BepInEx.Logging.LogLevel.Info
+  isExternal: true
+  name: Info
+  nameWithType: LogLevel.Info
+  fullName: BepInEx.Logging.LogLevel.Info
+- uid: ModLib.Logging.LogUtilsAdapter.LogInfo*
+  commentId: Overload:ModLib.Logging.LogUtilsAdapter.LogInfo
+  href: ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_LogInfo_System_Object_
+  name: LogInfo
+  nameWithType: LogUtilsAdapter.LogInfo
+  fullName: ModLib.Logging.LogUtilsAdapter.LogInfo
+- uid: ModLib.Logging.IMyLogger.LogInfo(System.Object)
+  commentId: M:ModLib.Logging.IMyLogger.LogInfo(System.Object)
+  parent: ModLib.Logging.IMyLogger
+  isExternal: true
+  href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogInfo_System_Object_
+  name: LogInfo(object)
+  nameWithType: IMyLogger.LogInfo(object)
+  fullName: ModLib.Logging.IMyLogger.LogInfo(object)
+  nameWithType.vb: IMyLogger.LogInfo(Object)
+  fullName.vb: ModLib.Logging.IMyLogger.LogInfo(Object)
+  name.vb: LogInfo(Object)
+  spec.csharp:
+  - uid: ModLib.Logging.IMyLogger.LogInfo(System.Object)
+    name: LogInfo
+    href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogInfo_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: ModLib.Logging.IMyLogger.LogInfo(System.Object)
+    name: LogInfo
+    href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogInfo_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: BepInEx.Logging.LogLevel.Message
+  commentId: F:BepInEx.Logging.LogLevel.Message
+  isExternal: true
+  name: Message
+  nameWithType: LogLevel.Message
+  fullName: BepInEx.Logging.LogLevel.Message
+- uid: ModLib.Logging.LogUtilsAdapter.LogMessage*
+  commentId: Overload:ModLib.Logging.LogUtilsAdapter.LogMessage
+  href: ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_LogMessage_System_Object_
+  name: LogMessage
+  nameWithType: LogUtilsAdapter.LogMessage
+  fullName: ModLib.Logging.LogUtilsAdapter.LogMessage
+- uid: ModLib.Logging.IMyLogger.LogMessage(System.Object)
+  commentId: M:ModLib.Logging.IMyLogger.LogMessage(System.Object)
+  parent: ModLib.Logging.IMyLogger
+  isExternal: true
+  href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogMessage_System_Object_
+  name: LogMessage(object)
+  nameWithType: IMyLogger.LogMessage(object)
+  fullName: ModLib.Logging.IMyLogger.LogMessage(object)
+  nameWithType.vb: IMyLogger.LogMessage(Object)
+  fullName.vb: ModLib.Logging.IMyLogger.LogMessage(Object)
+  name.vb: LogMessage(Object)
+  spec.csharp:
+  - uid: ModLib.Logging.IMyLogger.LogMessage(System.Object)
+    name: LogMessage
+    href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogMessage_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: ModLib.Logging.IMyLogger.LogMessage(System.Object)
+    name: LogMessage
+    href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogMessage_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: BepInEx.Logging.LogLevel.Warning
+  commentId: F:BepInEx.Logging.LogLevel.Warning
+  isExternal: true
+  name: Warning
+  nameWithType: LogLevel.Warning
+  fullName: BepInEx.Logging.LogLevel.Warning
+- uid: ModLib.Logging.LogUtilsAdapter.LogWarning*
+  commentId: Overload:ModLib.Logging.LogUtilsAdapter.LogWarning
+  href: ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_LogWarning_System_Object_
+  name: LogWarning
+  nameWithType: LogUtilsAdapter.LogWarning
+  fullName: ModLib.Logging.LogUtilsAdapter.LogWarning
+- uid: ModLib.Logging.IMyLogger.LogWarning(System.Object)
+  commentId: M:ModLib.Logging.IMyLogger.LogWarning(System.Object)
+  parent: ModLib.Logging.IMyLogger
+  isExternal: true
+  href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogWarning_System_Object_
+  name: LogWarning(object)
+  nameWithType: IMyLogger.LogWarning(object)
+  fullName: ModLib.Logging.IMyLogger.LogWarning(object)
+  nameWithType.vb: IMyLogger.LogWarning(Object)
+  fullName.vb: ModLib.Logging.IMyLogger.LogWarning(Object)
+  name.vb: LogWarning(Object)
+  spec.csharp:
+  - uid: ModLib.Logging.IMyLogger.LogWarning(System.Object)
+    name: LogWarning
+    href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogWarning_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: ModLib.Logging.IMyLogger.LogWarning(System.Object)
+    name: LogWarning
+    href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_LogWarning_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: ModLib.Logging.LogUtilsAdapter.Log*
+  commentId: Overload:ModLib.Logging.LogUtilsAdapter.Log
+  href: ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_Log_System_Object_
+  name: Log
+  nameWithType: LogUtilsAdapter.Log
+  fullName: ModLib.Logging.LogUtilsAdapter.Log
+- uid: ModLib.Logging.IMyLogger.Log(System.Object)
+  commentId: M:ModLib.Logging.IMyLogger.Log(System.Object)
+  parent: ModLib.Logging.IMyLogger
+  isExternal: true
+  href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_Log_System_Object_
+  name: Log(object)
+  nameWithType: IMyLogger.Log(object)
+  fullName: ModLib.Logging.IMyLogger.Log(object)
+  nameWithType.vb: IMyLogger.Log(Object)
+  fullName.vb: ModLib.Logging.IMyLogger.Log(Object)
+  name.vb: Log(Object)
+  spec.csharp:
+  - uid: ModLib.Logging.IMyLogger.Log(System.Object)
+    name: Log
+    href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_Log_System_Object_
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: ModLib.Logging.IMyLogger.Log(System.Object)
+    name: Log
+    href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_Log_System_Object_
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: ModLib.Logging.IMyLogger.Log(BepInEx.Logging.LogLevel,System.Object)
+  commentId: M:ModLib.Logging.IMyLogger.Log(BepInEx.Logging.LogLevel,System.Object)
+  parent: ModLib.Logging.IMyLogger
+  isExternal: true
+  href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_Log_BepInEx_Logging_LogLevel_System_Object_
+  name: Log(LogLevel, object)
+  nameWithType: IMyLogger.Log(LogLevel, object)
+  fullName: ModLib.Logging.IMyLogger.Log(BepInEx.Logging.LogLevel, object)
+  nameWithType.vb: IMyLogger.Log(LogLevel, Object)
+  fullName.vb: ModLib.Logging.IMyLogger.Log(BepInEx.Logging.LogLevel, Object)
+  name.vb: Log(LogLevel, Object)
+  spec.csharp:
+  - uid: ModLib.Logging.IMyLogger.Log(BepInEx.Logging.LogLevel,System.Object)
+    name: Log
+    href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_Log_BepInEx_Logging_LogLevel_System_Object_
+  - name: (
+  - uid: BepInEx.Logging.LogLevel
+    name: LogLevel
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: ModLib.Logging.IMyLogger.Log(BepInEx.Logging.LogLevel,System.Object)
+    name: Log
+    href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_Log_BepInEx_Logging_LogLevel_System_Object_
+  - name: (
+  - uid: BepInEx.Logging.LogLevel
+    name: LogLevel
+    isExternal: true
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: BepInEx.Logging.LogLevel
+  commentId: T:BepInEx.Logging.LogLevel
+  parent: BepInEx.Logging
+  isExternal: true
+  name: LogLevel
+  nameWithType: LogLevel
+  fullName: BepInEx.Logging.LogLevel
+- uid: BepInEx.Logging
+  commentId: N:BepInEx.Logging
+  isExternal: true
+  name: BepInEx.Logging
+  nameWithType: BepInEx.Logging
+  fullName: BepInEx.Logging
+  spec.csharp:
+  - uid: BepInEx
+    name: BepInEx
+    isExternal: true
+  - name: .
+  - uid: BepInEx.Logging
+    name: Logging
+    isExternal: true
+  spec.vb:
+  - uid: BepInEx
+    name: BepInEx
+    isExternal: true
+  - name: .
+  - uid: BepInEx.Logging
+    name: Logging
+    isExternal: true
+- uid: ModLib.Logging.LogUtilsAdapter.GetLogSource*
+  commentId: Overload:ModLib.Logging.LogUtilsAdapter.GetLogSource
+  href: ModLib.Logging.LogUtilsAdapter.html#ModLib_Logging_LogUtilsAdapter_GetLogSource
+  name: GetLogSource
+  nameWithType: LogUtilsAdapter.GetLogSource
+  fullName: ModLib.Logging.LogUtilsAdapter.GetLogSource
+- uid: ModLib.Logging.IMyLogger.GetLogSource
+  commentId: M:ModLib.Logging.IMyLogger.GetLogSource
+  parent: ModLib.Logging.IMyLogger
+  href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_GetLogSource
+  name: GetLogSource()
+  nameWithType: IMyLogger.GetLogSource()
+  fullName: ModLib.Logging.IMyLogger.GetLogSource()
+  spec.csharp:
+  - uid: ModLib.Logging.IMyLogger.GetLogSource
+    name: GetLogSource
+    href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_GetLogSource
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: ModLib.Logging.IMyLogger.GetLogSource
+    name: GetLogSource
+    href: ModLib.Logging.IMyLogger.html#ModLib_Logging_IMyLogger_GetLogSource
+  - name: (
+  - name: )

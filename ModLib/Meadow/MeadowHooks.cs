@@ -33,6 +33,8 @@ internal static class MeadowHooks
         Extras.InGameSession = false;
 
         ModRPCManager.ClearRPCs();
+
+        OptionUtils.SharedOptions.RefreshOptions();
     }
 
     private static void GameSessionHook(On.GameSession.orig_ctor orig, GameSession self, RainWorldGame game)

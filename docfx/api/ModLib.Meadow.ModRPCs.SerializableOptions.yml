@@ -1,0 +1,759 @@
+### YamlMime:ManagedReference
+items:
+- uid: ModLib.Meadow.ModRPCs.SerializableOptions
+  commentId: T:ModLib.Meadow.ModRPCs.SerializableOptions
+  id: ModRPCs.SerializableOptions
+  parent: ModLib.Meadow
+  children:
+  - ModLib.Meadow.ModRPCs.SerializableOptions.#ctor
+  - ModLib.Meadow.ModRPCs.SerializableOptions.#ctor(System.Collections.Generic.IDictionary{System.String,ModLib.Options.ConfigValue})
+  - ModLib.Meadow.ModRPCs.SerializableOptions.CustomSerialize(RainMeadow.Serializer)
+  - ModLib.Meadow.ModRPCs.SerializableOptions.Options
+  langs:
+  - csharp
+  - vb
+  name: ModRPCs.SerializableOptions
+  nameWithType: ModRPCs.SerializableOptions
+  fullName: ModLib.Meadow.ModRPCs.SerializableOptions
+  type: Class
+  source:
+    remote:
+      path: ModLib/Meadow/ModRPCs.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: SerializableOptions
+    path: ../ModLib/Meadow/ModRPCs.cs
+    startLine: 74
+  assemblies:
+  - ModLib
+  namespace: ModLib.Meadow
+  summary: A serializable wrapper around a <xref href="ModLib.Options.ServerOptions" data-throw-if-not-resolved="false"></xref>' local options dictionary.
+  example: []
+  syntax:
+    content: 'public class ModRPCs.SerializableOptions : Serializer.ICustomSerializable'
+    content.vb: Public Class ModRPCs.SerializableOptions Implements Serializer.ICustomSerializable
+  inheritance:
+  - System.Object
+  implements:
+  - RainMeadow.Serializer.ICustomSerializable
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: ModLib.Meadow.ModRPCs.SerializableOptions.Options
+  commentId: F:ModLib.Meadow.ModRPCs.SerializableOptions.Options
+  id: Options
+  parent: ModLib.Meadow.ModRPCs.SerializableOptions
+  langs:
+  - csharp
+  - vb
+  name: Options
+  nameWithType: ModRPCs.SerializableOptions.Options
+  fullName: ModLib.Meadow.ModRPCs.SerializableOptions.Options
+  type: Field
+  source:
+    remote:
+      path: ModLib/Meadow/ModRPCs.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Options
+    path: ../ModLib/Meadow/ModRPCs.cs
+    startLine: 79
+  assemblies:
+  - ModLib
+  namespace: ModLib.Meadow
+  summary: The internally held option values;
+  example: []
+  syntax:
+    content: public Dictionary<string, ConfigValue> Options
+    return:
+      type: System.Collections.Generic.Dictionary{System.String,ModLib.Options.ConfigValue}
+    content.vb: Public Options As Dictionary(Of String, ConfigValue)
+- uid: ModLib.Meadow.ModRPCs.SerializableOptions.#ctor(System.Collections.Generic.IDictionary{System.String,ModLib.Options.ConfigValue})
+  commentId: M:ModLib.Meadow.ModRPCs.SerializableOptions.#ctor(System.Collections.Generic.IDictionary{System.String,ModLib.Options.ConfigValue})
+  id: '#ctor(System.Collections.Generic.IDictionary{System.String,ModLib.Options.ConfigValue})'
+  parent: ModLib.Meadow.ModRPCs.SerializableOptions
+  langs:
+  - csharp
+  - vb
+  name: SerializableOptions(IDictionary<string, ConfigValue>)
+  nameWithType: ModRPCs.SerializableOptions.SerializableOptions(IDictionary<string, ConfigValue>)
+  fullName: ModLib.Meadow.ModRPCs.SerializableOptions.SerializableOptions(System.Collections.Generic.IDictionary<string, ModLib.Options.ConfigValue>)
+  type: Constructor
+  source:
+    remote:
+      path: ModLib/Meadow/ModRPCs.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: .ctor
+    path: ../ModLib/Meadow/ModRPCs.cs
+    startLine: 88
+  assemblies:
+  - ModLib
+  namespace: ModLib.Meadow
+  summary: Creates a new <xref href="ModLib.Meadow.ModRPCs.SerializableOptions" data-throw-if-not-resolved="false"></xref> instance with the provided options for serialization.
+  remarks: Options prefixed with an underscore (<code>_</code>) are ignored for serialization purposes.
+  example: []
+  syntax:
+    content: public SerializableOptions(IDictionary<string, ConfigValue> options)
+    parameters:
+    - id: options
+      type: System.Collections.Generic.IDictionary{System.String,ModLib.Options.ConfigValue}
+      description: The options dictionary for serialization.
+    content.vb: Public Sub New(options As IDictionary(Of String, ConfigValue))
+  overload: ModLib.Meadow.ModRPCs.SerializableOptions.#ctor*
+  nameWithType.vb: ModRPCs.SerializableOptions.New(IDictionary(Of String, ConfigValue))
+  fullName.vb: ModLib.Meadow.ModRPCs.SerializableOptions.New(System.Collections.Generic.IDictionary(Of String, ModLib.Options.ConfigValue))
+  name.vb: New(IDictionary(Of String, ConfigValue))
+- uid: ModLib.Meadow.ModRPCs.SerializableOptions.#ctor
+  commentId: M:ModLib.Meadow.ModRPCs.SerializableOptions.#ctor
+  id: '#ctor'
+  parent: ModLib.Meadow.ModRPCs.SerializableOptions
+  langs:
+  - csharp
+  - vb
+  name: SerializableOptions()
+  nameWithType: ModRPCs.SerializableOptions.SerializableOptions()
+  fullName: ModLib.Meadow.ModRPCs.SerializableOptions.SerializableOptions()
+  type: Constructor
+  source:
+    remote:
+      path: ModLib/Meadow/ModRPCs.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: .ctor
+    path: ../ModLib/Meadow/ModRPCs.cs
+    startLine: 101
+  assemblies:
+  - ModLib
+  namespace: ModLib.Meadow
+  summary: Creates a new <xref href="ModLib.Meadow.ModRPCs.SerializableOptions" data-throw-if-not-resolved="false"></xref> instance with an empty options dictionary for serialization.
+  example: []
+  syntax:
+    content: public SerializableOptions()
+    content.vb: Public Sub New()
+  overload: ModLib.Meadow.ModRPCs.SerializableOptions.#ctor*
+  nameWithType.vb: ModRPCs.SerializableOptions.New()
+  fullName.vb: ModLib.Meadow.ModRPCs.SerializableOptions.New()
+  name.vb: New()
+- uid: ModLib.Meadow.ModRPCs.SerializableOptions.CustomSerialize(RainMeadow.Serializer)
+  commentId: M:ModLib.Meadow.ModRPCs.SerializableOptions.CustomSerialize(RainMeadow.Serializer)
+  id: CustomSerialize(RainMeadow.Serializer)
+  parent: ModLib.Meadow.ModRPCs.SerializableOptions
+  langs:
+  - csharp
+  - vb
+  name: CustomSerialize(Serializer)
+  nameWithType: ModRPCs.SerializableOptions.CustomSerialize(Serializer)
+  fullName: ModLib.Meadow.ModRPCs.SerializableOptions.CustomSerialize(RainMeadow.Serializer)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Meadow/ModRPCs.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: CustomSerialize
+    path: ../ModLib/Meadow/ModRPCs.cs
+    startLine: 109
+  assemblies:
+  - ModLib
+  namespace: ModLib.Meadow
+  summary: Serializes or de-serializes the referenced local options, using the provided serializer object.
+  example: []
+  syntax:
+    content: public void CustomSerialize(Serializer serializer)
+    parameters:
+    - id: serializer
+      type: RainMeadow.Serializer
+      description: The serializer for usage by this method.
+    content.vb: Public Sub CustomSerialize(serializer As Serializer)
+  overload: ModLib.Meadow.ModRPCs.SerializableOptions.CustomSerialize*
+  implements:
+  - RainMeadow.Serializer.ICustomSerializable.CustomSerialize(RainMeadow.Serializer)
+references:
+- uid: ModLib.Options.ServerOptions
+  commentId: T:ModLib.Options.ServerOptions
+  parent: ModLib.Options
+  href: ModLib.Options.ServerOptions.html
+  name: ServerOptions
+  nameWithType: ServerOptions
+  fullName: ModLib.Options.ServerOptions
+- uid: ModLib.Meadow
+  commentId: N:ModLib.Meadow
+  href: ModLib.html
+  name: ModLib.Meadow
+  nameWithType: ModLib.Meadow
+  fullName: ModLib.Meadow
+  spec.csharp:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Meadow
+    name: Meadow
+    href: ModLib.Meadow.html
+  spec.vb:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Meadow
+    name: Meadow
+    href: ModLib.Meadow.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: RainMeadow.Serializer.ICustomSerializable
+  commentId: T:RainMeadow.Serializer.ICustomSerializable
+  parent: RainMeadow
+  isExternal: true
+  name: Serializer.ICustomSerializable
+  nameWithType: Serializer.ICustomSerializable
+  fullName: RainMeadow.Serializer.ICustomSerializable
+  spec.csharp:
+  - uid: RainMeadow.Serializer
+    name: Serializer
+    isExternal: true
+  - name: .
+  - uid: RainMeadow.Serializer.ICustomSerializable
+    name: ICustomSerializable
+    isExternal: true
+  spec.vb:
+  - uid: RainMeadow.Serializer
+    name: Serializer
+    isExternal: true
+  - name: .
+  - uid: RainMeadow.Serializer.ICustomSerializable
+    name: ICustomSerializable
+    isExternal: true
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: ModLib.Options
+  commentId: N:ModLib.Options
+  href: ModLib.html
+  name: ModLib.Options
+  nameWithType: ModLib.Options
+  fullName: ModLib.Options
+  spec.csharp:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Options
+    name: Options
+    href: ModLib.Options.html
+  spec.vb:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Options
+    name: Options
+    href: ModLib.Options.html
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: RainMeadow
+  commentId: N:RainMeadow
+  isExternal: true
+  name: RainMeadow
+  nameWithType: RainMeadow
+  fullName: RainMeadow
+- uid: System.Collections.Generic.Dictionary{System.String,ModLib.Options.ConfigValue}
+  commentId: T:System.Collections.Generic.Dictionary{System.String,ModLib.Options.ConfigValue}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.Dictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<string, ConfigValue>
+  nameWithType: Dictionary<string, ConfigValue>
+  fullName: System.Collections.Generic.Dictionary<string, ModLib.Options.ConfigValue>
+  nameWithType.vb: Dictionary(Of String, ConfigValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of String, ModLib.Options.ConfigValue)
+  name.vb: Dictionary(Of String, ConfigValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: ModLib.Options.ConfigValue
+    name: ConfigValue
+    href: ModLib.Options.ConfigValue.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: ModLib.Options.ConfigValue
+    name: ConfigValue
+    href: ModLib.Options.ConfigValue.html
+  - name: )
+- uid: System.Collections.Generic.Dictionary`2
+  commentId: T:System.Collections.Generic.Dictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  name: Dictionary<TKey, TValue>
+  nameWithType: Dictionary<TKey, TValue>
+  fullName: System.Collections.Generic.Dictionary<TKey, TValue>
+  nameWithType.vb: Dictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.Dictionary(Of TKey, TValue)
+  name.vb: Dictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.Dictionary`2
+    name: Dictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: ModLib.Meadow.ModRPCs.SerializableOptions
+  commentId: T:ModLib.Meadow.ModRPCs.SerializableOptions
+  parent: ModLib.Meadow
+  href: ModLib.Meadow.ModRPCs.html
+  name: ModRPCs.SerializableOptions
+  nameWithType: ModRPCs.SerializableOptions
+  fullName: ModLib.Meadow.ModRPCs.SerializableOptions
+  spec.csharp:
+  - uid: ModLib.Meadow.ModRPCs
+    name: ModRPCs
+    href: ModLib.Meadow.ModRPCs.html
+  - name: .
+  - uid: ModLib.Meadow.ModRPCs.SerializableOptions
+    name: SerializableOptions
+    href: ModLib.Meadow.ModRPCs.SerializableOptions.html
+  spec.vb:
+  - uid: ModLib.Meadow.ModRPCs
+    name: ModRPCs
+    href: ModLib.Meadow.ModRPCs.html
+  - name: .
+  - uid: ModLib.Meadow.ModRPCs.SerializableOptions
+    name: SerializableOptions
+    href: ModLib.Meadow.ModRPCs.SerializableOptions.html
+- uid: ModLib.Meadow.ModRPCs.SerializableOptions.#ctor*
+  commentId: Overload:ModLib.Meadow.ModRPCs.SerializableOptions.#ctor
+  href: ModLib.Meadow.ModRPCs.SerializableOptions.html#ModLib_Meadow_ModRPCs_SerializableOptions__ctor_System_Collections_Generic_IDictionary_System_String_ModLib_Options_ConfigValue__
+  name: SerializableOptions
+  nameWithType: ModRPCs.SerializableOptions.SerializableOptions
+  fullName: ModLib.Meadow.ModRPCs.SerializableOptions.SerializableOptions
+  nameWithType.vb: ModRPCs.SerializableOptions.New
+  fullName.vb: ModLib.Meadow.ModRPCs.SerializableOptions.New
+  name.vb: New
+- uid: System.Collections.Generic.IDictionary{System.String,ModLib.Options.ConfigValue}
+  commentId: T:System.Collections.Generic.IDictionary{System.String,ModLib.Options.ConfigValue}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IDictionary`2
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  name: IDictionary<string, ConfigValue>
+  nameWithType: IDictionary<string, ConfigValue>
+  fullName: System.Collections.Generic.IDictionary<string, ModLib.Options.ConfigValue>
+  nameWithType.vb: IDictionary(Of String, ConfigValue)
+  fullName.vb: System.Collections.Generic.IDictionary(Of String, ModLib.Options.ConfigValue)
+  name.vb: IDictionary(Of String, ConfigValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: <
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: ModLib.Options.ConfigValue
+    name: ConfigValue
+    href: ModLib.Options.ConfigValue.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: ','
+  - name: " "
+  - uid: ModLib.Options.ConfigValue
+    name: ConfigValue
+    href: ModLib.Options.ConfigValue.html
+  - name: )
+- uid: System.Collections.Generic.IDictionary`2
+  commentId: T:System.Collections.Generic.IDictionary`2
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  name: IDictionary<TKey, TValue>
+  nameWithType: IDictionary<TKey, TValue>
+  fullName: System.Collections.Generic.IDictionary<TKey, TValue>
+  nameWithType.vb: IDictionary(Of TKey, TValue)
+  fullName.vb: System.Collections.Generic.IDictionary(Of TKey, TValue)
+  name.vb: IDictionary(Of TKey, TValue)
+  spec.csharp:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: <
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IDictionary`2
+    name: IDictionary
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TKey
+  - name: ','
+  - name: " "
+  - name: TValue
+  - name: )
+- uid: ModLib.Meadow.ModRPCs.SerializableOptions.CustomSerialize*
+  commentId: Overload:ModLib.Meadow.ModRPCs.SerializableOptions.CustomSerialize
+  href: ModLib.Meadow.ModRPCs.SerializableOptions.html#ModLib_Meadow_ModRPCs_SerializableOptions_CustomSerialize_RainMeadow_Serializer_
+  name: CustomSerialize
+  nameWithType: ModRPCs.SerializableOptions.CustomSerialize
+  fullName: ModLib.Meadow.ModRPCs.SerializableOptions.CustomSerialize
+- uid: RainMeadow.Serializer.ICustomSerializable.CustomSerialize(RainMeadow.Serializer)
+  commentId: M:RainMeadow.Serializer.ICustomSerializable.CustomSerialize(RainMeadow.Serializer)
+  parent: RainMeadow.Serializer.ICustomSerializable
+  isExternal: true
+  name: CustomSerialize(Serializer)
+  nameWithType: Serializer.ICustomSerializable.CustomSerialize(Serializer)
+  fullName: RainMeadow.Serializer.ICustomSerializable.CustomSerialize(RainMeadow.Serializer)
+  spec.csharp:
+  - uid: RainMeadow.Serializer.ICustomSerializable.CustomSerialize(RainMeadow.Serializer)
+    name: CustomSerialize
+    isExternal: true
+  - name: (
+  - uid: RainMeadow.Serializer
+    name: Serializer
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: RainMeadow.Serializer.ICustomSerializable.CustomSerialize(RainMeadow.Serializer)
+    name: CustomSerialize
+    isExternal: true
+  - name: (
+  - uid: RainMeadow.Serializer
+    name: Serializer
+    isExternal: true
+  - name: )
+- uid: RainMeadow.Serializer
+  commentId: T:RainMeadow.Serializer
+  parent: RainMeadow
+  isExternal: true
+  name: Serializer
+  nameWithType: Serializer
+  fullName: RainMeadow.Serializer

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class Extras | ModLib </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class Extras | ModLib ">
+      
+      <meta name="description" content="A collection of utilities and wrappers for common modding activities.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/AydenTFoxx/ModLib/new/devel/apiSpec/new?filename=ModLib_Extras.md&amp;value=---%0Auid%3A%20ModLib.Extras%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="ModLib">
+            ModLib
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="ModLib.Extras">
+
+
+
+  <h1 id="ModLib_Extras" data-uid="ModLib.Extras" class="text-break">
+Class Extras  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Extras.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="ModLib.html">ModLib</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>ModLib.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A collection of utilities and wrappers for common modding activities.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class Extras</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">Extras</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="ModLib_Extras_InGameSession_" data-uid="ModLib.Extras.InGameSession*"></a>
+
+  <h3 id="ModLib_Extras_InGameSession" data-uid="ModLib.Extras.InGameSession">
+  InGameSession
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Extras.cs/#L46"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>If the player is currently in-game and not on the main menu.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool InGameSession { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ModLib_Extras_IsHostPlayer_" data-uid="ModLib.Extras.IsHostPlayer*"></a>
+
+  <h3 id="ModLib_Extras_IsHostPlayer" data-uid="ModLib.Extras.IsHostPlayer">
+  IsHostPlayer
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Extras.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>If the player is the host of the current game session. On Singleplayer, this is always true.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsHostPlayer { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ModLib_Extras_IsIICEnabled_" data-uid="ModLib.Extras.IsIICEnabled*"></a>
+
+  <h3 id="ModLib_Extras_IsIICEnabled" data-uid="ModLib.Extras.IsIICEnabled">
+  IsIICEnabled
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Extras.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether or not the Improved Input Config: Extended mod is present. This value is cached for performance purposes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsIICEnabled { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ModLib_Extras_IsMeadowEnabled_" data-uid="ModLib.Extras.IsMeadowEnabled*"></a>
+
+  <h3 id="ModLib_Extras_IsMeadowEnabled" data-uid="ModLib.Extras.IsMeadowEnabled">
+  IsMeadowEnabled
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Extras.cs/#L26"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Whether or not the Rain Meadow mod is present. This value is cached for performance purposes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsMeadowEnabled { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ModLib_Extras_IsOnlineSession_" data-uid="ModLib.Extras.IsOnlineSession*"></a>
+
+  <h3 id="ModLib_Extras_IsOnlineSession" data-uid="ModLib.Extras.IsOnlineSession">
+  IsOnlineSession
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Extras.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>If the current game session is in an online lobby.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool IsOnlineSession { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ModLib_Extras_LogUtilsAvailable_" data-uid="ModLib.Extras.LogUtilsAvailable*"></a>
+
+  <h3 id="ModLib_Extras_LogUtilsAvailable" data-uid="ModLib.Extras.LogUtilsAvailable">
+  LogUtilsAvailable
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Extras.cs/#L51"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines if LogUtils is currently loaded and available for usage.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool LogUtilsAvailable { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ModLib_Extras_ModLibAvailable_" data-uid="ModLib.Extras.ModLibAvailable*"></a>
+
+  <h3 id="ModLib_Extras_ModLibAvailable" data-uid="ModLib.Extras.ModLibAvailable">
+  ModLibAvailable
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Extras.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Determines if ModLib is currently loaded and available for usage.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool ModLibAvailable { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="ModLib_Extras_WrapAction_" data-uid="ModLib.Extras.WrapAction*"></a>
+
+  <h3 id="ModLib_Extras_WrapAction_System_Action_System_Boolean_" data-uid="ModLib.Extras.WrapAction(System.Action,System.Boolean)">
+  WrapAction(Action, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Extras.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Wraps a given action in a try-catch, safely performing its code while handling potential exceptions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Action? WrapAction(Action action, bool autoInvoke = true)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd><p>The action to be executed.</p>
+</dd>
+    <dt><code>autoInvoke</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>If true, the resulting action is invoked immediately, and <code>null</code> is returned instead.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></dt>
+    <dd><p>The wrapped <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a> object, or <code>null</code> if <code class="paramref">autoInvoke</code> was set to true.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ModLib_Extras_WrapILHook_" data-uid="ModLib.Extras.WrapILHook*"></a>
+
+  <h3 id="ModLib_Extras_WrapILHook_System_Action_MonoMod_Cil_ILContext__" data-uid="ModLib.Extras.WrapILHook(System.Action{MonoMod.Cil.ILContext})">
+  WrapILHook(Action&lt;ILContext&gt;)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Extras.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Wraps a given IL hook in a try-catch, preventing it from breaking other code when applied.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static ILContext.Manipulator WrapILHook(Action&lt;ILContext&gt; action)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>action</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<span class="xref">ILContext</span>&gt;</dt>
+    <dd><p>The hook method to be wrapped.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">ILContext</span>.<span class="xref">Manipulator</span></dt>
+    <dd><p>An <code>ILContext.Manipulator</code> instance to be passed in place of the method itself.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="ModLib_Extras_WrapILHook_System_Action_MonoMod_Cil_ILContext___remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Usage of this method is akin to the original <code>WrapInit</code> method; See SlugTemplate for an example of this.</p>
+</div>
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Extras.cs/#L21" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

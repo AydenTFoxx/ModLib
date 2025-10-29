@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class Keybind | ModLib </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class Keybind | ModLib ">
+      
+      <meta name="description" content="An immutable representation of a player keybind, compatible with ImprovedInput&#39;s PlayerKeybind object.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/AydenTFoxx/ModLib/new/devel/apiSpec/new?filename=ModLib_Input_Keybind.md&amp;value=---%0Auid%3A%20ModLib.Input.Keybind%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="ModLib">
+            ModLib
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="ModLib.Input.Keybind">
+
+
+
+  <h1 id="ModLib_Input_Keybind" data-uid="ModLib.Input.Keybind" class="text-break">
+Class Keybind  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Input/Keybind.cs/#L15"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="ModLib.html">ModLib</a>.<a class="xref" href="ModLib.Input.html">Input</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>ModLib.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>An immutable representation of a player keybind, compatible with ImprovedInput's PlayerKeybind object.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public record Keybind : IEquatable&lt;Keybind&gt;</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">Keybind</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="ModLib.Input.Keybind.html">Keybind</a>&gt;</div>
+    </dd>
+  </dl>
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="ModLib_Input_Keybind_GamepadPreset_" data-uid="ModLib.Input.Keybind.GamepadPreset*"></a>
+
+  <h3 id="ModLib_Input_Keybind_GamepadPreset" data-uid="ModLib.Input.Keybind.GamepadPreset">
+  GamepadPreset
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Input/Keybind.cs/#L45"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The KeyCode to be used for detecting inputs with a gamepad.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public KeyCode GamepadPreset { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">KeyCode</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ModLib_Input_Keybind_Id_" data-uid="ModLib.Input.Keybind.Id*"></a>
+
+  <h3 id="ModLib_Input_Keybind_Id" data-uid="ModLib.Input.Keybind.Id">
+  Id
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Input/Keybind.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The unique identifier of this Keybind.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Id { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ModLib_Input_Keybind_KeyboardPreset_" data-uid="ModLib.Input.Keybind.KeyboardPreset*"></a>
+
+  <h3 id="ModLib_Input_Keybind_KeyboardPreset" data-uid="ModLib.Input.Keybind.KeyboardPreset">
+  KeyboardPreset
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Input/Keybind.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The KeyCode to be used for detecting inputs with a keyboard.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public KeyCode KeyboardPreset { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">KeyCode</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ModLib_Input_Keybind_Mod_" data-uid="ModLib.Input.Keybind.Mod*"></a>
+
+  <h3 id="ModLib_Input_Keybind_Mod" data-uid="ModLib.Input.Keybind.Mod">
+  Mod
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Input/Keybind.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The name of the mod this Keybind belongs to.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Mod { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ModLib_Input_Keybind_Name_" data-uid="ModLib.Input.Keybind.Name*"></a>
+
+  <h3 id="ModLib_Input_Keybind_Name" data-uid="ModLib.Input.Keybind.Name">
+  Name
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Input/Keybind.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The user-friendly name of this Keybind.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="ModLib_Input_Keybind_XboxPreset_" data-uid="ModLib.Input.Keybind.XboxPreset*"></a>
+
+  <h3 id="ModLib_Input_Keybind_XboxPreset" data-uid="ModLib.Input.Keybind.XboxPreset">
+  XboxPreset
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Input/Keybind.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>The KeyCode to be used for detecting inputs with an xbox.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public KeyCode XboxPreset { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">KeyCode</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="ModLib_Input_Keybind_Get_" data-uid="ModLib.Input.Keybind.Get*"></a>
+
+  <h3 id="ModLib_Input_Keybind_Get_System_String_" data-uid="ModLib.Input.Keybind.Get(System.String)">
+  Get(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Input/Keybind.cs/#L102"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves the Keybind with the given identifier.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Keybind? Get(string id)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The identifier of the Keybind to be retrieved.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ModLib.Input.Keybind.html">Keybind</a></dt>
+    <dd><p>The <a class="xref" href="ModLib.Input.Keybind.html">Keybind</a> object whose Id matches the provided argument, or <code>null</code> if none is found.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ModLib_Input_Keybind_Keybinds_" data-uid="ModLib.Input.Keybind.Keybinds*"></a>
+
+  <h3 id="ModLib_Input_Keybind_Keybinds" data-uid="ModLib.Input.Keybind.Keybinds">
+  Keybinds()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Input/Keybind.cs/#L108"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns a read-only list of all registered keybinds.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IReadOnlyList&lt;Keybind&gt; Keybinds()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1">IReadOnlyList</a>&lt;<a class="xref" href="ModLib.Input.Keybind.html">Keybind</a>&gt;</dt>
+    <dd><p>A read-only list of all registered keybinds.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ModLib_Input_Keybind_Register_" data-uid="ModLib.Input.Keybind.Register*"></a>
+
+  <h3 id="ModLib_Input_Keybind_Register_System_String_System_String_UnityEngine_KeyCode_UnityEngine_KeyCode_" data-uid="ModLib.Input.Keybind.Register(System.String,System.String,UnityEngine.KeyCode,UnityEngine.KeyCode)">
+  Register(string?, string, KeyCode, KeyCode)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Input/Keybind.cs/#L119"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Registers a new Keybind with the provided arguments.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Keybind Register(string? id, string name, KeyCode keyboardPreset, KeyCode gamepadPreset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>
+    The identifier of this keybind. Must be an unique string not used by any other mod, or yourself.
+</p>
+<p>
+    If omitted, an unique identifier is generated with the format <code>"{ModId}.{KeybindName}"</code>
+</p>
+</dd>
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the new Keybind. Will be displayed for players with IIC:E enabled.</p>
+</dd>
+    <dt><code>keyboardPreset</code> <span class="xref">KeyCode</span></dt>
+    <dd><p>The key code for usage by keyboard devices.</p>
+</dd>
+    <dt><code>gamepadPreset</code> <span class="xref">KeyCode</span></dt>
+    <dd><p>The key code for usage by gamepad input devices.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ModLib.Input.Keybind.html">Keybind</a></dt>
+    <dd><p>The registered <a class="xref" href="ModLib.Input.Keybind.html">Keybind</a> object.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="ModLib_Input_Keybind_Register_System_String_System_String_UnityEngine_KeyCode_UnityEngine_KeyCode__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If the Improved Input: Extended mod is present, an equivalent <code>PlayerKeybind</code> is also registered to the game.</p>
+</div>
+
+
+
+
+  <a id="ModLib_Input_Keybind_Register_" data-uid="ModLib.Input.Keybind.Register*"></a>
+
+  <h3 id="ModLib_Input_Keybind_Register_System_String_System_String_UnityEngine_KeyCode_UnityEngine_KeyCode_UnityEngine_KeyCode_" data-uid="ModLib.Input.Keybind.Register(System.String,System.String,UnityEngine.KeyCode,UnityEngine.KeyCode,UnityEngine.KeyCode)">
+  Register(string?, string, KeyCode, KeyCode, KeyCode)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Input/Keybind.cs/#L141"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Registers a new Keybind with the provided arguments.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Keybind Register(string? id, string name, KeyCode keyboardPreset, KeyCode gamepadPreset, KeyCode xboxPreset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>id</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>
+    The identifier of this keybind. Must be an unique string not used by any other mod, or yourself.
+</p>
+<p>
+    If omitted, an unique identifier is generated with the format <code>"{ModId}.{KeybindName}"</code>
+</p>
+</dd>
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the new Keybind. Will be displayed for players with IIC:E enabled.</p>
+</dd>
+    <dt><code>keyboardPreset</code> <span class="xref">KeyCode</span></dt>
+    <dd><p>The key code for usage by keyboard devices.</p>
+</dd>
+    <dt><code>gamepadPreset</code> <span class="xref">KeyCode</span></dt>
+    <dd><p>The key code for usage by gamepad input devices.</p>
+</dd>
+    <dt><code>xboxPreset</code> <span class="xref">KeyCode</span></dt>
+    <dd><p>The key code for usage by Xbox input devices.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ModLib.Input.Keybind.html">Keybind</a></dt>
+    <dd><p>The registered <a class="xref" href="ModLib.Input.Keybind.html">Keybind</a> object.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="ModLib_Input_Keybind_Register_System_String_System_String_UnityEngine_KeyCode_UnityEngine_KeyCode_UnityEngine_KeyCode__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If the Improved Input: Extended mod is present, an equivalent <code>PlayerKeybind</code> is also registered to the game.</p>
+</div>
+
+
+
+
+  <a id="ModLib_Input_Keybind_Register_" data-uid="ModLib.Input.Keybind.Register*"></a>
+
+  <h3 id="ModLib_Input_Keybind_Register_System_String_UnityEngine_KeyCode_UnityEngine_KeyCode_" data-uid="ModLib.Input.Keybind.Register(System.String,UnityEngine.KeyCode,UnityEngine.KeyCode)">
+  Register(string, KeyCode, KeyCode)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Input/Keybind.cs/#L111"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Registers a new Keybind with the provided arguments.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Keybind Register(string name, KeyCode keyboardPreset, KeyCode gamepadPreset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the new Keybind. Will be displayed for players with IIC:E enabled.</p>
+</dd>
+    <dt><code>keyboardPreset</code> <span class="xref">KeyCode</span></dt>
+    <dd><p>The key code for usage by keyboard devices.</p>
+</dd>
+    <dt><code>gamepadPreset</code> <span class="xref">KeyCode</span></dt>
+    <dd><p>The key code for usage by gamepad input devices.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ModLib.Input.Keybind.html">Keybind</a></dt>
+    <dd><p>The registered <a class="xref" href="ModLib.Input.Keybind.html">Keybind</a> object.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="ModLib_Input_Keybind_Register_System_String_UnityEngine_KeyCode_UnityEngine_KeyCode__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If the Improved Input: Extended mod is present, an equivalent <code>PlayerKeybind</code> is also registered to the game.</p>
+</div>
+
+
+
+
+  <a id="ModLib_Input_Keybind_Register_" data-uid="ModLib.Input.Keybind.Register*"></a>
+
+  <h3 id="ModLib_Input_Keybind_Register_System_String_UnityEngine_KeyCode_UnityEngine_KeyCode_UnityEngine_KeyCode_" data-uid="ModLib.Input.Keybind.Register(System.String,UnityEngine.KeyCode,UnityEngine.KeyCode,UnityEngine.KeyCode)">
+  Register(string, KeyCode, KeyCode, KeyCode)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Input/Keybind.cs/#L115"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Registers a new Keybind with the provided arguments.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Keybind Register(string name, KeyCode keyboardPreset, KeyCode gamepadPreset, KeyCode xboxPreset)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name of the new Keybind. Will be displayed for players with IIC:E enabled.</p>
+</dd>
+    <dt><code>keyboardPreset</code> <span class="xref">KeyCode</span></dt>
+    <dd><p>The key code for usage by keyboard devices.</p>
+</dd>
+    <dt><code>gamepadPreset</code> <span class="xref">KeyCode</span></dt>
+    <dd><p>The key code for usage by gamepad input devices.</p>
+</dd>
+    <dt><code>xboxPreset</code> <span class="xref">KeyCode</span></dt>
+    <dd><p>The key code for usage by Xbox input devices.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ModLib.Input.Keybind.html">Keybind</a></dt>
+    <dd><p>The registered <a class="xref" href="ModLib.Input.Keybind.html">Keybind</a> object.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+  <h4 class="section" id="ModLib_Input_Keybind_Register_System_String_UnityEngine_KeyCode_UnityEngine_KeyCode_UnityEngine_KeyCode__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>If the Improved Input: Extended mod is present, an equivalent <code>PlayerKeybind</code> is also registered to the game.</p>
+</div>
+
+
+
+
+  <a id="ModLib_Input_Keybind_ToString_" data-uid="ModLib.Input.Keybind.ToString*"></a>
+
+  <h3 id="ModLib_Input_Keybind_ToString" data-uid="ModLib.Input.Keybind.ToString">
+  ToString()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Input/Keybind.cs/#L95"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Returns a string that represents the Keybind object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>A string that represents the Keybind object.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="operators">Operators
+</h2>
+
+
+  <a id="ModLib_Input_Keybind_op_Implicit_" data-uid="ModLib.Input.Keybind.op_Implicit*"></a>
+
+  <h3 id="ModLib_Input_Keybind_op_Implicit_ImprovedInput_PlayerKeybind__ModLib_Input_Keybind" data-uid="ModLib.Input.Keybind.op_Implicit(ImprovedInput.PlayerKeybind)~ModLib.Input.Keybind">
+  implicit operator Keybind(PlayerKeybind)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Input/Keybind.cs/#L188"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves the equivalent Keybind object of a PlayerKeybind instance. If none is found, a new Keybind is registered using the PlayerKeybind's values as arguments.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator Keybind(PlayerKeybind self)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <span class="xref">PlayerKeybind</span></dt>
+    <dd><p>The PlayerKeybind object to be converted.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="ModLib.Input.Keybind.html">Keybind</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ModLib_Input_Keybind_op_Implicit_" data-uid="ModLib.Input.Keybind.op_Implicit*"></a>
+
+  <h3 id="ModLib_Input_Keybind_op_Implicit_ModLib_Input_Keybind__ImprovedInput_PlayerKeybind" data-uid="ModLib.Input.Keybind.op_Implicit(ModLib.Input.Keybind)~ImprovedInput.PlayerKeybind">
+  implicit operator PlayerKeybind(Keybind)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Input/Keybind.cs/#L197"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Retrieves the equivalent PlayerKeybind object registered with the Keybind instance. If none is found, a new PlayerKeybind is registered using the Keybind's values as arguments.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator PlayerKeybind(Keybind self)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>self</code> <a class="xref" href="ModLib.Input.Keybind.html">Keybind</a></dt>
+    <dd><p>The Keybind object to be converted.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">PlayerKeybind</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Input/Keybind.cs/#L15" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,545 @@
+### YamlMime:ManagedReference
+items:
+- uid: ModLib.Meadow.ModRPCs
+  commentId: T:ModLib.Meadow.ModRPCs
+  id: ModRPCs
+  parent: ModLib.Meadow
+  children:
+  - ModLib.Meadow.ModRPCs.LogSystemMessage(System.String)
+  - ModLib.Meadow.ModRPCs.RequestSyncRemixOptions(RainMeadow.RPCEvent,RainMeadow.OnlinePlayer)
+  - ModLib.Meadow.ModRPCs.SyncRemixOptions(RainMeadow.RPCEvent,ModLib.Meadow.ModRPCs.SerializableOptions)
+  langs:
+  - csharp
+  - vb
+  name: ModRPCs
+  nameWithType: ModRPCs
+  fullName: ModLib.Meadow.ModRPCs
+  type: Class
+  source:
+    remote:
+      path: ModLib/Meadow/ModRPCs.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: ModRPCs
+    path: ../ModLib/Meadow/ModRPCs.cs
+    startLine: 10
+  assemblies:
+  - ModLib
+  namespace: ModLib.Meadow
+  summary: Events sent to and received by clients, used for syncing data in an online context.
+  example: []
+  syntax:
+    content: public static class ModRPCs
+    content.vb: Public Module ModRPCs
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: ModLib.Meadow.ModRPCs.LogSystemMessage(System.String)
+  commentId: M:ModLib.Meadow.ModRPCs.LogSystemMessage(System.String)
+  id: LogSystemMessage(System.String)
+  parent: ModLib.Meadow.ModRPCs
+  langs:
+  - csharp
+  - vb
+  name: LogSystemMessage(string)
+  nameWithType: ModRPCs.LogSystemMessage(string)
+  fullName: ModLib.Meadow.ModRPCs.LogSystemMessage(string)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Meadow/ModRPCs.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: LogSystemMessage
+    path: ../ModLib/Meadow/ModRPCs.cs
+    startLine: 16
+  assemblies:
+  - ModLib
+  namespace: ModLib.Meadow
+  summary: Writes the provided system message to the player's chat.
+  example: []
+  syntax:
+    content: >-
+      [SoftRPCMethod]
+
+      public static void LogSystemMessage(string message)
+    parameters:
+    - id: message
+      type: System.String
+      description: The message to be displayed
+    content.vb: >-
+      <SoftRPCMethod>
+
+      Public Shared Sub LogSystemMessage(message As String)
+  overload: ModLib.Meadow.ModRPCs.LogSystemMessage*
+  attributes:
+  - type: RainMeadow.SoftRPCMethodAttribute
+    ctor: RainMeadow.SoftRPCMethodAttribute.#ctor
+    arguments: []
+  nameWithType.vb: ModRPCs.LogSystemMessage(String)
+  fullName.vb: ModLib.Meadow.ModRPCs.LogSystemMessage(String)
+  name.vb: LogSystemMessage(String)
+- uid: ModLib.Meadow.ModRPCs.RequestSyncRemixOptions(RainMeadow.RPCEvent,RainMeadow.OnlinePlayer)
+  commentId: M:ModLib.Meadow.ModRPCs.RequestSyncRemixOptions(RainMeadow.RPCEvent,RainMeadow.OnlinePlayer)
+  id: RequestSyncRemixOptions(RainMeadow.RPCEvent,RainMeadow.OnlinePlayer)
+  parent: ModLib.Meadow.ModRPCs
+  langs:
+  - csharp
+  - vb
+  name: RequestSyncRemixOptions(RPCEvent, OnlinePlayer)
+  nameWithType: ModRPCs.RequestSyncRemixOptions(RPCEvent, OnlinePlayer)
+  fullName: ModLib.Meadow.ModRPCs.RequestSyncRemixOptions(RainMeadow.RPCEvent, RainMeadow.OnlinePlayer)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Meadow/ModRPCs.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: RequestSyncRemixOptions
+    path: ../ModLib/Meadow/ModRPCs.cs
+    startLine: 29
+  assemblies:
+  - ModLib
+  namespace: ModLib.Meadow
+  summary: Requests the owner of the current lobby to sync their REMIX options with this client.
+  example: []
+  syntax:
+    content: >-
+      [SoftRPCMethod]
+
+      public static void RequestSyncRemixOptions(RPCEvent rpcEvent, OnlinePlayer onlinePlayer)
+    parameters:
+    - id: rpcEvent
+      type: RainMeadow.RPCEvent
+      description: The RPC event itself.
+    - id: onlinePlayer
+      type: RainMeadow.OnlinePlayer
+      description: The player who called this event.
+    content.vb: >-
+      <SoftRPCMethod>
+
+      Public Shared Sub RequestSyncRemixOptions(rpcEvent As RPCEvent, onlinePlayer As OnlinePlayer)
+  overload: ModLib.Meadow.ModRPCs.RequestSyncRemixOptions*
+  attributes:
+  - type: RainMeadow.SoftRPCMethodAttribute
+    ctor: RainMeadow.SoftRPCMethodAttribute.#ctor
+    arguments: []
+- uid: ModLib.Meadow.ModRPCs.SyncRemixOptions(RainMeadow.RPCEvent,ModLib.Meadow.ModRPCs.SerializableOptions)
+  commentId: M:ModLib.Meadow.ModRPCs.SyncRemixOptions(RainMeadow.RPCEvent,ModLib.Meadow.ModRPCs.SerializableOptions)
+  id: SyncRemixOptions(RainMeadow.RPCEvent,ModLib.Meadow.ModRPCs.SerializableOptions)
+  parent: ModLib.Meadow.ModRPCs
+  langs:
+  - csharp
+  - vb
+  name: SyncRemixOptions(RPCEvent, SerializableOptions)
+  nameWithType: ModRPCs.SyncRemixOptions(RPCEvent, ModRPCs.SerializableOptions)
+  fullName: ModLib.Meadow.ModRPCs.SyncRemixOptions(RainMeadow.RPCEvent, ModLib.Meadow.ModRPCs.SerializableOptions)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Meadow/ModRPCs.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: SyncRemixOptions
+    path: ../ModLib/Meadow/ModRPCs.cs
+    startLine: 55
+  assemblies:
+  - ModLib
+  namespace: ModLib.Meadow
+  summary: Overrides the player's local <xref href="ModLib.Options.OptionUtils.SharedOptions" data-throw-if-not-resolved="false"></xref> instance with the host's own REMIX options.
+  example: []
+  syntax:
+    content: >-
+      [SoftRPCMethod]
+
+      public static void SyncRemixOptions(RPCEvent rpcEvent, ModRPCs.SerializableOptions options)
+    parameters:
+    - id: rpcEvent
+      type: RainMeadow.RPCEvent
+      description: The RPC event itself.
+    - id: options
+      type: ModLib.Meadow.ModRPCs.SerializableOptions
+      description: The serializable values of the host's <xref href="ModLib.Options.ServerOptions" data-throw-if-not-resolved="false"></xref> instance.
+    content.vb: >-
+      <SoftRPCMethod>
+
+      Public Shared Sub SyncRemixOptions(rpcEvent As RPCEvent, options As ModRPCs.SerializableOptions)
+  overload: ModLib.Meadow.ModRPCs.SyncRemixOptions*
+  attributes:
+  - type: RainMeadow.SoftRPCMethodAttribute
+    ctor: RainMeadow.SoftRPCMethodAttribute.#ctor
+    arguments: []
+references:
+- uid: ModLib.Meadow
+  commentId: N:ModLib.Meadow
+  href: ModLib.html
+  name: ModLib.Meadow
+  nameWithType: ModLib.Meadow
+  fullName: ModLib.Meadow
+  spec.csharp:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Meadow
+    name: Meadow
+    href: ModLib.Meadow.html
+  spec.vb:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Meadow
+    name: Meadow
+    href: ModLib.Meadow.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: ModLib.Meadow.ModRPCs.LogSystemMessage*
+  commentId: Overload:ModLib.Meadow.ModRPCs.LogSystemMessage
+  href: ModLib.Meadow.ModRPCs.html#ModLib_Meadow_ModRPCs_LogSystemMessage_System_String_
+  name: LogSystemMessage
+  nameWithType: ModRPCs.LogSystemMessage
+  fullName: ModLib.Meadow.ModRPCs.LogSystemMessage
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: ModLib.Meadow.ModRPCs.RequestSyncRemixOptions*
+  commentId: Overload:ModLib.Meadow.ModRPCs.RequestSyncRemixOptions
+  href: ModLib.Meadow.ModRPCs.html#ModLib_Meadow_ModRPCs_RequestSyncRemixOptions_RainMeadow_RPCEvent_RainMeadow_OnlinePlayer_
+  name: RequestSyncRemixOptions
+  nameWithType: ModRPCs.RequestSyncRemixOptions
+  fullName: ModLib.Meadow.ModRPCs.RequestSyncRemixOptions
+- uid: RainMeadow.RPCEvent
+  commentId: T:RainMeadow.RPCEvent
+  parent: RainMeadow
+  isExternal: true
+  name: RPCEvent
+  nameWithType: RPCEvent
+  fullName: RainMeadow.RPCEvent
+- uid: RainMeadow.OnlinePlayer
+  commentId: T:RainMeadow.OnlinePlayer
+  parent: RainMeadow
+  isExternal: true
+  name: OnlinePlayer
+  nameWithType: OnlinePlayer
+  fullName: RainMeadow.OnlinePlayer
+- uid: RainMeadow
+  commentId: N:RainMeadow
+  isExternal: true
+  name: RainMeadow
+  nameWithType: RainMeadow
+  fullName: RainMeadow
+- uid: ModLib.Options.OptionUtils.SharedOptions
+  commentId: P:ModLib.Options.OptionUtils.SharedOptions
+  href: ModLib.Options.OptionUtils.html#ModLib_Options_OptionUtils_SharedOptions
+  name: SharedOptions
+  nameWithType: OptionUtils.SharedOptions
+  fullName: ModLib.Options.OptionUtils.SharedOptions
+- uid: ModLib.Options.ServerOptions
+  commentId: T:ModLib.Options.ServerOptions
+  parent: ModLib.Options
+  href: ModLib.Options.ServerOptions.html
+  name: ServerOptions
+  nameWithType: ServerOptions
+  fullName: ModLib.Options.ServerOptions
+- uid: ModLib.Meadow.ModRPCs.SyncRemixOptions*
+  commentId: Overload:ModLib.Meadow.ModRPCs.SyncRemixOptions
+  href: ModLib.Meadow.ModRPCs.html#ModLib_Meadow_ModRPCs_SyncRemixOptions_RainMeadow_RPCEvent_ModLib_Meadow_ModRPCs_SerializableOptions_
+  name: SyncRemixOptions
+  nameWithType: ModRPCs.SyncRemixOptions
+  fullName: ModLib.Meadow.ModRPCs.SyncRemixOptions
+- uid: ModLib.Meadow.ModRPCs.SerializableOptions
+  commentId: T:ModLib.Meadow.ModRPCs.SerializableOptions
+  parent: ModLib.Meadow
+  href: ModLib.Meadow.ModRPCs.html
+  name: ModRPCs.SerializableOptions
+  nameWithType: ModRPCs.SerializableOptions
+  fullName: ModLib.Meadow.ModRPCs.SerializableOptions
+  spec.csharp:
+  - uid: ModLib.Meadow.ModRPCs
+    name: ModRPCs
+    href: ModLib.Meadow.ModRPCs.html
+  - name: .
+  - uid: ModLib.Meadow.ModRPCs.SerializableOptions
+    name: SerializableOptions
+    href: ModLib.Meadow.ModRPCs.SerializableOptions.html
+  spec.vb:
+  - uid: ModLib.Meadow.ModRPCs
+    name: ModRPCs
+    href: ModLib.Meadow.ModRPCs.html
+  - name: .
+  - uid: ModLib.Meadow.ModRPCs.SerializableOptions
+    name: SerializableOptions
+    href: ModLib.Meadow.ModRPCs.SerializableOptions.html
+- uid: ModLib.Options
+  commentId: N:ModLib.Options
+  href: ModLib.html
+  name: ModLib.Options
+  nameWithType: ModLib.Options
+  fullName: ModLib.Options
+  spec.csharp:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Options
+    name: Options
+    href: ModLib.Options.html
+  spec.vb:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Options
+    name: Options
+    href: ModLib.Options.html

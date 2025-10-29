@@ -1,4 +1,3 @@
-using System.Runtime.CompilerServices;
 using ImprovedInput;
 
 namespace ModLib.Input;
@@ -12,22 +11,12 @@ internal static class ImprovedInputHelper
     public static void SetInputListener(int playerNumber, bool enable) =>
         InputData[playerNumber] = enable ? new CustomInputData(playerNumber) : null;
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsKeyDown(Player player, Keybind keybind) => IsKeyDown(player, (PlayerKeybind)keybind);
-    public static bool IsKeyDown(Player player, PlayerKeybind playerKeybind) => player.IsPressed(playerKeybind);
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsKeyDown(int playerNumber, Keybind keybind) => IsKeyDown(playerNumber, (PlayerKeybind)keybind);
-    public static bool IsKeyDown(int playerNumber, PlayerKeybind playerKeybind) =>
+    public static bool IsKeyDown(Player player, Keybind playerKeybind) => player.IsPressed(playerKeybind);
+    public static bool IsKeyDown(int playerNumber, Keybind playerKeybind) =>
         InputData[playerNumber]?.IsPressed(playerKeybind) ?? false;
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool WasKeyJustPressed(Player player, Keybind keybind) => WasKeyJustPressed(player, (PlayerKeybind)keybind);
-    public static bool WasKeyJustPressed(Player player, PlayerKeybind playerKeybind) => player.JustPressed(playerKeybind);
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool WasKeyJustPressed(int playerNumber, Keybind keybind) => WasKeyJustPressed(playerNumber, (PlayerKeybind)keybind);
-    public static bool WasKeyJustPressed(int playerNumber, PlayerKeybind playerKeybind) =>
+    public static bool WasKeyJustPressed(Player player, Keybind playerKeybind) => player.JustPressed(playerKeybind);
+    public static bool WasKeyJustPressed(int playerNumber, Keybind playerKeybind) =>
         InputData[playerNumber]?.JustPressed(playerKeybind) ?? false;
 
     public static void RegisterKeybind(Keybind keybind)

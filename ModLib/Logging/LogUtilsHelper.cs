@@ -1,6 +1,4 @@
-using System.IO;
 using System.Linq;
-using System.Text;
 using BepInEx.Logging;
 using LogUtils;
 using LogUtils.Enums;
@@ -14,11 +12,6 @@ internal static class LogUtilsHelper
 
     static LogUtilsHelper()
     {
-        if (!Directory.Exists(Core.LogsPath))
-        {
-            Directory.CreateDirectory(Core.LogsPath);
-        }
-
         MyLogID = CreateLogID(Core.MOD_NAME, register: true);
 
         LogProperties properties = ((LogID)MyLogID).Properties;
@@ -48,7 +41,7 @@ internal static class LogUtilsHelper
 
     public static LogID CreateLogID(string name, bool register = false)
     {
-        LogID logID = new(SanitizeName(name), Core.LogsPath, LogAccess.FullAccess, register);
+        LogID logID = new(LoggingAdapter.SanitizeName(name), Core.LogsPath, LogAccess.FullAccess, register);
 
         logID.Properties.ShowCategories.IsEnabled = true;
         logID.Properties.ShowLogTimestamp.IsEnabled = true;
@@ -56,21 +49,6 @@ internal static class LogUtilsHelper
         logID.Properties.AddTag("ModLib");
 
         return logID;
-    }
-
-    public static string SanitizeName(string modName)
-    {
-        StringBuilder stringBuilder = new();
-        char[] forbiddenChars = [.. Path.GetInvalidPathChars(), ' '];
-
-        foreach (char c in modName)
-        {
-            if (forbiddenChars.Contains(c)) continue;
-
-            stringBuilder.Append(c);
-        }
-
-        return stringBuilder.ToString();
     }
 
     internal static void InitLogID(this Registry.ModEntry self)

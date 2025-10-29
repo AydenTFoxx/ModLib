@@ -9,7 +9,7 @@ namespace ModLib.Options;
 ///     A holder of supported values for <see cref="Configurable{T}"/> options.
 /// </summary>
 [StructLayout(LayoutKind.Explicit)]
-public readonly struct ConfigValue
+public readonly struct ConfigValue : IComparable, IComparable<ConfigValue>, IEquatable<ConfigValue>
 {
     [FieldOffset(0)] private readonly int _intValue;
     [FieldOffset(0)] private readonly float _floatValue;
@@ -77,6 +77,28 @@ public readonly struct ConfigValue
     }
 
     /// <summary>
+    ///     Retrieves a boxed representation of the internal value stored by this <see cref="ConfigValue"/> instance.
+    /// </summary>
+    /// <returns>The boxed internally held value of this instance, or <c>null</c> if none is found.</returns>
+    public object? GetBoxedValue()
+    {
+        return Kind switch
+        {
+            ValueKind.Int => _intValue,
+            ValueKind.Float => _floatValue,
+            ValueKind.Bool => _boolValue,
+            ValueKind.String => _stringValue,
+            _ => default,
+        };
+    }
+
+    /// <summary>
+    ///     Determines if the internally held value is of a numeric type.
+    /// </summary>
+    /// <returns><c>true</c> if the internally held value is of a numeric type, <c>false</c> otherwise.</returns>
+    public bool IsNumeric() => Kind is ValueKind.Int or ValueKind.Float;
+
+    /// <summary>
     ///     Attempts to retrieve a stored integer from the configurable object, if there is any.
     /// </summary>
     /// <param name="v">The retrieved value, or <c>0</c> if none is found.</param>
@@ -105,26 +127,20 @@ public readonly struct ConfigValue
     public bool TryGetString(out string v) => TryGetNullable(ValueKind.String, in _stringValue, out v!);
 
     /// <summary>
-    ///     Retrieves a boxed representation of the internal value stored by this <see cref="ConfigValue"/> instance.
+    ///     Attempts to retrieve a stored number from the configurable object, if there is any.
     /// </summary>
-    /// <returns>The boxed internally held value of this instance, or <c>null</c> if none is found.</returns>
-    public object? GetBoxedValue()
+    /// <param name="v">The retrieved value (either an <c>int</c> or <c>float</c>), or <c>null</c> if none is found.</param>
+    /// <returns><c>true</c> if the internally held value is of a numeric type, <c>false</c> otherwise.</returns>
+    public bool TryGetNumber(out ValueType? v)
     {
-        return Kind switch
-        {
-            ValueKind.Int => _intValue,
-            ValueKind.Float => _floatValue,
-            ValueKind.Bool => _boolValue,
-            ValueKind.String => _stringValue,
-            _ => default,
-        };
-    }
+        v = TryGetInt(out int i)
+            ? i
+            : TryGetFloat(out float f)
+                ? f
+                : (ValueType?)default;
 
-    /// <summary>
-    ///     Returns the string representation of the internally held value by this instance.
-    /// </summary>
-    /// <returns>The string representation of the internally held value by this instance.</returns>
-    public override string ToString() => GetBoxedValue()?.ToString()!;
+        return v is not null;
+    }
 
     /// <summary>
     ///     Attempts to retrieve a value-type object of the given type from the provided field.
@@ -170,6 +186,48 @@ public readonly struct ConfigValue
 
         return hasValue && value is not null;
     }
+
+    /// <inheritdoc/>
+    public int CompareTo(object obj)
+    {
+        return obj is not ConfigValue other
+            ? 0
+            : TryGetInt(out int xi) && other.TryGetInt(out int yi)
+                ? xi.CompareTo(yi)
+                : TryGetFloat(out float xf) && other.TryGetFloat(out float yf)
+                    ? xf.CompareTo(yf)
+                    : Kind.CompareTo(other.Kind);
+    }
+
+    /// <inheritdoc/>
+    public int CompareTo(ConfigValue other) => other.Kind.CompareTo(Kind);
+
+    /// <inheritdoc/>
+    public bool Equals(ConfigValue other) => GetBoxedValue() == other.GetBoxedValue();
+
+    /// <inheritdoc/>
+    public static bool operator ==(ConfigValue x, ConfigValue y)
+    {
+        return x.Equals(y);
+    }
+
+    /// <inheritdoc/>
+    public static bool operator !=(ConfigValue x, ConfigValue y)
+    {
+        return !x.Equals(y);
+    }
+
+    /// <summary>
+    ///     Returns the string representation of the internally held value by this instance.
+    /// </summary>
+    /// <returns>The string representation of the internally held value by this instance.</returns>
+    public override string ToString() => GetBoxedValue()?.ToString()!;
+
+    /// <inheritdoc/>
+    public override bool Equals(object obj) => obj is ConfigValue other && Equals(other);
+
+    /// <inheritdoc/>
+    public override int GetHashCode() => (GetBoxedValue()?.GetHashCode() ?? 0) + Kind.GetHashCode();
 
     /// <summary>
     ///     The kind of the internally held value from the configurable struct.

@@ -1,4 +1,7 @@
 using System;
+using System.IO;
+using System.Linq;
+using System.Text;
 using BepInEx.Logging;
 
 namespace ModLib.Logging;
@@ -10,6 +13,17 @@ namespace ModLib.Logging;
 /// </summary>
 public static class LoggingAdapter
 {
+    static LoggingAdapter()
+    {
+        Extras.WrapAction(static () =>
+        {
+            if (!Directory.Exists(Core.LogsPath))
+            {
+                Directory.CreateDirectory(Core.LogsPath);
+            }
+        });
+    }
+
     /// <summary>
     ///     Creates a logger instance employing a safe encapsulation technique.
     /// </summary>
@@ -28,5 +42,20 @@ public static class LoggingAdapter
 
             return new FallbackLogger(logSource);
         }
+    }
+
+    internal static string SanitizeName(string modName)
+    {
+        StringBuilder stringBuilder = new();
+        char[] forbiddenChars = [.. Path.GetInvalidPathChars(), ' '];
+
+        foreach (char c in modName)
+        {
+            if (forbiddenChars.Contains(c)) continue;
+
+            stringBuilder.Append(c);
+        }
+
+        return stringBuilder.ToString();
     }
 }
