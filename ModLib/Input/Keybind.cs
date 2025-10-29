@@ -194,7 +194,7 @@ public record Keybind
     ///     Retrieves the equivalent PlayerKeybind object registered with the Keybind instance. If none is found, a new PlayerKeybind is registered using the Keybind's values as arguments.
     /// </summary>
     /// <param name="self">The Keybind object to be converted.</param>
-    public static explicit operator ImprovedInput.PlayerKeybind(Keybind self)
+    public static implicit operator ImprovedInput.PlayerKeybind(Keybind self)
     {
         return ImprovedInput.PlayerKeybind.Get(self.Id) ?? ImprovedInput.PlayerKeybind.Register(self.Id, self.Mod, self.Name, self.KeyboardPreset, self.GamepadPreset, self.XboxPreset);
     }

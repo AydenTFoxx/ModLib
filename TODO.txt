@@ -1,35 +1,37 @@
 ModLib:
-    ServerOptions.MyOptions only supports integers for values. In particular, strings are impossible to store.
-        Fixed! But at what cost?
-
-    Registry only supports one loaded mod at a time; If multiple mods reference ModLib, the first mod registered is used for metadata purposes.
-        Fixed!
-
-    Use LogUtils for ModLib's Core.Logger instance; Allow other mods to mirror ModLib's output into their own logs
-        Done? Unsure on how to implement the latter.
-        Done!
-
-    ServerOptions is not synced in an online context; Instead, the client's MyOptions is cleared entirely.
-        Fixed!
-
     Core.PatchLoader._latestPatcherVersion could be assigned at compile-time, somehow. Would help a lot with not forgetting to change it after an update.
-
-    ServerOptions.ToString() should be more descriptive, but not too verbose. Acronyms worked great for single-mod projects, but as a library, either properly display options or abstract it away entirely.
-        Done? Might change in the future, if the current implementation becomes too verbose.
-
-    Add a method to add mod IDs to CompatibilityManager.SupportedModIDs;
-        Done!
-    Rewrite ModLib initialization to allow mods interacting with certain systems before Core is initialized.
-        Done-ish. Only CompatibilityManager has that feature so far
-
-    Include a method for adding temporary option values to ServerOptions.MyOptions (e.g. ServerOptions.AddTemporaryOption(string, ConfigValue))
-        Done!
-
-    Options starting with an underscore ("_") should not be synced via SerializableOptions
-        Done!
 
     Potentially have an individual ServerOptions instance per registered mod?
     Meadow sync would only be performed for mods which are present on both ends; ModLib could send a SoftRPC first to request the host for their list of enabled ModLib mods.
+
+    LogUtilsHelper should have as little ModLib-specific branches as possible; ModLib should be treated as a regular consumer of its own API
+
+    Core, Extras, and LoggingAdapter possess a circular dependency, where one requests data from the other. This is a recipe for failure which is already yielding bad results.
+        Fixed!
+
+    Core.LogSource should not be used outside of the Core class; For the time being, however, it is being used to resolve circular dependencies like the above.
+        Fixed? Better than before.
+
+---
+
+ModLib README:
+    (TODO: Make greater use of this shared API, simplifying interoperability between mods)
+
+    (TODO: Revive old Logger.cs and adapt it to be a fallback logger instead of solely relying on BepInEx's)
+        Done? More or less so; Trimmed a lot of irrelevant methods.
+
+    (TODO: Return overrides values to their original values when a temporary option is removed)
+        Done!
+    (TODO? Add a duration for temporary options? Feels more like a user responsibility... Too specific to be made into a general-purpose tool)
+
+    (TODO: Force a refresh of the local OptionUtils.SharedOptions instance when no longer online? Seems only useful in a few edge cases, but relevant nonetheless)
+        Done!
+
+    (TODO: Make both conversions implicit, so the two classes are as interchangeable as allowed by C#)
+        Done!
+
+    (TODO? Make Keybind methods also inherit this functionality, juust to be sure. If there are two ways to do something, someone will use the less effective one at some point.)
+
 
 AscendedSaint:
     Player sees their own name in the ascension/revival messages, instead of the actual ascended/revived target.

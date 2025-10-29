@@ -1,6 +1,5 @@
-using System.IO;
 using System.Linq;
-using System.Text;
+using BepInEx.Logging;
 using LogUtils;
 using LogUtils.Enums;
 using LogUtils.Properties;
@@ -9,24 +8,15 @@ namespace ModLib.Logging;
 
 internal static class LogUtilsHelper
 {
-    public static object MyLogID = CreateLogID(Core.MOD_NAME, register: true);
-
-    public static bool IsAvailable => UtilityCore.IsInitialized;
+    public static object MyLogID;
 
     static LogUtilsHelper()
     {
-        UtilityCore.EnsureInitializedState();
+        MyLogID = CreateLogID(Core.MOD_NAME, register: true);
 
-        if (!IsAvailable) return;
+        LogProperties properties = ((LogID)MyLogID).Properties;
 
-        if (!Directory.Exists(Core.LogsPath))
-        {
-            Directory.CreateDirectory(Core.LogsPath);
-        }
-
-        LogProperties? properties = (MyLogID as LogID)?.Properties;
-
-        if (properties is not null && !properties.ReadOnly)
+        if (!properties.ReadOnly)
         {
             properties.AltFilename = new LogFilename("ynhzrfxn.modlib", ".log");
 
@@ -35,9 +25,23 @@ internal static class LogUtilsHelper
         }
     }
 
+    public static IMyLogger CreateLogger(ILogSource logSource)
+    {
+        CompositeLogTarget logTargets = logSource.SourceName == Core.MOD_NAME
+            ? (LogID)MyLogID | LogID.BepInEx
+            : CreateLogID(logSource.SourceName, register: false) | LogID.BepInEx | LogID.Unity;
+
+        return new LogUtilsAdapter(
+            new LogUtils.Logger(logTargets)
+            {
+                LogSource = logSource
+            }
+        );
+    }
+
     public static LogID CreateLogID(string name, bool register = false)
     {
-        LogID logID = new(SanitizeName(name), Core.LogsPath, LogAccess.FullAccess, register);
+        LogID logID = new(LoggingAdapter.SanitizeName(name), Core.LogsPath, LogAccess.FullAccess, register);
 
         logID.Properties.ShowCategories.IsEnabled = true;
         logID.Properties.ShowLogTimestamp.IsEnabled = true;
@@ -47,32 +51,19 @@ internal static class LogUtilsHelper
         return logID;
     }
 
-    public static string SanitizeName(string modName)
-    {
-        StringBuilder stringBuilder = new();
-        char[] forbiddenChars = [.. Path.GetInvalidPathChars(), ' '];
-
-        foreach (char c in modName)
-        {
-            if (forbiddenChars.Contains(c)) continue;
-
-            stringBuilder.Append(c);
-        }
-
-        return stringBuilder.ToString();
-    }
-
-    internal static void InitLogID(this Registry.ModEntry self, bool createLogID)
+    internal static void InitLogID(this Registry.ModEntry self)
     {
         if (self.LogID is not null
             || self.Logger is not LogUtilsAdapter adapter
-            || adapter.GetLogSource() is not Logger logger)
+            || adapter.GetLogSource() is not LogUtils.Logger logger)
         {
             return;
         }
 
-        self.LogID = createLogID
-            ? CreateLogID(self.Plugin.Name, register: false)
-            : logger.LogTargets.FirstOrDefault(id => !id.IsGameControlled);
+        self.LogID = self.Plugin == Core.PluginData
+            ? MyLogID
+            : adapter.ModLibCreated
+                ? CreateLogID(self.Plugin.Name, register: false)
+                : logger.LogTargets.FirstOrDefault(id => !id.IsGameControlled);
     }
 }

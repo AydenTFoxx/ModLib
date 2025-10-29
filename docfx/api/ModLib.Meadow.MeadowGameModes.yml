@@ -1,0 +1,200 @@
+### YamlMime:ManagedReference
+items:
+- uid: ModLib.Meadow.MeadowGameModes
+  commentId: T:ModLib.Meadow.MeadowGameModes
+  id: MeadowGameModes
+  parent: ModLib.Meadow
+  children:
+  - ModLib.Meadow.MeadowGameModes.Arena
+  - ModLib.Meadow.MeadowGameModes.Custom
+  - ModLib.Meadow.MeadowGameModes.Meadow
+  - ModLib.Meadow.MeadowGameModes.Story
+  langs:
+  - csharp
+  - vb
+  name: MeadowGameModes
+  nameWithType: MeadowGameModes
+  fullName: ModLib.Meadow.MeadowGameModes
+  type: Enum
+  source:
+    remote:
+      path: ModLib/Meadow/MeadowGameModes.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: MeadowGameModes
+    path: ../ModLib/Meadow/MeadowGameModes.cs
+    startLine: 7
+  assemblies:
+  - ModLib
+  namespace: ModLib.Meadow
+  summary: Wrapper enum for representing potential <xref href="RainMeadow.OnlineGameMode" data-throw-if-not-resolved="false"></xref> types.
+  example: []
+  syntax:
+    content: public enum MeadowGameModes
+    content.vb: Public Enum MeadowGameModes
+- uid: ModLib.Meadow.MeadowGameModes.Meadow
+  commentId: F:ModLib.Meadow.MeadowGameModes.Meadow
+  id: Meadow
+  parent: ModLib.Meadow.MeadowGameModes
+  langs:
+  - csharp
+  - vb
+  name: Meadow
+  nameWithType: MeadowGameModes.Meadow
+  fullName: ModLib.Meadow.MeadowGameModes.Meadow
+  type: Field
+  source:
+    remote:
+      path: ModLib/Meadow/MeadowGameModes.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Meadow
+    path: ../ModLib/Meadow/MeadowGameModes.cs
+    startLine: 12
+  assemblies:
+  - ModLib
+  namespace: ModLib.Meadow
+  summary: The current online lobby's game mode is of type <xref href="RainMeadow.MeadowGameMode" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: Meadow = 0
+    return:
+      type: ModLib.Meadow.MeadowGameModes
+- uid: ModLib.Meadow.MeadowGameModes.Story
+  commentId: F:ModLib.Meadow.MeadowGameModes.Story
+  id: Story
+  parent: ModLib.Meadow.MeadowGameModes
+  langs:
+  - csharp
+  - vb
+  name: Story
+  nameWithType: MeadowGameModes.Story
+  fullName: ModLib.Meadow.MeadowGameModes.Story
+  type: Field
+  source:
+    remote:
+      path: ModLib/Meadow/MeadowGameModes.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Story
+    path: ../ModLib/Meadow/MeadowGameModes.cs
+    startLine: 16
+  assemblies:
+  - ModLib
+  namespace: ModLib.Meadow
+  summary: The current online lobby's game mode is of type <xref href="RainMeadow.StoryGameMode" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: Story = 1
+    return:
+      type: ModLib.Meadow.MeadowGameModes
+- uid: ModLib.Meadow.MeadowGameModes.Arena
+  commentId: F:ModLib.Meadow.MeadowGameModes.Arena
+  id: Arena
+  parent: ModLib.Meadow.MeadowGameModes
+  langs:
+  - csharp
+  - vb
+  name: Arena
+  nameWithType: MeadowGameModes.Arena
+  fullName: ModLib.Meadow.MeadowGameModes.Arena
+  type: Field
+  source:
+    remote:
+      path: ModLib/Meadow/MeadowGameModes.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Arena
+    path: ../ModLib/Meadow/MeadowGameModes.cs
+    startLine: 20
+  assemblies:
+  - ModLib
+  namespace: ModLib.Meadow
+  summary: The current online lobby's game mode is of type <xref href="RainMeadow.ArenaOnlineGameMode" data-throw-if-not-resolved="false"></xref>.
+  example: []
+  syntax:
+    content: Arena = 2
+    return:
+      type: ModLib.Meadow.MeadowGameModes
+- uid: ModLib.Meadow.MeadowGameModes.Custom
+  commentId: F:ModLib.Meadow.MeadowGameModes.Custom
+  id: Custom
+  parent: ModLib.Meadow.MeadowGameModes
+  langs:
+  - csharp
+  - vb
+  name: Custom
+  nameWithType: MeadowGameModes.Custom
+  fullName: ModLib.Meadow.MeadowGameModes.Custom
+  type: Field
+  source:
+    remote:
+      path: ModLib/Meadow/MeadowGameModes.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Custom
+    path: ../ModLib/Meadow/MeadowGameModes.cs
+    startLine: 24
+  assemblies:
+  - ModLib
+  namespace: ModLib.Meadow
+  summary: The current online lobby's game mode is of an unknown type (possibly another mod's custom game mode).
+  example: []
+  syntax:
+    content: Custom = -1
+    return:
+      type: ModLib.Meadow.MeadowGameModes
+references:
+- uid: RainMeadow.OnlineGameMode
+  commentId: T:RainMeadow.OnlineGameMode
+  isExternal: true
+  name: OnlineGameMode
+  nameWithType: OnlineGameMode
+  fullName: RainMeadow.OnlineGameMode
+- uid: ModLib.Meadow
+  commentId: N:ModLib.Meadow
+  href: ModLib.html
+  name: ModLib.Meadow
+  nameWithType: ModLib.Meadow
+  fullName: ModLib.Meadow
+  spec.csharp:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Meadow
+    name: Meadow
+    href: ModLib.Meadow.html
+  spec.vb:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Meadow
+    name: Meadow
+    href: ModLib.Meadow.html
+- uid: RainMeadow.MeadowGameMode
+  commentId: T:RainMeadow.MeadowGameMode
+  isExternal: true
+  name: MeadowGameMode
+  nameWithType: MeadowGameMode
+  fullName: RainMeadow.MeadowGameMode
+- uid: ModLib.Meadow.MeadowGameModes
+  commentId: T:ModLib.Meadow.MeadowGameModes
+  parent: ModLib.Meadow
+  href: ModLib.Meadow.MeadowGameModes.html
+  name: MeadowGameModes
+  nameWithType: MeadowGameModes
+  fullName: ModLib.Meadow.MeadowGameModes
+- uid: RainMeadow.StoryGameMode
+  commentId: T:RainMeadow.StoryGameMode
+  isExternal: true
+  name: StoryGameMode
+  nameWithType: StoryGameMode
+  fullName: RainMeadow.StoryGameMode
+- uid: RainMeadow.ArenaOnlineGameMode
+  commentId: T:RainMeadow.ArenaOnlineGameMode
+  isExternal: true
+  name: ArenaOnlineGameMode
+  nameWithType: ArenaOnlineGameMode
+  fullName: RainMeadow.ArenaOnlineGameMode

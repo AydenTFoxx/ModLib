@@ -1,0 +1,67 @@
+### YamlMime:ManagedReference
+items:
+- uid: ModLib.Logging
+  commentId: N:ModLib.Logging
+  id: ModLib.Logging
+  children:
+  - ModLib.Logging.FallbackLogger
+  - ModLib.Logging.IMyLogger
+  - ModLib.Logging.LogUtilsAdapter
+  - ModLib.Logging.LoggingAdapter
+  langs:
+  - csharp
+  - vb
+  name: ModLib.Logging
+  nameWithType: ModLib.Logging
+  fullName: ModLib.Logging
+  type: Namespace
+  assemblies:
+  - ModLib
+references:
+- uid: ModLib.Logging.FallbackLogger
+  commentId: T:ModLib.Logging.FallbackLogger
+  href: ModLib.Logging.FallbackLogger.html
+  name: FallbackLogger
+  nameWithType: FallbackLogger
+  fullName: ModLib.Logging.FallbackLogger
+- uid: ModLib.Logging.IMyLogger
+  commentId: T:ModLib.Logging.IMyLogger
+  parent: ModLib.Logging
+  href: ModLib.Logging.IMyLogger.html
+  name: IMyLogger
+  nameWithType: IMyLogger
+  fullName: ModLib.Logging.IMyLogger
+- uid: ModLib.Logging.LoggingAdapter
+  commentId: T:ModLib.Logging.LoggingAdapter
+  href: ModLib.Logging.LoggingAdapter.html
+  name: LoggingAdapter
+  nameWithType: LoggingAdapter
+  fullName: ModLib.Logging.LoggingAdapter
+- uid: ModLib.Logging.LogUtilsAdapter
+  commentId: T:ModLib.Logging.LogUtilsAdapter
+  href: ModLib.Logging.LogUtilsAdapter.html
+  name: LogUtilsAdapter
+  nameWithType: LogUtilsAdapter
+  fullName: ModLib.Logging.LogUtilsAdapter
+- uid: ModLib.Logging
+  commentId: N:ModLib.Logging
+  href: ModLib.html
+  name: ModLib.Logging
+  nameWithType: ModLib.Logging
+  fullName: ModLib.Logging
+  spec.csharp:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Logging
+    name: Logging
+    href: ModLib.Logging.html
+  spec.vb:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Logging
+    name: Logging
+    href: ModLib.Logging.html

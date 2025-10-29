@@ -1,0 +1,1323 @@
+### YamlMime:ManagedReference
+items:
+- uid: ModLib.Input.CustomInputData
+  commentId: T:ModLib.Input.CustomInputData
+  id: CustomInputData
+  parent: ModLib.Input
+  children:
+  - ModLib.Input.CustomInputData.#ctor
+  - ModLib.Input.CustomInputData.#ctor(ImprovedInput.Plugin.PlayerData,System.Int32)
+  - ModLib.Input.CustomInputData.#ctor(System.Int32)
+  - ModLib.Input.CustomInputData.CopyFrom(ImprovedInput.CustomInput[],ImprovedInput.CustomInput[])
+  - ModLib.Input.CustomInputData.CopyFrom(ImprovedInput.Plugin.PlayerData)
+  - ModLib.Input.CustomInputData.CopyTo(ImprovedInput.CustomInput[],ImprovedInput.CustomInput[])
+  - ModLib.Input.CustomInputData.CopyTo(ImprovedInput.Plugin.PlayerData)
+  - ModLib.Input.CustomInputData.input
+  - ModLib.Input.CustomInputData.op_Implicit(ImprovedInput.Plugin.PlayerData)~ModLib.Input.CustomInputData
+  - ModLib.Input.CustomInputData.op_Implicit(ModLib.Input.CustomInputData)~ImprovedInput.Plugin.PlayerData
+  - ModLib.Input.CustomInputData.playerNumber
+  - ModLib.Input.CustomInputData.rawInput
+  langs:
+  - csharp
+  - vb
+  name: CustomInputData
+  nameWithType: CustomInputData
+  fullName: ModLib.Input.CustomInputData
+  type: Class
+  source:
+    remote:
+      path: ModLib/Input/CustomInputData.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: CustomInputData
+    path: ../ModLib/Input/CustomInputData.cs
+    startLine: 8
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: >-
+    Provides simple representation of a given player's input data;
+
+    A mirror of <xref href="ImprovedInput.Plugin.PlayerData" data-throw-if-not-resolved="false"></xref> which can be converted to and from its original class.
+  example: []
+  syntax:
+    content: public class CustomInputData
+    content.vb: Public Class CustomInputData
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  extensionMethods:
+  - ModLib.Input.CustomInputData.ModLib.Input.CustomInputDataExts.Input
+  - ModLib.Input.CustomInputData.ModLib.Input.CustomInputDataExts.InputHistory
+  - ModLib.Input.CustomInputData.ModLib.Input.CustomInputDataExts.IsKeyBound(ImprovedInput.PlayerKeybind)
+  - ModLib.Input.CustomInputData.ModLib.Input.CustomInputDataExts.IsKeyUnbound(ImprovedInput.PlayerKeybind)
+  - ModLib.Input.CustomInputData.ModLib.Input.CustomInputDataExts.IsPressed(ImprovedInput.PlayerKeybind)
+  - ModLib.Input.CustomInputData.ModLib.Input.CustomInputDataExts.JustPressed(ImprovedInput.PlayerKeybind)
+  - ModLib.Input.CustomInputData.ModLib.Input.CustomInputDataExts.RawInput
+  - ModLib.Input.CustomInputData.ModLib.Input.CustomInputDataExts.RawInputHistory
+- uid: ModLib.Input.CustomInputData.input
+  commentId: F:ModLib.Input.CustomInputData.input
+  id: input
+  parent: ModLib.Input.CustomInputData
+  langs:
+  - csharp
+  - vb
+  name: input
+  nameWithType: CustomInputData.input
+  fullName: ModLib.Input.CustomInputData.input
+  type: Field
+  source:
+    remote:
+      path: ModLib/Input/CustomInputData.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: input
+    path: ../ModLib/Input/CustomInputData.cs
+    startLine: 13
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: The current input buffer of the bound player, accounting for factors such as stun, death, or cutscenes.
+  example: []
+  syntax:
+    content: public readonly CustomInput[] input
+    return:
+      type: ImprovedInput.CustomInput[]
+    content.vb: Public ReadOnly input As CustomInput()
+- uid: ModLib.Input.CustomInputData.rawInput
+  commentId: F:ModLib.Input.CustomInputData.rawInput
+  id: rawInput
+  parent: ModLib.Input.CustomInputData
+  langs:
+  - csharp
+  - vb
+  name: rawInput
+  nameWithType: CustomInputData.rawInput
+  fullName: ModLib.Input.CustomInputData.rawInput
+  type: Field
+  source:
+    remote:
+      path: ModLib/Input/CustomInputData.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: rawInput
+    path: ../ModLib/Input/CustomInputData.cs
+    startLine: 18
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: The raw input of the bound player, retrieved directly from the game.
+  example: []
+  syntax:
+    content: public readonly CustomInput[] rawInput
+    return:
+      type: ImprovedInput.CustomInput[]
+    content.vb: Public ReadOnly rawInput As CustomInput()
+- uid: ModLib.Input.CustomInputData.playerNumber
+  commentId: F:ModLib.Input.CustomInputData.playerNumber
+  id: playerNumber
+  parent: ModLib.Input.CustomInputData
+  langs:
+  - csharp
+  - vb
+  name: playerNumber
+  nameWithType: CustomInputData.playerNumber
+  fullName: ModLib.Input.CustomInputData.playerNumber
+  type: Field
+  source:
+    remote:
+      path: ModLib/Input/CustomInputData.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: playerNumber
+    path: ../ModLib/Input/CustomInputData.cs
+    startLine: 23
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: The player index this data is bound to.
+  example: []
+  syntax:
+    content: public int playerNumber
+    return:
+      type: System.Int32
+    content.vb: Public playerNumber As Integer
+- uid: ModLib.Input.CustomInputData.#ctor(ImprovedInput.Plugin.PlayerData,System.Int32)
+  commentId: M:ModLib.Input.CustomInputData.#ctor(ImprovedInput.Plugin.PlayerData,System.Int32)
+  id: '#ctor(ImprovedInput.Plugin.PlayerData,System.Int32)'
+  parent: ModLib.Input.CustomInputData
+  langs:
+  - csharp
+  - vb
+  name: CustomInputData(PlayerData, int)
+  nameWithType: CustomInputData.CustomInputData(Plugin.PlayerData, int)
+  fullName: ModLib.Input.CustomInputData.CustomInputData(ImprovedInput.Plugin.PlayerData, int)
+  type: Constructor
+  source:
+    remote:
+      path: ModLib/Input/CustomInputData.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: .ctor
+    path: ../ModLib/Input/CustomInputData.cs
+    startLine: 31
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: >-
+    Creates a new <xref href="ModLib.Input.CustomInputData" data-throw-if-not-resolved="false"></xref> from the given <xref href="ImprovedInput.Plugin.PlayerData" data-throw-if-not-resolved="false"></xref> instance,
+
+    then binds it to the provided player index.
+  example: []
+  syntax:
+    content: public CustomInputData(Plugin.PlayerData data, int playerNumber = 0)
+    parameters:
+    - id: data
+      type: ImprovedInput.Plugin.PlayerData
+      description: The data whose values will be copied from.
+    - id: playerNumber
+      type: System.Int32
+      description: The player index this data should be bound to.
+    content.vb: Public Sub New(data As Plugin.PlayerData, playerNumber As Integer = 0)
+  overload: ModLib.Input.CustomInputData.#ctor*
+  nameWithType.vb: CustomInputData.New(Plugin.PlayerData, Integer)
+  fullName.vb: ModLib.Input.CustomInputData.New(ImprovedInput.Plugin.PlayerData, Integer)
+  name.vb: New(PlayerData, Integer)
+- uid: ModLib.Input.CustomInputData.#ctor(System.Int32)
+  commentId: M:ModLib.Input.CustomInputData.#ctor(System.Int32)
+  id: '#ctor(System.Int32)'
+  parent: ModLib.Input.CustomInputData
+  langs:
+  - csharp
+  - vb
+  name: CustomInputData(int)
+  nameWithType: CustomInputData.CustomInputData(int)
+  fullName: ModLib.Input.CustomInputData.CustomInputData(int)
+  type: Constructor
+  source:
+    remote:
+      path: ModLib/Input/CustomInputData.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: .ctor
+    path: ../ModLib/Input/CustomInputData.cs
+    startLine: 42
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Creates a new <xref href="ModLib.Input.CustomInputData" data-throw-if-not-resolved="false"></xref> with empty values, bound to the provided player index.
+  example: []
+  syntax:
+    content: public CustomInputData(int playerNumber)
+    parameters:
+    - id: playerNumber
+      type: System.Int32
+      description: The player index this data will be bound to.
+    content.vb: Public Sub New(playerNumber As Integer)
+  overload: ModLib.Input.CustomInputData.#ctor*
+  nameWithType.vb: CustomInputData.New(Integer)
+  fullName.vb: ModLib.Input.CustomInputData.New(Integer)
+  name.vb: New(Integer)
+- uid: ModLib.Input.CustomInputData.#ctor
+  commentId: M:ModLib.Input.CustomInputData.#ctor
+  id: '#ctor'
+  parent: ModLib.Input.CustomInputData
+  langs:
+  - csharp
+  - vb
+  name: CustomInputData()
+  nameWithType: CustomInputData.CustomInputData()
+  fullName: ModLib.Input.CustomInputData.CustomInputData()
+  type: Constructor
+  source:
+    remote:
+      path: ModLib/Input/CustomInputData.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: .ctor
+    path: ../ModLib/Input/CustomInputData.cs
+    startLine: 51
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Creates a new <xref href="ModLib.Input.CustomInputData" data-throw-if-not-resolved="false"></xref> with empty values, bound to the default player index.
+  example: []
+  syntax:
+    content: public CustomInputData()
+    content.vb: Public Sub New()
+  overload: ModLib.Input.CustomInputData.#ctor*
+  nameWithType.vb: CustomInputData.New()
+  fullName.vb: ModLib.Input.CustomInputData.New()
+  name.vb: New()
+- uid: ModLib.Input.CustomInputData.CopyFrom(ImprovedInput.Plugin.PlayerData)
+  commentId: M:ModLib.Input.CustomInputData.CopyFrom(ImprovedInput.Plugin.PlayerData)
+  id: CopyFrom(ImprovedInput.Plugin.PlayerData)
+  parent: ModLib.Input.CustomInputData
+  langs:
+  - csharp
+  - vb
+  name: CopyFrom(PlayerData)
+  nameWithType: CustomInputData.CopyFrom(Plugin.PlayerData)
+  fullName: ModLib.Input.CustomInputData.CopyFrom(ImprovedInput.Plugin.PlayerData)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Input/CustomInputData.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: CopyFrom
+    path: ../ModLib/Input/CustomInputData.cs
+    startLine: 68
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Copies the input data from the provided PlayerData to this instance.
+  example: []
+  syntax:
+    content: public void CopyFrom(Plugin.PlayerData data)
+    parameters:
+    - id: data
+      type: ImprovedInput.Plugin.PlayerData
+      description: The data whose values will be copied from.
+    content.vb: Public Sub CopyFrom(data As Plugin.PlayerData)
+  overload: ModLib.Input.CustomInputData.CopyFrom*
+- uid: ModLib.Input.CustomInputData.CopyFrom(ImprovedInput.CustomInput[],ImprovedInput.CustomInput[])
+  commentId: M:ModLib.Input.CustomInputData.CopyFrom(ImprovedInput.CustomInput[],ImprovedInput.CustomInput[])
+  id: CopyFrom(ImprovedInput.CustomInput[],ImprovedInput.CustomInput[])
+  parent: ModLib.Input.CustomInputData
+  langs:
+  - csharp
+  - vb
+  name: CopyFrom(CustomInput[], CustomInput[])
+  nameWithType: CustomInputData.CopyFrom(CustomInput[], CustomInput[])
+  fullName: ModLib.Input.CustomInputData.CopyFrom(ImprovedInput.CustomInput[], ImprovedInput.CustomInput[])
+  type: Method
+  source:
+    remote:
+      path: ModLib/Input/CustomInputData.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: CopyFrom
+    path: ../ModLib/Input/CustomInputData.cs
+    startLine: 75
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Copies the input data from the provided input arrays.
+  example: []
+  syntax:
+    content: public void CopyFrom(CustomInput[] input, CustomInput[] rawInput)
+    parameters:
+    - id: input
+      type: ImprovedInput.CustomInput[]
+      description: The input to be copied from.
+    - id: rawInput
+      type: ImprovedInput.CustomInput[]
+      description: The raw input to be copied from.
+    content.vb: Public Sub CopyFrom(input As CustomInput(), rawInput As CustomInput())
+  overload: ModLib.Input.CustomInputData.CopyFrom*
+  nameWithType.vb: CustomInputData.CopyFrom(CustomInput(), CustomInput())
+  fullName.vb: ModLib.Input.CustomInputData.CopyFrom(ImprovedInput.CustomInput(), ImprovedInput.CustomInput())
+  name.vb: CopyFrom(CustomInput(), CustomInput())
+- uid: ModLib.Input.CustomInputData.CopyTo(ImprovedInput.Plugin.PlayerData)
+  commentId: M:ModLib.Input.CustomInputData.CopyTo(ImprovedInput.Plugin.PlayerData)
+  id: CopyTo(ImprovedInput.Plugin.PlayerData)
+  parent: ModLib.Input.CustomInputData
+  langs:
+  - csharp
+  - vb
+  name: CopyTo(PlayerData)
+  nameWithType: CustomInputData.CopyTo(Plugin.PlayerData)
+  fullName: ModLib.Input.CustomInputData.CopyTo(ImprovedInput.Plugin.PlayerData)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Input/CustomInputData.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: CopyTo
+    path: ../ModLib/Input/CustomInputData.cs
+    startLine: 85
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Copies this instance's input data to the provided PlayerData instance.
+  example: []
+  syntax:
+    content: public void CopyTo(Plugin.PlayerData data)
+    parameters:
+    - id: data
+      type: ImprovedInput.Plugin.PlayerData
+      description: The data whose values will be copied to.
+    content.vb: Public Sub CopyTo(data As Plugin.PlayerData)
+  overload: ModLib.Input.CustomInputData.CopyTo*
+- uid: ModLib.Input.CustomInputData.CopyTo(ImprovedInput.CustomInput[],ImprovedInput.CustomInput[])
+  commentId: M:ModLib.Input.CustomInputData.CopyTo(ImprovedInput.CustomInput[],ImprovedInput.CustomInput[])
+  id: CopyTo(ImprovedInput.CustomInput[],ImprovedInput.CustomInput[])
+  parent: ModLib.Input.CustomInputData
+  langs:
+  - csharp
+  - vb
+  name: CopyTo(CustomInput[], CustomInput[])
+  nameWithType: CustomInputData.CopyTo(CustomInput[], CustomInput[])
+  fullName: ModLib.Input.CustomInputData.CopyTo(ImprovedInput.CustomInput[], ImprovedInput.CustomInput[])
+  type: Method
+  source:
+    remote:
+      path: ModLib/Input/CustomInputData.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: CopyTo
+    path: ../ModLib/Input/CustomInputData.cs
+    startLine: 92
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Copies this instance's input data to the provided input arrays.
+  example: []
+  syntax:
+    content: public void CopyTo(CustomInput[] input, CustomInput[] rawInput)
+    parameters:
+    - id: input
+      type: ImprovedInput.CustomInput[]
+      description: The input array to be copied to.
+    - id: rawInput
+      type: ImprovedInput.CustomInput[]
+      description: The raw input array to be copied to.
+    content.vb: Public Sub CopyTo(input As CustomInput(), rawInput As CustomInput())
+  overload: ModLib.Input.CustomInputData.CopyTo*
+  nameWithType.vb: CustomInputData.CopyTo(CustomInput(), CustomInput())
+  fullName.vb: ModLib.Input.CustomInputData.CopyTo(ImprovedInput.CustomInput(), ImprovedInput.CustomInput())
+  name.vb: CopyTo(CustomInput(), CustomInput())
+- uid: ModLib.Input.CustomInputData.op_Implicit(ModLib.Input.CustomInputData)~ImprovedInput.Plugin.PlayerData
+  commentId: M:ModLib.Input.CustomInputData.op_Implicit(ModLib.Input.CustomInputData)~ImprovedInput.Plugin.PlayerData
+  id: op_Implicit(ModLib.Input.CustomInputData)~ImprovedInput.Plugin.PlayerData
+  parent: ModLib.Input.CustomInputData
+  langs:
+  - csharp
+  - vb
+  name: implicit operator PlayerData(CustomInputData)
+  nameWithType: CustomInputData.implicit operator Plugin.PlayerData(CustomInputData)
+  fullName: ModLib.Input.CustomInputData.implicit operator ImprovedInput.Plugin.PlayerData(ModLib.Input.CustomInputData)
+  type: Operator
+  source:
+    remote:
+      path: ModLib/Input/CustomInputData.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: op_Implicit
+    path: ../ModLib/Input/CustomInputData.cs
+    startLine: 120
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Converts this data instance to an equivalent <xref href="ImprovedInput.Plugin.PlayerData" data-throw-if-not-resolved="false"></xref> instance.
+  example: []
+  syntax:
+    content: public static implicit operator Plugin.PlayerData(CustomInputData self)
+    parameters:
+    - id: self
+      type: ModLib.Input.CustomInputData
+      description: The data itself.
+    return:
+      type: ImprovedInput.Plugin.PlayerData
+    content.vb: Public Shared Widening Operator CType(self As CustomInputData) As Plugin.PlayerData
+  overload: ModLib.Input.CustomInputData.op_Implicit*
+  nameWithType.vb: CustomInputData.CType(CustomInputData)
+  fullName.vb: ModLib.Input.CustomInputData.CType(ModLib.Input.CustomInputData)
+  name.vb: CType(CustomInputData)
+- uid: ModLib.Input.CustomInputData.op_Implicit(ImprovedInput.Plugin.PlayerData)~ModLib.Input.CustomInputData
+  commentId: M:ModLib.Input.CustomInputData.op_Implicit(ImprovedInput.Plugin.PlayerData)~ModLib.Input.CustomInputData
+  id: op_Implicit(ImprovedInput.Plugin.PlayerData)~ModLib.Input.CustomInputData
+  parent: ModLib.Input.CustomInputData
+  langs:
+  - csharp
+  - vb
+  name: implicit operator CustomInputData(PlayerData)
+  nameWithType: CustomInputData.implicit operator CustomInputData(Plugin.PlayerData)
+  fullName: ModLib.Input.CustomInputData.implicit operator ModLib.Input.CustomInputData(ImprovedInput.Plugin.PlayerData)
+  type: Operator
+  source:
+    remote:
+      path: ModLib/Input/CustomInputData.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: op_Implicit
+    path: ../ModLib/Input/CustomInputData.cs
+    startLine: 133
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Converts a <xref href="ImprovedInput.Plugin.PlayerData" data-throw-if-not-resolved="false"></xref> instance to an equivalent <xref href="ModLib.Input.CustomInputData" data-throw-if-not-resolved="false"></xref> instance.
+  example: []
+  syntax:
+    content: public static implicit operator CustomInputData(Plugin.PlayerData self)
+    parameters:
+    - id: self
+      type: ImprovedInput.Plugin.PlayerData
+      description: The data itself.
+    return:
+      type: ModLib.Input.CustomInputData
+    content.vb: Public Shared Widening Operator CType(self As Plugin.PlayerData) As CustomInputData
+  overload: ModLib.Input.CustomInputData.op_Implicit*
+  nameWithType.vb: CustomInputData.CType(Plugin.PlayerData)
+  fullName.vb: ModLib.Input.CustomInputData.CType(ImprovedInput.Plugin.PlayerData)
+  name.vb: CType(PlayerData)
+references:
+- uid: ImprovedInput.Plugin.PlayerData
+  commentId: T:ImprovedInput.Plugin.PlayerData
+  parent: ImprovedInput
+  isExternal: true
+  name: Plugin.PlayerData
+  nameWithType: Plugin.PlayerData
+  fullName: ImprovedInput.Plugin.PlayerData
+  spec.csharp:
+  - uid: ImprovedInput.Plugin
+    name: Plugin
+    isExternal: true
+  - name: .
+  - uid: ImprovedInput.Plugin.PlayerData
+    name: PlayerData
+    isExternal: true
+  spec.vb:
+  - uid: ImprovedInput.Plugin
+    name: Plugin
+    isExternal: true
+  - name: .
+  - uid: ImprovedInput.Plugin.PlayerData
+    name: PlayerData
+    isExternal: true
+- uid: ModLib.Input
+  commentId: N:ModLib.Input
+  href: ModLib.html
+  name: ModLib.Input
+  nameWithType: ModLib.Input
+  fullName: ModLib.Input
+  spec.csharp:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Input
+    name: Input
+    href: ModLib.Input.html
+  spec.vb:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Input
+    name: Input
+    href: ModLib.Input.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: ModLib.Input.CustomInputData.ModLib.Input.CustomInputDataExts.Input
+  commentId: M:ModLib.Input.CustomInputDataExts.Input(ModLib.Input.CustomInputData)
+  parent: ModLib.Input.CustomInputDataExts
+  definition: ModLib.Input.CustomInputDataExts.Input(ModLib.Input.CustomInputData)
+  href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_Input_ModLib_Input_CustomInputData_
+  name: Input(CustomInputData)
+  nameWithType: CustomInputDataExts.Input(CustomInputData)
+  fullName: ModLib.Input.CustomInputDataExts.Input(ModLib.Input.CustomInputData)
+  spec.csharp:
+  - uid: ModLib.Input.CustomInputDataExts.Input(ModLib.Input.CustomInputData)
+    name: Input
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_Input_ModLib_Input_CustomInputData_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: )
+  spec.vb:
+  - uid: ModLib.Input.CustomInputDataExts.Input(ModLib.Input.CustomInputData)
+    name: Input
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_Input_ModLib_Input_CustomInputData_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: )
+- uid: ModLib.Input.CustomInputData.ModLib.Input.CustomInputDataExts.InputHistory
+  commentId: M:ModLib.Input.CustomInputDataExts.InputHistory(ModLib.Input.CustomInputData)
+  parent: ModLib.Input.CustomInputDataExts
+  definition: ModLib.Input.CustomInputDataExts.InputHistory(ModLib.Input.CustomInputData)
+  href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_InputHistory_ModLib_Input_CustomInputData_
+  name: InputHistory(CustomInputData)
+  nameWithType: CustomInputDataExts.InputHistory(CustomInputData)
+  fullName: ModLib.Input.CustomInputDataExts.InputHistory(ModLib.Input.CustomInputData)
+  spec.csharp:
+  - uid: ModLib.Input.CustomInputDataExts.InputHistory(ModLib.Input.CustomInputData)
+    name: InputHistory
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_InputHistory_ModLib_Input_CustomInputData_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: )
+  spec.vb:
+  - uid: ModLib.Input.CustomInputDataExts.InputHistory(ModLib.Input.CustomInputData)
+    name: InputHistory
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_InputHistory_ModLib_Input_CustomInputData_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: )
+- uid: ModLib.Input.CustomInputData.ModLib.Input.CustomInputDataExts.IsKeyBound(ImprovedInput.PlayerKeybind)
+  commentId: M:ModLib.Input.CustomInputDataExts.IsKeyBound(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  parent: ModLib.Input.CustomInputDataExts
+  definition: ModLib.Input.CustomInputDataExts.IsKeyBound(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsKeyBound_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  name: IsKeyBound(CustomInputData, PlayerKeybind)
+  nameWithType: CustomInputDataExts.IsKeyBound(CustomInputData, PlayerKeybind)
+  fullName: ModLib.Input.CustomInputDataExts.IsKeyBound(ModLib.Input.CustomInputData, ImprovedInput.PlayerKeybind)
+  spec.csharp:
+  - uid: ModLib.Input.CustomInputDataExts.IsKeyBound(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+    name: IsKeyBound
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsKeyBound_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: ','
+  - name: " "
+  - uid: ImprovedInput.PlayerKeybind
+    name: PlayerKeybind
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: ModLib.Input.CustomInputDataExts.IsKeyBound(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+    name: IsKeyBound
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsKeyBound_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: ','
+  - name: " "
+  - uid: ImprovedInput.PlayerKeybind
+    name: PlayerKeybind
+    isExternal: true
+  - name: )
+- uid: ModLib.Input.CustomInputData.ModLib.Input.CustomInputDataExts.IsKeyUnbound(ImprovedInput.PlayerKeybind)
+  commentId: M:ModLib.Input.CustomInputDataExts.IsKeyUnbound(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  parent: ModLib.Input.CustomInputDataExts
+  definition: ModLib.Input.CustomInputDataExts.IsKeyUnbound(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsKeyUnbound_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  name: IsKeyUnbound(CustomInputData, PlayerKeybind)
+  nameWithType: CustomInputDataExts.IsKeyUnbound(CustomInputData, PlayerKeybind)
+  fullName: ModLib.Input.CustomInputDataExts.IsKeyUnbound(ModLib.Input.CustomInputData, ImprovedInput.PlayerKeybind)
+  spec.csharp:
+  - uid: ModLib.Input.CustomInputDataExts.IsKeyUnbound(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+    name: IsKeyUnbound
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsKeyUnbound_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: ','
+  - name: " "
+  - uid: ImprovedInput.PlayerKeybind
+    name: PlayerKeybind
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: ModLib.Input.CustomInputDataExts.IsKeyUnbound(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+    name: IsKeyUnbound
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsKeyUnbound_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: ','
+  - name: " "
+  - uid: ImprovedInput.PlayerKeybind
+    name: PlayerKeybind
+    isExternal: true
+  - name: )
+- uid: ModLib.Input.CustomInputData.ModLib.Input.CustomInputDataExts.IsPressed(ImprovedInput.PlayerKeybind)
+  commentId: M:ModLib.Input.CustomInputDataExts.IsPressed(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  parent: ModLib.Input.CustomInputDataExts
+  definition: ModLib.Input.CustomInputDataExts.IsPressed(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsPressed_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  name: IsPressed(CustomInputData, PlayerKeybind)
+  nameWithType: CustomInputDataExts.IsPressed(CustomInputData, PlayerKeybind)
+  fullName: ModLib.Input.CustomInputDataExts.IsPressed(ModLib.Input.CustomInputData, ImprovedInput.PlayerKeybind)
+  spec.csharp:
+  - uid: ModLib.Input.CustomInputDataExts.IsPressed(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+    name: IsPressed
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsPressed_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: ','
+  - name: " "
+  - uid: ImprovedInput.PlayerKeybind
+    name: PlayerKeybind
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: ModLib.Input.CustomInputDataExts.IsPressed(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+    name: IsPressed
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsPressed_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: ','
+  - name: " "
+  - uid: ImprovedInput.PlayerKeybind
+    name: PlayerKeybind
+    isExternal: true
+  - name: )
+- uid: ModLib.Input.CustomInputData.ModLib.Input.CustomInputDataExts.JustPressed(ImprovedInput.PlayerKeybind)
+  commentId: M:ModLib.Input.CustomInputDataExts.JustPressed(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  parent: ModLib.Input.CustomInputDataExts
+  definition: ModLib.Input.CustomInputDataExts.JustPressed(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_JustPressed_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  name: JustPressed(CustomInputData, PlayerKeybind)
+  nameWithType: CustomInputDataExts.JustPressed(CustomInputData, PlayerKeybind)
+  fullName: ModLib.Input.CustomInputDataExts.JustPressed(ModLib.Input.CustomInputData, ImprovedInput.PlayerKeybind)
+  spec.csharp:
+  - uid: ModLib.Input.CustomInputDataExts.JustPressed(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+    name: JustPressed
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_JustPressed_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: ','
+  - name: " "
+  - uid: ImprovedInput.PlayerKeybind
+    name: PlayerKeybind
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: ModLib.Input.CustomInputDataExts.JustPressed(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+    name: JustPressed
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_JustPressed_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: ','
+  - name: " "
+  - uid: ImprovedInput.PlayerKeybind
+    name: PlayerKeybind
+    isExternal: true
+  - name: )
+- uid: ModLib.Input.CustomInputData.ModLib.Input.CustomInputDataExts.RawInput
+  commentId: M:ModLib.Input.CustomInputDataExts.RawInput(ModLib.Input.CustomInputData)
+  parent: ModLib.Input.CustomInputDataExts
+  definition: ModLib.Input.CustomInputDataExts.RawInput(ModLib.Input.CustomInputData)
+  href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_RawInput_ModLib_Input_CustomInputData_
+  name: RawInput(CustomInputData)
+  nameWithType: CustomInputDataExts.RawInput(CustomInputData)
+  fullName: ModLib.Input.CustomInputDataExts.RawInput(ModLib.Input.CustomInputData)
+  spec.csharp:
+  - uid: ModLib.Input.CustomInputDataExts.RawInput(ModLib.Input.CustomInputData)
+    name: RawInput
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_RawInput_ModLib_Input_CustomInputData_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: )
+  spec.vb:
+  - uid: ModLib.Input.CustomInputDataExts.RawInput(ModLib.Input.CustomInputData)
+    name: RawInput
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_RawInput_ModLib_Input_CustomInputData_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: )
+- uid: ModLib.Input.CustomInputData.ModLib.Input.CustomInputDataExts.RawInputHistory
+  commentId: M:ModLib.Input.CustomInputDataExts.RawInputHistory(ModLib.Input.CustomInputData)
+  parent: ModLib.Input.CustomInputDataExts
+  definition: ModLib.Input.CustomInputDataExts.RawInputHistory(ModLib.Input.CustomInputData)
+  href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_RawInputHistory_ModLib_Input_CustomInputData_
+  name: RawInputHistory(CustomInputData)
+  nameWithType: CustomInputDataExts.RawInputHistory(CustomInputData)
+  fullName: ModLib.Input.CustomInputDataExts.RawInputHistory(ModLib.Input.CustomInputData)
+  spec.csharp:
+  - uid: ModLib.Input.CustomInputDataExts.RawInputHistory(ModLib.Input.CustomInputData)
+    name: RawInputHistory
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_RawInputHistory_ModLib_Input_CustomInputData_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: )
+  spec.vb:
+  - uid: ModLib.Input.CustomInputDataExts.RawInputHistory(ModLib.Input.CustomInputData)
+    name: RawInputHistory
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_RawInputHistory_ModLib_Input_CustomInputData_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: )
+- uid: ImprovedInput
+  commentId: N:ImprovedInput
+  isExternal: true
+  name: ImprovedInput
+  nameWithType: ImprovedInput
+  fullName: ImprovedInput
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: ModLib.Input.CustomInputDataExts.Input(ModLib.Input.CustomInputData)
+  commentId: M:ModLib.Input.CustomInputDataExts.Input(ModLib.Input.CustomInputData)
+  href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_Input_ModLib_Input_CustomInputData_
+  name: Input(CustomInputData)
+  nameWithType: CustomInputDataExts.Input(CustomInputData)
+  fullName: ModLib.Input.CustomInputDataExts.Input(ModLib.Input.CustomInputData)
+  spec.csharp:
+  - uid: ModLib.Input.CustomInputDataExts.Input(ModLib.Input.CustomInputData)
+    name: Input
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_Input_ModLib_Input_CustomInputData_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: )
+  spec.vb:
+  - uid: ModLib.Input.CustomInputDataExts.Input(ModLib.Input.CustomInputData)
+    name: Input
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_Input_ModLib_Input_CustomInputData_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: )
+- uid: ModLib.Input.CustomInputDataExts
+  commentId: T:ModLib.Input.CustomInputDataExts
+  parent: ModLib.Input
+  href: ModLib.Input.CustomInputDataExts.html
+  name: CustomInputDataExts
+  nameWithType: CustomInputDataExts
+  fullName: ModLib.Input.CustomInputDataExts
+- uid: ModLib.Input.CustomInputDataExts.InputHistory(ModLib.Input.CustomInputData)
+  commentId: M:ModLib.Input.CustomInputDataExts.InputHistory(ModLib.Input.CustomInputData)
+  href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_InputHistory_ModLib_Input_CustomInputData_
+  name: InputHistory(CustomInputData)
+  nameWithType: CustomInputDataExts.InputHistory(CustomInputData)
+  fullName: ModLib.Input.CustomInputDataExts.InputHistory(ModLib.Input.CustomInputData)
+  spec.csharp:
+  - uid: ModLib.Input.CustomInputDataExts.InputHistory(ModLib.Input.CustomInputData)
+    name: InputHistory
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_InputHistory_ModLib_Input_CustomInputData_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: )
+  spec.vb:
+  - uid: ModLib.Input.CustomInputDataExts.InputHistory(ModLib.Input.CustomInputData)
+    name: InputHistory
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_InputHistory_ModLib_Input_CustomInputData_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: )
+- uid: ModLib.Input.CustomInputDataExts.IsKeyBound(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  commentId: M:ModLib.Input.CustomInputDataExts.IsKeyBound(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  isExternal: true
+  href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsKeyBound_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  name: IsKeyBound(CustomInputData, PlayerKeybind)
+  nameWithType: CustomInputDataExts.IsKeyBound(CustomInputData, PlayerKeybind)
+  fullName: ModLib.Input.CustomInputDataExts.IsKeyBound(ModLib.Input.CustomInputData, ImprovedInput.PlayerKeybind)
+  spec.csharp:
+  - uid: ModLib.Input.CustomInputDataExts.IsKeyBound(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+    name: IsKeyBound
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsKeyBound_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: ','
+  - name: " "
+  - uid: ImprovedInput.PlayerKeybind
+    name: PlayerKeybind
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: ModLib.Input.CustomInputDataExts.IsKeyBound(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+    name: IsKeyBound
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsKeyBound_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: ','
+  - name: " "
+  - uid: ImprovedInput.PlayerKeybind
+    name: PlayerKeybind
+    isExternal: true
+  - name: )
+- uid: ModLib.Input.CustomInputDataExts.IsKeyUnbound(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  commentId: M:ModLib.Input.CustomInputDataExts.IsKeyUnbound(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  isExternal: true
+  href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsKeyUnbound_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  name: IsKeyUnbound(CustomInputData, PlayerKeybind)
+  nameWithType: CustomInputDataExts.IsKeyUnbound(CustomInputData, PlayerKeybind)
+  fullName: ModLib.Input.CustomInputDataExts.IsKeyUnbound(ModLib.Input.CustomInputData, ImprovedInput.PlayerKeybind)
+  spec.csharp:
+  - uid: ModLib.Input.CustomInputDataExts.IsKeyUnbound(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+    name: IsKeyUnbound
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsKeyUnbound_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: ','
+  - name: " "
+  - uid: ImprovedInput.PlayerKeybind
+    name: PlayerKeybind
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: ModLib.Input.CustomInputDataExts.IsKeyUnbound(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+    name: IsKeyUnbound
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsKeyUnbound_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: ','
+  - name: " "
+  - uid: ImprovedInput.PlayerKeybind
+    name: PlayerKeybind
+    isExternal: true
+  - name: )
+- uid: ModLib.Input.CustomInputDataExts.IsPressed(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  commentId: M:ModLib.Input.CustomInputDataExts.IsPressed(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  isExternal: true
+  href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsPressed_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  name: IsPressed(CustomInputData, PlayerKeybind)
+  nameWithType: CustomInputDataExts.IsPressed(CustomInputData, PlayerKeybind)
+  fullName: ModLib.Input.CustomInputDataExts.IsPressed(ModLib.Input.CustomInputData, ImprovedInput.PlayerKeybind)
+  spec.csharp:
+  - uid: ModLib.Input.CustomInputDataExts.IsPressed(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+    name: IsPressed
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsPressed_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: ','
+  - name: " "
+  - uid: ImprovedInput.PlayerKeybind
+    name: PlayerKeybind
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: ModLib.Input.CustomInputDataExts.IsPressed(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+    name: IsPressed
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_IsPressed_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: ','
+  - name: " "
+  - uid: ImprovedInput.PlayerKeybind
+    name: PlayerKeybind
+    isExternal: true
+  - name: )
+- uid: ModLib.Input.CustomInputDataExts.JustPressed(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  commentId: M:ModLib.Input.CustomInputDataExts.JustPressed(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+  isExternal: true
+  href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_JustPressed_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  name: JustPressed(CustomInputData, PlayerKeybind)
+  nameWithType: CustomInputDataExts.JustPressed(CustomInputData, PlayerKeybind)
+  fullName: ModLib.Input.CustomInputDataExts.JustPressed(ModLib.Input.CustomInputData, ImprovedInput.PlayerKeybind)
+  spec.csharp:
+  - uid: ModLib.Input.CustomInputDataExts.JustPressed(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+    name: JustPressed
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_JustPressed_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: ','
+  - name: " "
+  - uid: ImprovedInput.PlayerKeybind
+    name: PlayerKeybind
+    isExternal: true
+  - name: )
+  spec.vb:
+  - uid: ModLib.Input.CustomInputDataExts.JustPressed(ModLib.Input.CustomInputData,ImprovedInput.PlayerKeybind)
+    name: JustPressed
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_JustPressed_ModLib_Input_CustomInputData_ImprovedInput_PlayerKeybind_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: ','
+  - name: " "
+  - uid: ImprovedInput.PlayerKeybind
+    name: PlayerKeybind
+    isExternal: true
+  - name: )
+- uid: ModLib.Input.CustomInputDataExts.RawInput(ModLib.Input.CustomInputData)
+  commentId: M:ModLib.Input.CustomInputDataExts.RawInput(ModLib.Input.CustomInputData)
+  href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_RawInput_ModLib_Input_CustomInputData_
+  name: RawInput(CustomInputData)
+  nameWithType: CustomInputDataExts.RawInput(CustomInputData)
+  fullName: ModLib.Input.CustomInputDataExts.RawInput(ModLib.Input.CustomInputData)
+  spec.csharp:
+  - uid: ModLib.Input.CustomInputDataExts.RawInput(ModLib.Input.CustomInputData)
+    name: RawInput
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_RawInput_ModLib_Input_CustomInputData_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: )
+  spec.vb:
+  - uid: ModLib.Input.CustomInputDataExts.RawInput(ModLib.Input.CustomInputData)
+    name: RawInput
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_RawInput_ModLib_Input_CustomInputData_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: )
+- uid: ModLib.Input.CustomInputDataExts.RawInputHistory(ModLib.Input.CustomInputData)
+  commentId: M:ModLib.Input.CustomInputDataExts.RawInputHistory(ModLib.Input.CustomInputData)
+  href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_RawInputHistory_ModLib_Input_CustomInputData_
+  name: RawInputHistory(CustomInputData)
+  nameWithType: CustomInputDataExts.RawInputHistory(CustomInputData)
+  fullName: ModLib.Input.CustomInputDataExts.RawInputHistory(ModLib.Input.CustomInputData)
+  spec.csharp:
+  - uid: ModLib.Input.CustomInputDataExts.RawInputHistory(ModLib.Input.CustomInputData)
+    name: RawInputHistory
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_RawInputHistory_ModLib_Input_CustomInputData_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: )
+  spec.vb:
+  - uid: ModLib.Input.CustomInputDataExts.RawInputHistory(ModLib.Input.CustomInputData)
+    name: RawInputHistory
+    href: ModLib.Input.CustomInputDataExts.html#ModLib_Input_CustomInputDataExts_RawInputHistory_ModLib_Input_CustomInputData_
+  - name: (
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    href: ModLib.Input.CustomInputData.html
+  - name: )
+- uid: ImprovedInput.CustomInput[]
+  isExternal: true
+  name: CustomInput[]
+  nameWithType: CustomInput[]
+  fullName: ImprovedInput.CustomInput[]
+  nameWithType.vb: CustomInput()
+  fullName.vb: ImprovedInput.CustomInput()
+  name.vb: CustomInput()
+  spec.csharp:
+  - uid: ImprovedInput.CustomInput
+    name: CustomInput
+    isExternal: true
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: ImprovedInput.CustomInput
+    name: CustomInput
+    isExternal: true
+  - name: (
+  - name: )
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: ModLib.Input.CustomInputData
+  commentId: T:ModLib.Input.CustomInputData
+  parent: ModLib.Input
+  href: ModLib.Input.CustomInputData.html
+  name: CustomInputData
+  nameWithType: CustomInputData
+  fullName: ModLib.Input.CustomInputData
+- uid: ModLib.Input.CustomInputData.#ctor*
+  commentId: Overload:ModLib.Input.CustomInputData.#ctor
+  href: ModLib.Input.CustomInputData.html#ModLib_Input_CustomInputData__ctor_ImprovedInput_Plugin_PlayerData_System_Int32_
+  name: CustomInputData
+  nameWithType: CustomInputData.CustomInputData
+  fullName: ModLib.Input.CustomInputData.CustomInputData
+  nameWithType.vb: CustomInputData.New
+  fullName.vb: ModLib.Input.CustomInputData.New
+  name.vb: New
+- uid: ModLib.Input.CustomInputData.CopyFrom*
+  commentId: Overload:ModLib.Input.CustomInputData.CopyFrom
+  href: ModLib.Input.CustomInputData.html#ModLib_Input_CustomInputData_CopyFrom_ImprovedInput_Plugin_PlayerData_
+  name: CopyFrom
+  nameWithType: CustomInputData.CopyFrom
+  fullName: ModLib.Input.CustomInputData.CopyFrom
+- uid: ModLib.Input.CustomInputData.CopyTo*
+  commentId: Overload:ModLib.Input.CustomInputData.CopyTo
+  href: ModLib.Input.CustomInputData.html#ModLib_Input_CustomInputData_CopyTo_ImprovedInput_Plugin_PlayerData_
+  name: CopyTo
+  nameWithType: CustomInputData.CopyTo
+  fullName: ModLib.Input.CustomInputData.CopyTo
+- uid: ModLib.Input.CustomInputData.op_Implicit*
+  commentId: Overload:ModLib.Input.CustomInputData.op_Implicit
+  name: implicit operator
+  nameWithType: CustomInputData.implicit operator
+  fullName: ModLib.Input.CustomInputData.implicit operator
+  nameWithType.vb: CustomInputData.CType
+  fullName.vb: ModLib.Input.CustomInputData.CType
+  name.vb: CType
+  spec.csharp:
+  - name: implicit
+  - name: " "
+  - name: operator

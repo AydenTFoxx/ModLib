@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class ModRPCManager | ModLib </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class ModRPCManager | ModLib ">
+      
+      <meta name="description" content="A simple tracker of sent RPC events, used to prevent unresolved SoftRPCs from hanging around indefinitely.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/AydenTFoxx/ModLib/new/devel/apiSpec/new?filename=ModLib_Meadow_ModRPCManager.md&amp;value=---%0Auid%3A%20ModLib.Meadow.ModRPCManager%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="ModLib">
+            ModLib
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="ModLib.Meadow.ModRPCManager">
+
+
+
+  <h1 id="ModLib_Meadow_ModRPCManager" data-uid="ModLib.Meadow.ModRPCManager" class="text-break">
+Class ModRPCManager  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Meadow/ModRPCManager.cs/#L11"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="ModLib.html">ModLib</a>.<a class="xref" href="ModLib.Meadow.html">Meadow</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>ModLib.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>A simple tracker of sent RPC events, used to prevent unresolved SoftRPCs from hanging around indefinitely.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class ModRPCManager</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">ModRPCManager</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="ModLib_Meadow_ModRPCManager_BroadcastOnceRPCInRoom_" data-uid="ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInRoom*"></a>
+
+  <h3 id="ModLib_Meadow_ModRPCManager_BroadcastOnceRPCInRoom_RainMeadow_OnlineEntity_System_Delegate_System_Object___" data-uid="ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInRoom(RainMeadow.OnlineEntity,System.Delegate,System.Object[])">
+  BroadcastOnceRPCInRoom(OnlineEntity, Delegate, params object[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Meadow/ModRPCManager.cs/#L98"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sends a single RPC event to all players in the same room as the online entity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void BroadcastOnceRPCInRoom(this OnlineEntity source, Delegate del, params object[] args)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <span class="xref">OnlineEntity</span></dt>
+    <dd><p>The online entity who will send the RPC events.</p>
+</dd>
+    <dt><code>del</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.delegate">Delegate</a></dt>
+    <dd><p>The RPC method to be sent.</p>
+</dd>
+    <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
+    <dd><p>Any arguments of the RPC method.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ModLib_Meadow_ModRPCManager_ResolveRPCEvent_" data-uid="ModLib.Meadow.ModRPCManager.ResolveRPCEvent*"></a>
+
+  <h3 id="ModLib_Meadow_ModRPCManager_ResolveRPCEvent_RainMeadow_GenericResult_" data-uid="ModLib.Meadow.ModRPCManager.ResolveRPCEvent(RainMeadow.GenericResult)">
+  ResolveRPCEvent(GenericResult)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Meadow/ModRPCManager.cs/#L118"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Logs the result of the resolved RPC event, then removes its timeout irrespective of its result.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void ResolveRPCEvent(GenericResult result)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>result</code> <span class="xref">GenericResult</span></dt>
+    <dd><p>The result of the resolved RPC event.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="ModLib_Meadow_ModRPCManager_SendRPCEvent_" data-uid="ModLib.Meadow.ModRPCManager.SendRPCEvent*"></a>
+
+  <h3 id="ModLib_Meadow_ModRPCManager_SendRPCEvent__1_RainMeadow_OnlinePlayer___0_System_Object___" data-uid="ModLib.Meadow.ModRPCManager.SendRPCEvent``1(RainMeadow.OnlinePlayer,``0,System.Object[])">
+  SendRPCEvent&lt;T&gt;(OnlinePlayer, T, params object[])
+  <a class="header-action link-secondary" title="View source" href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Meadow/ModRPCManager.cs/#L77"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Sends an RPC event to the online player, which is automatically aborted if the recipient does not answer after a certain time limit.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static RPCEvent SendRPCEvent&lt;T&gt;(this OnlinePlayer onlinePlayer, T @delegate, params object[] args) where T : Delegate</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>onlinePlayer</code> <span class="xref">OnlinePlayer</span></dt>
+    <dd><p>The recipient who will receive this RPC event.</p>
+</dd>
+    <dt><code>delegate</code> <span class="xref">T</span></dt>
+    <dd><p>The RPC method to be sent.</p>
+</dd>
+    <dt><code>args</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</dt>
+    <dd><p>Any arguments of the RPC method.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><span class="xref">RPCEvent</span></dt>
+    <dd><p>The <span class="xref">RainMeadow.RPCEvent</span> instance sent to the online player.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>The type of the RPC delegate to be sent.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/AydenTFoxx/ModLib/blob/devel/ModLib/Meadow/ModRPCManager.cs/#L11" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,7 +16,7 @@ public static class Patcher
 {
     internal static readonly ManualLogSource Logger = BepInEx.Logging.Logger.CreateLogSource("ModLib.Loader");
 
-    private static Assembly? loadedAssembly;
+    private static bool loadedAssembly;
     private static readonly List<string> CompatibilityPaths = [];
 
     public static IEnumerable<string> TargetDLLs => GetDLLs();
@@ -32,7 +33,9 @@ public static class Patcher
         {
             Logger.LogMessage($"Loading latest ModLib DLL: {AssemblyUtils.FormatCandidate(target, true)}");
 
-            loadedAssembly = Assembly.LoadFrom(target.Path);
+            Assembly.LoadFrom(target.Path);
+
+            loadedAssembly = true;
         }
         else
         {
@@ -45,10 +48,12 @@ public static class Patcher
         foreach (Mod mod in ModManager.Mods)
         {
             // Retrieve the mod's CompatibilityMods.txt file, if there is any
-            string? compatFilePath = Directory.EnumerateFiles(mod.ModDir, "CompatibilityMods.txt", SearchOption.TopDirectoryOnly).FirstOrDefault();
+            string? compatFilePath = Directory.GetFiles(mod.ModDir, "CompatibilityMods.txt", SearchOption.TopDirectoryOnly).FirstOrDefault();
 
             if (compatFilePath is not null)
             {
+                Logger.LogInfo($"Found CM config file: {AssemblyUtils.GetModName(compatFilePath, true)}");
+
                 CompatibilityPaths.Add(compatFilePath);
             }
 
@@ -62,14 +67,29 @@ public static class Patcher
         }
     }
 
+    public static void Initialize()
+    {
+    }
+
     public static void Patch(AssemblyDefinition _)
     {
     }
 
     public static void Finish()
     {
-        loadedAssembly?.GetType("CompatibilityManager", false, true)?.GetMethod("Initialize")?.Invoke(null, [CompatibilityPaths]);
+        if (!loadedAssembly) return;
+
+        try
+        {
+            ModLibAccess.TryLoadModLib(CompatibilityPaths);
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError($"Failed to initialize ModLib entry point: {ex}");
+        }
 
         CompatibilityPaths.Clear();
+
+        BepInEx.Logging.Logger.Sources.Remove(Logger);
     }
 }

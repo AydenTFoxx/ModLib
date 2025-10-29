@@ -1,0 +1,1158 @@
+### YamlMime:ManagedReference
+items:
+- uid: ModLib.Input.Keybind
+  commentId: T:ModLib.Input.Keybind
+  id: Keybind
+  parent: ModLib.Input
+  children:
+  - ModLib.Input.Keybind.GamepadPreset
+  - ModLib.Input.Keybind.Get(System.String)
+  - ModLib.Input.Keybind.Id
+  - ModLib.Input.Keybind.Keybinds
+  - ModLib.Input.Keybind.KeyboardPreset
+  - ModLib.Input.Keybind.Mod
+  - ModLib.Input.Keybind.Name
+  - ModLib.Input.Keybind.Register(System.String,System.String,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  - ModLib.Input.Keybind.Register(System.String,System.String,UnityEngine.KeyCode,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  - ModLib.Input.Keybind.Register(System.String,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  - ModLib.Input.Keybind.Register(System.String,UnityEngine.KeyCode,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  - ModLib.Input.Keybind.ToString
+  - ModLib.Input.Keybind.XboxPreset
+  - ModLib.Input.Keybind.op_Implicit(ImprovedInput.PlayerKeybind)~ModLib.Input.Keybind
+  - ModLib.Input.Keybind.op_Implicit(ModLib.Input.Keybind)~ImprovedInput.PlayerKeybind
+  langs:
+  - csharp
+  - vb
+  name: Keybind
+  nameWithType: Keybind
+  fullName: ModLib.Input.Keybind
+  type: Class
+  source:
+    remote:
+      path: ModLib/Input/Keybind.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Keybind
+    path: ../ModLib/Input/Keybind.cs
+    startLine: 14
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: An immutable representation of a player keybind, compatible with ImprovedInput's PlayerKeybind object.
+  example: []
+  syntax:
+    content: 'public record Keybind : IEquatable<Keybind>'
+    content.vb: Public Class Keybind Implements IEquatable(Of Keybind)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{ModLib.Input.Keybind}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: ModLib.Input.Keybind.Id
+  commentId: P:ModLib.Input.Keybind.Id
+  id: Id
+  parent: ModLib.Input.Keybind
+  langs:
+  - csharp
+  - vb
+  name: Id
+  nameWithType: Keybind.Id
+  fullName: ModLib.Input.Keybind.Id
+  type: Property
+  source:
+    remote:
+      path: ModLib/Input/Keybind.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Id
+    path: ../ModLib/Input/Keybind.cs
+    startLine: 24
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: The unique identifier of this Keybind.
+  example: []
+  syntax:
+    content: public string Id { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Id As String
+  overload: ModLib.Input.Keybind.Id*
+- uid: ModLib.Input.Keybind.Mod
+  commentId: P:ModLib.Input.Keybind.Mod
+  id: Mod
+  parent: ModLib.Input.Keybind
+  langs:
+  - csharp
+  - vb
+  name: Mod
+  nameWithType: Keybind.Mod
+  fullName: ModLib.Input.Keybind.Mod
+  type: Property
+  source:
+    remote:
+      path: ModLib/Input/Keybind.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Mod
+    path: ../ModLib/Input/Keybind.cs
+    startLine: 29
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: The name of the mod this Keybind belongs to.
+  example: []
+  syntax:
+    content: public string Mod { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property [Mod] As String
+  overload: ModLib.Input.Keybind.Mod*
+- uid: ModLib.Input.Keybind.Name
+  commentId: P:ModLib.Input.Keybind.Name
+  id: Name
+  parent: ModLib.Input.Keybind
+  langs:
+  - csharp
+  - vb
+  name: Name
+  nameWithType: Keybind.Name
+  fullName: ModLib.Input.Keybind.Name
+  type: Property
+  source:
+    remote:
+      path: ModLib/Input/Keybind.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Name
+    path: ../ModLib/Input/Keybind.cs
+    startLine: 34
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: The user-friendly name of this Keybind.
+  example: []
+  syntax:
+    content: public string Name { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property Name As String
+  overload: ModLib.Input.Keybind.Name*
+- uid: ModLib.Input.Keybind.KeyboardPreset
+  commentId: P:ModLib.Input.Keybind.KeyboardPreset
+  id: KeyboardPreset
+  parent: ModLib.Input.Keybind
+  langs:
+  - csharp
+  - vb
+  name: KeyboardPreset
+  nameWithType: Keybind.KeyboardPreset
+  fullName: ModLib.Input.Keybind.KeyboardPreset
+  type: Property
+  source:
+    remote:
+      path: ModLib/Input/Keybind.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: KeyboardPreset
+    path: ../ModLib/Input/Keybind.cs
+    startLine: 39
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: The KeyCode to be used for detecting inputs with a keyboard.
+  example: []
+  syntax:
+    content: public KeyCode KeyboardPreset { get; }
+    parameters: []
+    return:
+      type: UnityEngine.KeyCode
+    content.vb: Public ReadOnly Property KeyboardPreset As KeyCode
+  overload: ModLib.Input.Keybind.KeyboardPreset*
+- uid: ModLib.Input.Keybind.GamepadPreset
+  commentId: P:ModLib.Input.Keybind.GamepadPreset
+  id: GamepadPreset
+  parent: ModLib.Input.Keybind
+  langs:
+  - csharp
+  - vb
+  name: GamepadPreset
+  nameWithType: Keybind.GamepadPreset
+  fullName: ModLib.Input.Keybind.GamepadPreset
+  type: Property
+  source:
+    remote:
+      path: ModLib/Input/Keybind.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: GamepadPreset
+    path: ../ModLib/Input/Keybind.cs
+    startLine: 44
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: The KeyCode to be used for detecting inputs with a gamepad.
+  example: []
+  syntax:
+    content: public KeyCode GamepadPreset { get; }
+    parameters: []
+    return:
+      type: UnityEngine.KeyCode
+    content.vb: Public ReadOnly Property GamepadPreset As KeyCode
+  overload: ModLib.Input.Keybind.GamepadPreset*
+- uid: ModLib.Input.Keybind.XboxPreset
+  commentId: P:ModLib.Input.Keybind.XboxPreset
+  id: XboxPreset
+  parent: ModLib.Input.Keybind
+  langs:
+  - csharp
+  - vb
+  name: XboxPreset
+  nameWithType: Keybind.XboxPreset
+  fullName: ModLib.Input.Keybind.XboxPreset
+  type: Property
+  source:
+    remote:
+      path: ModLib/Input/Keybind.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: XboxPreset
+    path: ../ModLib/Input/Keybind.cs
+    startLine: 49
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: The KeyCode to be used for detecting inputs with an xbox.
+  example: []
+  syntax:
+    content: public KeyCode XboxPreset { get; }
+    parameters: []
+    return:
+      type: UnityEngine.KeyCode
+    content.vb: Public ReadOnly Property XboxPreset As KeyCode
+  overload: ModLib.Input.Keybind.XboxPreset*
+- uid: ModLib.Input.Keybind.ToString
+  commentId: M:ModLib.Input.Keybind.ToString
+  id: ToString
+  parent: ModLib.Input.Keybind
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Keybind.ToString()
+  fullName: ModLib.Input.Keybind.ToString()
+  type: Method
+  source:
+    remote:
+      path: ModLib/Input/Keybind.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: ToString
+    path: ../ModLib/Input/Keybind.cs
+    startLine: 94
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Returns a string that represents the Keybind object.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A string that represents the Keybind object.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: ModLib.Input.Keybind.ToString*
+- uid: ModLib.Input.Keybind.Get(System.String)
+  commentId: M:ModLib.Input.Keybind.Get(System.String)
+  id: Get(System.String)
+  parent: ModLib.Input.Keybind
+  langs:
+  - csharp
+  - vb
+  name: Get(string)
+  nameWithType: Keybind.Get(string)
+  fullName: ModLib.Input.Keybind.Get(string)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Input/Keybind.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Get
+    path: ../ModLib/Input/Keybind.cs
+    startLine: 101
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Retrieves the Keybind with the given identifier.
+  example: []
+  syntax:
+    content: public static Keybind? Get(string id)
+    parameters:
+    - id: id
+      type: System.String
+      description: The identifier of the Keybind to be retrieved.
+    return:
+      type: ModLib.Input.Keybind
+      description: The <xref href="ModLib.Input.Keybind" data-throw-if-not-resolved="false"></xref> object whose Id matches the provided argument, or <code>null</code> if none is found.
+    content.vb: Public Shared Function [Get](id As String) As Keybind
+  overload: ModLib.Input.Keybind.Get*
+  nameWithType.vb: Keybind.Get(String)
+  fullName.vb: ModLib.Input.Keybind.Get(String)
+  name.vb: Get(String)
+- uid: ModLib.Input.Keybind.Keybinds
+  commentId: M:ModLib.Input.Keybind.Keybinds
+  id: Keybinds
+  parent: ModLib.Input.Keybind
+  langs:
+  - csharp
+  - vb
+  name: Keybinds()
+  nameWithType: Keybind.Keybinds()
+  fullName: ModLib.Input.Keybind.Keybinds()
+  type: Method
+  source:
+    remote:
+      path: ModLib/Input/Keybind.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Keybinds
+    path: ../ModLib/Input/Keybind.cs
+    startLine: 107
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Returns a read-only list of all registered keybinds.
+  example: []
+  syntax:
+    content: public static IReadOnlyList<Keybind> Keybinds()
+    return:
+      type: System.Collections.Generic.IReadOnlyList{ModLib.Input.Keybind}
+      description: A read-only list of all registered keybinds.
+    content.vb: Public Shared Function Keybinds() As IReadOnlyList(Of Keybind)
+  overload: ModLib.Input.Keybind.Keybinds*
+- uid: ModLib.Input.Keybind.Register(System.String,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  commentId: M:ModLib.Input.Keybind.Register(System.String,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  id: Register(System.String,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  parent: ModLib.Input.Keybind
+  langs:
+  - csharp
+  - vb
+  name: Register(string, KeyCode, KeyCode)
+  nameWithType: Keybind.Register(string, KeyCode, KeyCode)
+  fullName: ModLib.Input.Keybind.Register(string, UnityEngine.KeyCode, UnityEngine.KeyCode)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Input/Keybind.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Register
+    path: ../ModLib/Input/Keybind.cs
+    startLine: 110
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Registers a new Keybind with the provided arguments.
+  remarks: 'If the Improved Input: Extended mod is present, an equivalent <code>PlayerKeybind</code> is also registered to the game.'
+  example: []
+  syntax:
+    content: public static Keybind Register(string name, KeyCode keyboardPreset, KeyCode gamepadPreset)
+    parameters:
+    - id: name
+      type: System.String
+      description: The name of the new Keybind. Will be displayed for players with IIC:E enabled.
+    - id: keyboardPreset
+      type: UnityEngine.KeyCode
+      description: The key code for usage by keyboard devices.
+    - id: gamepadPreset
+      type: UnityEngine.KeyCode
+      description: The key code for usage by gamepad input devices.
+    return:
+      type: ModLib.Input.Keybind
+      description: The registered <xref href="ModLib.Input.Keybind" data-throw-if-not-resolved="false"></xref> object.
+    content.vb: Public Shared Function Register(name As String, keyboardPreset As KeyCode, gamepadPreset As KeyCode) As Keybind
+  overload: ModLib.Input.Keybind.Register*
+  nameWithType.vb: Keybind.Register(String, KeyCode, KeyCode)
+  fullName.vb: ModLib.Input.Keybind.Register(String, UnityEngine.KeyCode, UnityEngine.KeyCode)
+  name.vb: Register(String, KeyCode, KeyCode)
+- uid: ModLib.Input.Keybind.Register(System.String,UnityEngine.KeyCode,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  commentId: M:ModLib.Input.Keybind.Register(System.String,UnityEngine.KeyCode,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  id: Register(System.String,UnityEngine.KeyCode,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  parent: ModLib.Input.Keybind
+  langs:
+  - csharp
+  - vb
+  name: Register(string, KeyCode, KeyCode, KeyCode)
+  nameWithType: Keybind.Register(string, KeyCode, KeyCode, KeyCode)
+  fullName: ModLib.Input.Keybind.Register(string, UnityEngine.KeyCode, UnityEngine.KeyCode, UnityEngine.KeyCode)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Input/Keybind.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Register
+    path: ../ModLib/Input/Keybind.cs
+    startLine: 114
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Registers a new Keybind with the provided arguments.
+  remarks: 'If the Improved Input: Extended mod is present, an equivalent <code>PlayerKeybind</code> is also registered to the game.'
+  example: []
+  syntax:
+    content: public static Keybind Register(string name, KeyCode keyboardPreset, KeyCode gamepadPreset, KeyCode xboxPreset)
+    parameters:
+    - id: name
+      type: System.String
+      description: The name of the new Keybind. Will be displayed for players with IIC:E enabled.
+    - id: keyboardPreset
+      type: UnityEngine.KeyCode
+      description: The key code for usage by keyboard devices.
+    - id: gamepadPreset
+      type: UnityEngine.KeyCode
+      description: The key code for usage by gamepad input devices.
+    - id: xboxPreset
+      type: UnityEngine.KeyCode
+      description: The key code for usage by Xbox input devices.
+    return:
+      type: ModLib.Input.Keybind
+      description: The registered <xref href="ModLib.Input.Keybind" data-throw-if-not-resolved="false"></xref> object.
+    content.vb: Public Shared Function Register(name As String, keyboardPreset As KeyCode, gamepadPreset As KeyCode, xboxPreset As KeyCode) As Keybind
+  overload: ModLib.Input.Keybind.Register*
+  nameWithType.vb: Keybind.Register(String, KeyCode, KeyCode, KeyCode)
+  fullName.vb: ModLib.Input.Keybind.Register(String, UnityEngine.KeyCode, UnityEngine.KeyCode, UnityEngine.KeyCode)
+  name.vb: Register(String, KeyCode, KeyCode, KeyCode)
+- uid: ModLib.Input.Keybind.Register(System.String,System.String,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  commentId: M:ModLib.Input.Keybind.Register(System.String,System.String,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  id: Register(System.String,System.String,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  parent: ModLib.Input.Keybind
+  langs:
+  - csharp
+  - vb
+  name: Register(string?, string, KeyCode, KeyCode)
+  nameWithType: Keybind.Register(string?, string, KeyCode, KeyCode)
+  fullName: ModLib.Input.Keybind.Register(string?, string, UnityEngine.KeyCode, UnityEngine.KeyCode)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Input/Keybind.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Register
+    path: ../ModLib/Input/Keybind.cs
+    startLine: 118
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Registers a new Keybind with the provided arguments.
+  remarks: 'If the Improved Input: Extended mod is present, an equivalent <code>PlayerKeybind</code> is also registered to the game.'
+  example: []
+  syntax:
+    content: public static Keybind Register(string? id, string name, KeyCode keyboardPreset, KeyCode gamepadPreset)
+    parameters:
+    - id: id
+      type: System.String
+      description: >-
+        <p>
+            The identifier of this keybind. Must be an unique string not used by any other mod, or yourself.
+        </p>
+
+        <p>
+            If omitted, an unique identifier is generated with the format <code>"{ModId}.{KeybindName}"</code>
+        </p>
+    - id: name
+      type: System.String
+      description: The name of the new Keybind. Will be displayed for players with IIC:E enabled.
+    - id: keyboardPreset
+      type: UnityEngine.KeyCode
+      description: The key code for usage by keyboard devices.
+    - id: gamepadPreset
+      type: UnityEngine.KeyCode
+      description: The key code for usage by gamepad input devices.
+    return:
+      type: ModLib.Input.Keybind
+      description: The registered <xref href="ModLib.Input.Keybind" data-throw-if-not-resolved="false"></xref> object.
+    content.vb: Public Shared Function Register(id As String, name As String, keyboardPreset As KeyCode, gamepadPreset As KeyCode) As Keybind
+  overload: ModLib.Input.Keybind.Register*
+  nameWithType.vb: Keybind.Register(String, String, KeyCode, KeyCode)
+  fullName.vb: ModLib.Input.Keybind.Register(String, String, UnityEngine.KeyCode, UnityEngine.KeyCode)
+  name.vb: Register(String, String, KeyCode, KeyCode)
+- uid: ModLib.Input.Keybind.Register(System.String,System.String,UnityEngine.KeyCode,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  commentId: M:ModLib.Input.Keybind.Register(System.String,System.String,UnityEngine.KeyCode,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  id: Register(System.String,System.String,UnityEngine.KeyCode,UnityEngine.KeyCode,UnityEngine.KeyCode)
+  parent: ModLib.Input.Keybind
+  langs:
+  - csharp
+  - vb
+  name: Register(string?, string, KeyCode, KeyCode, KeyCode)
+  nameWithType: Keybind.Register(string?, string, KeyCode, KeyCode, KeyCode)
+  fullName: ModLib.Input.Keybind.Register(string?, string, UnityEngine.KeyCode, UnityEngine.KeyCode, UnityEngine.KeyCode)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Input/Keybind.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Register
+    path: ../ModLib/Input/Keybind.cs
+    startLine: 140
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Registers a new Keybind with the provided arguments.
+  remarks: 'If the Improved Input: Extended mod is present, an equivalent <code>PlayerKeybind</code> is also registered to the game.'
+  example: []
+  syntax:
+    content: public static Keybind Register(string? id, string name, KeyCode keyboardPreset, KeyCode gamepadPreset, KeyCode xboxPreset)
+    parameters:
+    - id: id
+      type: System.String
+      description: >-
+        <p>
+            The identifier of this keybind. Must be an unique string not used by any other mod, or yourself.
+        </p>
+
+        <p>
+            If omitted, an unique identifier is generated with the format <code>"{ModId}.{KeybindName}"</code>
+        </p>
+    - id: name
+      type: System.String
+      description: The name of the new Keybind. Will be displayed for players with IIC:E enabled.
+    - id: keyboardPreset
+      type: UnityEngine.KeyCode
+      description: The key code for usage by keyboard devices.
+    - id: gamepadPreset
+      type: UnityEngine.KeyCode
+      description: The key code for usage by gamepad input devices.
+    - id: xboxPreset
+      type: UnityEngine.KeyCode
+      description: The key code for usage by Xbox input devices.
+    return:
+      type: ModLib.Input.Keybind
+      description: The registered <xref href="ModLib.Input.Keybind" data-throw-if-not-resolved="false"></xref> object.
+    content.vb: Public Shared Function Register(id As String, name As String, keyboardPreset As KeyCode, gamepadPreset As KeyCode, xboxPreset As KeyCode) As Keybind
+  overload: ModLib.Input.Keybind.Register*
+  nameWithType.vb: Keybind.Register(String, String, KeyCode, KeyCode, KeyCode)
+  fullName.vb: ModLib.Input.Keybind.Register(String, String, UnityEngine.KeyCode, UnityEngine.KeyCode, UnityEngine.KeyCode)
+  name.vb: Register(String, String, KeyCode, KeyCode, KeyCode)
+- uid: ModLib.Input.Keybind.op_Implicit(ImprovedInput.PlayerKeybind)~ModLib.Input.Keybind
+  commentId: M:ModLib.Input.Keybind.op_Implicit(ImprovedInput.PlayerKeybind)~ModLib.Input.Keybind
+  id: op_Implicit(ImprovedInput.PlayerKeybind)~ModLib.Input.Keybind
+  parent: ModLib.Input.Keybind
+  langs:
+  - csharp
+  - vb
+  name: implicit operator Keybind(PlayerKeybind)
+  nameWithType: Keybind.implicit operator Keybind(PlayerKeybind)
+  fullName: ModLib.Input.Keybind.implicit operator ModLib.Input.Keybind(ImprovedInput.PlayerKeybind)
+  type: Operator
+  source:
+    remote:
+      path: ModLib/Input/Keybind.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: op_Implicit
+    path: ../ModLib/Input/Keybind.cs
+    startLine: 187
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Retrieves the equivalent Keybind object of a PlayerKeybind instance. If none is found, a new Keybind is registered using the PlayerKeybind's values as arguments.
+  example: []
+  syntax:
+    content: public static implicit operator Keybind(PlayerKeybind self)
+    parameters:
+    - id: self
+      type: ImprovedInput.PlayerKeybind
+      description: The PlayerKeybind object to be converted.
+    return:
+      type: ModLib.Input.Keybind
+    content.vb: Public Shared Widening Operator CType(self As PlayerKeybind) As Keybind
+  overload: ModLib.Input.Keybind.op_Implicit*
+  nameWithType.vb: Keybind.CType(PlayerKeybind)
+  fullName.vb: ModLib.Input.Keybind.CType(ImprovedInput.PlayerKeybind)
+  name.vb: CType(PlayerKeybind)
+- uid: ModLib.Input.Keybind.op_Implicit(ModLib.Input.Keybind)~ImprovedInput.PlayerKeybind
+  commentId: M:ModLib.Input.Keybind.op_Implicit(ModLib.Input.Keybind)~ImprovedInput.PlayerKeybind
+  id: op_Implicit(ModLib.Input.Keybind)~ImprovedInput.PlayerKeybind
+  parent: ModLib.Input.Keybind
+  langs:
+  - csharp
+  - vb
+  name: implicit operator PlayerKeybind(Keybind)
+  nameWithType: Keybind.implicit operator PlayerKeybind(Keybind)
+  fullName: ModLib.Input.Keybind.implicit operator ImprovedInput.PlayerKeybind(ModLib.Input.Keybind)
+  type: Operator
+  source:
+    remote:
+      path: ModLib/Input/Keybind.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: op_Implicit
+    path: ../ModLib/Input/Keybind.cs
+    startLine: 196
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Retrieves the equivalent PlayerKeybind object registered with the Keybind instance. If none is found, a new PlayerKeybind is registered using the Keybind's values as arguments.
+  example: []
+  syntax:
+    content: public static implicit operator PlayerKeybind(Keybind self)
+    parameters:
+    - id: self
+      type: ModLib.Input.Keybind
+      description: The Keybind object to be converted.
+    return:
+      type: ImprovedInput.PlayerKeybind
+    content.vb: Public Shared Widening Operator CType(self As Keybind) As PlayerKeybind
+  overload: ModLib.Input.Keybind.op_Implicit*
+  nameWithType.vb: Keybind.CType(Keybind)
+  fullName.vb: ModLib.Input.Keybind.CType(ModLib.Input.Keybind)
+  name.vb: CType(Keybind)
+references:
+- uid: ModLib.Input
+  commentId: N:ModLib.Input
+  href: ModLib.html
+  name: ModLib.Input
+  nameWithType: ModLib.Input
+  fullName: ModLib.Input
+  spec.csharp:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Input
+    name: Input
+    href: ModLib.Input.html
+  spec.vb:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Input
+    name: Input
+    href: ModLib.Input.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{ModLib.Input.Keybind}
+  commentId: T:System.IEquatable{ModLib.Input.Keybind}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Keybind>
+  nameWithType: IEquatable<Keybind>
+  fullName: System.IEquatable<ModLib.Input.Keybind>
+  nameWithType.vb: IEquatable(Of Keybind)
+  fullName.vb: System.IEquatable(Of ModLib.Input.Keybind)
+  name.vb: IEquatable(Of Keybind)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: ModLib.Input.Keybind
+    name: Keybind
+    href: ModLib.Input.Keybind.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: ModLib.Input.Keybind
+    name: Keybind
+    href: ModLib.Input.Keybind.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: ModLib.Input.Keybind.Id*
+  commentId: Overload:ModLib.Input.Keybind.Id
+  href: ModLib.Input.Keybind.html#ModLib_Input_Keybind_Id
+  name: Id
+  nameWithType: Keybind.Id
+  fullName: ModLib.Input.Keybind.Id
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: ModLib.Input.Keybind.Mod*
+  commentId: Overload:ModLib.Input.Keybind.Mod
+  href: ModLib.Input.Keybind.html#ModLib_Input_Keybind_Mod
+  name: Mod
+  nameWithType: Keybind.Mod
+  fullName: ModLib.Input.Keybind.Mod
+- uid: ModLib.Input.Keybind.Name*
+  commentId: Overload:ModLib.Input.Keybind.Name
+  href: ModLib.Input.Keybind.html#ModLib_Input_Keybind_Name
+  name: Name
+  nameWithType: Keybind.Name
+  fullName: ModLib.Input.Keybind.Name
+- uid: ModLib.Input.Keybind.KeyboardPreset*
+  commentId: Overload:ModLib.Input.Keybind.KeyboardPreset
+  href: ModLib.Input.Keybind.html#ModLib_Input_Keybind_KeyboardPreset
+  name: KeyboardPreset
+  nameWithType: Keybind.KeyboardPreset
+  fullName: ModLib.Input.Keybind.KeyboardPreset
+- uid: UnityEngine.KeyCode
+  commentId: T:UnityEngine.KeyCode
+  parent: UnityEngine
+  isExternal: true
+  name: KeyCode
+  nameWithType: KeyCode
+  fullName: UnityEngine.KeyCode
+- uid: UnityEngine
+  commentId: N:UnityEngine
+  isExternal: true
+  name: UnityEngine
+  nameWithType: UnityEngine
+  fullName: UnityEngine
+- uid: ModLib.Input.Keybind.GamepadPreset*
+  commentId: Overload:ModLib.Input.Keybind.GamepadPreset
+  href: ModLib.Input.Keybind.html#ModLib_Input_Keybind_GamepadPreset
+  name: GamepadPreset
+  nameWithType: Keybind.GamepadPreset
+  fullName: ModLib.Input.Keybind.GamepadPreset
+- uid: ModLib.Input.Keybind.XboxPreset*
+  commentId: Overload:ModLib.Input.Keybind.XboxPreset
+  href: ModLib.Input.Keybind.html#ModLib_Input_Keybind_XboxPreset
+  name: XboxPreset
+  nameWithType: Keybind.XboxPreset
+  fullName: ModLib.Input.Keybind.XboxPreset
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: ModLib.Input.Keybind.ToString*
+  commentId: Overload:ModLib.Input.Keybind.ToString
+  href: ModLib.Input.Keybind.html#ModLib_Input_Keybind_ToString
+  name: ToString
+  nameWithType: Keybind.ToString
+  fullName: ModLib.Input.Keybind.ToString
+- uid: ModLib.Input.Keybind
+  commentId: T:ModLib.Input.Keybind
+  parent: ModLib.Input
+  href: ModLib.Input.Keybind.html
+  name: Keybind
+  nameWithType: Keybind
+  fullName: ModLib.Input.Keybind
+- uid: ModLib.Input.Keybind.Get*
+  commentId: Overload:ModLib.Input.Keybind.Get
+  href: ModLib.Input.Keybind.html#ModLib_Input_Keybind_Get_System_String_
+  name: Get
+  nameWithType: Keybind.Get
+  fullName: ModLib.Input.Keybind.Get
+- uid: ModLib.Input.Keybind.Keybinds*
+  commentId: Overload:ModLib.Input.Keybind.Keybinds
+  href: ModLib.Input.Keybind.html#ModLib_Input_Keybind_Keybinds
+  name: Keybinds
+  nameWithType: Keybind.Keybinds
+  fullName: ModLib.Input.Keybind.Keybinds
+- uid: System.Collections.Generic.IReadOnlyList{ModLib.Input.Keybind}
+  commentId: T:System.Collections.Generic.IReadOnlyList{ModLib.Input.Keybind}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.IReadOnlyList`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<Keybind>
+  nameWithType: IReadOnlyList<Keybind>
+  fullName: System.Collections.Generic.IReadOnlyList<ModLib.Input.Keybind>
+  nameWithType.vb: IReadOnlyList(Of Keybind)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of ModLib.Input.Keybind)
+  name.vb: IReadOnlyList(Of Keybind)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - uid: ModLib.Input.Keybind
+    name: Keybind
+    href: ModLib.Input.Keybind.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: ModLib.Input.Keybind
+    name: Keybind
+    href: ModLib.Input.Keybind.html
+  - name: )
+- uid: System.Collections.Generic.IReadOnlyList`1
+  commentId: T:System.Collections.Generic.IReadOnlyList`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  name: IReadOnlyList<T>
+  nameWithType: IReadOnlyList<T>
+  fullName: System.Collections.Generic.IReadOnlyList<T>
+  nameWithType.vb: IReadOnlyList(Of T)
+  fullName.vb: System.Collections.Generic.IReadOnlyList(Of T)
+  name.vb: IReadOnlyList(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IReadOnlyList`1
+    name: IReadOnlyList
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.ireadonlylist-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: ModLib.Input.Keybind.Register*
+  commentId: Overload:ModLib.Input.Keybind.Register
+  href: ModLib.Input.Keybind.html#ModLib_Input_Keybind_Register_System_String_UnityEngine_KeyCode_UnityEngine_KeyCode_
+  name: Register
+  nameWithType: Keybind.Register
+  fullName: ModLib.Input.Keybind.Register
+- uid: ModLib.Input.Keybind.op_Implicit*
+  commentId: Overload:ModLib.Input.Keybind.op_Implicit
+  name: implicit operator
+  nameWithType: Keybind.implicit operator
+  fullName: ModLib.Input.Keybind.implicit operator
+  nameWithType.vb: Keybind.CType
+  fullName.vb: ModLib.Input.Keybind.CType
+  name.vb: CType
+  spec.csharp:
+  - name: implicit
+  - name: " "
+  - name: operator
+- uid: ImprovedInput.PlayerKeybind
+  commentId: T:ImprovedInput.PlayerKeybind
+  parent: ImprovedInput
+  isExternal: true
+  name: PlayerKeybind
+  nameWithType: PlayerKeybind
+  fullName: ImprovedInput.PlayerKeybind
+- uid: ImprovedInput
+  commentId: N:ImprovedInput
+  isExternal: true
+  name: ImprovedInput
+  nameWithType: ImprovedInput
+  fullName: ImprovedInput

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using UnityEngine;
+using BepInEx.Logging;
 
 namespace ModLib;
 
@@ -47,28 +47,26 @@ public static class CompatibilityManager
     /// <param name="enable">Whether or not compatibility with the given mod should be enabled.</param>
     public static void SetModCompatibility(string modID, bool enable) => ManagedMods[modID] = enable;
 
-    internal static void Initialize(IList<string> compatibilityPaths) => ConfigLoader.Initialize(compatibilityPaths);
-
-    private static class ConfigLoader
+    internal sealed class ConfigLoader(ManualLogSource logger) : IDisposable
     {
-        private static readonly string PathToLocalMods = Path.Combine(Application.streamingAssetsPath, "mods");
+        private static readonly string PathToLocalMods = Path.Combine(Core.StreamingAssetsPath, "mods");
 
-        private static bool _initialized;
+        private List<string> AdvancedSearchIDs = [];
+        private bool disposedValue;
 
         /// <summary>
         ///     Initializes the <see cref="CompatibilityManager"/> with the provided list of paths to config files.
         /// </summary>
         /// <param name="compatibilityPaths">The list of paths to config files for mod IDs.</param>
-        public static void Initialize(IList<string> compatibilityPaths)
+        public void Initialize(IList<string> compatibilityPaths)
         {
-            if (_initialized) return;
-
             List<string[]> userModIDs = [];
-            bool queryModInfo = false;
 
             foreach (string filePath in compatibilityPaths)
             {
-                userModIDs.AddRange(ReadCompatibilityFile(filePath, ref queryModInfo));
+                logger.LogDebug($"Reading file: {filePath}");
+
+                userModIDs.AddRange(ReadCompatibilityFile(filePath));
             }
 
             HashSet<string[]> configuredModIDs = new(
@@ -93,29 +91,25 @@ public static class CompatibilityManager
                 }
             }
 
-            CheckModCompats(configuredModIDs, queryModInfo);
-
-            _initialized = true;
+            CheckModCompats(configuredModIDs);
         }
 
         /// <summary>
         ///     Queries the client's list of enabled mods for toggling compatibility features.
         /// </summary>
         /// <param name="supportedModIDs">The list of mod IDs to be queried.</param>
-        /// <param name="queryModInfo">
-        ///     If true, performs a deep search where every mod's manifest is queried for the given IDs.
-        ///     This should be avoided if possible, as it is considerably more expensive than just checking for directory names.
-        /// </param>
-        private static void CheckModCompats(IEnumerable<string[]> supportedModIDs, bool queryModInfo)
+        private void CheckModCompats(IEnumerable<string[]> supportedModIDs)
         {
-            Core.Logger.LogDebug("Checking compatibility mods...");
+            logger.LogDebug("Checking compatibility mods...");
 
             try
             {
-                StreamReader reader = new(Path.Combine(Application.streamingAssetsPath, "enabledMods.txt"));
+                using StreamReader reader = new(Path.Combine(Core.StreamingAssetsPath, "enabledMods.txt"));
 
                 while (!reader.EndOfStream)
                 {
+                    bool queryModInfo = AdvancedSearchIDs.Count > 0;
+
                     string modID = reader.ReadLine();
                     string? pathToMod = queryModInfo ? null : "?";
 
@@ -123,7 +117,7 @@ public static class CompatibilityManager
                     {
                         pathToMod ??= modID.Replace("[WORKSHOP]", "");
 
-                        modID = modID.Split('\\').Last();
+                        modID = modID.Split(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar).Last();
                     }
                     else
                     {
@@ -139,6 +133,13 @@ public static class CompatibilityManager
                         {
                             modID = trueModID!;
                         }
+
+                        if (AdvancedSearchIDs.Contains(trueModID))
+                        {
+                            logger.LogDebug($"Found {trueModID} with advanced query.");
+
+                            AdvancedSearchIDs.Remove(trueModID);
+                        }
                     }
 
                     foreach (string[] supportedIDs in supportedModIDs)
@@ -149,27 +150,18 @@ public static class CompatibilityManager
 
                             ManagedMods.Add(modID, true);
 
-                            Core.Logger.LogInfo($"Added compatibility layer for: {modID}");
+                            logger.LogInfo($"Added compatibility layer for: {modID}");
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                Core.Logger.LogError($"Failed to read enabled mods file! {ex}");
+                logger.LogError($"Failed to read enabled mods file! {ex}");
             }
         }
 
-        private static string? GetModGuid(string pathToJson)
-        {
-            using StreamReader reader = File.OpenText(pathToJson);
-
-            object result = Json.Parser.Parse(reader.ReadToEnd());
-
-            return (string?)(result as IDictionary<string, object>)?["id"];
-        }
-
-        private static List<string[]> ReadCompatibilityFile(string path, ref bool queryModInfo)
+        private List<string[]> ReadCompatibilityFile(string path)
         {
             using StreamReader reader = File.OpenText(path);
 
@@ -177,19 +169,52 @@ public static class CompatibilityManager
 
             while (!reader.EndOfStream)
             {
-                string line = reader.ReadLine();
+                string line = reader.ReadLine()?.Trim() ?? "";
 
                 if (string.IsNullOrWhiteSpace(line) || line.StartsWith("//")) continue;
 
+                line = line.Split(["//"], StringSplitOptions.None)[0];
+
                 if (line.StartsWith("@"))
                 {
-                    queryModInfo = true;
+                    line = line.Remove(0, 1);
+
+                    AdvancedSearchIDs.Add(line);
                 }
 
-                modIDs.Add([.. line.Split([",", "//"], StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim())]);
+                modIDs.Add([.. line.Split([','], StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim())]);
             }
 
             return modIDs;
+        }
+
+        private static string GetModGuid(string pathToJson)
+        {
+            using StreamReader reader = File.OpenText(pathToJson);
+
+            return Json.Parser.Parse(reader.ReadToEnd()) is Dictionary<string, object> jsonObject
+                ? (string)jsonObject["id"]
+                : string.Empty;
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    AdvancedSearchIDs?.Clear();
+                    AdvancedSearchIDs = null!;
+                }
+
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
 
         private sealed class ModIDEqualityComparer : IEqualityComparer<string[]>

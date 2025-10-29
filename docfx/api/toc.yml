@@ -1,0 +1,111 @@
+### YamlMime:TableOfContent
+items:
+- uid: ModLib
+  name: ModLib
+  type: Namespace
+  items:
+  - uid: ModLib.CompatibilityManager
+    name: CompatibilityManager
+    type: Class
+  - uid: ModLib.Extras
+    name: Extras
+    type: Class
+  - uid: ModLib.ModPlugin
+    name: ModPlugin
+    type: Class
+  - uid: ModLib.Registry
+    name: Registry
+    type: Class
+  - uid: ModLib.Registry.ModEntry
+    name: Registry.ModEntry
+    type: Class
+  - uid: ModLib.Registry.ModNotFoundException
+    name: Registry.ModNotFoundException
+    type: Class
+- uid: ModLib.Collections
+  name: ModLib.Collections
+  type: Namespace
+  items:
+  - uid: ModLib.Collections.WeakCollection`1
+    name: WeakCollection<T>
+    type: Class
+  - uid: ModLib.Collections.WeakDictionary`2
+    name: WeakDictionary<TKey, TValue>
+    type: Class
+  - uid: ModLib.Collections.WeakList`1
+    name: WeakList<T>
+    type: Class
+- uid: ModLib.Input
+  name: ModLib.Input
+  type: Namespace
+  items:
+  - uid: ModLib.Input.CustomInputData
+    name: CustomInputData
+    type: Class
+  - uid: ModLib.Input.CustomInputDataExts
+    name: CustomInputDataExts
+    type: Class
+  - uid: ModLib.Input.InputHandler
+    name: InputHandler
+    type: Class
+  - uid: ModLib.Input.Keybind
+    name: Keybind
+    type: Class
+- uid: ModLib.Logging
+  name: ModLib.Logging
+  type: Namespace
+  items:
+  - uid: ModLib.Logging.FallbackLogger
+    name: FallbackLogger
+    type: Class
+  - uid: ModLib.Logging.IMyLogger
+    name: IMyLogger
+    type: Interface
+  - uid: ModLib.Logging.LogUtilsAdapter
+    name: LogUtilsAdapter
+    type: Class
+  - uid: ModLib.Logging.LoggingAdapter
+    name: LoggingAdapter
+    type: Class
+- uid: ModLib.Meadow
+  name: ModLib.Meadow
+  type: Namespace
+  items:
+  - uid: ModLib.Meadow.MeadowGameModes
+    name: MeadowGameModes
+    type: Enum
+  - uid: ModLib.Meadow.MeadowUtils
+    name: MeadowUtils
+    type: Class
+  - uid: ModLib.Meadow.ModRPCManager
+    name: ModRPCManager
+    type: Class
+  - uid: ModLib.Meadow.ModRPCs
+    name: ModRPCs
+    type: Class
+  - uid: ModLib.Meadow.ModRPCs.SerializableOptions
+    name: ModRPCs.SerializableOptions
+    type: Class
+- uid: ModLib.Options
+  name: ModLib.Options
+  type: Namespace
+  items:
+  - uid: ModLib.Options.ClientOptionAttribute
+    name: ClientOptionAttribute
+    type: Class
+  - uid: ModLib.Options.ConfigValue
+    name: ConfigValue
+    type: Struct
+  - uid: ModLib.Options.ConfigValue.ValueKind
+    name: ConfigValue.ValueKind
+    type: Enum
+  - uid: ModLib.Options.OptionBuilder
+    name: OptionBuilder
+    type: Class
+  - uid: ModLib.Options.OptionUtils
+    name: OptionUtils
+    type: Class
+  - uid: ModLib.Options.ServerOptions
+    name: ServerOptions
+    type: Class
+memberLayout: SamePage

@@ -8,7 +8,6 @@ using ModLib.Input;
 using ModLib.Logging;
 using ModLib.Meadow;
 using ModLib.Options;
-using UnityEngine;
 
 namespace ModLib;
 
@@ -16,24 +15,30 @@ internal static class Core
 {
     public const string MOD_GUID = "ynhzrfxn.modlib";
     public const string MOD_NAME = "ModLib";
-    public const string MOD_VERSION = "1.0.2.0";
+    public const string MOD_VERSION = "0.2.2.4";
 
     public static readonly BepInPlugin PluginData = new(MOD_GUID, MOD_NAME, MOD_VERSION);
     public static readonly ManualLogSource LogSource = BepInEx.Logging.Logger.CreateLogSource(MOD_NAME);
 
-    public static readonly string LogsPath = Path.Combine(Application.streamingAssetsPath, "Logs");
+    public static readonly string StreamingAssetsPath = Path.Combine(Paths.GameRootPath, "RainWorld_Data", "StreamingAssets");
+    public static readonly string LogsPath = Path.Combine(StreamingAssetsPath, "Logs");
 
-    public static readonly IMyLogger Logger = LoggingAdapter.CreateLogger(LogSource);
+    public static IMyLogger Logger { get; private set; } = new FallbackLogger(LogSource);
 
-    public static readonly Assembly Assembly = typeof(Core).Assembly;
+    public static readonly Assembly MyAssembly = typeof(Core).Assembly;
 
-    private static bool _initialized;
+    public static bool Initialized { get; private set; }
 
     public static void Initialize()
     {
-        if (_initialized) return;
+        if (Initialized) return;
 
-        _initialized = true;
+        Initialized = true;
+
+        if (Extras.LogUtilsAvailable)
+        {
+            Logger = LoggingAdapter.CreateLogger(LogSource);
+        }
 
         if (Extras.IsMeadowEnabled)
         {
@@ -50,14 +55,24 @@ internal static class Core
             On.RainWorldGame.Update += GameUpdateHook;
         }
 
-        PatchLoader.Initialize();
+        Registry.RegisterAssembly(MyAssembly, PluginData, null, Logger);
+
+        try
+        {
+            PatchLoader.Initialize();
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError("Patch loader failed to initialize; Cannot verify local ModLib.Loader assembly.");
+            Logger.LogError($"Exception: {ex}");
+        }
     }
 
     public static void Disable()
     {
-        if (!_initialized) return;
+        if (!Initialized) return;
 
-        _initialized = false;
+        Initialized = false;
 
         CompatibilityManager.Clear();
 
@@ -114,7 +129,7 @@ internal static class Core
     {
         private const string TARGET_DLL = "ModLib.Loader.dll";
 
-        private static readonly Version _latestLoaderVersion = new("0.2.0.2");
+        private static readonly Version _latestLoaderVersion = new("0.2.0.6");
 
         private static readonly string _targetPath = Path.Combine(Paths.PatcherPluginPath, TARGET_DLL);
 
@@ -158,7 +173,7 @@ internal static class Core
             {
                 Logger.LogInfo("Deploying new ModLib.Loader assembly to the game.");
 
-                using Stream stream = Assembly.GetManifestResourceStream("ModLib.ModLib.Loader.dll");
+                using Stream stream = MyAssembly.GetManifestResourceStream("ModLib.Loader.dll");
 
                 byte[] block = new byte[stream.Length];
                 stream.Read(block, 0, block.Length);
@@ -177,7 +192,7 @@ internal static class Core
 
         public static void RemoveFromWhitelist()
         {
-            string path = Path.Combine(Application.streamingAssetsPath, "whitelist.txt");
+            string path = Path.Combine(StreamingAssetsPath, "whitelist.txt");
 
             StringBuilder whitelistBuilder = new();
 
@@ -200,7 +215,7 @@ internal static class Core
 
         private static void WhitelistPatcher()
         {
-            string path = Path.Combine(Application.streamingAssetsPath, "whitelist.txt");
+            string path = Path.Combine(StreamingAssetsPath, "whitelist.txt");
 
             using StreamReader reader = File.OpenText(path);
 

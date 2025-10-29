@@ -1,0 +1,97 @@
+### YamlMime:ManagedReference
+items:
+- uid: ModLib
+  commentId: N:ModLib
+  id: ModLib
+  children:
+  - ModLib.CompatibilityManager
+  - ModLib.Extras
+  - ModLib.ModPlugin
+  - ModLib.Registry
+  - ModLib.Registry.ModEntry
+  - ModLib.Registry.ModNotFoundException
+  langs:
+  - csharp
+  - vb
+  name: ModLib
+  nameWithType: ModLib
+  fullName: ModLib
+  type: Namespace
+  assemblies:
+  - ModLib
+references:
+- uid: ModLib.CompatibilityManager
+  commentId: T:ModLib.CompatibilityManager
+  href: ModLib.CompatibilityManager.html
+  name: CompatibilityManager
+  nameWithType: CompatibilityManager
+  fullName: ModLib.CompatibilityManager
+- uid: ModLib.Extras
+  commentId: T:ModLib.Extras
+  href: ModLib.Extras.html
+  name: Extras
+  nameWithType: Extras
+  fullName: ModLib.Extras
+- uid: ModLib.ModPlugin
+  commentId: T:ModLib.ModPlugin
+  href: ModLib.ModPlugin.html
+  name: ModPlugin
+  nameWithType: ModPlugin
+  fullName: ModLib.ModPlugin
+- uid: ModLib.Registry
+  commentId: T:ModLib.Registry
+  href: ModLib.Registry.html
+  name: Registry
+  nameWithType: Registry
+  fullName: ModLib.Registry
+- uid: ModLib.Registry.ModEntry
+  commentId: T:ModLib.Registry.ModEntry
+  parent: ModLib
+  href: ModLib.Registry.html
+  name: Registry.ModEntry
+  nameWithType: Registry.ModEntry
+  fullName: ModLib.Registry.ModEntry
+  spec.csharp:
+  - uid: ModLib.Registry
+    name: Registry
+    href: ModLib.Registry.html
+  - name: .
+  - uid: ModLib.Registry.ModEntry
+    name: ModEntry
+    href: ModLib.Registry.ModEntry.html
+  spec.vb:
+  - uid: ModLib.Registry
+    name: Registry
+    href: ModLib.Registry.html
+  - name: .
+  - uid: ModLib.Registry.ModEntry
+    name: ModEntry
+    href: ModLib.Registry.ModEntry.html
+- uid: ModLib.Registry.ModNotFoundException
+  commentId: T:ModLib.Registry.ModNotFoundException
+  href: ModLib.Registry.html
+  name: Registry.ModNotFoundException
+  nameWithType: Registry.ModNotFoundException
+  fullName: ModLib.Registry.ModNotFoundException
+  spec.csharp:
+  - uid: ModLib.Registry
+    name: Registry
+    href: ModLib.Registry.html
+  - name: .
+  - uid: ModLib.Registry.ModNotFoundException
+    name: ModNotFoundException
+    href: ModLib.Registry.ModNotFoundException.html
+  spec.vb:
+  - uid: ModLib.Registry
+    name: Registry
+    href: ModLib.Registry.html
+  - name: .
+  - uid: ModLib.Registry.ModNotFoundException
+    name: ModNotFoundException
+    href: ModLib.Registry.ModNotFoundException.html
+- uid: ModLib
+  commentId: N:ModLib
+  href: ModLib.html
+  name: ModLib
+  nameWithType: ModLib
+  fullName: ModLib

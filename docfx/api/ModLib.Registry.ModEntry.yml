@@ -1,0 +1,606 @@
+### YamlMime:ManagedReference
+items:
+- uid: ModLib.Registry.ModEntry
+  commentId: T:ModLib.Registry.ModEntry
+  id: Registry.ModEntry
+  parent: ModLib
+  children:
+  - ModLib.Registry.ModEntry.LogID
+  - ModLib.Registry.ModEntry.Logger
+  - ModLib.Registry.ModEntry.OptionHolder
+  - ModLib.Registry.ModEntry.Plugin
+  - ModLib.Registry.ModEntry.ToString
+  langs:
+  - csharp
+  - vb
+  name: Registry.ModEntry
+  nameWithType: Registry.ModEntry
+  fullName: ModLib.Registry.ModEntry
+  type: Class
+  source:
+    remote:
+      path: ModLib/Registry.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: ModEntry
+    path: ../ModLib/Registry.cs
+    startLine: 129
+  assemblies:
+  - ModLib
+  namespace: ModLib
+  summary: Represents a mod entry within ModLib's registry.
+  example: []
+  syntax:
+    content: 'public record Registry.ModEntry : IEquatable<Registry.ModEntry>'
+    content.vb: Public Class Registry.ModEntry Implements IEquatable(Of Registry.ModEntry)
+  inheritance:
+  - System.Object
+  implements:
+  - System.IEquatable{ModLib.Registry.ModEntry}
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: ModLib.Registry.ModEntry.Plugin
+  commentId: P:ModLib.Registry.ModEntry.Plugin
+  id: Plugin
+  parent: ModLib.Registry.ModEntry
+  langs:
+  - csharp
+  - vb
+  name: Plugin
+  nameWithType: Registry.ModEntry.Plugin
+  fullName: ModLib.Registry.ModEntry.Plugin
+  type: Property
+  source:
+    remote:
+      path: ModLib/Registry.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Plugin
+    path: ../ModLib/Registry.cs
+    startLine: 134
+  assemblies:
+  - ModLib
+  namespace: ModLib
+  summary: The plugin metadata of this mod.
+  example: []
+  syntax:
+    content: public BepInPlugin Plugin { get; }
+    parameters: []
+    return:
+      type: BepInEx.BepInPlugin
+    content.vb: Public ReadOnly Property Plugin As BepInPlugin
+  overload: ModLib.Registry.ModEntry.Plugin*
+- uid: ModLib.Registry.ModEntry.OptionHolder
+  commentId: P:ModLib.Registry.ModEntry.OptionHolder
+  id: OptionHolder
+  parent: ModLib.Registry.ModEntry
+  langs:
+  - csharp
+  - vb
+  name: OptionHolder
+  nameWithType: Registry.ModEntry.OptionHolder
+  fullName: ModLib.Registry.ModEntry.OptionHolder
+  type: Property
+  source:
+    remote:
+      path: ModLib/Registry.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: OptionHolder
+    path: ../ModLib/Registry.cs
+    startLine: 139
+  assemblies:
+  - ModLib
+  namespace: ModLib
+  summary: The option holder interface of this mod, if any.
+  example: []
+  syntax:
+    content: public Type? OptionHolder { get; }
+    parameters: []
+    return:
+      type: System.Type
+    content.vb: Public ReadOnly Property OptionHolder As Type
+  overload: ModLib.Registry.ModEntry.OptionHolder*
+- uid: ModLib.Registry.ModEntry.LogID
+  commentId: P:ModLib.Registry.ModEntry.LogID
+  id: LogID
+  parent: ModLib.Registry.ModEntry
+  langs:
+  - csharp
+  - vb
+  name: LogID
+  nameWithType: Registry.ModEntry.LogID
+  fullName: ModLib.Registry.ModEntry.LogID
+  type: Property
+  source:
+    remote:
+      path: ModLib/Registry.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: LogID
+    path: ../ModLib/Registry.cs
+    startLine: 144
+  assemblies:
+  - ModLib
+  namespace: ModLib
+  summary: The unique LogID of this mod, if any.
+  example: []
+  syntax:
+    content: public object? LogID { get; set; }
+    parameters: []
+    return:
+      type: System.Object
+    content.vb: Public Property LogID As Object
+  overload: ModLib.Registry.ModEntry.LogID*
+- uid: ModLib.Registry.ModEntry.Logger
+  commentId: P:ModLib.Registry.ModEntry.Logger
+  id: Logger
+  parent: ModLib.Registry.ModEntry
+  langs:
+  - csharp
+  - vb
+  name: Logger
+  nameWithType: Registry.ModEntry.Logger
+  fullName: ModLib.Registry.ModEntry.Logger
+  type: Property
+  source:
+    remote:
+      path: ModLib/Registry.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Logger
+    path: ../ModLib/Registry.cs
+    startLine: 149
+  assemblies:
+  - ModLib
+  namespace: ModLib
+  summary: The logger instance of this mod, if any.
+  example: []
+  syntax:
+    content: public IMyLogger? Logger { get; set; }
+    parameters: []
+    return:
+      type: ModLib.Logging.IMyLogger
+    content.vb: Public Property Logger As IMyLogger
+  overload: ModLib.Registry.ModEntry.Logger*
+- uid: ModLib.Registry.ModEntry.ToString
+  commentId: M:ModLib.Registry.ModEntry.ToString
+  id: ToString
+  parent: ModLib.Registry.ModEntry
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Registry.ModEntry.ToString()
+  fullName: ModLib.Registry.ModEntry.ToString()
+  type: Method
+  source:
+    remote:
+      path: ModLib/Registry.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: ToString
+    path: ../ModLib/Registry.cs
+    startLine: 173
+  assemblies:
+  - ModLib
+  namespace: ModLib
+  summary: Returns a string representing this mod's stored metadata.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: A string representing this mod's stored metadata.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.Object.ToString
+  overload: ModLib.Registry.ModEntry.ToString*
+references:
+- uid: ModLib
+  commentId: N:ModLib
+  href: ModLib.html
+  name: ModLib
+  nameWithType: ModLib
+  fullName: ModLib
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.IEquatable{ModLib.Registry.ModEntry}
+  commentId: T:System.IEquatable{ModLib.Registry.ModEntry}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<Registry.ModEntry>
+  nameWithType: IEquatable<Registry.ModEntry>
+  fullName: System.IEquatable<ModLib.Registry.ModEntry>
+  nameWithType.vb: IEquatable(Of Registry.ModEntry)
+  fullName.vb: System.IEquatable(Of ModLib.Registry.ModEntry)
+  name.vb: IEquatable(Of Registry.ModEntry)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: ModLib.Registry
+    name: Registry
+    href: ModLib.Registry.html
+  - name: .
+  - uid: ModLib.Registry.ModEntry
+    name: ModEntry
+    href: ModLib.Registry.ModEntry.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: ModLib.Registry
+    name: Registry
+    href: ModLib.Registry.html
+  - name: .
+  - uid: ModLib.Registry.ModEntry
+    name: ModEntry
+    href: ModLib.Registry.ModEntry.html
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: ModLib.Registry.ModEntry.Plugin*
+  commentId: Overload:ModLib.Registry.ModEntry.Plugin
+  href: ModLib.Registry.ModEntry.html#ModLib_Registry_ModEntry_Plugin
+  name: Plugin
+  nameWithType: Registry.ModEntry.Plugin
+  fullName: ModLib.Registry.ModEntry.Plugin
+- uid: BepInEx.BepInPlugin
+  commentId: T:BepInEx.BepInPlugin
+  parent: BepInEx
+  isExternal: true
+  name: BepInPlugin
+  nameWithType: BepInPlugin
+  fullName: BepInEx.BepInPlugin
+- uid: BepInEx
+  commentId: N:BepInEx
+  isExternal: true
+  name: BepInEx
+  nameWithType: BepInEx
+  fullName: BepInEx
+- uid: ModLib.Registry.ModEntry.OptionHolder*
+  commentId: Overload:ModLib.Registry.ModEntry.OptionHolder
+  href: ModLib.Registry.ModEntry.html#ModLib_Registry_ModEntry_OptionHolder
+  name: OptionHolder
+  nameWithType: Registry.ModEntry.OptionHolder
+  fullName: ModLib.Registry.ModEntry.OptionHolder
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: ModLib.Registry.ModEntry.LogID*
+  commentId: Overload:ModLib.Registry.ModEntry.LogID
+  href: ModLib.Registry.ModEntry.html#ModLib_Registry_ModEntry_LogID
+  name: LogID
+  nameWithType: Registry.ModEntry.LogID
+  fullName: ModLib.Registry.ModEntry.LogID
+- uid: ModLib.Registry.ModEntry.Logger*
+  commentId: Overload:ModLib.Registry.ModEntry.Logger
+  href: ModLib.Registry.ModEntry.html#ModLib_Registry_ModEntry_Logger
+  name: Logger
+  nameWithType: Registry.ModEntry.Logger
+  fullName: ModLib.Registry.ModEntry.Logger
+- uid: ModLib.Logging.IMyLogger
+  commentId: T:ModLib.Logging.IMyLogger
+  parent: ModLib.Logging
+  href: ModLib.Logging.IMyLogger.html
+  name: IMyLogger
+  nameWithType: IMyLogger
+  fullName: ModLib.Logging.IMyLogger
+- uid: ModLib.Logging
+  commentId: N:ModLib.Logging
+  href: ModLib.html
+  name: ModLib.Logging
+  nameWithType: ModLib.Logging
+  fullName: ModLib.Logging
+  spec.csharp:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Logging
+    name: Logging
+    href: ModLib.Logging.html
+  spec.vb:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Logging
+    name: Logging
+    href: ModLib.Logging.html
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: ModLib.Registry.ModEntry.ToString*
+  commentId: Overload:ModLib.Registry.ModEntry.ToString
+  href: ModLib.Registry.ModEntry.html#ModLib_Registry_ModEntry_ToString
+  name: ToString
+  nameWithType: Registry.ModEntry.ToString
+  fullName: ModLib.Registry.ModEntry.ToString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String

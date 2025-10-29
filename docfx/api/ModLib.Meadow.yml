@@ -1,0 +1,91 @@
+### YamlMime:ManagedReference
+items:
+- uid: ModLib.Meadow
+  commentId: N:ModLib.Meadow
+  id: ModLib.Meadow
+  children:
+  - ModLib.Meadow.MeadowGameModes
+  - ModLib.Meadow.MeadowUtils
+  - ModLib.Meadow.ModRPCManager
+  - ModLib.Meadow.ModRPCs
+  - ModLib.Meadow.ModRPCs.SerializableOptions
+  langs:
+  - csharp
+  - vb
+  name: ModLib.Meadow
+  nameWithType: ModLib.Meadow
+  fullName: ModLib.Meadow
+  type: Namespace
+  assemblies:
+  - ModLib
+references:
+- uid: ModLib.Meadow.MeadowGameModes
+  commentId: T:ModLib.Meadow.MeadowGameModes
+  parent: ModLib.Meadow
+  href: ModLib.Meadow.MeadowGameModes.html
+  name: MeadowGameModes
+  nameWithType: MeadowGameModes
+  fullName: ModLib.Meadow.MeadowGameModes
+- uid: ModLib.Meadow.MeadowUtils
+  commentId: T:ModLib.Meadow.MeadowUtils
+  href: ModLib.Meadow.MeadowUtils.html
+  name: MeadowUtils
+  nameWithType: MeadowUtils
+  fullName: ModLib.Meadow.MeadowUtils
+- uid: ModLib.Meadow.ModRPCManager
+  commentId: T:ModLib.Meadow.ModRPCManager
+  href: ModLib.Meadow.ModRPCManager.html
+  name: ModRPCManager
+  nameWithType: ModRPCManager
+  fullName: ModLib.Meadow.ModRPCManager
+- uid: ModLib.Meadow.ModRPCs
+  commentId: T:ModLib.Meadow.ModRPCs
+  href: ModLib.Meadow.ModRPCs.html
+  name: ModRPCs
+  nameWithType: ModRPCs
+  fullName: ModLib.Meadow.ModRPCs
+- uid: ModLib.Meadow.ModRPCs.SerializableOptions
+  commentId: T:ModLib.Meadow.ModRPCs.SerializableOptions
+  parent: ModLib.Meadow
+  href: ModLib.Meadow.ModRPCs.html
+  name: ModRPCs.SerializableOptions
+  nameWithType: ModRPCs.SerializableOptions
+  fullName: ModLib.Meadow.ModRPCs.SerializableOptions
+  spec.csharp:
+  - uid: ModLib.Meadow.ModRPCs
+    name: ModRPCs
+    href: ModLib.Meadow.ModRPCs.html
+  - name: .
+  - uid: ModLib.Meadow.ModRPCs.SerializableOptions
+    name: SerializableOptions
+    href: ModLib.Meadow.ModRPCs.SerializableOptions.html
+  spec.vb:
+  - uid: ModLib.Meadow.ModRPCs
+    name: ModRPCs
+    href: ModLib.Meadow.ModRPCs.html
+  - name: .
+  - uid: ModLib.Meadow.ModRPCs.SerializableOptions
+    name: SerializableOptions
+    href: ModLib.Meadow.ModRPCs.SerializableOptions.html
+- uid: ModLib.Meadow
+  commentId: N:ModLib.Meadow
+  href: ModLib.html
+  name: ModLib.Meadow
+  nameWithType: ModLib.Meadow
+  fullName: ModLib.Meadow
+  spec.csharp:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Meadow
+    name: Meadow
+    href: ModLib.Meadow.html
+  spec.vb:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Meadow
+    name: Meadow
+    href: ModLib.Meadow.html

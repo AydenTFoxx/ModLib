@@ -63,13 +63,13 @@ public abstract class ModPlugin : BaseUnityPlugin
     {
         logger ??= LoggingAdapter.CreateLogger(base.Logger);
 
-        if (Extras.LogUtilsAvailable && logger is LogUtilsAdapter)
+        if (logger is not LogUtilsAdapter adapter || adapter.ModLibCreated)
         {
-            string pathToLogFile = Path.Combine(Registry.DefaultLogsPath, LogUtilsHelper.SanitizeName(Info.Metadata.Name) + ".log");
+            string pathToLogFile = Path.Combine(Registry.DefaultLogsPath, LoggingAdapter.SanitizeName(Info.Metadata.Name) + ".log");
 
             if (File.Exists(pathToLogFile))
             {
-                File.WriteAllText(pathToLogFile, "");
+                Extras.WrapAction(() => File.WriteAllText(pathToLogFile, ""), Core.Logger);
             }
         }
 

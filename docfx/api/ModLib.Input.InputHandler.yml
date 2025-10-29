@@ -1,0 +1,668 @@
+### YamlMime:ManagedReference
+items:
+- uid: ModLib.Input.InputHandler
+  commentId: T:ModLib.Input.InputHandler
+  id: InputHandler
+  parent: ModLib.Input
+  children:
+  - ModLib.Input.InputHandler.GetRawInput(Player)
+  - ModLib.Input.InputHandler.GetRawInput(System.Int32)
+  - ModLib.Input.InputHandler.IsKeyDown(Player,ModLib.Input.Keybind)
+  - ModLib.Input.InputHandler.IsKeyDown(System.Int32,ModLib.Input.Keybind)
+  - ModLib.Input.InputHandler.ToggleInputListener(System.Int32)
+  - ModLib.Input.InputHandler.WasKeyJustPressed(Player,ModLib.Input.Keybind)
+  - ModLib.Input.InputHandler.WasKeyJustPressed(System.Int32,ModLib.Input.Keybind)
+  langs:
+  - csharp
+  - vb
+  name: InputHandler
+  nameWithType: InputHandler
+  fullName: ModLib.Input.InputHandler
+  type: Class
+  source:
+    remote:
+      path: ModLib/Input/InputHandler.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: InputHandler
+    path: ../ModLib/Input/InputHandler.cs
+    startLine: 7
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: General interface for managing keybinds and retrieving player input.
+  example: []
+  syntax:
+    content: public static class InputHandler
+    content.vb: Public Module InputHandler
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: ModLib.Input.InputHandler.GetRawInput(Player)
+  commentId: M:ModLib.Input.InputHandler.GetRawInput(Player)
+  id: GetRawInput(Player)
+  isExtensionMethod: true
+  parent: ModLib.Input.InputHandler
+  langs:
+  - csharp
+  - vb
+  name: GetRawInput(Player)
+  nameWithType: InputHandler.GetRawInput(Player)
+  fullName: ModLib.Input.InputHandler.GetRawInput(Player)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Input/InputHandler.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: GetRawInput
+    path: ../ModLib/Input/InputHandler.cs
+    startLine: 14
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Retrieves the raw input package for the given player.
+  example: []
+  syntax:
+    content: public static Player.InputPackage GetRawInput(this Player self)
+    parameters:
+    - id: self
+      type: Player
+      description: The player whose input will be queried.
+    return:
+      type: Player.InputPackage
+      description: A <xref href="Player.InputPackage" data-throw-if-not-resolved="false"></xref> containing the input for the given player.
+    content.vb: Public Shared Function GetRawInput(self As Player) As Player.InputPackage
+  overload: ModLib.Input.InputHandler.GetRawInput*
+- uid: ModLib.Input.InputHandler.GetRawInput(System.Int32)
+  commentId: M:ModLib.Input.InputHandler.GetRawInput(System.Int32)
+  id: GetRawInput(System.Int32)
+  parent: ModLib.Input.InputHandler
+  langs:
+  - csharp
+  - vb
+  name: GetRawInput(int)
+  nameWithType: InputHandler.GetRawInput(int)
+  fullName: ModLib.Input.InputHandler.GetRawInput(int)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Input/InputHandler.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: GetRawInput
+    path: ../ModLib/Input/InputHandler.cs
+    startLine: 22
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Retrieves the raw input package for the given player index.
+  example: []
+  syntax:
+    content: public static Player.InputPackage GetRawInput(int playerNumber)
+    parameters:
+    - id: playerNumber
+      type: System.Int32
+      description: The player index whose input will be queried.
+    return:
+      type: Player.InputPackage
+      description: A <xref href="Player.InputPackage" data-throw-if-not-resolved="false"></xref> containing the input for the given player index.
+    content.vb: Public Shared Function GetRawInput(playerNumber As Integer) As Player.InputPackage
+  overload: ModLib.Input.InputHandler.GetRawInput*
+  nameWithType.vb: InputHandler.GetRawInput(Integer)
+  fullName.vb: ModLib.Input.InputHandler.GetRawInput(Integer)
+  name.vb: GetRawInput(Integer)
+- uid: ModLib.Input.InputHandler.IsKeyDown(Player,ModLib.Input.Keybind)
+  commentId: M:ModLib.Input.InputHandler.IsKeyDown(Player,ModLib.Input.Keybind)
+  id: IsKeyDown(Player,ModLib.Input.Keybind)
+  isExtensionMethod: true
+  parent: ModLib.Input.InputHandler
+  langs:
+  - csharp
+  - vb
+  name: IsKeyDown(Player, Keybind)
+  nameWithType: InputHandler.IsKeyDown(Player, Keybind)
+  fullName: ModLib.Input.InputHandler.IsKeyDown(Player, ModLib.Input.Keybind)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Input/InputHandler.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: IsKeyDown
+    path: ../ModLib/Input/InputHandler.cs
+    startLine: 31
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Determines whether a given keybind is currently being held by the player.
+  example: []
+  syntax:
+    content: public static bool IsKeyDown(this Player player, Keybind keybind)
+    parameters:
+    - id: player
+      type: Player
+      description: The player itself.
+    - id: keybind
+      type: ModLib.Input.Keybind
+      description: The keybind to be checked.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the keybind's key is currently being held, <code>false</code> otherwise.
+    content.vb: Public Shared Function IsKeyDown(player As Player, keybind As Keybind) As Boolean
+  overload: ModLib.Input.InputHandler.IsKeyDown*
+- uid: ModLib.Input.InputHandler.IsKeyDown(System.Int32,ModLib.Input.Keybind)
+  commentId: M:ModLib.Input.InputHandler.IsKeyDown(System.Int32,ModLib.Input.Keybind)
+  id: IsKeyDown(System.Int32,ModLib.Input.Keybind)
+  parent: ModLib.Input.InputHandler
+  langs:
+  - csharp
+  - vb
+  name: IsKeyDown(int, Keybind)
+  nameWithType: InputHandler.IsKeyDown(int, Keybind)
+  fullName: ModLib.Input.InputHandler.IsKeyDown(int, ModLib.Input.Keybind)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Input/InputHandler.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: IsKeyDown
+    path: ../ModLib/Input/InputHandler.cs
+    startLine: 42
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Determines whether a given keybind is currently being held by the player with the provided index.
+  example: []
+  syntax:
+    content: public static bool IsKeyDown(int playerNumber, Keybind keybind)
+    parameters:
+    - id: playerNumber
+      type: System.Int32
+      description: The index of the player.
+    - id: keybind
+      type: ModLib.Input.Keybind
+      description: The keybind to be checked.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the keybind's key is currently being held, <code>false</code> otherwise.
+    content.vb: Public Shared Function IsKeyDown(playerNumber As Integer, keybind As Keybind) As Boolean
+  overload: ModLib.Input.InputHandler.IsKeyDown*
+  nameWithType.vb: InputHandler.IsKeyDown(Integer, Keybind)
+  fullName.vb: ModLib.Input.InputHandler.IsKeyDown(Integer, ModLib.Input.Keybind)
+  name.vb: IsKeyDown(Integer, Keybind)
+- uid: ModLib.Input.InputHandler.WasKeyJustPressed(Player,ModLib.Input.Keybind)
+  commentId: M:ModLib.Input.InputHandler.WasKeyJustPressed(Player,ModLib.Input.Keybind)
+  id: WasKeyJustPressed(Player,ModLib.Input.Keybind)
+  isExtensionMethod: true
+  parent: ModLib.Input.InputHandler
+  langs:
+  - csharp
+  - vb
+  name: WasKeyJustPressed(Player, Keybind)
+  nameWithType: InputHandler.WasKeyJustPressed(Player, Keybind)
+  fullName: ModLib.Input.InputHandler.WasKeyJustPressed(Player, ModLib.Input.Keybind)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Input/InputHandler.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: WasKeyJustPressed
+    path: ../ModLib/Input/InputHandler.cs
+    startLine: 53
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Determines whether a given keybind has just been pressed by the player.
+  example: []
+  syntax:
+    content: public static bool WasKeyJustPressed(this Player player, Keybind keybind)
+    parameters:
+    - id: player
+      type: Player
+      description: The player itself.
+    - id: keybind
+      type: ModLib.Input.Keybind
+      description: The keybind to be checked.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the keybind's key was just pressed, <code>false</code> otherwise.
+    content.vb: Public Shared Function WasKeyJustPressed(player As Player, keybind As Keybind) As Boolean
+  overload: ModLib.Input.InputHandler.WasKeyJustPressed*
+- uid: ModLib.Input.InputHandler.WasKeyJustPressed(System.Int32,ModLib.Input.Keybind)
+  commentId: M:ModLib.Input.InputHandler.WasKeyJustPressed(System.Int32,ModLib.Input.Keybind)
+  id: WasKeyJustPressed(System.Int32,ModLib.Input.Keybind)
+  parent: ModLib.Input.InputHandler
+  langs:
+  - csharp
+  - vb
+  name: WasKeyJustPressed(int, Keybind)
+  nameWithType: InputHandler.WasKeyJustPressed(int, Keybind)
+  fullName: ModLib.Input.InputHandler.WasKeyJustPressed(int, ModLib.Input.Keybind)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Input/InputHandler.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: WasKeyJustPressed
+    path: ../ModLib/Input/InputHandler.cs
+    startLine: 64
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: Determines whether a given keybind has just been pressed by the player with the provided index.
+  example: []
+  syntax:
+    content: public static bool WasKeyJustPressed(int playerNumber, Keybind keybind)
+    parameters:
+    - id: playerNumber
+      type: System.Int32
+      description: The index of the player.
+    - id: keybind
+      type: ModLib.Input.Keybind
+      description: The keybind to be checked.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the keybind's key was just pressed, <code>false</code> otherwise.
+    content.vb: Public Shared Function WasKeyJustPressed(playerNumber As Integer, keybind As Keybind) As Boolean
+  overload: ModLib.Input.InputHandler.WasKeyJustPressed*
+  nameWithType.vb: InputHandler.WasKeyJustPressed(Integer, Keybind)
+  fullName.vb: ModLib.Input.InputHandler.WasKeyJustPressed(Integer, ModLib.Input.Keybind)
+  name.vb: WasKeyJustPressed(Integer, Keybind)
+- uid: ModLib.Input.InputHandler.ToggleInputListener(System.Int32)
+  commentId: M:ModLib.Input.InputHandler.ToggleInputListener(System.Int32)
+  id: ToggleInputListener(System.Int32)
+  parent: ModLib.Input.InputHandler
+  langs:
+  - csharp
+  - vb
+  name: ToggleInputListener(int)
+  nameWithType: InputHandler.ToggleInputListener(int)
+  fullName: ModLib.Input.InputHandler.ToggleInputListener(int)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Input/InputHandler.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: ToggleInputListener
+    path: ../ModLib/Input/InputHandler.cs
+    startLine: 77
+  assemblies:
+  - ModLib
+  namespace: ModLib.Input
+  summary: >-
+    Enables or disables input handling for non-player objects.
+
+    If enabled, a <xref href="ModLib.Input.CustomInputData" data-throw-if-not-resolved="false"></xref> can be retrieved from the player's index to obtain their current input.
+  remarks: 'This requires the Improved Input Config: Extended mod to work, and will do nothing otherwise.'
+  example: []
+  syntax:
+    content: public static void ToggleInputListener(int playerNumber)
+    parameters:
+    - id: playerNumber
+      type: System.Int32
+      description: The player index to be checked.
+    content.vb: Public Shared Sub ToggleInputListener(playerNumber As Integer)
+  overload: ModLib.Input.InputHandler.ToggleInputListener*
+  nameWithType.vb: InputHandler.ToggleInputListener(Integer)
+  fullName.vb: ModLib.Input.InputHandler.ToggleInputListener(Integer)
+  name.vb: ToggleInputListener(Integer)
+references:
+- uid: ModLib.Input
+  commentId: N:ModLib.Input
+  href: ModLib.html
+  name: ModLib.Input
+  nameWithType: ModLib.Input
+  fullName: ModLib.Input
+  spec.csharp:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Input
+    name: Input
+    href: ModLib.Input.html
+  spec.vb:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Input
+    name: Input
+    href: ModLib.Input.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Player.InputPackage
+  commentId: T:Player.InputPackage
+  isExternal: true
+  name: Player.InputPackage
+  nameWithType: Player.InputPackage
+  fullName: Player.InputPackage
+  spec.csharp:
+  - uid: Player
+    name: Player
+    isExternal: true
+  - name: .
+  - uid: Player.InputPackage
+    name: InputPackage
+    isExternal: true
+  spec.vb:
+  - uid: Player
+    name: Player
+    isExternal: true
+  - name: .
+  - uid: Player.InputPackage
+    name: InputPackage
+    isExternal: true
+- uid: ModLib.Input.InputHandler.GetRawInput*
+  commentId: Overload:ModLib.Input.InputHandler.GetRawInput
+  href: ModLib.Input.InputHandler.html#ModLib_Input_InputHandler_GetRawInput_Player_
+  name: GetRawInput
+  nameWithType: InputHandler.GetRawInput
+  fullName: ModLib.Input.InputHandler.GetRawInput
+- uid: Player
+  commentId: T:Player
+  isExternal: true
+  name: Player
+  nameWithType: Player
+  fullName: Player
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: ModLib.Input.InputHandler.IsKeyDown*
+  commentId: Overload:ModLib.Input.InputHandler.IsKeyDown
+  href: ModLib.Input.InputHandler.html#ModLib_Input_InputHandler_IsKeyDown_Player_ModLib_Input_Keybind_
+  name: IsKeyDown
+  nameWithType: InputHandler.IsKeyDown
+  fullName: ModLib.Input.InputHandler.IsKeyDown
+- uid: ModLib.Input.Keybind
+  commentId: T:ModLib.Input.Keybind
+  parent: ModLib.Input
+  href: ModLib.Input.Keybind.html
+  name: Keybind
+  nameWithType: Keybind
+  fullName: ModLib.Input.Keybind
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: ModLib.Input.InputHandler.WasKeyJustPressed*
+  commentId: Overload:ModLib.Input.InputHandler.WasKeyJustPressed
+  href: ModLib.Input.InputHandler.html#ModLib_Input_InputHandler_WasKeyJustPressed_Player_ModLib_Input_Keybind_
+  name: WasKeyJustPressed
+  nameWithType: InputHandler.WasKeyJustPressed
+  fullName: ModLib.Input.InputHandler.WasKeyJustPressed
+- uid: ModLib.Input.CustomInputData
+  commentId: T:ModLib.Input.CustomInputData
+  parent: ModLib.Input
+  href: ModLib.Input.CustomInputData.html
+  name: CustomInputData
+  nameWithType: CustomInputData
+  fullName: ModLib.Input.CustomInputData
+- uid: ModLib.Input.InputHandler.ToggleInputListener*
+  commentId: Overload:ModLib.Input.InputHandler.ToggleInputListener
+  href: ModLib.Input.InputHandler.html#ModLib_Input_InputHandler_ToggleInputListener_System_Int32_
+  name: ToggleInputListener
+  nameWithType: InputHandler.ToggleInputListener
+  fullName: ModLib.Input.InputHandler.ToggleInputListener

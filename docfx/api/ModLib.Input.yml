@@ -1,0 +1,69 @@
+### YamlMime:ManagedReference
+items:
+- uid: ModLib.Input
+  commentId: N:ModLib.Input
+  id: ModLib.Input
+  children:
+  - ModLib.Input.CustomInputData
+  - ModLib.Input.CustomInputDataExts
+  - ModLib.Input.InputHandler
+  - ModLib.Input.Keybind
+  langs:
+  - csharp
+  - vb
+  name: ModLib.Input
+  nameWithType: ModLib.Input
+  fullName: ModLib.Input
+  type: Namespace
+  assemblies:
+  - ModLib
+references:
+- uid: ModLib.Input.CustomInputData
+  commentId: T:ModLib.Input.CustomInputData
+  parent: ModLib.Input
+  href: ModLib.Input.CustomInputData.html
+  name: CustomInputData
+  nameWithType: CustomInputData
+  fullName: ModLib.Input.CustomInputData
+- uid: ModLib.Input.CustomInputDataExts
+  commentId: T:ModLib.Input.CustomInputDataExts
+  parent: ModLib.Input
+  href: ModLib.Input.CustomInputDataExts.html
+  name: CustomInputDataExts
+  nameWithType: CustomInputDataExts
+  fullName: ModLib.Input.CustomInputDataExts
+- uid: ModLib.Input.InputHandler
+  commentId: T:ModLib.Input.InputHandler
+  href: ModLib.Input.InputHandler.html
+  name: InputHandler
+  nameWithType: InputHandler
+  fullName: ModLib.Input.InputHandler
+- uid: ModLib.Input.Keybind
+  commentId: T:ModLib.Input.Keybind
+  parent: ModLib.Input
+  href: ModLib.Input.Keybind.html
+  name: Keybind
+  nameWithType: Keybind
+  fullName: ModLib.Input.Keybind
+- uid: ModLib.Input
+  commentId: N:ModLib.Input
+  href: ModLib.html
+  name: ModLib.Input
+  nameWithType: ModLib.Input
+  fullName: ModLib.Input
+  spec.csharp:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Input
+    name: Input
+    href: ModLib.Input.html
+  spec.vb:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Input
+    name: Input
+    href: ModLib.Input.html

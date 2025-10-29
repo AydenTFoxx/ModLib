@@ -9,7 +9,7 @@ namespace ModLib.Logging;
 /// </summary>
 public class LogUtilsAdapter(ILogger logger) : IMyLogger
 {
-    internal readonly bool ModLibCreated = Assembly.GetCallingAssembly() == Core.Assembly;
+    internal readonly bool ModLibCreated = Assembly.GetCallingAssembly() == Core.MyAssembly;
 
     /// <inheritdoc/>
     public void LogDebug(object data) => Log(LogLevel.Debug, data);
@@ -30,5 +30,5 @@ public class LogUtilsAdapter(ILogger logger) : IMyLogger
     public void Log(LogLevel category, object message) => logger.Log(category, message);
 
     /// <inheritdoc/>
-    public ILogSource GetLogSource() => (ILogSource)logger;
+    public object GetLogSource() => logger;
 }

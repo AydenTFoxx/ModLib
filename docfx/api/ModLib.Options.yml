@@ -1,0 +1,100 @@
+### YamlMime:ManagedReference
+items:
+- uid: ModLib.Options
+  commentId: N:ModLib.Options
+  id: ModLib.Options
+  children:
+  - ModLib.Options.ClientOptionAttribute
+  - ModLib.Options.ConfigValue
+  - ModLib.Options.ConfigValue.ValueKind
+  - ModLib.Options.OptionBuilder
+  - ModLib.Options.OptionUtils
+  - ModLib.Options.ServerOptions
+  langs:
+  - csharp
+  - vb
+  name: ModLib.Options
+  nameWithType: ModLib.Options
+  fullName: ModLib.Options
+  type: Namespace
+  assemblies:
+  - ModLib
+references:
+- uid: ModLib.Options.ConfigValue
+  commentId: T:ModLib.Options.ConfigValue
+  parent: ModLib.Options
+  href: ModLib.Options.ConfigValue.html
+  name: ConfigValue
+  nameWithType: ConfigValue
+  fullName: ModLib.Options.ConfigValue
+- uid: ModLib.Options.ConfigValue.ValueKind
+  commentId: T:ModLib.Options.ConfigValue.ValueKind
+  parent: ModLib.Options
+  href: ModLib.Options.ConfigValue.html
+  name: ConfigValue.ValueKind
+  nameWithType: ConfigValue.ValueKind
+  fullName: ModLib.Options.ConfigValue.ValueKind
+  spec.csharp:
+  - uid: ModLib.Options.ConfigValue
+    name: ConfigValue
+    href: ModLib.Options.ConfigValue.html
+  - name: .
+  - uid: ModLib.Options.ConfigValue.ValueKind
+    name: ValueKind
+    href: ModLib.Options.ConfigValue.ValueKind.html
+  spec.vb:
+  - uid: ModLib.Options.ConfigValue
+    name: ConfigValue
+    href: ModLib.Options.ConfigValue.html
+  - name: .
+  - uid: ModLib.Options.ConfigValue.ValueKind
+    name: ValueKind
+    href: ModLib.Options.ConfigValue.ValueKind.html
+- uid: ModLib.Options.OptionBuilder
+  commentId: T:ModLib.Options.OptionBuilder
+  parent: ModLib.Options
+  href: ModLib.Options.OptionBuilder.html
+  name: OptionBuilder
+  nameWithType: OptionBuilder
+  fullName: ModLib.Options.OptionBuilder
+- uid: ModLib.Options.OptionUtils
+  commentId: T:ModLib.Options.OptionUtils
+  href: ModLib.Options.OptionUtils.html
+  name: OptionUtils
+  nameWithType: OptionUtils
+  fullName: ModLib.Options.OptionUtils
+- uid: ModLib.Options.ServerOptions
+  commentId: T:ModLib.Options.ServerOptions
+  parent: ModLib.Options
+  href: ModLib.Options.ServerOptions.html
+  name: ServerOptions
+  nameWithType: ServerOptions
+  fullName: ModLib.Options.ServerOptions
+- uid: ModLib.Options.ClientOptionAttribute
+  commentId: T:ModLib.Options.ClientOptionAttribute
+  href: ModLib.Options.ClientOptionAttribute.html
+  name: ClientOptionAttribute
+  nameWithType: ClientOptionAttribute
+  fullName: ModLib.Options.ClientOptionAttribute
+- uid: ModLib.Options
+  commentId: N:ModLib.Options
+  href: ModLib.html
+  name: ModLib.Options
+  nameWithType: ModLib.Options
+  fullName: ModLib.Options
+  spec.csharp:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Options
+    name: Options
+    href: ModLib.Options.html
+  spec.vb:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Options
+    name: Options
+    href: ModLib.Options.html

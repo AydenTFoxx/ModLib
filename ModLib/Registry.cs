@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using BepInEx;
 using BepInEx.Logging;
+using ModLib.Loader;
 using ModLib.Logging;
 using ModLib.Options;
 
@@ -31,9 +32,7 @@ public static class Registry
 
     static Registry()
     {
-        Core.Initialize();
-
-        RegisteredMods.Add(Core.Assembly, new ModEntry(Core.PluginData, null, Core.Logger));
+        Entrypoint.TryInitialize();
     }
 
     /// <inheritdoc cref="RegisterMod(BaseUnityPlugin, Type, ManualLogSource)"/>
@@ -113,12 +112,16 @@ public static class Registry
         if (RegisteredMods.TryGetValue(caller, out _))
             throw new InvalidOperationException($"{plugin.Name} is already registered to ModLib.");
 
-        RegisteredMods.Add(caller, new ModEntry(plugin, optionHolder, logger));
+        ModEntry entry = new(plugin, optionHolder, logger);
+
+        RegisteredMods.Add(caller, entry);
 
         if (optionHolder is not null)
         {
             ServerOptions.AddOptionSource(optionHolder);
         }
+
+        Core.Logger?.LogDebug($"Registered new Mod Entry: {entry}");
     }
 
     /// <summary>
@@ -160,9 +163,16 @@ public static class Registry
 
             if (Extras.LogUtilsAvailable)
             {
-                LogUtilsHelper.InitLogID(this, logger is LogUtilsAdapter adapter && adapter.ModLibCreated);
+                LogUtilsHelper.InitLogID(this);
             }
         }
+
+        /// <summary>
+        ///     Returns a string representing this mod's stored metadata.
+        /// </summary>
+        /// <returns>A string representing this mod's stored metadata.</returns>
+        public override string ToString() =>
+            $"[ Plugin: ({Plugin.GUID}|{Plugin.Name}|{Plugin.Version}); OptionHolder? {OptionHolder?.ToString() ?? "None"}; Logger? {Logger?.ToString() ?? "None"}{(Extras.LogUtilsAvailable ? $"; LogID? {(LogID as ExtEnumBase)?.ToString() ?? "None"}" : "")} ]";
     }
 
     /// <summary>

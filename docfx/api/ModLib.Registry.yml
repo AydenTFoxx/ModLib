@@ -1,0 +1,747 @@
+### YamlMime:ManagedReference
+items:
+- uid: ModLib.Registry
+  commentId: T:ModLib.Registry
+  id: Registry
+  parent: ModLib
+  children:
+  - ModLib.Registry.DefaultLogsPath
+  - ModLib.Registry.MyMod
+  - ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin,System.Type)
+  - ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin,System.Type,BepInEx.Logging.ManualLogSource)
+  - ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin,System.Type,ModLib.Logging.IMyLogger)
+  - ModLib.Registry.UnregisterMod
+  langs:
+  - csharp
+  - vb
+  name: Registry
+  nameWithType: Registry
+  fullName: ModLib.Registry
+  type: Class
+  source:
+    remote:
+      path: ModLib/Registry.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Registry
+    path: ../ModLib/Registry.cs
+    startLine: 14
+  assemblies:
+  - ModLib
+  namespace: ModLib
+  summary: The entrypoint for registering mods to ModLib.
+  example: []
+  syntax:
+    content: public static class Registry
+    content.vb: Public Module Registry
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: ModLib.Registry.MyMod
+  commentId: P:ModLib.Registry.MyMod
+  id: MyMod
+  parent: ModLib.Registry
+  langs:
+  - csharp
+  - vb
+  name: MyMod
+  nameWithType: Registry.MyMod
+  fullName: ModLib.Registry.MyMod
+  type: Property
+  source:
+    remote:
+      path: ModLib/Registry.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: MyMod
+    path: ../ModLib/Registry.cs
+    startLine: 25
+  assemblies:
+  - ModLib
+  namespace: ModLib
+  summary: Retrieves the registered metadata of the current mod.
+  remarks: If this property is accessed before the mod is registered to ModLib, a <xref href="ModLib.Registry.ModNotFoundException" data-throw-if-not-resolved="false"></xref> is thrown.
+  example: []
+  syntax:
+    content: public static Registry.ModEntry MyMod { get; }
+    parameters: []
+    return:
+      type: ModLib.Registry.ModEntry
+    content.vb: Public Shared ReadOnly Property MyMod As Registry.ModEntry
+  overload: ModLib.Registry.MyMod*
+  exceptions:
+  - type: ModLib.Registry.ModNotFoundException
+    commentId: T:ModLib.Registry.ModNotFoundException
+    description: The current mod assembly was not registered to ModLib.
+- uid: ModLib.Registry.DefaultLogsPath
+  commentId: P:ModLib.Registry.DefaultLogsPath
+  id: DefaultLogsPath
+  parent: ModLib.Registry
+  langs:
+  - csharp
+  - vb
+  name: DefaultLogsPath
+  nameWithType: Registry.DefaultLogsPath
+  fullName: ModLib.Registry.DefaultLogsPath
+  type: Property
+  source:
+    remote:
+      path: ModLib/Registry.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: DefaultLogsPath
+    path: ../ModLib/Registry.cs
+    startLine: 30
+  assemblies:
+  - ModLib
+  namespace: ModLib
+  summary: The default path for log files.
+  example: []
+  syntax:
+    content: public static string DefaultLogsPath { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Shared ReadOnly Property DefaultLogsPath As String
+  overload: ModLib.Registry.DefaultLogsPath*
+- uid: ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin,System.Type)
+  commentId: M:ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin,System.Type)
+  id: RegisterMod(BepInEx.BaseUnityPlugin,System.Type)
+  parent: ModLib.Registry
+  langs:
+  - csharp
+  - vb
+  name: RegisterMod(BaseUnityPlugin, Type?)
+  nameWithType: Registry.RegisterMod(BaseUnityPlugin, Type?)
+  fullName: ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin, System.Type?)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Registry.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: RegisterMod
+    path: ../ModLib/Registry.cs
+    startLine: 38
+  assemblies:
+  - ModLib
+  namespace: ModLib
+  summary: >-
+    Registers the current mod assembly to ModLib. This should be done sometime during the mod-loading process,
+
+    typically from the <code>Main</code>/<code>Plugin</code> class constructor, <code>Awake()</code> or <code>OnEnable()</code> methods.
+  example: []
+  syntax:
+    content: public static void RegisterMod(BaseUnityPlugin plugin, Type? optionHolder)
+    parameters:
+    - id: plugin
+      type: BepInEx.BaseUnityPlugin
+      description: The <code>Plugin</code> class from which this mod is being registered.
+    - id: optionHolder
+      type: System.Type
+      description: >-
+        A class with <code>public static</code> fields of type <xref href="Configurable%601" data-throw-if-not-resolved="false"></xref>,
+
+        which are retrieved via reflection to determine the mod's REMIX options.
+    content.vb: Public Shared Sub RegisterMod(plugin As BaseUnityPlugin, optionHolder As Type)
+  overload: ModLib.Registry.RegisterMod*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: The current mod assembly is already registered to ModLib.
+  nameWithType.vb: Registry.RegisterMod(BaseUnityPlugin, Type)
+  fullName.vb: ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin, System.Type)
+  name.vb: RegisterMod(BaseUnityPlugin, Type)
+- uid: ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin,System.Type,BepInEx.Logging.ManualLogSource)
+  commentId: M:ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin,System.Type,BepInEx.Logging.ManualLogSource)
+  id: RegisterMod(BepInEx.BaseUnityPlugin,System.Type,BepInEx.Logging.ManualLogSource)
+  parent: ModLib.Registry
+  langs:
+  - csharp
+  - vb
+  name: RegisterMod(BaseUnityPlugin, Type?, ManualLogSource)
+  nameWithType: Registry.RegisterMod(BaseUnityPlugin, Type?, ManualLogSource)
+  fullName: ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin, System.Type?, BepInEx.Logging.ManualLogSource)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Registry.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: RegisterMod
+    path: ../ModLib/Registry.cs
+    startLine: 52
+  assemblies:
+  - ModLib
+  namespace: ModLib
+  summary: >-
+    Registers the current mod assembly to ModLib. This should be done sometime during the mod-loading process,
+
+    typically from the <code>Main</code>/<code>Plugin</code> class constructor, <code>Awake()</code> or <code>OnEnable()</code> methods.
+  example: []
+  syntax:
+    content: public static void RegisterMod(BaseUnityPlugin plugin, Type? optionHolder, ManualLogSource logSource)
+    parameters:
+    - id: plugin
+      type: BepInEx.BaseUnityPlugin
+      description: The <code>Plugin</code> class from which this mod is being registered.
+    - id: optionHolder
+      type: System.Type
+      description: >-
+        A class with <code>public static</code> fields of type <xref href="Configurable%601" data-throw-if-not-resolved="false"></xref>,
+
+        which are retrieved via reflection to determine the mod's REMIX options.
+    - id: logSource
+      type: BepInEx.Logging.ManualLogSource
+      description: The log source of this mod. If LogUtils is present, a <xref href="LogUtils.Logger" data-throw-if-not-resolved="false"></xref> will be created with this parameter as its <code>LogSource</code> value.
+    content.vb: Public Shared Sub RegisterMod(plugin As BaseUnityPlugin, optionHolder As Type, logSource As ManualLogSource)
+  overload: ModLib.Registry.RegisterMod*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: The current mod assembly is already registered to ModLib.
+  nameWithType.vb: Registry.RegisterMod(BaseUnityPlugin, Type, ManualLogSource)
+  fullName.vb: ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin, System.Type, BepInEx.Logging.ManualLogSource)
+  name.vb: RegisterMod(BaseUnityPlugin, Type, ManualLogSource)
+- uid: ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin,System.Type,ModLib.Logging.IMyLogger)
+  commentId: M:ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin,System.Type,ModLib.Logging.IMyLogger)
+  id: RegisterMod(BepInEx.BaseUnityPlugin,System.Type,ModLib.Logging.IMyLogger)
+  parent: ModLib.Registry
+  langs:
+  - csharp
+  - vb
+  name: RegisterMod(BaseUnityPlugin, Type?, IMyLogger?)
+  nameWithType: Registry.RegisterMod(BaseUnityPlugin, Type?, IMyLogger?)
+  fullName: ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin, System.Type?, ModLib.Logging.IMyLogger?)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Registry.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: RegisterMod
+    path: ../ModLib/Registry.cs
+    startLine: 66
+  assemblies:
+  - ModLib
+  namespace: ModLib
+  summary: >-
+    Registers the current mod assembly to ModLib. This should be done sometime during the mod-loading process,
+
+    typically from the <code>Main</code>/<code>Plugin</code> class constructor, <code>Awake()</code> or <code>OnEnable()</code> methods.
+  example: []
+  syntax:
+    content: public static void RegisterMod(BaseUnityPlugin plugin, Type? optionHolder, IMyLogger? logger)
+    parameters:
+    - id: plugin
+      type: BepInEx.BaseUnityPlugin
+      description: The <code>Plugin</code> class from which this mod is being registered.
+    - id: optionHolder
+      type: System.Type
+      description: >-
+        A class with <code>public static</code> fields of type <xref href="Configurable%601" data-throw-if-not-resolved="false"></xref>,
+
+        which are retrieved via reflection to determine the mod's REMIX options.
+    - id: logger
+      type: ModLib.Logging.IMyLogger
+      description: The wrapped logger for usage by this mod.
+    content.vb: Public Shared Sub RegisterMod(plugin As BaseUnityPlugin, optionHolder As Type, logger As IMyLogger)
+  overload: ModLib.Registry.RegisterMod*
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: The current mod assembly is already registered to ModLib.
+  nameWithType.vb: Registry.RegisterMod(BaseUnityPlugin, Type, IMyLogger)
+  fullName.vb: ModLib.Registry.RegisterMod(BepInEx.BaseUnityPlugin, System.Type, ModLib.Logging.IMyLogger)
+  name.vb: RegisterMod(BaseUnityPlugin, Type, IMyLogger)
+- uid: ModLib.Registry.UnregisterMod
+  commentId: M:ModLib.Registry.UnregisterMod
+  id: UnregisterMod
+  parent: ModLib.Registry
+  langs:
+  - csharp
+  - vb
+  name: UnregisterMod()
+  nameWithType: Registry.UnregisterMod()
+  fullName: ModLib.Registry.UnregisterMod()
+  type: Method
+  source:
+    remote:
+      path: ModLib/Registry.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: UnregisterMod
+    path: ../ModLib/Registry.cs
+    startLine: 73
+  assemblies:
+  - ModLib
+  namespace: ModLib
+  summary: Removes the current mod assembly from ModLib's registry.
+  example: []
+  syntax:
+    content: public static bool UnregisterMod()
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the mod was successfully unregistered, <code>false</code> otherwise (e.g. if it was not registered at all).
+    content.vb: Public Shared Function UnregisterMod() As Boolean
+  overload: ModLib.Registry.UnregisterMod*
+references:
+- uid: ModLib
+  commentId: N:ModLib
+  href: ModLib.html
+  name: ModLib
+  nameWithType: ModLib
+  fullName: ModLib
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: ModLib.Registry.ModNotFoundException
+  commentId: T:ModLib.Registry.ModNotFoundException
+  href: ModLib.Registry.html
+  name: Registry.ModNotFoundException
+  nameWithType: Registry.ModNotFoundException
+  fullName: ModLib.Registry.ModNotFoundException
+  spec.csharp:
+  - uid: ModLib.Registry
+    name: Registry
+    href: ModLib.Registry.html
+  - name: .
+  - uid: ModLib.Registry.ModNotFoundException
+    name: ModNotFoundException
+    href: ModLib.Registry.ModNotFoundException.html
+  spec.vb:
+  - uid: ModLib.Registry
+    name: Registry
+    href: ModLib.Registry.html
+  - name: .
+  - uid: ModLib.Registry.ModNotFoundException
+    name: ModNotFoundException
+    href: ModLib.Registry.ModNotFoundException.html
+- uid: ModLib.Registry.MyMod*
+  commentId: Overload:ModLib.Registry.MyMod
+  href: ModLib.Registry.html#ModLib_Registry_MyMod
+  name: MyMod
+  nameWithType: Registry.MyMod
+  fullName: ModLib.Registry.MyMod
+- uid: ModLib.Registry.ModEntry
+  commentId: T:ModLib.Registry.ModEntry
+  parent: ModLib
+  href: ModLib.Registry.html
+  name: Registry.ModEntry
+  nameWithType: Registry.ModEntry
+  fullName: ModLib.Registry.ModEntry
+  spec.csharp:
+  - uid: ModLib.Registry
+    name: Registry
+    href: ModLib.Registry.html
+  - name: .
+  - uid: ModLib.Registry.ModEntry
+    name: ModEntry
+    href: ModLib.Registry.ModEntry.html
+  spec.vb:
+  - uid: ModLib.Registry
+    name: Registry
+    href: ModLib.Registry.html
+  - name: .
+  - uid: ModLib.Registry.ModEntry
+    name: ModEntry
+    href: ModLib.Registry.ModEntry.html
+- uid: ModLib.Registry.DefaultLogsPath*
+  commentId: Overload:ModLib.Registry.DefaultLogsPath
+  href: ModLib.Registry.html#ModLib_Registry_DefaultLogsPath
+  name: DefaultLogsPath
+  nameWithType: Registry.DefaultLogsPath
+  fullName: ModLib.Registry.DefaultLogsPath
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Configurable`1
+  commentId: T:Configurable`1
+  isExternal: true
+  name: Configurable<T>
+  nameWithType: Configurable<T>
+  fullName: Configurable<T>
+  nameWithType.vb: Configurable(Of T)
+  fullName.vb: Configurable(Of T)
+  name.vb: Configurable(Of T)
+  spec.csharp:
+  - uid: Configurable`1
+    name: Configurable
+    isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: Configurable`1
+    name: Configurable
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: LogUtils.Logger
+  commentId: T:LogUtils.Logger
+  isExternal: true
+  name: Logger
+  nameWithType: Logger
+  fullName: LogUtils.Logger
+- uid: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.invalidoperationexception
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+- uid: ModLib.Registry.RegisterMod*
+  commentId: Overload:ModLib.Registry.RegisterMod
+  href: ModLib.Registry.html#ModLib_Registry_RegisterMod_BepInEx_BaseUnityPlugin_System_Type_
+  name: RegisterMod
+  nameWithType: Registry.RegisterMod
+  fullName: ModLib.Registry.RegisterMod
+- uid: BepInEx.BaseUnityPlugin
+  commentId: T:BepInEx.BaseUnityPlugin
+  parent: BepInEx
+  isExternal: true
+  name: BaseUnityPlugin
+  nameWithType: BaseUnityPlugin
+  fullName: BepInEx.BaseUnityPlugin
+- uid: System.Type
+  commentId: T:System.Type
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.type
+  name: Type
+  nameWithType: Type
+  fullName: System.Type
+- uid: BepInEx
+  commentId: N:BepInEx
+  isExternal: true
+  name: BepInEx
+  nameWithType: BepInEx
+  fullName: BepInEx
+- uid: BepInEx.Logging.ManualLogSource
+  commentId: T:BepInEx.Logging.ManualLogSource
+  parent: BepInEx.Logging
+  isExternal: true
+  name: ManualLogSource
+  nameWithType: ManualLogSource
+  fullName: BepInEx.Logging.ManualLogSource
+- uid: BepInEx.Logging
+  commentId: N:BepInEx.Logging
+  isExternal: true
+  name: BepInEx.Logging
+  nameWithType: BepInEx.Logging
+  fullName: BepInEx.Logging
+  spec.csharp:
+  - uid: BepInEx
+    name: BepInEx
+    isExternal: true
+  - name: .
+  - uid: BepInEx.Logging
+    name: Logging
+    isExternal: true
+  spec.vb:
+  - uid: BepInEx
+    name: BepInEx
+    isExternal: true
+  - name: .
+  - uid: BepInEx.Logging
+    name: Logging
+    isExternal: true
+- uid: ModLib.Logging.IMyLogger
+  commentId: T:ModLib.Logging.IMyLogger
+  parent: ModLib.Logging
+  href: ModLib.Logging.IMyLogger.html
+  name: IMyLogger
+  nameWithType: IMyLogger
+  fullName: ModLib.Logging.IMyLogger
+- uid: ModLib.Logging
+  commentId: N:ModLib.Logging
+  href: ModLib.html
+  name: ModLib.Logging
+  nameWithType: ModLib.Logging
+  fullName: ModLib.Logging
+  spec.csharp:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Logging
+    name: Logging
+    href: ModLib.Logging.html
+  spec.vb:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Logging
+    name: Logging
+    href: ModLib.Logging.html
+- uid: ModLib.Registry.UnregisterMod*
+  commentId: Overload:ModLib.Registry.UnregisterMod
+  href: ModLib.Registry.html#ModLib_Registry_UnregisterMod
+  name: UnregisterMod
+  nameWithType: Registry.UnregisterMod
+  fullName: ModLib.Registry.UnregisterMod
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean

@@ -1,7 +1,8 @@
-using BepInEx.Logging;
-using LogUtils;
-using LogUtils.Enums;
 using System;
+using System.IO;
+using System.Linq;
+using System.Text;
+using BepInEx.Logging;
 
 namespace ModLib.Logging;
 
@@ -12,26 +13,15 @@ namespace ModLib.Logging;
 /// </summary>
 public static class LoggingAdapter
 {
-    private static class LogUtilsAccess
+    static LoggingAdapter()
     {
-        /// <summary>
-        /// Attempt to initialize LogUtils assembly
-        /// </summary>
-        /// <exception cref="TypeLoadException">An assembly dependency is unavailable, or is of the wrong version</exception>
-        internal static void UnsafeAccess() => UtilityCore.EnsureInitializedState();
-
-        internal static IMyLogger CreateLogger(ManualLogSource logSource)
+        Extras.WrapAction(static () =>
         {
-            UnsafeAccess();
-
-            //These represent the log files you want to target for logging
-            CompositeLogTarget myLogTargets = LogID.BepInEx | LogID.Unity;
-
-            LogUtilsAdapter adapter = new(
-                new LogUtils.Logger(myLogTargets) { LogSource = logSource }
-            );
-            return adapter;
-        }
+            if (!Directory.Exists(Core.LogsPath))
+            {
+                Directory.CreateDirectory(Core.LogsPath);
+            }
+        });
     }
 
     /// <summary>
@@ -39,13 +29,33 @@ public static class LoggingAdapter
     /// </summary>
     public static IMyLogger CreateLogger(ManualLogSource logSource)
     {
+        if (!Extras.LogUtilsAvailable)
+            return new FallbackLogger(logSource);
+
         try
         {
-            return LogUtilsAccess.CreateLogger(logSource);
+            return LogUtilsHelper.CreateLogger(logSource);
         }
-        catch //Caught exception will probably be a TypeLoadException
+        catch (Exception ex)
         {
+            Core.LogSource?.LogError($"Failed to create logger instance: {ex}");
+
             return new FallbackLogger(logSource);
         }
+    }
+
+    internal static string SanitizeName(string modName)
+    {
+        StringBuilder stringBuilder = new();
+        char[] forbiddenChars = [.. Path.GetInvalidPathChars(), ' '];
+
+        foreach (char c in modName)
+        {
+            if (forbiddenChars.Contains(c)) continue;
+
+            stringBuilder.Append(c);
+        }
+
+        return stringBuilder.ToString();
     }
 }

@@ -1,0 +1,1522 @@
+### YamlMime:ManagedReference
+items:
+- uid: ModLib.Options.ConfigValue
+  commentId: T:ModLib.Options.ConfigValue
+  id: ConfigValue
+  parent: ModLib.Options
+  children:
+  - ModLib.Options.ConfigValue.#ctor(System.String)
+  - ModLib.Options.ConfigValue.#ctor(System.ValueType)
+  - ModLib.Options.ConfigValue.CompareTo(ModLib.Options.ConfigValue)
+  - ModLib.Options.ConfigValue.CompareTo(System.Object)
+  - ModLib.Options.ConfigValue.Equals(ModLib.Options.ConfigValue)
+  - ModLib.Options.ConfigValue.Equals(System.Object)
+  - ModLib.Options.ConfigValue.FromObject(System.Object)
+  - ModLib.Options.ConfigValue.GetBoxedValue
+  - ModLib.Options.ConfigValue.GetHashCode
+  - ModLib.Options.ConfigValue.IsNumeric
+  - ModLib.Options.ConfigValue.Kind
+  - ModLib.Options.ConfigValue.ToString
+  - ModLib.Options.ConfigValue.TryGetBool(System.Boolean@)
+  - ModLib.Options.ConfigValue.TryGetFloat(System.Single@)
+  - ModLib.Options.ConfigValue.TryGetInt(System.Int32@)
+  - ModLib.Options.ConfigValue.TryGetNumber(System.ValueType@)
+  - ModLib.Options.ConfigValue.TryGetString(System.String@)
+  - ModLib.Options.ConfigValue.op_Equality(ModLib.Options.ConfigValue,ModLib.Options.ConfigValue)
+  - ModLib.Options.ConfigValue.op_Inequality(ModLib.Options.ConfigValue,ModLib.Options.ConfigValue)
+  langs:
+  - csharp
+  - vb
+  name: ConfigValue
+  nameWithType: ConfigValue
+  fullName: ModLib.Options.ConfigValue
+  type: Struct
+  source:
+    remote:
+      path: ModLib/Options/ConfigValue.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: ConfigValue
+    path: ../ModLib/Options/ConfigValue.cs
+    startLine: 10
+  assemblies:
+  - ModLib
+  namespace: ModLib.Options
+  summary: A holder of supported values for <xref href="Configurable%601" data-throw-if-not-resolved="false"></xref> options.
+  example: []
+  syntax:
+    content: 'public readonly struct ConfigValue : IComparable, IComparable<ConfigValue>, IEquatable<ConfigValue>'
+    content.vb: Public Structure ConfigValue Implements IComparable, IComparable(Of ConfigValue), IEquatable(Of ConfigValue)
+  implements:
+  - System.IComparable
+  - System.IComparable{ModLib.Options.ConfigValue}
+  - System.IEquatable{ModLib.Options.ConfigValue}
+  inheritedMembers:
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetType
+- uid: ModLib.Options.ConfigValue.Kind
+  commentId: P:ModLib.Options.ConfigValue.Kind
+  id: Kind
+  parent: ModLib.Options.ConfigValue
+  langs:
+  - csharp
+  - vb
+  name: Kind
+  nameWithType: ConfigValue.Kind
+  fullName: ModLib.Options.ConfigValue.Kind
+  type: Property
+  source:
+    remote:
+      path: ModLib/Options/ConfigValue.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Kind
+    path: ../ModLib/Options/ConfigValue.cs
+    startLine: 21
+  assemblies:
+  - ModLib
+  namespace: ModLib.Options
+  summary: Determines the internally held type of this object.
+  example: []
+  syntax:
+    content: public ConfigValue.ValueKind Kind { get; }
+    parameters: []
+    return:
+      type: ModLib.Options.ConfigValue.ValueKind
+    content.vb: Public ReadOnly Property Kind As ConfigValue.ValueKind
+  overload: ModLib.Options.ConfigValue.Kind*
+- uid: ModLib.Options.ConfigValue.#ctor(System.ValueType)
+  commentId: M:ModLib.Options.ConfigValue.#ctor(System.ValueType)
+  id: '#ctor(System.ValueType)'
+  parent: ModLib.Options.ConfigValue
+  langs:
+  - csharp
+  - vb
+  name: ConfigValue(ValueType?)
+  nameWithType: ConfigValue.ConfigValue(ValueType?)
+  fullName: ModLib.Options.ConfigValue.ConfigValue(System.ValueType?)
+  type: Constructor
+  source:
+    remote:
+      path: ModLib/Options/ConfigValue.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: .ctor
+    path: ../ModLib/Options/ConfigValue.cs
+    startLine: 29
+  assemblies:
+  - ModLib
+  namespace: ModLib.Options
+  summary: Creates a new configurable value holding the provided value type.
+  example: []
+  syntax:
+    content: public ConfigValue(ValueType? value)
+    parameters:
+    - id: value
+      type: System.ValueType
+      description: The value type to be stored. Must be an integer, float, or boolean.
+    content.vb: Public Sub New(value As ValueType)
+  overload: ModLib.Options.ConfigValue.#ctor*
+  exceptions:
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: The provided value type is not one of the above supported types.
+  nameWithType.vb: ConfigValue.New(ValueType)
+  fullName.vb: ModLib.Options.ConfigValue.New(System.ValueType)
+  name.vb: New(ValueType)
+- uid: ModLib.Options.ConfigValue.#ctor(System.String)
+  commentId: M:ModLib.Options.ConfigValue.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: ModLib.Options.ConfigValue
+  langs:
+  - csharp
+  - vb
+  name: ConfigValue(string)
+  nameWithType: ConfigValue.ConfigValue(string)
+  fullName: ModLib.Options.ConfigValue.ConfigValue(string)
+  type: Constructor
+  source:
+    remote:
+      path: ModLib/Options/ConfigValue.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: .ctor
+    path: ../ModLib/Options/ConfigValue.cs
+    startLine: 60
+  assemblies:
+  - ModLib
+  namespace: ModLib.Options
+  summary: Creates a new configurable value holding the provided string object.
+  example: []
+  syntax:
+    content: public ConfigValue(string value)
+    parameters:
+    - id: value
+      type: System.String
+      description: The string to be stored.
+    content.vb: Public Sub New(value As String)
+  overload: ModLib.Options.ConfigValue.#ctor*
+  nameWithType.vb: ConfigValue.New(String)
+  fullName.vb: ModLib.Options.ConfigValue.New(String)
+  name.vb: New(String)
+- uid: ModLib.Options.ConfigValue.FromObject(System.Object)
+  commentId: M:ModLib.Options.ConfigValue.FromObject(System.Object)
+  id: FromObject(System.Object)
+  parent: ModLib.Options.ConfigValue
+  langs:
+  - csharp
+  - vb
+  name: FromObject(object?)
+  nameWithType: ConfigValue.FromObject(object?)
+  fullName: ModLib.Options.ConfigValue.FromObject(object?)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Options/ConfigValue.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: FromObject
+    path: ../ModLib/Options/ConfigValue.cs
+    startLine: 71
+  assemblies:
+  - ModLib
+  namespace: ModLib.Options
+  summary: Creates a new configurable value holding the provided object.
+  example: []
+  syntax:
+    content: public static ConfigValue FromObject(object? value)
+    parameters:
+    - id: value
+      type: System.Object
+      description: The object to be stored. Must be either an integer, float, boolean or string.
+    return:
+      type: ModLib.Options.ConfigValue
+      description: The newly created <xref href="ModLib.Options.ConfigValue" data-throw-if-not-resolved="false"></xref> instance.
+    content.vb: Public Shared Function FromObject(value As Object) As ConfigValue
+  overload: ModLib.Options.ConfigValue.FromObject*
+  nameWithType.vb: ConfigValue.FromObject(Object)
+  fullName.vb: ModLib.Options.ConfigValue.FromObject(Object)
+  name.vb: FromObject(Object)
+- uid: ModLib.Options.ConfigValue.GetBoxedValue
+  commentId: M:ModLib.Options.ConfigValue.GetBoxedValue
+  id: GetBoxedValue
+  parent: ModLib.Options.ConfigValue
+  langs:
+  - csharp
+  - vb
+  name: GetBoxedValue()
+  nameWithType: ConfigValue.GetBoxedValue()
+  fullName: ModLib.Options.ConfigValue.GetBoxedValue()
+  type: Method
+  source:
+    remote:
+      path: ModLib/Options/ConfigValue.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: GetBoxedValue
+    path: ../ModLib/Options/ConfigValue.cs
+    startLine: 82
+  assemblies:
+  - ModLib
+  namespace: ModLib.Options
+  summary: Retrieves a boxed representation of the internal value stored by this <xref href="ModLib.Options.ConfigValue" data-throw-if-not-resolved="false"></xref> instance.
+  example: []
+  syntax:
+    content: public object? GetBoxedValue()
+    return:
+      type: System.Object
+      description: The boxed internally held value of this instance, or <code>null</code> if none is found.
+    content.vb: Public Function GetBoxedValue() As Object
+  overload: ModLib.Options.ConfigValue.GetBoxedValue*
+- uid: ModLib.Options.ConfigValue.IsNumeric
+  commentId: M:ModLib.Options.ConfigValue.IsNumeric
+  id: IsNumeric
+  parent: ModLib.Options.ConfigValue
+  langs:
+  - csharp
+  - vb
+  name: IsNumeric()
+  nameWithType: ConfigValue.IsNumeric()
+  fullName: ModLib.Options.ConfigValue.IsNumeric()
+  type: Method
+  source:
+    remote:
+      path: ModLib/Options/ConfigValue.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: IsNumeric
+    path: ../ModLib/Options/ConfigValue.cs
+    startLine: 98
+  assemblies:
+  - ModLib
+  namespace: ModLib.Options
+  summary: Determines if the internally held value is of a numeric type.
+  example: []
+  syntax:
+    content: public bool IsNumeric()
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the internally held value is of a numeric type, <code>false</code> otherwise.
+    content.vb: Public Function IsNumeric() As Boolean
+  overload: ModLib.Options.ConfigValue.IsNumeric*
+- uid: ModLib.Options.ConfigValue.TryGetInt(System.Int32@)
+  commentId: M:ModLib.Options.ConfigValue.TryGetInt(System.Int32@)
+  id: TryGetInt(System.Int32@)
+  parent: ModLib.Options.ConfigValue
+  langs:
+  - csharp
+  - vb
+  name: TryGetInt(out int)
+  nameWithType: ConfigValue.TryGetInt(out int)
+  fullName: ModLib.Options.ConfigValue.TryGetInt(out int)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Options/ConfigValue.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: TryGetInt
+    path: ../ModLib/Options/ConfigValue.cs
+    startLine: 105
+  assemblies:
+  - ModLib
+  namespace: ModLib.Options
+  summary: Attempts to retrieve a stored integer from the configurable object, if there is any.
+  example: []
+  syntax:
+    content: public bool TryGetInt(out int v)
+    parameters:
+    - id: v
+      type: System.Int32
+      description: The retrieved value, or <code>0</code> if none is found.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the internally held value is of type <xref href="System.Int32" data-throw-if-not-resolved="false"></xref>, <code>false</code> otherwise.
+    content.vb: Public Function TryGetInt(v As Integer) As Boolean
+  overload: ModLib.Options.ConfigValue.TryGetInt*
+  nameWithType.vb: ConfigValue.TryGetInt(Integer)
+  fullName.vb: ModLib.Options.ConfigValue.TryGetInt(Integer)
+  name.vb: TryGetInt(Integer)
+- uid: ModLib.Options.ConfigValue.TryGetFloat(System.Single@)
+  commentId: M:ModLib.Options.ConfigValue.TryGetFloat(System.Single@)
+  id: TryGetFloat(System.Single@)
+  parent: ModLib.Options.ConfigValue
+  langs:
+  - csharp
+  - vb
+  name: TryGetFloat(out float)
+  nameWithType: ConfigValue.TryGetFloat(out float)
+  fullName: ModLib.Options.ConfigValue.TryGetFloat(out float)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Options/ConfigValue.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: TryGetFloat
+    path: ../ModLib/Options/ConfigValue.cs
+    startLine: 112
+  assemblies:
+  - ModLib
+  namespace: ModLib.Options
+  summary: Attempts to retrieve a stored float from the configurable object, if there is any.
+  example: []
+  syntax:
+    content: public bool TryGetFloat(out float v)
+    parameters:
+    - id: v
+      type: System.Single
+      description: The retrieved value, or <code>0.0F</code> if none is found.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the internally held value is of type <xref href="System.Single" data-throw-if-not-resolved="false"></xref>, <code>false</code> otherwise.
+    content.vb: Public Function TryGetFloat(v As Single) As Boolean
+  overload: ModLib.Options.ConfigValue.TryGetFloat*
+  nameWithType.vb: ConfigValue.TryGetFloat(Single)
+  fullName.vb: ModLib.Options.ConfigValue.TryGetFloat(Single)
+  name.vb: TryGetFloat(Single)
+- uid: ModLib.Options.ConfigValue.TryGetBool(System.Boolean@)
+  commentId: M:ModLib.Options.ConfigValue.TryGetBool(System.Boolean@)
+  id: TryGetBool(System.Boolean@)
+  parent: ModLib.Options.ConfigValue
+  langs:
+  - csharp
+  - vb
+  name: TryGetBool(out bool)
+  nameWithType: ConfigValue.TryGetBool(out bool)
+  fullName: ModLib.Options.ConfigValue.TryGetBool(out bool)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Options/ConfigValue.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: TryGetBool
+    path: ../ModLib/Options/ConfigValue.cs
+    startLine: 119
+  assemblies:
+  - ModLib
+  namespace: ModLib.Options
+  summary: Attempts to retrieve a stored boolean from the configurable object, if there is any.
+  example: []
+  syntax:
+    content: public bool TryGetBool(out bool v)
+    parameters:
+    - id: v
+      type: System.Boolean
+      description: The retrieved value, or <code>false</code> if none is found.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the internally held value is of type <xref href="System.Boolean" data-throw-if-not-resolved="false"></xref>, <code>false</code> otherwise.
+    content.vb: Public Function TryGetBool(v As Boolean) As Boolean
+  overload: ModLib.Options.ConfigValue.TryGetBool*
+  nameWithType.vb: ConfigValue.TryGetBool(Boolean)
+  fullName.vb: ModLib.Options.ConfigValue.TryGetBool(Boolean)
+  name.vb: TryGetBool(Boolean)
+- uid: ModLib.Options.ConfigValue.TryGetString(System.String@)
+  commentId: M:ModLib.Options.ConfigValue.TryGetString(System.String@)
+  id: TryGetString(System.String@)
+  parent: ModLib.Options.ConfigValue
+  langs:
+  - csharp
+  - vb
+  name: TryGetString(out string)
+  nameWithType: ConfigValue.TryGetString(out string)
+  fullName: ModLib.Options.ConfigValue.TryGetString(out string)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Options/ConfigValue.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: TryGetString
+    path: ../ModLib/Options/ConfigValue.cs
+    startLine: 126
+  assemblies:
+  - ModLib
+  namespace: ModLib.Options
+  summary: Attempts to retrieve a stored string from the configurable object, if there is any.
+  example: []
+  syntax:
+    content: public bool TryGetString(out string v)
+    parameters:
+    - id: v
+      type: System.String
+      description: The retrieved value, or <code>null</code> if none is found.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the internally held value is of type <xref href="System.String" data-throw-if-not-resolved="false"></xref>, <code>false</code> otherwise.
+    content.vb: Public Function TryGetString(v As String) As Boolean
+  overload: ModLib.Options.ConfigValue.TryGetString*
+  nameWithType.vb: ConfigValue.TryGetString(String)
+  fullName.vb: ModLib.Options.ConfigValue.TryGetString(String)
+  name.vb: TryGetString(String)
+- uid: ModLib.Options.ConfigValue.TryGetNumber(System.ValueType@)
+  commentId: M:ModLib.Options.ConfigValue.TryGetNumber(System.ValueType@)
+  id: TryGetNumber(System.ValueType@)
+  parent: ModLib.Options.ConfigValue
+  langs:
+  - csharp
+  - vb
+  name: TryGetNumber(out ValueType?)
+  nameWithType: ConfigValue.TryGetNumber(out ValueType?)
+  fullName: ModLib.Options.ConfigValue.TryGetNumber(out System.ValueType?)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Options/ConfigValue.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: TryGetNumber
+    path: ../ModLib/Options/ConfigValue.cs
+    startLine: 133
+  assemblies:
+  - ModLib
+  namespace: ModLib.Options
+  summary: Attempts to retrieve a stored number from the configurable object, if there is any.
+  example: []
+  syntax:
+    content: public bool TryGetNumber(out ValueType? v)
+    parameters:
+    - id: v
+      type: System.ValueType
+      description: The retrieved value (either an <code>int</code> or <code>float</code>), or <code>null</code> if none is found.
+    return:
+      type: System.Boolean
+      description: <code>true</code> if the internally held value is of a numeric type, <code>false</code> otherwise.
+    content.vb: Public Function TryGetNumber(v As ValueType) As Boolean
+  overload: ModLib.Options.ConfigValue.TryGetNumber*
+  nameWithType.vb: ConfigValue.TryGetNumber(ValueType)
+  fullName.vb: ModLib.Options.ConfigValue.TryGetNumber(System.ValueType)
+  name.vb: TryGetNumber(ValueType)
+- uid: ModLib.Options.ConfigValue.CompareTo(System.Object)
+  commentId: M:ModLib.Options.ConfigValue.CompareTo(System.Object)
+  id: CompareTo(System.Object)
+  parent: ModLib.Options.ConfigValue
+  langs:
+  - csharp
+  - vb
+  name: CompareTo(object)
+  nameWithType: ConfigValue.CompareTo(object)
+  fullName: ModLib.Options.ConfigValue.CompareTo(object)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Options/ConfigValue.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: CompareTo
+    path: ../ModLib/Options/ConfigValue.cs
+    startLine: 190
+  assemblies:
+  - ModLib
+  namespace: ModLib.Options
+  summary: Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+  example: []
+  syntax:
+    content: public int CompareTo(object obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: An object to compare with this instance.
+    return:
+      type: System.Int32
+      description: >-
+        A value that indicates the relative order of the objects being compared. The return value has these meanings:  
+          Value  
+
+          Meaning  
+
+          Less than zero  
+
+          This instance precedes <code class="paramref">obj</code> in the sort order.  
+
+          Zero  
+
+          This instance occurs in the same position in the sort order as <code class="paramref">obj</code>.  
+
+          Greater than zero  
+
+          This instance follows <code class="paramref">obj</code> in the sort order.
+    content.vb: Public Function CompareTo(obj As Object) As Integer
+  overload: ModLib.Options.ConfigValue.CompareTo*
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: <code class="paramref">obj</code> is not the same type as this instance.
+  implements:
+  - System.IComparable.CompareTo(System.Object)
+  nameWithType.vb: ConfigValue.CompareTo(Object)
+  fullName.vb: ModLib.Options.ConfigValue.CompareTo(Object)
+  name.vb: CompareTo(Object)
+- uid: ModLib.Options.ConfigValue.CompareTo(ModLib.Options.ConfigValue)
+  commentId: M:ModLib.Options.ConfigValue.CompareTo(ModLib.Options.ConfigValue)
+  id: CompareTo(ModLib.Options.ConfigValue)
+  parent: ModLib.Options.ConfigValue
+  langs:
+  - csharp
+  - vb
+  name: CompareTo(ConfigValue)
+  nameWithType: ConfigValue.CompareTo(ConfigValue)
+  fullName: ModLib.Options.ConfigValue.CompareTo(ModLib.Options.ConfigValue)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Options/ConfigValue.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: CompareTo
+    path: ../ModLib/Options/ConfigValue.cs
+    startLine: 202
+  assemblies:
+  - ModLib
+  namespace: ModLib.Options
+  summary: Compares the current instance with another object of the same type and returns an integer that indicates whether the current instance precedes, follows, or occurs in the same position in the sort order as the other object.
+  example: []
+  syntax:
+    content: public int CompareTo(ConfigValue other)
+    parameters:
+    - id: other
+      type: ModLib.Options.ConfigValue
+      description: An object to compare with this instance.
+    return:
+      type: System.Int32
+      description: >-
+        A value that indicates the relative order of the objects being compared. The return value has these meanings:  
+          Value  
+
+          Meaning  
+
+          Less than zero  
+
+          This instance precedes <code class="paramref">other</code> in the sort order.  
+
+          Zero  
+
+          This instance occurs in the same position in the sort order as <code class="paramref">other</code>.  
+
+          Greater than zero  
+
+          This instance follows <code class="paramref">other</code> in the sort order.
+    content.vb: Public Function CompareTo(other As ConfigValue) As Integer
+  overload: ModLib.Options.ConfigValue.CompareTo*
+  implements:
+  - System.IComparable{ModLib.Options.ConfigValue}.CompareTo(ModLib.Options.ConfigValue)
+- uid: ModLib.Options.ConfigValue.Equals(ModLib.Options.ConfigValue)
+  commentId: M:ModLib.Options.ConfigValue.Equals(ModLib.Options.ConfigValue)
+  id: Equals(ModLib.Options.ConfigValue)
+  parent: ModLib.Options.ConfigValue
+  langs:
+  - csharp
+  - vb
+  name: Equals(ConfigValue)
+  nameWithType: ConfigValue.Equals(ConfigValue)
+  fullName: ModLib.Options.ConfigValue.Equals(ModLib.Options.ConfigValue)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Options/ConfigValue.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Equals
+    path: ../ModLib/Options/ConfigValue.cs
+    startLine: 205
+  assemblies:
+  - ModLib
+  namespace: ModLib.Options
+  summary: Indicates whether the current object is equal to another object of the same type.
+  example: []
+  syntax:
+    content: public bool Equals(ConfigValue other)
+    parameters:
+    - id: other
+      type: ModLib.Options.ConfigValue
+      description: An object to compare with this object.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if the current object is equal to the <code class="paramref">other</code> parameter; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Function Equals(other As ConfigValue) As Boolean
+  overload: ModLib.Options.ConfigValue.Equals*
+  implements:
+  - System.IEquatable{ModLib.Options.ConfigValue}.Equals(ModLib.Options.ConfigValue)
+- uid: ModLib.Options.ConfigValue.op_Equality(ModLib.Options.ConfigValue,ModLib.Options.ConfigValue)
+  commentId: M:ModLib.Options.ConfigValue.op_Equality(ModLib.Options.ConfigValue,ModLib.Options.ConfigValue)
+  id: op_Equality(ModLib.Options.ConfigValue,ModLib.Options.ConfigValue)
+  parent: ModLib.Options.ConfigValue
+  langs:
+  - csharp
+  - vb
+  name: operator ==(ConfigValue, ConfigValue)
+  nameWithType: ConfigValue.operator ==(ConfigValue, ConfigValue)
+  fullName: ModLib.Options.ConfigValue.operator ==(ModLib.Options.ConfigValue, ModLib.Options.ConfigValue)
+  type: Operator
+  source:
+    remote:
+      path: ModLib/Options/ConfigValue.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: op_Equality
+    path: ../ModLib/Options/ConfigValue.cs
+    startLine: 208
+  assemblies:
+  - ModLib
+  namespace: ModLib.Options
+  example: []
+  syntax:
+    content: public static bool operator ==(ConfigValue x, ConfigValue y)
+    parameters:
+    - id: x
+      type: ModLib.Options.ConfigValue
+    - id: y
+      type: ModLib.Options.ConfigValue
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator =(x As ConfigValue, y As ConfigValue) As Boolean
+  overload: ModLib.Options.ConfigValue.op_Equality*
+  nameWithType.vb: ConfigValue.=(ConfigValue, ConfigValue)
+  fullName.vb: ModLib.Options.ConfigValue.=(ModLib.Options.ConfigValue, ModLib.Options.ConfigValue)
+  name.vb: =(ConfigValue, ConfigValue)
+- uid: ModLib.Options.ConfigValue.op_Inequality(ModLib.Options.ConfigValue,ModLib.Options.ConfigValue)
+  commentId: M:ModLib.Options.ConfigValue.op_Inequality(ModLib.Options.ConfigValue,ModLib.Options.ConfigValue)
+  id: op_Inequality(ModLib.Options.ConfigValue,ModLib.Options.ConfigValue)
+  parent: ModLib.Options.ConfigValue
+  langs:
+  - csharp
+  - vb
+  name: operator !=(ConfigValue, ConfigValue)
+  nameWithType: ConfigValue.operator !=(ConfigValue, ConfigValue)
+  fullName: ModLib.Options.ConfigValue.operator !=(ModLib.Options.ConfigValue, ModLib.Options.ConfigValue)
+  type: Operator
+  source:
+    remote:
+      path: ModLib/Options/ConfigValue.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: op_Inequality
+    path: ../ModLib/Options/ConfigValue.cs
+    startLine: 214
+  assemblies:
+  - ModLib
+  namespace: ModLib.Options
+  example: []
+  syntax:
+    content: public static bool operator !=(ConfigValue x, ConfigValue y)
+    parameters:
+    - id: x
+      type: ModLib.Options.ConfigValue
+    - id: y
+      type: ModLib.Options.ConfigValue
+    return:
+      type: System.Boolean
+    content.vb: Public Shared Operator <>(x As ConfigValue, y As ConfigValue) As Boolean
+  overload: ModLib.Options.ConfigValue.op_Inequality*
+  nameWithType.vb: ConfigValue.<>(ConfigValue, ConfigValue)
+  fullName.vb: ModLib.Options.ConfigValue.<>(ModLib.Options.ConfigValue, ModLib.Options.ConfigValue)
+  name.vb: <>(ConfigValue, ConfigValue)
+- uid: ModLib.Options.ConfigValue.ToString
+  commentId: M:ModLib.Options.ConfigValue.ToString
+  id: ToString
+  parent: ModLib.Options.ConfigValue
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: ConfigValue.ToString()
+  fullName: ModLib.Options.ConfigValue.ToString()
+  type: Method
+  source:
+    remote:
+      path: ModLib/Options/ConfigValue.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: ToString
+    path: ../ModLib/Options/ConfigValue.cs
+    startLine: 223
+  assemblies:
+  - ModLib
+  namespace: ModLib.Options
+  summary: Returns the string representation of the internally held value by this instance.
+  example: []
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+      description: The string representation of the internally held value by this instance.
+    content.vb: Public Overrides Function ToString() As String
+  overridden: System.ValueType.ToString
+  overload: ModLib.Options.ConfigValue.ToString*
+- uid: ModLib.Options.ConfigValue.Equals(System.Object)
+  commentId: M:ModLib.Options.ConfigValue.Equals(System.Object)
+  id: Equals(System.Object)
+  parent: ModLib.Options.ConfigValue
+  langs:
+  - csharp
+  - vb
+  name: Equals(object)
+  nameWithType: ConfigValue.Equals(object)
+  fullName: ModLib.Options.ConfigValue.Equals(object)
+  type: Method
+  source:
+    remote:
+      path: ModLib/Options/ConfigValue.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: Equals
+    path: ../ModLib/Options/ConfigValue.cs
+    startLine: 226
+  assemblies:
+  - ModLib
+  namespace: ModLib.Options
+  summary: Indicates whether this instance and a specified object are equal.
+  example: []
+  syntax:
+    content: public override bool Equals(object obj)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object to compare with the current instance.
+    return:
+      type: System.Boolean
+      description: <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">true</a> if <code class="paramref">obj</code> and this instance are the same type and represent the same value; otherwise, <a href="https://learn.microsoft.com/dotnet/csharp/language-reference/builtin-types/bool">false</a>.
+    content.vb: Public Overrides Function Equals(obj As Object) As Boolean
+  overridden: System.ValueType.Equals(System.Object)
+  overload: ModLib.Options.ConfigValue.Equals*
+  nameWithType.vb: ConfigValue.Equals(Object)
+  fullName.vb: ModLib.Options.ConfigValue.Equals(Object)
+  name.vb: Equals(Object)
+- uid: ModLib.Options.ConfigValue.GetHashCode
+  commentId: M:ModLib.Options.ConfigValue.GetHashCode
+  id: GetHashCode
+  parent: ModLib.Options.ConfigValue
+  langs:
+  - csharp
+  - vb
+  name: GetHashCode()
+  nameWithType: ConfigValue.GetHashCode()
+  fullName: ModLib.Options.ConfigValue.GetHashCode()
+  type: Method
+  source:
+    remote:
+      path: ModLib/Options/ConfigValue.cs
+      branch: devel
+      repo: https://github.com/AydenTFoxx/ModLib.git
+    id: GetHashCode
+    path: ../ModLib/Options/ConfigValue.cs
+    startLine: 229
+  assemblies:
+  - ModLib
+  namespace: ModLib.Options
+  summary: Returns the hash code for this instance.
+  example: []
+  syntax:
+    content: public override int GetHashCode()
+    return:
+      type: System.Int32
+      description: A 32-bit signed integer that is the hash code for this instance.
+    content.vb: Public Overrides Function GetHashCode() As Integer
+  overridden: System.ValueType.GetHashCode
+  overload: ModLib.Options.ConfigValue.GetHashCode*
+references:
+- uid: Configurable`1
+  commentId: T:Configurable`1
+  isExternal: true
+  name: Configurable<T>
+  nameWithType: Configurable<T>
+  fullName: Configurable<T>
+  nameWithType.vb: Configurable(Of T)
+  fullName.vb: Configurable(Of T)
+  name.vb: Configurable(Of T)
+  spec.csharp:
+  - uid: Configurable`1
+    name: Configurable
+    isExternal: true
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: Configurable`1
+    name: Configurable
+    isExternal: true
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: ModLib.Options
+  commentId: N:ModLib.Options
+  href: ModLib.html
+  name: ModLib.Options
+  nameWithType: ModLib.Options
+  fullName: ModLib.Options
+  spec.csharp:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Options
+    name: Options
+    href: ModLib.Options.html
+  spec.vb:
+  - uid: ModLib
+    name: ModLib
+    href: ModLib.html
+  - name: .
+  - uid: ModLib.Options
+    name: Options
+    href: ModLib.Options.html
+- uid: System.IComparable
+  commentId: T:System.IComparable
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable
+  name: IComparable
+  nameWithType: IComparable
+  fullName: System.IComparable
+- uid: System.IComparable{ModLib.Options.ConfigValue}
+  commentId: T:System.IComparable{ModLib.Options.ConfigValue}
+  parent: System
+  definition: System.IComparable`1
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable-1
+  name: IComparable<ConfigValue>
+  nameWithType: IComparable<ConfigValue>
+  fullName: System.IComparable<ModLib.Options.ConfigValue>
+  nameWithType.vb: IComparable(Of ConfigValue)
+  fullName.vb: System.IComparable(Of ModLib.Options.ConfigValue)
+  name.vb: IComparable(Of ConfigValue)
+  spec.csharp:
+  - uid: System.IComparable`1
+    name: IComparable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1
+  - name: <
+  - uid: ModLib.Options.ConfigValue
+    name: ConfigValue
+    href: ModLib.Options.ConfigValue.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IComparable`1
+    name: IComparable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: ModLib.Options.ConfigValue
+    name: ConfigValue
+    href: ModLib.Options.ConfigValue.html
+  - name: )
+- uid: System.IEquatable{ModLib.Options.ConfigValue}
+  commentId: T:System.IEquatable{ModLib.Options.ConfigValue}
+  parent: System
+  definition: System.IEquatable`1
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<ConfigValue>
+  nameWithType: IEquatable<ConfigValue>
+  fullName: System.IEquatable<ModLib.Options.ConfigValue>
+  nameWithType.vb: IEquatable(Of ConfigValue)
+  fullName.vb: System.IEquatable(Of ModLib.Options.ConfigValue)
+  name.vb: IEquatable(Of ConfigValue)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - uid: ModLib.Options.ConfigValue
+    name: ConfigValue
+    href: ModLib.Options.ConfigValue.html
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: ModLib.Options.ConfigValue
+    name: ConfigValue
+    href: ModLib.Options.ConfigValue.html
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: System.IComparable`1
+  commentId: T:System.IComparable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable-1
+  name: IComparable<T>
+  nameWithType: IComparable<T>
+  fullName: System.IComparable<T>
+  nameWithType.vb: IComparable(Of T)
+  fullName.vb: System.IComparable(Of T)
+  name.vb: IComparable(Of T)
+  spec.csharp:
+  - uid: System.IComparable`1
+    name: IComparable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IComparable`1
+    name: IComparable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.IEquatable`1
+  commentId: T:System.IEquatable`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  name: IEquatable<T>
+  nameWithType: IEquatable<T>
+  fullName: System.IEquatable<T>
+  nameWithType.vb: IEquatable(Of T)
+  fullName.vb: System.IEquatable(Of T)
+  name.vb: IEquatable(Of T)
+  spec.csharp:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.IEquatable`1
+    name: IEquatable
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: ModLib.Options.ConfigValue.Kind*
+  commentId: Overload:ModLib.Options.ConfigValue.Kind
+  href: ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_Kind
+  name: Kind
+  nameWithType: ConfigValue.Kind
+  fullName: ModLib.Options.ConfigValue.Kind
+- uid: ModLib.Options.ConfigValue.ValueKind
+  commentId: T:ModLib.Options.ConfigValue.ValueKind
+  parent: ModLib.Options
+  href: ModLib.Options.ConfigValue.html
+  name: ConfigValue.ValueKind
+  nameWithType: ConfigValue.ValueKind
+  fullName: ModLib.Options.ConfigValue.ValueKind
+  spec.csharp:
+  - uid: ModLib.Options.ConfigValue
+    name: ConfigValue
+    href: ModLib.Options.ConfigValue.html
+  - name: .
+  - uid: ModLib.Options.ConfigValue.ValueKind
+    name: ValueKind
+    href: ModLib.Options.ConfigValue.ValueKind.html
+  spec.vb:
+  - uid: ModLib.Options.ConfigValue
+    name: ConfigValue
+    href: ModLib.Options.ConfigValue.html
+  - name: .
+  - uid: ModLib.Options.ConfigValue.ValueKind
+    name: ValueKind
+    href: ModLib.Options.ConfigValue.ValueKind.html
+- uid: System.NotSupportedException
+  commentId: T:System.NotSupportedException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.notsupportedexception
+  name: NotSupportedException
+  nameWithType: NotSupportedException
+  fullName: System.NotSupportedException
+- uid: ModLib.Options.ConfigValue.#ctor*
+  commentId: Overload:ModLib.Options.ConfigValue.#ctor
+  href: ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue__ctor_System_ValueType_
+  name: ConfigValue
+  nameWithType: ConfigValue.ConfigValue
+  fullName: ModLib.Options.ConfigValue.ConfigValue
+  nameWithType.vb: ConfigValue.New
+  fullName.vb: ModLib.Options.ConfigValue.New
+  name.vb: New
+- uid: System.ValueType
+  commentId: T:System.ValueType
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype
+  name: ValueType
+  nameWithType: ValueType
+  fullName: System.ValueType
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: ModLib.Options.ConfigValue
+  commentId: T:ModLib.Options.ConfigValue
+  parent: ModLib.Options
+  href: ModLib.Options.ConfigValue.html
+  name: ConfigValue
+  nameWithType: ConfigValue
+  fullName: ModLib.Options.ConfigValue
+- uid: ModLib.Options.ConfigValue.FromObject*
+  commentId: Overload:ModLib.Options.ConfigValue.FromObject
+  href: ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_FromObject_System_Object_
+  name: FromObject
+  nameWithType: ConfigValue.FromObject
+  fullName: ModLib.Options.ConfigValue.FromObject
+- uid: ModLib.Options.ConfigValue.GetBoxedValue*
+  commentId: Overload:ModLib.Options.ConfigValue.GetBoxedValue
+  href: ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_GetBoxedValue
+  name: GetBoxedValue
+  nameWithType: ConfigValue.GetBoxedValue
+  fullName: ModLib.Options.ConfigValue.GetBoxedValue
+- uid: ModLib.Options.ConfigValue.IsNumeric*
+  commentId: Overload:ModLib.Options.ConfigValue.IsNumeric
+  href: ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_IsNumeric
+  name: IsNumeric
+  nameWithType: ConfigValue.IsNumeric
+  fullName: ModLib.Options.ConfigValue.IsNumeric
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: ModLib.Options.ConfigValue.TryGetInt*
+  commentId: Overload:ModLib.Options.ConfigValue.TryGetInt
+  href: ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_TryGetInt_System_Int32__
+  name: TryGetInt
+  nameWithType: ConfigValue.TryGetInt
+  fullName: ModLib.Options.ConfigValue.TryGetInt
+- uid: System.Single
+  commentId: T:System.Single
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.single
+  name: float
+  nameWithType: float
+  fullName: float
+  nameWithType.vb: Single
+  fullName.vb: Single
+  name.vb: Single
+- uid: ModLib.Options.ConfigValue.TryGetFloat*
+  commentId: Overload:ModLib.Options.ConfigValue.TryGetFloat
+  href: ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_TryGetFloat_System_Single__
+  name: TryGetFloat
+  nameWithType: ConfigValue.TryGetFloat
+  fullName: ModLib.Options.ConfigValue.TryGetFloat
+- uid: ModLib.Options.ConfigValue.TryGetBool*
+  commentId: Overload:ModLib.Options.ConfigValue.TryGetBool
+  href: ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_TryGetBool_System_Boolean__
+  name: TryGetBool
+  nameWithType: ConfigValue.TryGetBool
+  fullName: ModLib.Options.ConfigValue.TryGetBool
+- uid: ModLib.Options.ConfigValue.TryGetString*
+  commentId: Overload:ModLib.Options.ConfigValue.TryGetString
+  href: ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_TryGetString_System_String__
+  name: TryGetString
+  nameWithType: ConfigValue.TryGetString
+  fullName: ModLib.Options.ConfigValue.TryGetString
+- uid: ModLib.Options.ConfigValue.TryGetNumber*
+  commentId: Overload:ModLib.Options.ConfigValue.TryGetNumber
+  href: ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_TryGetNumber_System_ValueType__
+  name: TryGetNumber
+  nameWithType: ConfigValue.TryGetNumber
+  fullName: ModLib.Options.ConfigValue.TryGetNumber
+- uid: System.ArgumentException
+  commentId: T:System.ArgumentException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.argumentexception
+  name: ArgumentException
+  nameWithType: ArgumentException
+  fullName: System.ArgumentException
+- uid: ModLib.Options.ConfigValue.CompareTo*
+  commentId: Overload:ModLib.Options.ConfigValue.CompareTo
+  href: ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_CompareTo_System_Object_
+  name: CompareTo
+  nameWithType: ConfigValue.CompareTo
+  fullName: ModLib.Options.ConfigValue.CompareTo
+- uid: System.IComparable.CompareTo(System.Object)
+  commentId: M:System.IComparable.CompareTo(System.Object)
+  parent: System.IComparable
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable.compareto
+  name: CompareTo(object)
+  nameWithType: IComparable.CompareTo(object)
+  fullName: System.IComparable.CompareTo(object)
+  nameWithType.vb: IComparable.CompareTo(Object)
+  fullName.vb: System.IComparable.CompareTo(Object)
+  name.vb: CompareTo(Object)
+  spec.csharp:
+  - uid: System.IComparable.CompareTo(System.Object)
+    name: CompareTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable.compareto
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.IComparable.CompareTo(System.Object)
+    name: CompareTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable.compareto
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.IComparable{ModLib.Options.ConfigValue}.CompareTo(ModLib.Options.ConfigValue)
+  commentId: M:System.IComparable{ModLib.Options.ConfigValue}.CompareTo(ModLib.Options.ConfigValue)
+  parent: System.IComparable{ModLib.Options.ConfigValue}
+  definition: System.IComparable`1.CompareTo(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable-1.compareto
+  name: CompareTo(ConfigValue)
+  nameWithType: IComparable<ConfigValue>.CompareTo(ConfigValue)
+  fullName: System.IComparable<ModLib.Options.ConfigValue>.CompareTo(ModLib.Options.ConfigValue)
+  nameWithType.vb: IComparable(Of ConfigValue).CompareTo(ConfigValue)
+  fullName.vb: System.IComparable(Of ModLib.Options.ConfigValue).CompareTo(ModLib.Options.ConfigValue)
+  spec.csharp:
+  - uid: System.IComparable{ModLib.Options.ConfigValue}.CompareTo(ModLib.Options.ConfigValue)
+    name: CompareTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1.compareto
+  - name: (
+  - uid: ModLib.Options.ConfigValue
+    name: ConfigValue
+    href: ModLib.Options.ConfigValue.html
+  - name: )
+  spec.vb:
+  - uid: System.IComparable{ModLib.Options.ConfigValue}.CompareTo(ModLib.Options.ConfigValue)
+    name: CompareTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1.compareto
+  - name: (
+  - uid: ModLib.Options.ConfigValue
+    name: ConfigValue
+    href: ModLib.Options.ConfigValue.html
+  - name: )
+- uid: System.IComparable`1.CompareTo(`0)
+  commentId: M:System.IComparable`1.CompareTo(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.icomparable-1.compareto
+  name: CompareTo(T)
+  nameWithType: IComparable<T>.CompareTo(T)
+  fullName: System.IComparable<T>.CompareTo(T)
+  nameWithType.vb: IComparable(Of T).CompareTo(T)
+  fullName.vb: System.IComparable(Of T).CompareTo(T)
+  spec.csharp:
+  - uid: System.IComparable`1.CompareTo(`0)
+    name: CompareTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1.compareto
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IComparable`1.CompareTo(`0)
+    name: CompareTo
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.icomparable-1.compareto
+  - name: (
+  - name: T
+  - name: )
+- uid: ModLib.Options.ConfigValue.Equals*
+  commentId: Overload:ModLib.Options.ConfigValue.Equals
+  href: ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_Equals_ModLib_Options_ConfigValue_
+  name: Equals
+  nameWithType: ConfigValue.Equals
+  fullName: ModLib.Options.ConfigValue.Equals
+- uid: System.IEquatable{ModLib.Options.ConfigValue}.Equals(ModLib.Options.ConfigValue)
+  commentId: M:System.IEquatable{ModLib.Options.ConfigValue}.Equals(ModLib.Options.ConfigValue)
+  parent: System.IEquatable{ModLib.Options.ConfigValue}
+  definition: System.IEquatable`1.Equals(`0)
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(ConfigValue)
+  nameWithType: IEquatable<ConfigValue>.Equals(ConfigValue)
+  fullName: System.IEquatable<ModLib.Options.ConfigValue>.Equals(ModLib.Options.ConfigValue)
+  nameWithType.vb: IEquatable(Of ConfigValue).Equals(ConfigValue)
+  fullName.vb: System.IEquatable(Of ModLib.Options.ConfigValue).Equals(ModLib.Options.ConfigValue)
+  spec.csharp:
+  - uid: System.IEquatable{ModLib.Options.ConfigValue}.Equals(ModLib.Options.ConfigValue)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: ModLib.Options.ConfigValue
+    name: ConfigValue
+    href: ModLib.Options.ConfigValue.html
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable{ModLib.Options.ConfigValue}.Equals(ModLib.Options.ConfigValue)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - uid: ModLib.Options.ConfigValue
+    name: ConfigValue
+    href: ModLib.Options.ConfigValue.html
+  - name: )
+- uid: System.IEquatable`1.Equals(`0)
+  commentId: M:System.IEquatable`1.Equals(`0)
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  name: Equals(T)
+  nameWithType: IEquatable<T>.Equals(T)
+  fullName: System.IEquatable<T>.Equals(T)
+  nameWithType.vb: IEquatable(Of T).Equals(T)
+  fullName.vb: System.IEquatable(Of T).Equals(T)
+  spec.csharp:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+  spec.vb:
+  - uid: System.IEquatable`1.Equals(`0)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.iequatable-1.equals
+  - name: (
+  - name: T
+  - name: )
+- uid: ModLib.Options.ConfigValue.op_Equality*
+  commentId: Overload:ModLib.Options.ConfigValue.op_Equality
+  href: ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_op_Equality_ModLib_Options_ConfigValue_ModLib_Options_ConfigValue_
+  name: operator ==
+  nameWithType: ConfigValue.operator ==
+  fullName: ModLib.Options.ConfigValue.operator ==
+  nameWithType.vb: ConfigValue.=
+  fullName.vb: ModLib.Options.ConfigValue.=
+  name.vb: =
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: ModLib.Options.ConfigValue.op_Equality*
+    name: ==
+    href: ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_op_Equality_ModLib_Options_ConfigValue_ModLib_Options_ConfigValue_
+- uid: ModLib.Options.ConfigValue.op_Inequality*
+  commentId: Overload:ModLib.Options.ConfigValue.op_Inequality
+  href: ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_op_Inequality_ModLib_Options_ConfigValue_ModLib_Options_ConfigValue_
+  name: operator !=
+  nameWithType: ConfigValue.operator !=
+  fullName: ModLib.Options.ConfigValue.operator !=
+  nameWithType.vb: ConfigValue.<>
+  fullName.vb: ModLib.Options.ConfigValue.<>
+  name.vb: <>
+  spec.csharp:
+  - name: operator
+  - name: " "
+  - uid: ModLib.Options.ConfigValue.op_Inequality*
+    name: '!='
+    href: ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_op_Inequality_ModLib_Options_ConfigValue_ModLib_Options_ConfigValue_
+- uid: System.ValueType.ToString
+  commentId: M:System.ValueType.ToString
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  name: ToString()
+  nameWithType: ValueType.ToString()
+  fullName: System.ValueType.ToString()
+  spec.csharp:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.tostring
+  - name: (
+  - name: )
+- uid: ModLib.Options.ConfigValue.ToString*
+  commentId: Overload:ModLib.Options.ConfigValue.ToString
+  href: ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_ToString
+  name: ToString
+  nameWithType: ConfigValue.ToString
+  fullName: ModLib.Options.ConfigValue.ToString
+- uid: System.ValueType.Equals(System.Object)
+  commentId: M:System.ValueType.Equals(System.Object)
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  name: Equals(object)
+  nameWithType: ValueType.Equals(object)
+  fullName: System.ValueType.Equals(object)
+  nameWithType.vb: ValueType.Equals(Object)
+  fullName.vb: System.ValueType.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.equals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.ValueType.GetHashCode
+  commentId: M:System.ValueType.GetHashCode
+  parent: System.ValueType
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  name: GetHashCode()
+  nameWithType: ValueType.GetHashCode()
+  fullName: System.ValueType.GetHashCode()
+  spec.csharp:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.ValueType.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.valuetype.gethashcode
+  - name: (
+  - name: )
+- uid: ModLib.Options.ConfigValue.GetHashCode*
+  commentId: Overload:ModLib.Options.ConfigValue.GetHashCode
+  href: ModLib.Options.ConfigValue.html#ModLib_Options_ConfigValue_GetHashCode
+  name: GetHashCode
+  nameWithType: ConfigValue.GetHashCode
+  fullName: ModLib.Options.ConfigValue.GetHashCode
