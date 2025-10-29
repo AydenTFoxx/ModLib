@@ -9,9 +9,8 @@ To provide IntelliSense for ModLib classes and methods, include `ModLib.xml` in 
 ## Features
 
 At its core, ModLib is no revolutionary solution; Most of its features have been done before (and inspired) by other mods, often in a manual, per use-case approach.
-Instead, what ModLib primarily provides is a common API, a collection of time-tested solutions to many common issues most modders will end up facing, sooner or later.
 
-> (TODO: Make greater use of this shared API, simplifying interoperability between mods)
+Instead, what ModLib primarily provides is a common API, a collection of time-tested solutions to many common issues most modders will end up facing, sooner or later.
 
 Nonetheless, some features (notably `CompatibilityManager`'s ability to detect enabled mods before the game initializes) are rarely seen elsewhere, and at times exceedingly hard to code to be worth the effort. In such cases, ModLib offers a convenient, ready-made solution for developers who may wish to use such tools in their mods, but cannot/do not want to implement those themselves.
 
@@ -20,17 +19,12 @@ Nonetheless, some features (notably `CompatibilityManager`'s ability to detect e
 ModLib has built-in integration with LogUtils, offering a quick and convenient API for creating logger instances for your mod.
 This logger instance automatically targets your mod's BepInEx logger, and logs to a separate file at `StreamingAssets/Logs/YourModName.log`.
 
-When LogUtils is not available, your mod's BepInEx logger is used as a fallback, ensuring logs are never lost regardless of the available tools at runtime.
-
-> (TODO: Revive old `Logger.cs` and adapt it to be a fallback logger instead of solely relying on BepInEx's)
+When LogUtils is not available, a fallback logger is employed instead, ensuring logs are never lost regardless of the available tools at runtime.
 
 ### REMIX
 
 ModLib has a variety of tools for creating and managing options from your mod's REMIX option interface.
 Option management, online sync, and even temporary overrides are all handled by ModLib, while requiring as little user input as possible.
-
-> (TODO: Return overrides values to their original values when a temporary option is removed)  
-> (TODO? Add a duration for temporary options? Feels more like a user responsibility... Too specific to be made into a general-purpose tool)
 
 - (Optional) Create REMIX interfaces in a familiar fashion with `OptionBuilder`. Chain methods to create simple yet effective interfaces, then convert them to an `OpTab` instance with `Build()`
 - At your [mod registering](#usage), include a reference to the class where you implement your REMIX interface.
@@ -38,8 +32,6 @@ Option management, online sync, and even temporary overrides are all handled by 
   - Additionally, cosmetic or client-sided options can instead be checked with the variants `IsClientOptionEnabled`, `IsClientOptionValue<T>`, and `GetClientOptionValue<T>`. Note these don't allow you to specify an ID directly, however.
 
 If the Rain Meadow mod is present, option values are automatically synced between the host and clients, ensuring your mod works as expected in an online context. When leaving a lobby, the client's options return to their original values.
-
-> (TODO: Force a refresh of the local `OptionUtils.SharedOptions` instance when no longer online? Seems only useful in a few edge cases, but relevant nonetheless)
 
 Temporary options can also be created and removed with `OptionUtils.SharedOptions.AddTemporaryOption` and `RemoveTemporaryOption`, respectively.
 Temporary options do not alter the saved REMIX option values, instead overriding their representation at runtime. After removing them and refreshing the option holder (with `OptionUtils.SharedOptions.RefreshOptions()`), they return to their original values.
@@ -50,11 +42,7 @@ ModLib allows the creation of *immutable* keybinds, using the `Keybind` class. W
 
 `Keybind` objects are convertible to and from `PlayerKeybind` instances, so any API accepting a `PlayerKeybind` is also compatible with ModLib's `Keybind` class.
 
-> (TODO: Make both conversions implicit, so the two classes are as interchangeable as allowed by C#)
-
 While `Keybind` objects can be queries for input directly, their true power comes from using them alongside the `InputHandler` class (or one of its extension methods): When IIC:E is present, calls with `Keybind` objects are automatically converted to `PlayerKeybind` ones, where the relevant APIs are used instead.
-
-> (TODO? Make `Keybind` methods also inherit this functionality, juust to be sure. If there are two ways to do something, someone will use the less effective one at some point.)
 
 ### Rain Meadow Compatibility
 
@@ -81,7 +69,9 @@ To use ModLib in your projects, download the file `ModLib.dll` at `mod/newest/pl
 ```
 
 Optionally, you can also download `ModLib.xml` for IntelliSense support to all public classes and methods, if your editor of choice has such feature.
-When building your mod, make sure to also include a copy of `ModLib.dll` on the same folder as your mod's assembly. Including `LogUtils.dll` is strongly recommended, but not required if you do not need a separate file for your mod's logs.
+
+When building your mod, make sure to also include a copy of `ModLib.dll` on the same folder as your mod's assembly.
+Including `LogUtils.dll` is strongly recommended, but not required if you do not need a separate file for your mod's logs.
 
 ### Usage
 
