@@ -28,6 +28,8 @@ public class ServerOptions
     /// </summary>
     public ReadOnlyDictionary<string, ConfigValue> MyOptions { get; }
 
+    private bool _initialized;
+
     /// <summary>
     ///     Creates a new <see cref="ServerOptions"/> instance with an empty local holder.
     /// </summary>
@@ -62,9 +64,12 @@ public class ServerOptions
     /// </remarks>
     /// <param name="optionKey">The unique key for identifying the temporary option. If an existing option has the same key, it is overriden.</param>
     /// <param name="optionValue">The value to be saved with the given option key.</param>
-    public void AddTemporaryOption(string optionKey, ConfigValue optionValue)
+    /// <param name="removeOnRefresh">If true, this temporary option will be removed the next time <see cref="RefreshOptions()"/> is called.</param>
+    public void AddTemporaryOption(string optionKey, ConfigValue optionValue, bool removeOnRefresh = true)
     {
-        _tempOptions[optionKey] = _options.TryGetValue(optionKey, out ConfigValue value) ? value : default;
+        string tempKey = removeOnRefresh && !optionKey.StartsWith("!", StringComparison.OrdinalIgnoreCase) ? $"!{optionKey}" : optionKey;
+
+        _tempOptions[tempKey] = _options.TryGetValue(optionKey, out ConfigValue value) ? value : default;
 
         _options[optionKey] = optionValue;
     }
@@ -79,12 +84,18 @@ public class ServerOptions
     /// </returns>
     public bool RemoveTemporaryOption(string optionKey)
     {
-        if (_tempOptions.TryGetValue(optionKey, out ConfigValue value) && value != default)
+        string tempKey = optionKey.StartsWith("!", StringComparison.OrdinalIgnoreCase)
+            ? optionKey
+            : _tempOptions.ContainsKey($"!{optionKey}")
+                ? $"!{optionKey}"
+                : optionKey;
+
+        if (_tempOptions.TryGetValue(tempKey, out ConfigValue value) && value != default)
         {
             _options[optionKey] = value;
         }
 
-        return _tempOptions.Remove(optionKey);
+        return _tempOptions.Remove(tempKey);
     }
 
     /// <summary>
@@ -92,21 +103,52 @@ public class ServerOptions
     /// </summary>
     /// <param name="optionKey">The option key to be searched.</param>
     /// <returns><c>true</c> if the option is temporary, <c>false</c> otherwise.</returns>
-    public bool IsTemporaryOption(string optionKey) => _tempOptions.TryGetValue(optionKey, out _);
+    public bool IsTemporaryOption(string optionKey) => _tempOptions.ContainsKey(optionKey) || _tempOptions.ContainsKey($"!{optionKey}");
 
     /// <summary>
     ///     Sets the local holder's values to those from the REMIX option interface.
     /// </summary>
     public void RefreshOptions()
     {
+        bool changedOptions = false;
+
+        if (_initialized)
+        {
+            foreach (KeyValuePair<string, ConfigValue> kvp in _tempOptions)
+            {
+                if (!kvp.Key.StartsWith("!", StringComparison.OrdinalIgnoreCase)) continue;
+
+                RemoveTemporaryOption(kvp.Key);
+                changedOptions = true;
+
+                Core.Logger.LogDebug($"Removed temporary option: [{kvp.Key}]");
+            }
+        }
+
         foreach (ConfigurableBase configurable in OptionHolders.Keys)
         {
             if (IsTemporaryOption(configurable.key)) continue;
 
-            _options[configurable.key] = ConfigValue.FromObject(configurable.BoxedValue);
+            ConfigValue value = ConfigValue.FromObject(configurable.BoxedValue);
+
+            if (_options[configurable.key] != value)
+            {
+                _options[configurable.key] = value;
+
+                changedOptions = true;
+            }
         }
 
-        Core.Logger.LogDebug($"{(Extras.IsOnlineSession ? "Online " : "")}REMIX options are: [{this}]");
+        if (!_initialized)
+        {
+            Core.Logger.LogDebug($"{(Extras.IsOnlineSession ? "Online " : "")}REMIX options are: [{this}]");
+
+            _initialized = true;
+        }
+        else if (changedOptions)
+        {
+            Core.Logger.LogDebug($"Updated options are: [{this}]");
+        }
     }
 
     /// <summary>
@@ -139,7 +181,17 @@ public class ServerOptions
     ///     Returns a string containing the <see cref="ServerOptions"/>' formatted local values.
     /// </summary>
     /// <returns>A string containing the <see cref="ServerOptions"/>' formatted local values.</returns>
-    public override string ToString() => FormatOptions();
+    public override string ToString()
+    {
+        StringBuilder stringBuilder = new(Environment.NewLine);
+
+        foreach (KeyValuePair<string, ConfigValue> kvp in _options)
+        {
+            stringBuilder.AppendLine($"{(IsTemporaryOption(kvp.Key) ? "*" : "-")} {kvp.Key}: {kvp.Value};");
+        }
+
+        return stringBuilder.ToString();
+    }
 
     internal static void AddOptionSource(Type optionSource)
     {
@@ -164,18 +216,6 @@ public class ServerOptions
                 OptionHolders.Remove(holder.Key);
             }
         }
-    }
-
-    private string FormatOptions()
-    {
-        StringBuilder stringBuilder = new(Environment.NewLine);
-
-        foreach (KeyValuePair<string, ConfigValue> kvp in _options)
-        {
-            stringBuilder.AppendLine($"{(IsTemporaryOption(kvp.Key) ? "*" : "-")} {kvp.Key}: {kvp.Value};");
-        }
-
-        return stringBuilder.ToString();
     }
 }
 

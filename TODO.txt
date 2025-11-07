@@ -6,11 +6,7 @@ ModLib:
 
     LogUtilsHelper should have as little ModLib-specific branches as possible; ModLib should be treated as a regular consumer of its own API
 
-    Core, Extras, and LoggingAdapter possess a circular dependency, where one requests data from the other. This is a recipe for failure which is already yielding bad results.
-        Fixed!
-
-    Core.LogSource should not be used outside of the Core class; For the time being, however, it is being used to resolve circular dependencies like the above.
-        Fixed? Better than before.
+    Add log buffering for FallbackLogger
 
 ---
 

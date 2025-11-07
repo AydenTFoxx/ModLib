@@ -64,28 +64,44 @@ public record Keybind
     ///     Determines whether this keybind is currently being pressed.
     /// </summary>
     /// <param name="playerNumber">The player index whose input will be queried.</param>
+    /// <param name="player">
+    ///     The actual player instance whose inputs are being queried.
+    ///     If specified, input will be ignored while the player is unconscious/dead or in a cutscene.
+    /// </param>
     /// <returns><c>true</c> if this keybind's bound key is being held, <c>false</c> otherwise.</returns>
-    internal bool IsDown(int playerNumber)
+    internal bool IsDown(int playerNumber, Player? player = null)
     {
         ValidatePlayerNumber(playerNumber);
 
-        return Options?.controls[playerNumber].controlPreference == global::Options.ControlSetup.ControlToUse.SPECIFIC_GAMEPAD
-            ? UnityEngine.Input.GetKey(GamepadPreset)
-            : UnityEngine.Input.GetKey(KeyboardPreset);
+        return (player is null || (player.Consious && !player.mapInput.mp && player.controller is null))
+            && Options is not null
+            && Options.controls[playerNumber].controlPreference == global::Options.ControlSetup.ControlToUse.SPECIFIC_GAMEPAD
+                ? Options.controls[playerNumber].recentPreset == global::Options.ControlSetup.Preset.XBox
+                    ? UnityEngine.Input.GetKey(XboxPreset)
+                    : UnityEngine.Input.GetKey(GamepadPreset)
+                : UnityEngine.Input.GetKey(KeyboardPreset);
     }
 
     /// <summary>
     ///     Determines whether this keybind has just been pressed.
     /// </summary>
     /// <param name="playerNumber">The player index whose input will be queried.</param>
+    /// <param name="player">
+    ///     The actual player instance whose inputs are being queried.
+    ///     If specified, input will be ignored while the player is unconscious/dead or in a cutscene.
+    /// </param>
     /// <returns><c>true</c> if this keybind's bound key was just pressed, <c>false</c> otherwise.</returns>
-    internal bool JustPressed(int playerNumber)
+    internal bool JustPressed(int playerNumber, Player? player = null)
     {
         ValidatePlayerNumber(playerNumber);
 
-        return Options?.controls[playerNumber].controlPreference == global::Options.ControlSetup.ControlToUse.SPECIFIC_GAMEPAD
-            ? UnityEngine.Input.GetKeyDown(GamepadPreset)
-            : UnityEngine.Input.GetKeyDown(KeyboardPreset);
+        return (player is null || (player.Consious && !player.mapInput.mp && player.controller is null))
+            && Options is not null
+            && Options.controls[playerNumber].controlPreference == global::Options.ControlSetup.ControlToUse.SPECIFIC_GAMEPAD
+                ? Options.controls[playerNumber].recentPreset == global::Options.ControlSetup.Preset.XBox
+                    ? UnityEngine.Input.GetKeyDown(XboxPreset)
+                    : UnityEngine.Input.GetKeyDown(GamepadPreset)
+                : UnityEngine.Input.GetKeyDown(KeyboardPreset);
     }
 
     /// <summary>

@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Runtime.CompilerServices;
 using BepInEx.Logging;
 
 namespace ModLib.Logging;
@@ -12,7 +13,8 @@ public class FallbackLogger(ManualLogSource logSource) : IMyLogger
     private readonly string PathToLogFile = Path.Combine(Registry.DefaultLogsPath, logSource.SourceName + ".log");
 
     /// <inheritdoc/>
-    public void Log(object message) => Log(default, message);
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Log(object message) => Log(LogLevel.Debug, message);
 
     /// <inheritdoc/>
     public void Log(LogLevel category, object message)

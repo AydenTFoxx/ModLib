@@ -15,7 +15,7 @@ internal static class Core
 {
     public const string MOD_GUID = "ynhzrfxn.modlib";
     public const string MOD_NAME = "ModLib";
-    public const string MOD_VERSION = "0.2.2.4";
+    public const string MOD_VERSION = "0.2.3.0";
 
     public static readonly BepInPlugin PluginData = new(MOD_GUID, MOD_NAME, MOD_VERSION);
     public static readonly ManualLogSource LogSource = BepInEx.Logging.Logger.CreateLogSource(MOD_NAME);
@@ -35,10 +35,18 @@ internal static class Core
 
         Initialized = true;
 
+#if DEBUG
+        OptionUtils.SharedOptions.AddTemporaryOption("modlib.debug", new ConfigValue(true), false);
+#else
+        OptionUtils.SharedOptions.AddTemporaryOption("modlib.debug", new ConfigValue(ModManager.DevTools), false);
+#endif
+
         if (Extras.LogUtilsAvailable)
         {
             Logger = LoggingAdapter.CreateLogger(LogSource);
         }
+
+        Logger = new LogWrapper(Logger, OptionUtils.IsOptionEnabled("modlib.debug") ? LogLevel.All : LogLevel.Message);
 
         if (Extras.IsMeadowEnabled)
         {
@@ -102,8 +110,6 @@ internal static class Core
     private static void GameSessionHook(On.GameSession.orig_ctor orig, GameSession self, RainWorldGame game)
     {
         orig.Invoke(self, game);
-
-        if (Extras.InGameSession) return;
 
         Extras.InGameSession = true;
 

@@ -28,21 +28,27 @@ public static class InputHandler
     /// </summary>
     /// <param name="player">The player itself.</param>
     /// <param name="keybind">The keybind to be checked.</param>
+    /// <param name="rawInput">If true, input will be evaluated even if Slugcat itself cannot receive inputs (e.g. when dead or in cutscene mode).</param>
     /// <returns><c>true</c> if the keybind's key is currently being held, <c>false</c> otherwise.</returns>
-    public static bool IsKeyDown(this Player player, Keybind keybind) =>
+    public static bool IsKeyDown(this Player player, Keybind keybind, bool rawInput = false) =>
         Extras.IsIICEnabled
-            ? ImprovedInputHelper.IsKeyDown(player, keybind)
-            : keybind.IsDown(player.playerState.playerNumber);
+            ? ImprovedInputHelper.IsKeyDown(player, keybind, rawInput)
+            : keybind.IsDown(player.playerState.playerNumber, !rawInput ? player : null);
 
     /// <summary>
     ///     Determines whether a given keybind is currently being held by the player with the provided index.
     /// </summary>
+    /// <remarks>
+    ///     Unlike its extension variant, this method makes no checking if the player is able to receive input,
+    ///     and may return true even if their character is dead or incapacitated.
+    /// </remarks>
     /// <param name="playerNumber">The index of the player.</param>
     /// <param name="keybind">The keybind to be checked.</param>
+    /// <param name="rawInput">If true, input will be evaluated even if Slugcat itself cannot receive inputs (e.g. when dead or in cutscene mode).</param>
     /// <returns><c>true</c> if the keybind's key is currently being held, <c>false</c> otherwise.</returns>
-    public static bool IsKeyDown(int playerNumber, Keybind keybind) =>
+    public static bool IsKeyDown(int playerNumber, Keybind keybind, bool rawInput = false) =>
         Extras.IsIICEnabled
-            ? ImprovedInputHelper.IsKeyDown(playerNumber, keybind)
+            ? ImprovedInputHelper.IsKeyDown(playerNumber, keybind, rawInput)
             : keybind.IsDown(playerNumber);
 
     /// <summary>
@@ -50,21 +56,23 @@ public static class InputHandler
     /// </summary>
     /// <param name="player">The player itself.</param>
     /// <param name="keybind">The keybind to be checked.</param>
+    /// <param name="rawInput">If true, input will be evaluated even if Slugcat itself cannot receive inputs (e.g. when dead or in cutscene mode).</param>
     /// <returns><c>true</c> if the keybind's key was just pressed, <c>false</c> otherwise.</returns>
-    public static bool WasKeyJustPressed(this Player player, Keybind keybind) =>
+    public static bool WasKeyJustPressed(this Player player, Keybind keybind, bool rawInput = false) =>
         Extras.IsIICEnabled
-            ? ImprovedInputHelper.WasKeyJustPressed(player, keybind)
-            : keybind.JustPressed(player.playerState.playerNumber);
+            ? ImprovedInputHelper.WasKeyJustPressed(player, keybind, rawInput)
+            : keybind.JustPressed(player.playerState.playerNumber, !rawInput ? player : null);
 
     /// <summary>
     ///     Determines whether a given keybind has just been pressed by the player with the provided index.
     /// </summary>
     /// <param name="playerNumber">The index of the player.</param>
     /// <param name="keybind">The keybind to be checked.</param>
+    /// <param name="rawInput">If true, input will be evaluated even if Slugcat itself cannot receive inputs (e.g. when dead or in cutscene mode).</param>
     /// <returns><c>true</c> if the keybind's key was just pressed, <c>false</c> otherwise.</returns>
-    public static bool WasKeyJustPressed(int playerNumber, Keybind keybind) =>
+    public static bool WasKeyJustPressed(int playerNumber, Keybind keybind, bool rawInput = false) =>
         Extras.IsIICEnabled
-            ? ImprovedInputHelper.WasKeyJustPressed(playerNumber, keybind)
+            ? ImprovedInputHelper.WasKeyJustPressed(playerNumber, keybind, rawInput)
             : keybind.JustPressed(playerNumber);
 
     /// <summary>

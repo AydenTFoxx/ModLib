@@ -1,4 +1,5 @@
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using BepInEx.Logging;
 using LogUtils;
 
@@ -25,7 +26,8 @@ public class LogUtilsAdapter(ILogger logger) : IMyLogger
     public void LogWarning(object data) => Log(LogLevel.Warning, data);
 
     /// <inheritdoc/>
-    public void Log(object message) => logger.Log(message);
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void Log(object message) => Log(LogLevel.Debug, message);
     /// <inheritdoc/>
     public void Log(LogLevel category, object message) => logger.Log(category, message);
 

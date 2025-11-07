@@ -243,7 +243,8 @@ public class OptionBuilder(OpTab opTab)
     /// <param name="index">The index of the color to be retrieved.</param>
     /// <param name="fallback">A fallback color to use if the given index does not have a value.</param>
     /// <returns>A <c>Color</c> instance for usage by menu elements.</returns>
-    private static Color GetColorOrDefault(Color[] colors, int index, Color fallback = default)
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public static Color GetColorOrDefault(Color[] colors, int index, Color fallback = default)
     {
         Color color = colors.ElementAtOrDefault(index);
 
