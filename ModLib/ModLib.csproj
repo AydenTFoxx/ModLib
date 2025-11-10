@@ -9,7 +9,7 @@
 	</PropertyGroup>
 
 	<!-- .NET options -->
-    <PropertyGroup>
+	<PropertyGroup>
 		<TargetFramework>net481</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
@@ -24,11 +24,11 @@
 	<!-- Determinism config -->
 	<PropertyGroup>
 		<Deterministic>true</Deterministic>
-    	<DeterministicSourcePaths>true</DeterministicSourcePaths>
+		<DeterministicSourcePaths>true</DeterministicSourcePaths>
 	</PropertyGroup>
 
 	<ItemGroup>
-    	<SourceRoot Include="$(MSBuildThisFileDirectory)/" />
+		<SourceRoot Include="$(MSBuildThisFileDirectory)/" />
 	</ItemGroup>
 
 	<!-- Referenced assemblies -->
@@ -49,18 +49,17 @@
 	<!-- Post-compile tasks -->
 	<Target Name="GenerateModLibrary" AfterTargets="PostBuildEvent">
 		<ItemGroup>
-			<CopyPlugins Include="../mod/newest/plugins/$(TargetName).*" />
+			<CopyPlugins Include="../lib/Custom/$(TargetName).dll" />
+			<CopyPlugins Include="../lib/Custom/$(TargetName).pdb" />
 
 			<CopyDeps Include="../lib/Mods/LogUtils.dll" />
 			<CopyDeps Include="../lib/Mods/LogUtils.pdb" />
-
-			<CopyRawFiles Include="$(TargetDir)$(TargetName).*" />
 		</ItemGroup>
 
 		<Exec Command="MonoMod.RuntimeDetour.HookGen.exe $(TargetDir)$(TargetName).dll" WorkingDirectory="../mod/utils/" />
-		<Exec Command="ilrepack /out:../mod/newest/plugins/$(TargetName).dll /lib:../lib/Mods/ $(TargetDir)$(TargetName).dll $(TargetDir)MMHOOK_$(TargetName).dll" />
+		<Exec Command="ilrepack /out:../lib/Custom/$(TargetName).dll /xmldocs /lib:../lib/Mods/ $(TargetDir)$(TargetName).dll $(TargetDir)MMHOOK_$(TargetName).dll" />
 
-		<Copy SourceFiles="@(CopyPlugins)" DestinationFolder="../lib/Custom/" />
+		<Copy SourceFiles="@(CopyPlugins)" DestinationFolder="../mod/newest/plugins/" />
 		<Copy SourceFiles="@(CopyDeps)" DestinationFolder="../mod/newest/plugins/" />
 	</Target>
 
