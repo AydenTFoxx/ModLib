@@ -64,7 +64,7 @@ public class ServerOptions
     /// </remarks>
     /// <param name="optionKey">The unique key for identifying the temporary option. If an existing option has the same key, it is overriden.</param>
     /// <param name="optionValue">The value to be saved with the given option key.</param>
-    /// <param name="removeOnRefresh">If true, this temporary option will be removed the next time <see cref="RefreshOptions()"/> is called.</param>
+    /// <param name="removeOnRefresh">If true, this temporary option will be removed the next time <see cref="RefreshOptions"/> is called.</param>
     public void AddTemporaryOption(string optionKey, ConfigValue optionValue, bool removeOnRefresh = true)
     {
         string tempKey = removeOnRefresh && !optionKey.StartsWith("!", StringComparison.OrdinalIgnoreCase) ? $"!{optionKey}" : optionKey;
@@ -108,7 +108,8 @@ public class ServerOptions
     /// <summary>
     ///     Sets the local holder's values to those from the REMIX option interface.
     /// </summary>
-    public void RefreshOptions()
+    /// <param name="shallowRefresh">If true, only temporary options are refreshed, instead of all registered values.</param>
+    public void RefreshOptions(bool shallowRefresh = false)
     {
         bool changedOptions = false;
 
@@ -125,14 +126,19 @@ public class ServerOptions
             }
         }
 
+        if (shallowRefresh) return;
+
         foreach (ConfigurableBase configurable in OptionHolders.Keys)
         {
             if (IsTemporaryOption(configurable.key)) continue;
 
             ConfigValue value = ConfigValue.FromObject(configurable.BoxedValue);
 
-            if (_options[configurable.key] != value)
+            bool hasKey = _options.ContainsKey(configurable.key);
+            if (!hasKey || _options[configurable.key] != value)
             {
+                Core.Logger.LogDebug($"{(hasKey ? "Updating" : "Setting")} configurable [{configurable.key}] to {value}.{(hasKey ? $" (Was: {_options[configurable.key]})" : "")}");
+
                 _options[configurable.key] = value;
 
                 changedOptions = true;

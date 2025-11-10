@@ -68,10 +68,10 @@ public class FallbackLogger(ManualLogSource logSource) : IMyLogger
             case LogLevel.Message:
                 UnityEngine.Debug.LogAssertion(data);
                 break;
+            case LogLevel.None:
             case LogLevel.Info:
             case LogLevel.Debug:
             case LogLevel.All:
-            case LogLevel.None:
             default:
                 UnityEngine.Debug.Log(data);
                 break;

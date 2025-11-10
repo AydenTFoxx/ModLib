@@ -36,6 +36,14 @@ public static class Extras
     public static bool IsOnlineSession => IsMeadowEnabled && MeadowUtils.IsOnline;
 
     /// <summary>
+    ///     If the current game session is in a multiplayer context (online or local).
+    /// </summary>
+    /// <remarks>
+    ///     To determine if the given session is online or not, use <see cref="IsOnlineSession"/>.
+    /// </remarks>
+    public static bool IsMultiplayer => (ModManager.JollyCoop && InGameSession) || IsOnlineSession;
+
+    /// <summary>
     ///     If the player is the host of the current game session. On Singleplayer, this is always true.
     /// </summary>
     public static bool IsHostPlayer => !IsMeadowEnabled || MeadowUtils.IsHost;

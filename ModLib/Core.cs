@@ -111,9 +111,9 @@ internal static class Core
     {
         orig.Invoke(self, game);
 
-        Extras.InGameSession = true;
+        OptionUtils.SharedOptions.RefreshOptions(Extras.InGameSession);
 
-        OptionUtils.SharedOptions.RefreshOptions();
+        Extras.InGameSession = true;
     }
 
     private static void GameUpdateHook(On.RainWorldGame.orig_Update orig, RainWorldGame self)
