@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using BepInEx.Bootstrap;
 using BepInEx.Logging;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
@@ -70,7 +71,7 @@ public static class Entrypoint
             }
             else
             {
-                Core.Initialize();
+                Chainloader.ManagerObject.AddComponent<CorePlugin>();
             }
 
             IsInitialized = true;
@@ -108,11 +109,22 @@ public static class Entrypoint
         IsInitialized = false;
     }
 
+    /// <summary>
+    ///     Adds a CorePlugin object to the GameObject all mods are tied to, so ModLib can more accurately detect when the game is shutting down.
+    /// </summary>
     private static void InitializeCoreILHook(ILContext context)
     {
         ILCursor c = new(context);
 
-        c.EmitDelegate(Core.Initialize);
+        c.GotoNext(MoveType.After, static x => x.MatchBrfalse(out _))
+         .MoveAfterLabels()
+         .EmitDelegate(CoreInitialize);
+
+        static void CoreInitialize()
+        {
+            if (!Chainloader.ManagerObject.TryGetComponent<CorePlugin>(out _))
+                Chainloader.ManagerObject.AddComponent<CorePlugin>();
+        }
     }
 
     /// <summary>

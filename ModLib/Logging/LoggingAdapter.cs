@@ -21,7 +21,7 @@ public static class LoggingAdapter
             {
                 Directory.CreateDirectory(Core.LogsPath);
             }
-        });
+        }, Core.Logger);
     }
 
     /// <summary>

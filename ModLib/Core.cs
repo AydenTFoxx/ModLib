@@ -15,7 +15,7 @@ internal static class Core
 {
     public const string MOD_GUID = "ynhzrfxn.modlib";
     public const string MOD_NAME = "ModLib";
-    public const string MOD_VERSION = "0.2.3.1";
+    public const string MOD_VERSION = "0.2.4.0";
 
     public static readonly BepInPlugin PluginData = new(MOD_GUID, MOD_NAME, MOD_VERSION);
     public static readonly ManualLogSource LogSource = BepInEx.Logging.Logger.CreateLogSource(MOD_NAME);
@@ -46,7 +46,7 @@ internal static class Core
             Logger = LoggingAdapter.CreateLogger(LogSource);
         }
 
-        Logger = new LogWrapper(Logger, OptionUtils.IsOptionEnabled("modlib.debug") ? LogLevel.All : LogLevel.Message);
+        Logger = new LogWrapper(Logger, OptionUtils.IsOptionEnabled("modlib.debug") ? LogLevel.All : LogLevel.Info);
 
         if (Extras.IsMeadowEnabled)
         {
@@ -122,6 +122,13 @@ internal static class Core
         {
             ImprovedInputHelper.UpdateInput();
         }
+        else
+        {
+            foreach (Keybind keybind in Keybind.Keybinds)
+            {
+                keybind.Update();
+            }
+        }
 
         orig.Invoke(self);
 
@@ -150,7 +157,7 @@ internal static class Core
             {
                 Version oldVersion = AssemblyName.GetAssemblyName(backupPath).Version;
 
-                Logger.LogDebug($"Patcher update successful. (Previous: {oldVersion}; Current: {_latestLoaderVersion})");
+                Logger.LogInfo($"Patcher update successful. (Previous: {oldVersion}; Current: {_latestLoaderVersion})");
 
                 File.Delete(backupPath);
             }

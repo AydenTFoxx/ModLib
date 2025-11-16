@@ -55,4 +55,10 @@ public class LogWrapper(IMyLogger logger, LogLevel maxLogLevel) : IMyLogger
     public void LogMessage(object data) => logger.LogMessage(data);
     /// <inheritdoc/>
     public void LogWarning(object data) => logger.LogWarning(data);
+
+    /// <summary>
+    ///     Returns a string representing the current object and its wrapped <see cref="IMyLogger"/> instance.
+    /// </summary>
+    /// <returns>A string representing the current object and its wrapped <see cref="IMyLogger"/> instance.</returns>
+    public override string ToString() => $"{base.ToString()} ({logger})";
 }

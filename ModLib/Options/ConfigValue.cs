@@ -211,7 +211,7 @@ public readonly struct ConfigValue : IComparable, IComparable<ConfigValue>, IEqu
             ValueKind.Float => _floatValue == other._floatValue,
             ValueKind.Bool => _boolValue == other._boolValue,
             ValueKind.String => _stringValue == other._stringValue,
-            _ => false,
+            _ => true,
         };
     }
 

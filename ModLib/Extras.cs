@@ -84,7 +84,7 @@ public static class Extras
     /// <returns>The wrapped <see cref="Action"/> object, or <c>null</c> if <paramref name="autoInvoke"/> was set to true.</returns>
     public static Action? WrapAction(Action action, bool autoInvoke = true)
     {
-        Assembly caller = Assembly.GetCallingAssembly();
+        IMyLogger? logger = Registry.TryGetMod(Assembly.GetCallingAssembly())?.Logger ?? Core.Logger;
 
         if (autoInvoke)
         {
@@ -104,8 +104,6 @@ public static class Extras
             }
             catch (Exception ex)
             {
-                IMyLogger? logger = Registry.GetMod(caller).Logger;
-
                 if (logger is null) return;
 
                 logger.LogError($"Failed to run wrapped action: {action.Method.Name}");
@@ -122,6 +120,8 @@ public static class Extras
     /// <remarks>Usage of this method is akin to the original <c>WrapInit</c> method; See SlugTemplate for an example of this.</remarks>
     public static ILContext.Manipulator WrapILHook(Action<ILContext> action)
     {
+        IMyLogger? logger = Registry.TryGetMod(Assembly.GetCallingAssembly())?.Logger ?? Core.Logger;
+
         return (context) =>
         {
             try
@@ -130,8 +130,6 @@ public static class Extras
             }
             catch (Exception ex)
             {
-                IMyLogger? logger = Registry.GetMod(Assembly.GetCallingAssembly()).Logger;
-
                 if (logger is null) return;
 
                 logger.LogError($"Failed to apply IL hook: {action.Method.Name}");
@@ -142,6 +140,8 @@ public static class Extras
 
     internal static void WrapAction(Action action, IMyLogger? logger)
     {
+        logger ??= Core.Logger;
+
         try
         {
             action.Invoke();
@@ -153,5 +153,25 @@ public static class Extras
             logger.LogError($"Failed to run wrapped action: {action.Method.Name}");
             logger.LogError(ex);
         }
+    }
+
+    internal static ILContext.Manipulator WrapILHook(Action<ILContext> action, IMyLogger? logger)
+    {
+        logger ??= Core.Logger;
+
+        return (context) =>
+        {
+            try
+            {
+                action.Invoke(context);
+            }
+            catch (Exception ex)
+            {
+                if (logger is null) return;
+
+                logger.LogError($"Failed to apply IL hook: {action.Method.Name}");
+                logger.LogError(ex);
+            }
+        };
     }
 }
