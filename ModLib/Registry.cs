@@ -98,6 +98,11 @@ public static class Registry
             : throw new ModNotFoundException($"Could not find mod for assembly: {caller.FullName}");
     }
 
+    internal static ModEntry? TryGetMod(Assembly caller) =>
+        RegisteredMods.TryGetValue(caller, out ModEntry metadata)
+            ? metadata
+            : null;
+
     /// <summary>
     ///     Registers the given assembly to ModLib, binding the provided arguments as its metadata.
     /// </summary>
@@ -172,7 +177,7 @@ public static class Registry
         /// </summary>
         /// <returns>A string representing this mod's stored metadata.</returns>
         public override string ToString() =>
-            $"[ Plugin: ({Plugin.GUID}|{Plugin.Name}|{Plugin.Version}); OptionHolder? {OptionHolder?.ToString() ?? "None"}; Logger? {Logger?.ToString() ?? "None"}{(Extras.LogUtilsAvailable ? $"; LogID? {(LogID as ExtEnumBase)?.ToString() ?? "None"}" : "")} ]";
+            $"[Plugin: ({Plugin.GUID}|{Plugin.Name}|{Plugin.Version}); OptionHolder? {OptionHolder?.ToString() ?? "None"}; Logger? {Logger?.ToString() ?? "None"}{(Extras.LogUtilsAvailable ? $"; LogID? {(LogID as ExtEnumBase)?.ToString() ?? "None"}" : "")}]";
     }
 
     /// <summary>

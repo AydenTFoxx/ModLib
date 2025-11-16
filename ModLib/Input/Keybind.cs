@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using BepInEx;
 using RWCustom;
 using UnityEngine;
@@ -14,10 +15,17 @@ namespace ModLib.Input;
 /// </summary>
 public record Keybind
 {
+    private const int MaxPlayers = 4;
+
     private static readonly List<Keybind> _keybinds = [];
-    private static readonly ReadOnlyCollection<Keybind> _readonlyKeybinds = new(_keybinds);
 
     private static global::Options? Options => Custom.rainWorld?.options;
+
+    /// <summary>
+    ///     Returns a read-only list of all registered keybinds.
+    /// </summary>
+    /// <returns>A read-only list of all registered keybinds.</returns>
+    public static ReadOnlyCollection<Keybind> Keybinds { get; } = new(_keybinds);
 
     /// <summary>
     ///     The unique identifier of this Keybind.
@@ -49,6 +57,8 @@ public record Keybind
     /// </summary>
     public KeyCode XboxPreset { get; }
 
+    private readonly bool[,] _keyPresses = new bool[MaxPlayers, 2];
+
     private Keybind(string id, string mod, string name, KeyCode keyboardPreset, KeyCode gamepadPreset, KeyCode xboxPreset)
     {
         Id = id;
@@ -64,28 +74,48 @@ public record Keybind
     ///     Determines whether this keybind is currently being pressed.
     /// </summary>
     /// <param name="playerNumber">The player index whose input will be queried.</param>
+    /// <param name="player">
+    ///     The actual player instance whose inputs are being queried.
+    ///     If specified, input will be ignored while the player is unconscious/dead or in a cutscene.
+    /// </param>
     /// <returns><c>true</c> if this keybind's bound key is being held, <c>false</c> otherwise.</returns>
-    internal bool IsDown(int playerNumber)
+    internal bool IsDown(int playerNumber, Player? player = null)
     {
         ValidatePlayerNumber(playerNumber);
 
-        return Options?.controls[playerNumber].controlPreference == global::Options.ControlSetup.ControlToUse.SPECIFIC_GAMEPAD
-            ? UnityEngine.Input.GetKey(GamepadPreset)
-            : UnityEngine.Input.GetKey(KeyboardPreset);
+        return (player is null || (player.Consious && !player.mapInput.mp && player.controller is null))
+            && _keyPresses[playerNumber, 0];
     }
 
     /// <summary>
     ///     Determines whether this keybind has just been pressed.
     /// </summary>
     /// <param name="playerNumber">The player index whose input will be queried.</param>
+    /// <param name="player">
+    ///     The actual player instance whose inputs are being queried.
+    ///     If specified, input will be ignored while the player is unconscious/dead or in a cutscene.
+    /// </param>
     /// <returns><c>true</c> if this keybind's bound key was just pressed, <c>false</c> otherwise.</returns>
-    internal bool JustPressed(int playerNumber)
+    internal bool JustPressed(int playerNumber, Player? player = null)
     {
         ValidatePlayerNumber(playerNumber);
 
-        return Options?.controls[playerNumber].controlPreference == global::Options.ControlSetup.ControlToUse.SPECIFIC_GAMEPAD
-            ? UnityEngine.Input.GetKeyDown(GamepadPreset)
-            : UnityEngine.Input.GetKeyDown(KeyboardPreset);
+        return (player is null || (player.Consious && !player.mapInput.mp && player.controller is null))
+            && _keyPresses[playerNumber, 0] && !_keyPresses[playerNumber, 1];
+    }
+
+    internal void Update()
+    {
+        for (int i = 0; i < MaxPlayers; i++)
+        {
+            _keyPresses[i, 1] = _keyPresses[i, 0];
+            _keyPresses[i, 0] = Options is not null
+                && Options.controls[i].controlPreference == global::Options.ControlSetup.ControlToUse.SPECIFIC_GAMEPAD
+                    ? Options.controls[i].recentPreset == global::Options.ControlSetup.Preset.XBox
+                        ? UnityEngine.Input.GetKey(XboxPreset)
+                        : UnityEngine.Input.GetKey(GamepadPreset)
+                    : UnityEngine.Input.GetKey(KeyboardPreset);
+        }
     }
 
     /// <summary>
@@ -100,12 +130,6 @@ public record Keybind
     /// <param name="id">The identifier of the Keybind to be retrieved.</param>
     /// <returns>The <see cref="Keybind"/> object whose Id matches the provided argument, or <c>null</c> if none is found.</returns>
     public static Keybind? Get(string id) => _keybinds.Find(k => k.Id == id);
-
-    /// <summary>
-    ///     Returns a read-only list of all registered keybinds.
-    /// </summary>
-    /// <returns>A read-only list of all registered keybinds.</returns>
-    public static IReadOnlyList<Keybind> Keybinds() => _readonlyKeybinds;
 
     /// <inheritdoc cref="Register(string, string, KeyCode, KeyCode, KeyCode)"/>
     public static Keybind Register(string name, KeyCode keyboardPreset, KeyCode gamepadPreset) =>
@@ -199,11 +223,10 @@ public record Keybind
         return ImprovedInput.PlayerKeybind.Get(self.Id) ?? ImprovedInput.PlayerKeybind.Register(self.Id, self.Mod, self.Name, self.KeyboardPreset, self.GamepadPreset, self.XboxPreset);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static void ValidatePlayerNumber(int playerNumber)
     {
-        if (playerNumber < 0 || playerNumber >= Options?.controls?.Length)
-        {
+        if (playerNumber is < 0 or >= MaxPlayers)
             throw new ArgumentOutOfRangeException(nameof(playerNumber), $"Player number {playerNumber} is not valid.");
-        }
     }
 }

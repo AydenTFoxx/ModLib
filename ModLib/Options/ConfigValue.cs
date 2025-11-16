@@ -203,7 +203,17 @@ public readonly struct ConfigValue : IComparable, IComparable<ConfigValue>, IEqu
     public int CompareTo(ConfigValue other) => other.Kind.CompareTo(Kind);
 
     /// <inheritdoc/>
-    public bool Equals(ConfigValue other) => GetBoxedValue() == other.GetBoxedValue();
+    public bool Equals(ConfigValue other)
+    {
+        return Kind == other.Kind && Kind switch
+        {
+            ValueKind.Int => _intValue == other._intValue,
+            ValueKind.Float => _floatValue == other._floatValue,
+            ValueKind.Bool => _boolValue == other._boolValue,
+            ValueKind.String => _stringValue == other._stringValue,
+            _ => true,
+        };
+    }
 
     /// <inheritdoc/>
     public static bool operator ==(ConfigValue x, ConfigValue y)

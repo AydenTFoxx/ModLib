@@ -41,11 +41,9 @@ internal static class MeadowHooks
     {
         orig.Invoke(self, game);
 
-        if (Extras.InGameSession) return;
+        OptionUtils.SharedOptions.RefreshOptions(Extras.InGameSession);
 
         Extras.InGameSession = true;
-
-        OptionUtils.SharedOptions.RefreshOptions();
 
         if (!MeadowUtils.IsHost)
         {

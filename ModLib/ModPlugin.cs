@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using BepInEx;
+using BepInEx.Logging;
 using ModLib.Logging;
 
 namespace ModLib;
@@ -25,6 +26,11 @@ public abstract class ModPlugin : BaseUnityPlugin
     ///     The custom logger instance for this mod.
     /// </summary>
     protected new IMyLogger Logger { get; set; }
+
+    /// <summary>
+    ///     The <see cref="ManualLogSource"/> inherited from <see cref="BaseUnityPlugin"/> by this mod.
+    /// </summary>
+    protected ManualLogSource LogSource { get; set; }
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
@@ -61,9 +67,11 @@ public abstract class ModPlugin : BaseUnityPlugin
 
     private void Initialize(Assembly caller, Type? optionHolder, IMyLogger? logger)
     {
-        logger ??= LoggingAdapter.CreateLogger(base.Logger);
+        LogSource = base.Logger;
 
-        if (logger is not LogUtilsAdapter adapter || adapter.ModLibCreated)
+        logger ??= LoggingAdapter.CreateLogger(LogSource);
+
+        if (logger is not LogUtilsAdapter { ModLibCreated: false })
         {
             string pathToLogFile = Path.Combine(Registry.DefaultLogsPath, LoggingAdapter.SanitizeName(Info.Metadata.Name) + ".log");
 
@@ -150,6 +158,6 @@ public abstract class ModPlugin : BaseUnityPlugin
     {
         orig.Invoke(self);
 
-        Extras.WrapAction(LoadResources);
+        Extras.WrapAction(LoadResources, Logger);
     }
 }

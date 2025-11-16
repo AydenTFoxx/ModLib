@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace ModLib.Collections;
 
@@ -8,7 +9,8 @@ namespace ModLib.Collections;
 ///     A collection of weakly-referenced elements of a given type.
 /// </summary>
 /// <typeparam name="T">The type of this collection.</typeparam>
-public class WeakCollection<T> : ICollection<T> where T : class
+[EditorBrowsable(EditorBrowsableState.Advanced)]
+public abstract class WeakCollection<T> : ICollection<T> where T : class
 {
     /// <summary>
     ///     The internal collection used for tracking <see cref="WeakReference{T}"/> objects.
@@ -18,7 +20,7 @@ public class WeakCollection<T> : ICollection<T> where T : class
     /// <summary>
     ///     Creates a new collection of weak references to a given type.
     /// </summary>
-    public WeakCollection()
+    protected WeakCollection()
     {
         values = [];
     }
@@ -27,7 +29,7 @@ public class WeakCollection<T> : ICollection<T> where T : class
     ///     Creates a new collection of weak references to a given type with the provided initial capacity.
     /// </summary>
     /// <param name="capacity">The number of elements the collection can initially store.</param>
-    public WeakCollection(int capacity)
+    protected WeakCollection(int capacity)
     {
         values = new(capacity);
     }
@@ -36,7 +38,7 @@ public class WeakCollection<T> : ICollection<T> where T : class
     ///     Creates a new collection of weak references to a given type containing elements copied from the provided collection.
     /// </summary>
     /// <param name="collection">The collection whose values will be copied.</param>
-    public WeakCollection(IEnumerable<T> collection)
+    protected WeakCollection(IEnumerable<T> collection)
     {
         values = [];
         foreach (T item in collection)
@@ -57,10 +59,17 @@ public class WeakCollection<T> : ICollection<T> where T : class
     public void Clear() => values.Clear();
 
     /// <summary>
-    ///     Gets the number of weak references contained in the <see cref="WeakReference{T}"/>.
+    ///     Gets the number of valid references contained in the <see cref="WeakCollection{T}"/>.
     /// </summary>
-    /// <returns>The number of weak references contained in the <see cref="WeakReference{T}"/>.</returns>
-    public int Count => values.Count;
+    /// <returns>The number of valid references contained in the <see cref="WeakCollection{T}"/>.</returns>
+    public int Count
+    {
+        get
+        {
+            Purge();
+            return values.Count;
+        }
+    }
 
     /// <summary>
     ///     Gets a value indicating whether the <see cref="WeakCollection{T}"/> is read-only.
@@ -130,6 +139,19 @@ public class WeakCollection<T> : ICollection<T> where T : class
                 continue;
             }
             yield return element;
+        }
+    }
+
+    /// <summary>
+    ///     Removes all items in the collection whose reference value has been dropped.
+    /// </summary>
+    public void Purge()
+    {
+        for (int i = 0; i < values.Count; i++)
+        {
+            if (values[i].TryGetTarget(out _)) continue;
+
+            values.RemoveAt(i);
         }
     }
 }

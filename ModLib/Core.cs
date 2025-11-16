@@ -15,7 +15,7 @@ internal static class Core
 {
     public const string MOD_GUID = "ynhzrfxn.modlib";
     public const string MOD_NAME = "ModLib";
-    public const string MOD_VERSION = "0.2.2.4";
+    public const string MOD_VERSION = "0.2.4.0";
 
     public static readonly BepInPlugin PluginData = new(MOD_GUID, MOD_NAME, MOD_VERSION);
     public static readonly ManualLogSource LogSource = BepInEx.Logging.Logger.CreateLogSource(MOD_NAME);
@@ -35,10 +35,18 @@ internal static class Core
 
         Initialized = true;
 
+#if DEBUG
+        OptionUtils.SharedOptions.AddTemporaryOption("modlib.debug", new ConfigValue(true), false);
+#else
+        OptionUtils.SharedOptions.AddTemporaryOption("modlib.debug", new ConfigValue(ModManager.DevTools), false);
+#endif
+
         if (Extras.LogUtilsAvailable)
         {
             Logger = LoggingAdapter.CreateLogger(LogSource);
         }
+
+        Logger = new LogWrapper(Logger, OptionUtils.IsOptionEnabled("modlib.debug") ? LogLevel.All : LogLevel.Info);
 
         if (Extras.IsMeadowEnabled)
         {
@@ -103,11 +111,9 @@ internal static class Core
     {
         orig.Invoke(self, game);
 
-        if (Extras.InGameSession) return;
+        OptionUtils.SharedOptions.RefreshOptions(Extras.InGameSession);
 
         Extras.InGameSession = true;
-
-        OptionUtils.SharedOptions.RefreshOptions();
     }
 
     private static void GameUpdateHook(On.RainWorldGame.orig_Update orig, RainWorldGame self)
@@ -115,6 +121,13 @@ internal static class Core
         if (Extras.IsIICEnabled)
         {
             ImprovedInputHelper.UpdateInput();
+        }
+        else
+        {
+            foreach (Keybind keybind in Keybind.Keybinds)
+            {
+                keybind.Update();
+            }
         }
 
         orig.Invoke(self);
@@ -144,7 +157,7 @@ internal static class Core
             {
                 Version oldVersion = AssemblyName.GetAssemblyName(backupPath).Version;
 
-                Logger.LogDebug($"Patcher update successful. (Previous: {oldVersion}; Current: {_latestLoaderVersion})");
+                Logger.LogInfo($"Patcher update successful. (Previous: {oldVersion}; Current: {_latestLoaderVersion})");
 
                 File.Delete(backupPath);
             }

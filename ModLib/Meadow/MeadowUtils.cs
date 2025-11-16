@@ -37,6 +37,7 @@ public static class MeadowUtils
     /// </remarks>
     /// <param name="physicalObject">The object itself.</param>
     /// <returns><c>true</c> if the physical object belongs to this client (or the current game session is not online), <c>false</c> otherwise.</returns>
+    [MethodImpl(MethodImplOptions.NoInlining)]
     public static bool IsMine(PhysicalObject physicalObject) => physicalObject.IsLocal();
 
     /// <summary>
