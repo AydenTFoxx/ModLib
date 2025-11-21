@@ -31,9 +31,9 @@ public static class InputHandler
     /// <param name="rawInput">If true, input will be evaluated even if Slugcat itself cannot receive inputs (e.g. when dead or in cutscene mode).</param>
     /// <returns><c>true</c> if the keybind's key is currently being held, <c>false</c> otherwise.</returns>
     public static bool IsKeyDown(this Player player, Keybind keybind, bool rawInput = false) =>
-        Extras.IsIICEnabled
+        (player.AI is null || player.safariControlled) && (Extras.IsIICEnabled
             ? ImprovedInputHelper.IsKeyDown(player, keybind, rawInput)
-            : keybind.IsDown(player.playerState.playerNumber, !rawInput ? player : null);
+            : keybind.IsDown(player.playerState.playerNumber, !rawInput ? player : null));
 
     /// <summary>
     ///     Determines whether a given keybind is currently being held by the player with the provided index.
@@ -59,9 +59,9 @@ public static class InputHandler
     /// <param name="rawInput">If true, input will be evaluated even if Slugcat itself cannot receive inputs (e.g. when dead or in cutscene mode).</param>
     /// <returns><c>true</c> if the keybind's key was just pressed, <c>false</c> otherwise.</returns>
     public static bool WasKeyJustPressed(this Player player, Keybind keybind, bool rawInput = false) =>
-        Extras.IsIICEnabled
+        (player.AI is null || player.safariControlled) && (Extras.IsIICEnabled
             ? ImprovedInputHelper.WasKeyJustPressed(player, keybind, rawInput)
-            : keybind.JustPressed(player.playerState.playerNumber, !rawInput ? player : null);
+            : keybind.JustPressed(player.playerState.playerNumber, !rawInput ? player : null));
 
     /// <summary>
     ///     Determines whether a given keybind has just been pressed by the player with the provided index.

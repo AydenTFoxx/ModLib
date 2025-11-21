@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using ModLib.Loader;
 
 namespace ModLib.Options;
 
@@ -12,6 +13,11 @@ public static class OptionUtils
     ///     The client's local <see cref="ServerOptions"/> instance, overriden when joining an online lobby.
     /// </summary>
     public static ServerOptions SharedOptions { get; } = new();
+
+    static OptionUtils()
+    {
+        Entrypoint.TryInitialize();
+    }
 
     /// <summary>
     ///     Directly requests for the client's REMIX options, then retrieves its value.

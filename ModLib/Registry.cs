@@ -64,7 +64,7 @@ public static class Registry
     /// </param>
     /// <param name="logger">The wrapped logger for usage by this mod.</param>
     /// <exception cref="InvalidOperationException">The current mod assembly is already registered to ModLib.</exception>
-    public static void RegisterMod(BaseUnityPlugin plugin, Type? optionHolder, IMyLogger? logger) =>
+    public static void RegisterMod(BaseUnityPlugin plugin, Type? optionHolder, ModLogger? logger) =>
         RegisterAssembly(Assembly.GetCallingAssembly(), plugin.Info.Metadata, optionHolder, logger);
 
     /// <summary>
@@ -112,7 +112,7 @@ public static class Registry
     /// <param name="logger">The logger instance for this mod. If null, a new one is created.</param>
     /// <returns>The newly registered mod entry.</returns>
     /// <exception cref="InvalidOperationException">The given assembly is already registered to ModLib.</exception>
-    internal static void RegisterAssembly(Assembly caller, BepInPlugin plugin, Type? optionHolder, IMyLogger? logger)
+    internal static void RegisterAssembly(Assembly caller, BepInPlugin plugin, Type? optionHolder, ModLogger? logger)
     {
         if (RegisteredMods.TryGetValue(caller, out _))
             throw new InvalidOperationException($"{plugin.Name} is already registered to ModLib.");
@@ -152,14 +152,14 @@ public static class Registry
         /// <summary>
         ///     The logger instance of this mod, if any.
         /// </summary>
-        public IMyLogger? Logger { get; set; }
+        public ModLogger? Logger { get; set; }
 
         internal ModEntry(BepInPlugin plugin, Type? optionHolder, ManualLogSource logger)
             : this(plugin, optionHolder, LoggingAdapter.CreateLogger(logger))
         {
         }
 
-        internal ModEntry(BepInPlugin plugin, Type? optionHolder, IMyLogger? logger)
+        internal ModEntry(BepInPlugin plugin, Type? optionHolder, ModLogger? logger)
         {
             Plugin = plugin;
             OptionHolder = optionHolder;

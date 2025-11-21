@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using BepInEx;
-using RWCustom;
 using UnityEngine;
 
 namespace ModLib.Input;
@@ -15,11 +13,12 @@ namespace ModLib.Input;
 /// </summary>
 public record Keybind
 {
-    private const int MaxPlayers = 4;
+    private const int InitialMaxPlayers = 1;
+    private const int TotalMaxPlayers = 16;
+
+    internal static int MaxPlayers { get; set; } = InitialMaxPlayers;
 
     private static readonly List<Keybind> _keybinds = [];
-
-    private static global::Options? Options => Custom.rainWorld?.options;
 
     /// <summary>
     ///     Returns a read-only list of all registered keybinds.
@@ -57,7 +56,7 @@ public record Keybind
     /// </summary>
     public KeyCode XboxPreset { get; }
 
-    private readonly bool[,] _keyPresses = new bool[MaxPlayers, 2];
+    private bool[,] _keyPresses = new bool[MaxPlayers, 2];
 
     private Keybind(string id, string mod, string name, KeyCode keyboardPreset, KeyCode gamepadPreset, KeyCode xboxPreset)
     {
@@ -104,17 +103,37 @@ public record Keybind
             && _keyPresses[playerNumber, 0] && !_keyPresses[playerNumber, 1];
     }
 
-    internal void Update()
+    internal void Update(global::Options? options, int playerIndex)
     {
-        for (int i = 0; i < MaxPlayers; i++)
+        _keyPresses[playerIndex, 1] = _keyPresses[playerIndex, 0];
+
+        _keyPresses[playerIndex, 0] = options is not null && (options.controls[playerIndex].controlPreference == global::Options.ControlSetup.ControlToUse.SPECIFIC_GAMEPAD
+            ? options.controls[playerIndex].recentPreset == global::Options.ControlSetup.Preset.XBox
+                ? UnityEngine.Input.GetKey(XboxPreset)
+                : UnityEngine.Input.GetKey(GamepadPreset)
+            : UnityEngine.Input.GetKey(KeyboardPreset));
+    }
+
+    private void ValidatePlayerNumber(int playerNumber)
+    {
+        if (playerNumber is < 0 or >= TotalMaxPlayers)
+            throw new ArgumentOutOfRangeException(nameof(playerNumber), $"Player number {playerNumber} is not within valid range: 0-{TotalMaxPlayers - 1}.");
+
+        if (_keyPresses.Length <= playerNumber)
         {
-            _keyPresses[i, 1] = _keyPresses[i, 0];
-            _keyPresses[i, 0] = Options is not null
-                && Options.controls[i].controlPreference == global::Options.ControlSetup.ControlToUse.SPECIFIC_GAMEPAD
-                    ? Options.controls[i].recentPreset == global::Options.ControlSetup.Preset.XBox
-                        ? UnityEngine.Input.GetKey(XboxPreset)
-                        : UnityEngine.Input.GetKey(GamepadPreset)
-                    : UnityEngine.Input.GetKey(KeyboardPreset);
+            bool[,] lastKeyPresses = (bool[,])_keyPresses.Clone();
+
+            _keyPresses = new bool[(Math.Min(_keyPresses.Length * 2, TotalMaxPlayers)), 2];
+
+            for (int i = 0; i < lastKeyPresses.GetLength(0); i++)
+            {
+                _keyPresses[i, 0] = lastKeyPresses[i, 0];
+                _keyPresses[i, 1] = lastKeyPresses[i, 1];
+            }
+
+            MaxPlayers = Math.Max(MaxPlayers, _keyPresses.Length);
+
+            Core.Logger.LogInfo($"Resizing keyPresses array of {Name} ({Id}) to {_keyPresses.Length}");
         }
     }
 
@@ -221,12 +240,5 @@ public record Keybind
     public static implicit operator ImprovedInput.PlayerKeybind(Keybind self)
     {
         return ImprovedInput.PlayerKeybind.Get(self.Id) ?? ImprovedInput.PlayerKeybind.Register(self.Id, self.Mod, self.Name, self.KeyboardPreset, self.GamepadPreset, self.XboxPreset);
-    }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static void ValidatePlayerNumber(int playerNumber)
-    {
-        if (playerNumber is < 0 or >= MaxPlayers)
-            throw new ArgumentOutOfRangeException(nameof(playerNumber), $"Player number {playerNumber} is not valid.");
     }
 }

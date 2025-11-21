@@ -84,7 +84,7 @@ public static class Extras
     /// <returns>The wrapped <see cref="Action"/> object, or <c>null</c> if <paramref name="autoInvoke"/> was set to true.</returns>
     public static Action? WrapAction(Action action, bool autoInvoke = true)
     {
-        IMyLogger? logger = Registry.TryGetMod(Assembly.GetCallingAssembly())?.Logger ?? Core.Logger;
+        ModLogger? logger = Registry.TryGetMod(Assembly.GetCallingAssembly())?.Logger ?? Core.Logger;
 
         if (autoInvoke)
         {
@@ -120,7 +120,7 @@ public static class Extras
     /// <remarks>Usage of this method is akin to the original <c>WrapInit</c> method; See SlugTemplate for an example of this.</remarks>
     public static ILContext.Manipulator WrapILHook(Action<ILContext> action)
     {
-        IMyLogger? logger = Registry.TryGetMod(Assembly.GetCallingAssembly())?.Logger ?? Core.Logger;
+        ModLogger? logger = Registry.TryGetMod(Assembly.GetCallingAssembly())?.Logger ?? Core.Logger;
 
         return (context) =>
         {
@@ -138,7 +138,7 @@ public static class Extras
         };
     }
 
-    internal static void WrapAction(Action action, IMyLogger? logger)
+    internal static void WrapAction(Action action, ModLogger? logger)
     {
         logger ??= Core.Logger;
 
@@ -155,7 +155,7 @@ public static class Extras
         }
     }
 
-    internal static ILContext.Manipulator WrapILHook(Action<ILContext> action, IMyLogger? logger)
+    internal static ILContext.Manipulator WrapILHook(Action<ILContext> action, ModLogger? logger)
     {
         logger ??= Core.Logger;
 
