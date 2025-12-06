@@ -5,7 +5,6 @@ using System.Security.Permissions;
 using ModLib.Loader;
 using ModLib.Logging;
 using ModLib.Meadow;
-using MonoMod.Cil;
 
 // Allows access to private members
 #pragma warning disable CS0618
@@ -80,62 +79,21 @@ public static class Extras
     ///     Wraps a given action in a try-catch, safely performing its code while handling potential exceptions.
     /// </summary>
     /// <param name="action">The action to be executed.</param>
-    /// <param name="autoInvoke">If true, the resulting action is invoked immediately, and <c>null</c> is returned instead.</param>
-    /// <returns>The wrapped <see cref="Action"/> object, or <c>null</c> if <paramref name="autoInvoke"/> was set to true.</returns>
-    public static Action? WrapAction(Action action, bool autoInvoke = true)
+    public static void WrapAction(Action action)
     {
         ModLogger? logger = Registry.TryGetMod(Assembly.GetCallingAssembly())?.Logger ?? Core.Logger;
 
-        if (autoInvoke)
+        try
         {
-            WrappedResult();
-            return null;
+            action.Invoke();
         }
-        else
+        catch (Exception ex)
         {
-            return WrappedResult;
+            if (logger is null) return;
+
+            logger.LogError($"Failed to run wrapped action: {action.Method.Name}");
+            logger.LogError(ex);
         }
-
-        void WrappedResult()
-        {
-            try
-            {
-                action.Invoke();
-            }
-            catch (Exception ex)
-            {
-                if (logger is null) return;
-
-                logger.LogError($"Failed to run wrapped action: {action.Method.Name}");
-                logger.LogError(ex);
-            }
-        }
-    }
-
-    /// <summary>
-    ///     Wraps a given IL hook in a try-catch, preventing it from breaking other code when applied.
-    /// </summary>
-    /// <param name="action">The hook method to be wrapped.</param>
-    /// <returns>An <c>ILContext.Manipulator</c> instance to be passed in place of the method itself.</returns>
-    /// <remarks>Usage of this method is akin to the original <c>WrapInit</c> method; See SlugTemplate for an example of this.</remarks>
-    public static ILContext.Manipulator WrapILHook(Action<ILContext> action)
-    {
-        ModLogger? logger = Registry.TryGetMod(Assembly.GetCallingAssembly())?.Logger ?? Core.Logger;
-
-        return (context) =>
-        {
-            try
-            {
-                action.Invoke(context);
-            }
-            catch (Exception ex)
-            {
-                if (logger is null) return;
-
-                logger.LogError($"Failed to apply IL hook: {action.Method.Name}");
-                logger.LogError(ex);
-            }
-        };
     }
 
     internal static void WrapAction(Action action, ModLogger? logger)
@@ -153,25 +111,5 @@ public static class Extras
             logger.LogError($"Failed to run wrapped action: {action.Method.Name}");
             logger.LogError(ex);
         }
-    }
-
-    internal static ILContext.Manipulator WrapILHook(Action<ILContext> action, ModLogger? logger)
-    {
-        logger ??= Core.Logger;
-
-        return (context) =>
-        {
-            try
-            {
-                action.Invoke(context);
-            }
-            catch (Exception ex)
-            {
-                if (logger is null) return;
-
-                logger.LogError($"Failed to apply IL hook: {action.Method.Name}");
-                logger.LogError(ex);
-            }
-        };
     }
 }

@@ -17,7 +17,7 @@ internal static class Core
 {
     public const string MOD_GUID = "ynhzrfxn.modlib";
     public const string MOD_NAME = "ModLib";
-    public const string MOD_VERSION = "0.3.0.0";
+    public const string MOD_VERSION = "0.3.1.0";
 
     public static readonly Assembly MyAssembly = typeof(Core).Assembly;
 

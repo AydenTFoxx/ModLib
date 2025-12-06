@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using BepInEx.Bootstrap;
@@ -65,13 +66,13 @@ public static class Entrypoint
             {
                 _initHook ??= new ILHook(
                     typeof(BepInEx.MultiFolderLoader.ChainloaderHandler).GetMethod("PostFindPluginTypes", BindingFlags.NonPublic | BindingFlags.Static),
-                    Extras.WrapILHook(InitializeCoreILHook)
+                    InitializeCoreILHook
                 );
                 _initHook.Apply();
             }
             else
             {
-                Chainloader.ManagerObject.AddComponent<CorePlugin>();
+                CoreInitialize();
             }
 
             IsInitialized = true;
@@ -119,12 +120,20 @@ public static class Entrypoint
         c.GotoNext(MoveType.After, static x => x.MatchBrfalse(out _))
          .MoveAfterLabels()
          .EmitDelegate(CoreInitialize);
+    }
 
-        static void CoreInitialize()
-        {
-            if (!Chainloader.ManagerObject.TryGetComponent<CorePlugin>(out _))
-                Chainloader.ManagerObject.AddComponent<CorePlugin>();
-        }
+    private static void CoreInitialize()
+    {
+        if (Chainloader.ManagerObject.TryGetComponent<CorePlugin>(out _)) return;
+
+        Chainloader.ManagerObject.AddComponent<CorePlugin>();
+
+        using Stream stream = Core.MyAssembly.GetManifestResourceStream("HOOKS_ModLib.dll");
+
+        byte[] assemblyData = new byte[stream.Length];
+        stream.Read(assemblyData, 0, assemblyData.Length);
+
+        Assembly.Load(assemblyData);
     }
 
     /// <summary>

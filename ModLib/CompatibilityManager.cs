@@ -131,7 +131,7 @@ public static class CompatibilityManager
                         string? trueModID = GetModGuid(pathToModInfo);
                         if (!string.IsNullOrWhiteSpace(trueModID))
                         {
-                            modID = trueModID!;
+                            modID = trueModID;
                         }
 
                         if (AdvancedSearchIDs.Contains(trueModID))

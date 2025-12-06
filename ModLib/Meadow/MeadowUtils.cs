@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using RainMeadow;
 
@@ -19,6 +20,11 @@ namespace ModLib.Meadow;
 /// </remarks>
 public static class MeadowUtils
 {
+    /// <summary>
+    ///     Invoked when the player first joins an online game session (not the lobby itself).
+    /// </summary>
+    public static event Action<GameSession>? JoinedGameSession;
+
     /// <summary>
     ///     Determines if the current game session is an online lobby.
     /// </summary>
@@ -67,6 +73,37 @@ public static class MeadowUtils
         Core.Logger.LogWarning($"Failed to retrieve the online name of {onlineCreature}!");
 
         return null;
+    }
+
+    /// <summary>
+    ///     Obtains all avatars tied to the given <see cref="OnlinePlayer"/>; Actual types of the retrieved creatures may vary with game mode.
+    /// </summary>
+    /// <param name="self">The online player whose avatars will be queried for.</param>
+    /// <returns>A list of creatures controlled by the online player, or <c>null</c> if none is found.</returns>
+    public static List<Creature> GetAvatars(this OnlinePlayer self)
+    {
+        List<Creature> playerAvatars = [];
+
+        if (IsOnline)
+        {
+            foreach (KeyValuePair<OnlinePlayer, OnlineEntity.EntityId> kvp in OnlineManager.lobby.playerAvatars)
+            {
+                if (kvp.Key == self)
+                {
+                    Creature? crit = OnlineManager.lobby.activeEntities.OfType<OnlineCreature>().FirstOrDefault(oc => oc.id == kvp.Value)?.realizedCreature;
+
+                    if (crit is not null)
+                        playerAvatars.Add(crit);
+                    else
+                        Core.Logger.LogWarning($"Could not find any creature with the given id: {kvp.Value}");
+                }
+            }
+
+            if (playerAvatars.Count == 0)
+                Core.Logger.LogWarning($"Failed to retrieve any creature avatar for {self}!");
+        }
+
+        return playerAvatars;
     }
 
     /// <summary>
@@ -162,11 +199,13 @@ public static class MeadowUtils
         }
     }
 
+    internal static void OnJoinedGameSession(GameSession session) => JoinedGameSession?.Invoke(session);
+
     private static bool ValidateOwnershipRequest(OnlinePhysicalObject? onlineObject)
     {
         if (onlineObject is null)
         {
-            Core.Logger.LogWarning("Cannot request the ownership of a null object; Aborting operation.");
+            Core.Logger.LogWarning("Cannot request the ownership of a null object.");
         }
         else if (onlineObject.isMine)
         {
