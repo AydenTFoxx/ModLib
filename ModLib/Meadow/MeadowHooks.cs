@@ -30,7 +30,7 @@ internal static class MeadowHooks
     {
         orig.Invoke(self, asDeath, asQuit);
 
-        Extras.InGameSession = false;
+        Extras.GameSession = null;
 
         ModRPCManager.ClearRPCs();
 
@@ -43,7 +43,10 @@ internal static class MeadowHooks
 
         OptionUtils.SharedOptions.RefreshOptions(Extras.InGameSession);
 
-        Extras.InGameSession = true;
+        if (!Extras.InGameSession)
+            MeadowUtils.OnJoinedGameSession(self);
+
+        Extras.GameSession = self;
 
         if (!MeadowUtils.IsHost)
         {

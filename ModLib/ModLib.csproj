@@ -4,8 +4,9 @@
 	<PropertyGroup>
 		<Title>Generic Modding Library</Title>
 		<Company>YNHZRFXN</Company>
-		<AssemblyVersion>0.2.4.0</AssemblyVersion>
-		<FileVersion>0.2.4.0</FileVersion>
+		<AssemblyVersion>0.3.1.0</AssemblyVersion>
+		<FileVersion>0.3.1.0</FileVersion>
+		<PathMap>$(MSBuildProjectDirectory)=/ModLib</PathMap>
 	</PropertyGroup>
 
 	<!-- .NET options -->
@@ -49,15 +50,17 @@
 	<!-- Post-compile tasks -->
 	<Target Name="GenerateModLibrary" AfterTargets="PostBuildEvent">
 		<ItemGroup>
-			<CopyPlugins Include="../lib/Custom/$(TargetName).dll" />
-			<CopyPlugins Include="../lib/Custom/$(TargetName).pdb" />
+			<CopyPlugins Include="$(TargetDir)$(TargetName).dll" />
+			<CopyPlugins Include="$(TargetDir)$(TargetName).pdb" />
+
+			<CopyDocs Include="$(TargetDir)$(TargetName).xml" />
 
 			<CopyDeps Include="../lib/Mods/LogUtils.dll" />
 			<CopyDeps Include="../lib/Mods/LogUtils.pdb" />
 		</ItemGroup>
 
-		<Exec Command="MonoMod.RuntimeDetour.HookGen.exe $(TargetDir)$(TargetName).dll" WorkingDirectory="../mod/utils/" />
-		<Exec Command="ilrepack /out:../lib/Custom/$(TargetName).dll /xmldocs /lib:../lib/Mods/ $(TargetDir)$(TargetName).dll $(TargetDir)MMHOOK_$(TargetName).dll" />
+		<Copy SourceFiles="@(CopyPlugins)" DestinationFolder="../lib/Custom/" />
+		<Copy SourceFiles="@(CopyDocs)" DestinationFolder="../lib/Custom/" />
 
 		<Copy SourceFiles="@(CopyPlugins)" DestinationFolder="../mod/newest/plugins/" />
 		<Copy SourceFiles="@(CopyDeps)" DestinationFolder="../mod/newest/plugins/" />

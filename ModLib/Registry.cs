@@ -1,6 +1,9 @@
 using System;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Text;
 using BepInEx;
 using BepInEx.Logging;
 using ModLib.Loader;
@@ -14,6 +17,8 @@ namespace ModLib;
 /// </summary>
 public static class Registry
 {
+    private static readonly char[] ForbiddenPathChars = [.. Path.GetInvalidPathChars(), ' '];
+
     private static readonly ConditionalWeakTable<Assembly, ModEntry> RegisteredMods = new();
 
     /// <summary>
@@ -64,7 +69,7 @@ public static class Registry
     /// </param>
     /// <param name="logger">The wrapped logger for usage by this mod.</param>
     /// <exception cref="InvalidOperationException">The current mod assembly is already registered to ModLib.</exception>
-    public static void RegisterMod(BaseUnityPlugin plugin, Type? optionHolder, IMyLogger? logger) =>
+    public static void RegisterMod(BaseUnityPlugin plugin, Type? optionHolder, ModLogger? logger) =>
         RegisterAssembly(Assembly.GetCallingAssembly(), plugin.Info.Metadata, optionHolder, logger);
 
     /// <summary>
@@ -98,11 +103,6 @@ public static class Registry
             : throw new ModNotFoundException($"Could not find mod for assembly: {caller.FullName}");
     }
 
-    internal static ModEntry? TryGetMod(Assembly caller) =>
-        RegisteredMods.TryGetValue(caller, out ModEntry metadata)
-            ? metadata
-            : null;
-
     /// <summary>
     ///     Registers the given assembly to ModLib, binding the provided arguments as its metadata.
     /// </summary>
@@ -112,7 +112,7 @@ public static class Registry
     /// <param name="logger">The logger instance for this mod. If null, a new one is created.</param>
     /// <returns>The newly registered mod entry.</returns>
     /// <exception cref="InvalidOperationException">The given assembly is already registered to ModLib.</exception>
-    internal static void RegisterAssembly(Assembly caller, BepInPlugin plugin, Type? optionHolder, IMyLogger? logger)
+    internal static void RegisterAssembly(Assembly caller, BepInPlugin plugin, Type? optionHolder, ModLogger? logger)
     {
         if (RegisteredMods.TryGetValue(caller, out _))
             throw new InvalidOperationException($"{plugin.Name} is already registered to ModLib.");
@@ -128,6 +128,25 @@ public static class Registry
 
         Core.Logger?.LogDebug($"Registered new Mod Entry: {entry}");
     }
+
+    internal static string SanitizeModName(string modName)
+    {
+        StringBuilder stringBuilder = new();
+
+        foreach (char c in modName)
+        {
+            if (ForbiddenPathChars.Contains(c)) continue;
+
+            stringBuilder.Append(c);
+        }
+
+        return stringBuilder.ToString();
+    }
+
+    internal static ModEntry? TryGetMod(Assembly caller) =>
+        RegisteredMods.TryGetValue(caller, out ModEntry metadata)
+            ? metadata
+            : null;
 
     /// <summary>
     ///     Represents a mod entry within ModLib's registry.
@@ -152,14 +171,14 @@ public static class Registry
         /// <summary>
         ///     The logger instance of this mod, if any.
         /// </summary>
-        public IMyLogger? Logger { get; set; }
+        public ModLogger? Logger { get; set; }
 
         internal ModEntry(BepInPlugin plugin, Type? optionHolder, ManualLogSource logger)
             : this(plugin, optionHolder, LoggingAdapter.CreateLogger(logger))
         {
         }
 
-        internal ModEntry(BepInPlugin plugin, Type? optionHolder, IMyLogger? logger)
+        internal ModEntry(BepInPlugin plugin, Type? optionHolder, ModLogger? logger)
         {
             Plugin = plugin;
             OptionHolder = optionHolder;

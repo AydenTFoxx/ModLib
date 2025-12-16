@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using BepInEx.Bootstrap;
 using BepInEx.Logging;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
@@ -65,13 +64,13 @@ public static class Entrypoint
             {
                 _initHook ??= new ILHook(
                     typeof(BepInEx.MultiFolderLoader.ChainloaderHandler).GetMethod("PostFindPluginTypes", BindingFlags.NonPublic | BindingFlags.Static),
-                    Extras.WrapILHook(InitializeCoreILHook)
+                    InitializeCoreILHook
                 );
                 _initHook.Apply();
             }
             else
             {
-                Chainloader.ManagerObject.AddComponent<CorePlugin>();
+                Core.Initialize();
             }
 
             IsInitialized = true;
@@ -112,20 +111,8 @@ public static class Entrypoint
     /// <summary>
     ///     Adds a CorePlugin object to the GameObject all mods are tied to, so ModLib can more accurately detect when the game is shutting down.
     /// </summary>
-    private static void InitializeCoreILHook(ILContext context)
-    {
-        ILCursor c = new(context);
-
-        c.GotoNext(MoveType.After, static x => x.MatchBrfalse(out _))
-         .MoveAfterLabels()
-         .EmitDelegate(CoreInitialize);
-
-        static void CoreInitialize()
-        {
-            if (!Chainloader.ManagerObject.TryGetComponent<CorePlugin>(out _))
-                Chainloader.ManagerObject.AddComponent<CorePlugin>();
-        }
-    }
+    private static void InitializeCoreILHook(ILContext context) =>
+        new ILCursor(context).EmitDelegate(Core.Initialize);
 
     /// <summary>
     ///     Initializes compatibility checking with the provided paths to config files.

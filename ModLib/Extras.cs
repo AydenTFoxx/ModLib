@@ -5,7 +5,6 @@ using System.Security.Permissions;
 using ModLib.Loader;
 using ModLib.Logging;
 using ModLib.Meadow;
-using MonoMod.Cil;
 
 // Allows access to private members
 #pragma warning disable CS0618
@@ -20,6 +19,11 @@ namespace ModLib;
 /// </summary>
 public static class Extras
 {
+    /// <summary>
+    ///     The current game session of the player, if any.
+    /// </summary>
+    public static GameSession? GameSession { get; internal set; }
+
     /// <summary>
     ///     Whether or not the Rain Meadow mod is present. This value is cached for performance purposes.
     /// </summary>
@@ -51,7 +55,7 @@ public static class Extras
     /// <summary>
     ///     If the player is currently in-game and not on the main menu.
     /// </summary>
-    public static bool InGameSession { get; internal set; }
+    public static bool InGameSession => GameSession is not null;
 
     /// <summary>
     ///     Determines if LogUtils is currently loaded and available for usage.
@@ -80,67 +84,9 @@ public static class Extras
     ///     Wraps a given action in a try-catch, safely performing its code while handling potential exceptions.
     /// </summary>
     /// <param name="action">The action to be executed.</param>
-    /// <param name="autoInvoke">If true, the resulting action is invoked immediately, and <c>null</c> is returned instead.</param>
-    /// <returns>The wrapped <see cref="Action"/> object, or <c>null</c> if <paramref name="autoInvoke"/> was set to true.</returns>
-    public static Action? WrapAction(Action action, bool autoInvoke = true)
+    public static void WrapAction(Action action)
     {
-        IMyLogger? logger = Registry.TryGetMod(Assembly.GetCallingAssembly())?.Logger ?? Core.Logger;
-
-        if (autoInvoke)
-        {
-            WrappedResult();
-            return null;
-        }
-        else
-        {
-            return WrappedResult;
-        }
-
-        void WrappedResult()
-        {
-            try
-            {
-                action.Invoke();
-            }
-            catch (Exception ex)
-            {
-                if (logger is null) return;
-
-                logger.LogError($"Failed to run wrapped action: {action.Method.Name}");
-                logger.LogError(ex);
-            }
-        }
-    }
-
-    /// <summary>
-    ///     Wraps a given IL hook in a try-catch, preventing it from breaking other code when applied.
-    /// </summary>
-    /// <param name="action">The hook method to be wrapped.</param>
-    /// <returns>An <c>ILContext.Manipulator</c> instance to be passed in place of the method itself.</returns>
-    /// <remarks>Usage of this method is akin to the original <c>WrapInit</c> method; See SlugTemplate for an example of this.</remarks>
-    public static ILContext.Manipulator WrapILHook(Action<ILContext> action)
-    {
-        IMyLogger? logger = Registry.TryGetMod(Assembly.GetCallingAssembly())?.Logger ?? Core.Logger;
-
-        return (context) =>
-        {
-            try
-            {
-                action.Invoke(context);
-            }
-            catch (Exception ex)
-            {
-                if (logger is null) return;
-
-                logger.LogError($"Failed to apply IL hook: {action.Method.Name}");
-                logger.LogError(ex);
-            }
-        };
-    }
-
-    internal static void WrapAction(Action action, IMyLogger? logger)
-    {
-        logger ??= Core.Logger;
+        ModLogger? logger = Registry.TryGetMod(Assembly.GetCallingAssembly())?.Logger ?? Core.Logger;
 
         try
         {
@@ -155,23 +101,20 @@ public static class Extras
         }
     }
 
-    internal static ILContext.Manipulator WrapILHook(Action<ILContext> action, IMyLogger? logger)
+    internal static void WrapAction(Action action, ModLogger? logger)
     {
         logger ??= Core.Logger;
 
-        return (context) =>
+        try
         {
-            try
-            {
-                action.Invoke(context);
-            }
-            catch (Exception ex)
-            {
-                if (logger is null) return;
+            action.Invoke();
+        }
+        catch (Exception ex)
+        {
+            if (logger is null) return;
 
-                logger.LogError($"Failed to apply IL hook: {action.Method.Name}");
-                logger.LogError(ex);
-            }
-        };
+            logger.LogError($"Failed to run wrapped action: {action.Method.Name}");
+            logger.LogError(ex);
+        }
     }
 }

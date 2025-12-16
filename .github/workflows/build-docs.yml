@@ -31,7 +31,6 @@ jobs:
       with:
         dotnet-version: 8.x
 
-    - run: dotnet tool update -g dotnet-ilrepack
     - run: dotnet tool update -g docfx
     - run: docfx docfx/docfx.json
 

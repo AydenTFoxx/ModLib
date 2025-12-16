@@ -25,13 +25,13 @@ internal static class LogUtilsHelper
         }
     }
 
-    public static IMyLogger CreateLogger(ILogSource logSource)
+    public static ModLogger CreateLogger(ILogSource logSource)
     {
         CompositeLogTarget logTargets = logSource.SourceName == Core.MOD_NAME
             ? (LogID)MyLogID | LogID.BepInEx
             : CreateLogID(logSource.SourceName, register: false) | LogID.BepInEx | LogID.Unity;
 
-        return new LogUtilsAdapter(
+        return new LogUtilsLogger(
             new LogUtils.Logger(logTargets)
             {
                 LogSource = logSource
@@ -41,7 +41,7 @@ internal static class LogUtilsHelper
 
     public static LogID CreateLogID(string name, bool register = false)
     {
-        LogID logID = new(LoggingAdapter.SanitizeName(name), Core.LogsPath, LogAccess.FullAccess, register);
+        LogID logID = new(Registry.SanitizeModName(name), Core.LogsPath, LogAccess.FullAccess, register);
 
         logID.Properties.ShowCategories.IsEnabled = true;
         logID.Properties.ShowLogTimestamp.IsEnabled = true;
@@ -54,7 +54,7 @@ internal static class LogUtilsHelper
     internal static void InitLogID(this Registry.ModEntry self)
     {
         if (self.LogID is not null
-            || self.Logger is not LogUtilsAdapter adapter
+            || self.Logger is not LogUtilsLogger adapter
             || adapter.GetLogSource() is not LogUtils.Logger logger)
         {
             return;

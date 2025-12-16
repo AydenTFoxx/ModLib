@@ -23,9 +23,14 @@ public abstract class ModPlugin : BaseUnityPlugin
     protected bool IsModEnabled { get; set; }
 
     /// <summary>
+    ///     Determines if LoadResources has been successfully called during initialization.
+    /// </summary>
+    protected bool ResourcesLoaded { get; set; }
+
+    /// <summary>
     ///     The custom logger instance for this mod.
     /// </summary>
-    protected new IMyLogger Logger { get; set; }
+    protected new ModLogger Logger { get; set; }
 
     /// <summary>
     ///     The <see cref="ManualLogSource"/> inherited from <see cref="BaseUnityPlugin"/> by this mod.
@@ -58,22 +63,22 @@ public abstract class ModPlugin : BaseUnityPlugin
     /// </summary>
     /// <param name="options">The mod's REMIX option interface class, if any.</param>
     /// <param name="logger">The logger instance to be used. If null, a new one is created and assigned to this mod.</param>
-    public ModPlugin(OptionInterface? options, IMyLogger? logger)
+    public ModPlugin(OptionInterface? options, ModLogger? logger)
     {
         this.options = options;
 
         Initialize(Assembly.GetCallingAssembly(), options?.GetType(), logger);
     }
 
-    private void Initialize(Assembly caller, Type? optionHolder, IMyLogger? logger)
+    private void Initialize(Assembly caller, Type? optionHolder, ModLogger? logger)
     {
         LogSource = base.Logger;
 
         logger ??= LoggingAdapter.CreateLogger(LogSource);
 
-        if (logger is not LogUtilsAdapter { ModLibCreated: false })
+        if (logger is not LogUtilsLogger { ModLibCreated: false })
         {
-            string pathToLogFile = Path.Combine(Registry.DefaultLogsPath, LoggingAdapter.SanitizeName(Info.Metadata.Name) + ".log");
+            string pathToLogFile = Path.Combine(Registry.DefaultLogsPath, Registry.SanitizeModName(Info.Metadata.Name) + ".log");
 
             if (File.Exists(pathToLogFile))
             {
@@ -117,7 +122,9 @@ public abstract class ModPlugin : BaseUnityPlugin
     public virtual void OnDisable()
     {
         if (!IsModEnabled) return;
+
         IsModEnabled = false;
+        ResourcesLoaded = false;
 
         Extras.WrapAction(() =>
         {
@@ -130,7 +137,9 @@ public abstract class ModPlugin : BaseUnityPlugin
     }
 
     /// <summary>
-    ///     Load any resources, such as sprites or sounds. This also registers the mod's REMIX interface to the game.
+    ///     Load any resources, such as sprites or sounds. This also registers the mod's REMIX interface to the game.<br/>
+    ///     <br/>
+    ///     Override this to add behavior which must run exactly once, and only after all mods have been loaded into the game.
     /// </summary>
     protected virtual void LoadResources()
     {
@@ -151,13 +160,17 @@ public abstract class ModPlugin : BaseUnityPlugin
     protected virtual void RemoveHooks() => On.RainWorld.OnModsInit -= OnModsInitHook;
 
     /// <summary>
-    ///     Loads this mod's resources to the game.
-    ///     Override this to add any extra behavior which must be run once all mods have been loaded into the game.
+    ///     Loads this mod's resources to the game. For adding your own behavior, override <see cref="LoadResources"/> instead.
     /// </summary>
-    protected virtual void OnModsInitHook(On.RainWorld.orig_OnModsInit orig, RainWorld self)
+    protected void OnModsInitHook(On.RainWorld.orig_OnModsInit orig, RainWorld self)
     {
         orig.Invoke(self);
 
-        Extras.WrapAction(LoadResources, Logger);
+        if (!ResourcesLoaded)
+        {
+            Extras.WrapAction(LoadResources, Logger);
+
+            ResourcesLoaded = true;
+        }
     }
 }

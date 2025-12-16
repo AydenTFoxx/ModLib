@@ -8,26 +8,13 @@ ModLib:
 
     Add log buffering for FallbackLogger
 
+    Known issue: Core.MyData.DevToolsActive (and thus OptionUtils.IsOptionEnabled("modlib.debug")) may be an incorrect value until Core is initialized;
+    Mods can still interact with a non-fully initialized ModLib by calling code in their plugin's .ctor(), which may cause unexpected behavior until Core.Initialize() is called
+
 ---
 
 ModLib README:
     (TODO: Make greater use of this shared API, simplifying interoperability between mods)
-
-    (TODO: Revive old Logger.cs and adapt it to be a fallback logger instead of solely relying on BepInEx's)
-        Done? More or less so; Trimmed a lot of irrelevant methods.
-
-    (TODO: Return overrides values to their original values when a temporary option is removed)
-        Done!
-    (TODO? Add a duration for temporary options? Feels more like a user responsibility... Too specific to be made into a general-purpose tool)
-
-    (TODO: Force a refresh of the local OptionUtils.SharedOptions instance when no longer online? Seems only useful in a few edge cases, but relevant nonetheless)
-        Done!
-
-    (TODO: Make both conversions implicit, so the two classes are as interchangeable as allowed by C#)
-        Done!
-
-    (TODO? Make Keybind methods also inherit this functionality, juust to be sure. If there are two ways to do something, someone will use the less effective one at some point.)
-
 
 AscendedSaint:
     Player sees their own name in the ascension/revival messages, instead of the actual ascended/revived target.

@@ -59,6 +59,8 @@ internal static class ImprovedInputHelper
 
     public static void UpdateInput()
     {
+        if (InputData.Length == 0) return;
+
         foreach (CustomInputData? data in InputData)
         {
             if (data is null) continue;

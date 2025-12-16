@@ -15,17 +15,16 @@ namespace ModLib.Collections;
 /// </summary>
 /// <typeparam name="TKey">The type for the keys of this dictionary; Must be a reference type.</typeparam>
 /// <typeparam name="TValue">The type for the values of this dictionary; Can be a reference or value type.</typeparam>
-public class WeakDictionary<TKey, TValue> : IDictionary<TKey, TValue>, IDisposable
+public class WeakDictionary<TKey, TValue> : IDictionary<TKey, TValue>, ICloneable, IDisposable
     where TKey : class
 {
     private readonly object locker = new();
+
     private ConditionalWeakTable<TKey, WeakKeyHolder> keyHolderMap = new();
     private Dictionary<WeakReference, TValue> valueMap = new(new ObjectReferenceEqualityComparer<WeakReference>());
 
-    private class WeakKeyHolder(WeakDictionary<TKey, TValue> outer, TKey key)
+    private class WeakKeyHolder(WeakDictionary<TKey, TValue>? outer, TKey key)
     {
-        private readonly WeakDictionary<TKey, TValue> outer = outer;
-
         public WeakReference WeakRef { get; private set; } = new WeakReference(key);
 
         ~WeakKeyHolder()
@@ -45,10 +44,14 @@ public class WeakDictionary<TKey, TValue> : IDictionary<TKey, TValue>, IDisposab
         }
     }
 
-    // The reason for this is in case (for some reason which I have never seen) the finalizer trigger doesn't work
-    // There is not much performance penalty with this, since this is only called in cases when we would be enumerating the inner collections anyway.
-    private void ManualShrink()
+    /// <summary>
+    ///     Removes all items in the collection whose reference value has been dropped.
+    /// </summary>
+    public void Purge()
     {
+        // The reason for this is in case (for some reason which I have never seen) the finalizer trigger doesn't work
+        // There is not much performance penalty with this, since this is only called in cases when we would be enumerating the inner collections anyway.
+
         List<WeakReference> keysToRemove = [.. valueMap.Keys.Where(k => !k.IsAlive)];
 
         foreach (WeakReference key in keysToRemove)
@@ -61,7 +64,7 @@ public class WeakDictionary<TKey, TValue> : IDictionary<TKey, TValue>, IDisposab
         {
             lock (locker)
             {
-                ManualShrink();
+                Purge();
                 return valueMap.ToDictionary(p => (TKey)p.Key.Target, p => p.Value);
             }
         }
@@ -104,7 +107,7 @@ public class WeakDictionary<TKey, TValue> : IDictionary<TKey, TValue>, IDisposab
         {
             lock (locker)
             {
-                ManualShrink();
+                Purge();
                 return [.. valueMap.Keys.Select(k => (TKey)k.Target)];
             }
         }
@@ -117,7 +120,7 @@ public class WeakDictionary<TKey, TValue> : IDictionary<TKey, TValue>, IDisposab
         {
             lock (locker)
             {
-                ManualShrink();
+                Purge();
                 return [.. valueMap.Select(p => p.Value)];
             }
         }
@@ -130,7 +133,7 @@ public class WeakDictionary<TKey, TValue> : IDictionary<TKey, TValue>, IDisposab
         {
             lock (locker)
             {
-                ManualShrink();
+                Purge();
                 return valueMap.Count;
             }
         }
@@ -241,6 +244,14 @@ public class WeakDictionary<TKey, TValue> : IDictionary<TKey, TValue>, IDisposab
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
+    object ICloneable.Clone() => Clone();
+
+    /// <summary>
+    ///     Creates a new <see cref="WeakDictionary{TKey, TValue}"/> that is a copy of the current instance.
+    /// </summary>
+    /// <returns>A new <see cref="WeakDictionary{TKey, TValue}"/> that is a copy of this instance.</returns>
+    public WeakDictionary<TKey, TValue> Clone() => [.. this];
+
     private bool bAlive = true;
 
     /// <inheritdoc/>
@@ -278,6 +289,24 @@ public class WeakDictionary<TKey, TValue> : IDictionary<TKey, TValue>, IDisposab
 
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
 
+    /// <summary>
+    ///     Converts a <see cref="WeakList{T}"/> instance to a non-weak <see cref="List{T}"/> collection.
+    /// </summary>
+    /// <param name="self">The weak list to be converted.</param>
+    public static implicit operator Dictionary<TKey, TValue>(WeakDictionary<TKey, TValue> self)
+    {
+        return self.CurrentDictionary;
+    }
+
+    /// <summary>
+    ///     Converts a <see cref="List{T}"/> instance to a <see cref="WeakList{T}"/> collection.
+    /// </summary>
+    /// <param name="self">The list to be converted.</param>
+    public static explicit operator WeakDictionary<TKey, TValue>(Dictionary<TKey, TValue> self)
+    {
+        return [.. self.Where(static kvp => kvp.Key is not null && kvp.Value is not null)];
+    }
+
     private class ObjectReferenceEqualityComparer<T> : IEqualityComparer<T>
     {
         public static ObjectReferenceEqualityComparer<T> Default = new();
@@ -285,9 +314,5 @@ public class WeakDictionary<TKey, TValue> : IDictionary<TKey, TValue>, IDisposab
         public bool Equals(T x, T y) => ReferenceEquals(x, y);
 
         public int GetHashCode(T obj) => RuntimeHelpers.GetHashCode(obj);
-    }
-
-    private class ObjectReferenceEqualityComparer : ObjectReferenceEqualityComparer<object>
-    {
     }
 }

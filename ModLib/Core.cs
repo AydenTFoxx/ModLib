@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 using System.Reflection;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using System.Text;
 using BepInEx;
 using BepInEx.Logging;
@@ -8,6 +10,8 @@ using ModLib.Input;
 using ModLib.Logging;
 using ModLib.Meadow;
 using ModLib.Options;
+using ModLib.Storage;
+using UnityEngine;
 
 namespace ModLib;
 
@@ -15,7 +19,9 @@ internal static class Core
 {
     public const string MOD_GUID = "ynhzrfxn.modlib";
     public const string MOD_NAME = "ModLib";
-    public const string MOD_VERSION = "0.2.4.0";
+    public const string MOD_VERSION = "0.3.1.0";
+
+    public static readonly Assembly MyAssembly = typeof(Core).Assembly;
 
     public static readonly BepInPlugin PluginData = new(MOD_GUID, MOD_NAME, MOD_VERSION);
     public static readonly ManualLogSource LogSource = BepInEx.Logging.Logger.CreateLogSource(MOD_NAME);
@@ -23,10 +29,11 @@ internal static class Core
     public static readonly string StreamingAssetsPath = Path.Combine(Paths.GameRootPath, "RainWorld_Data", "StreamingAssets");
     public static readonly string LogsPath = Path.Combine(StreamingAssetsPath, "Logs");
 
-    public static IMyLogger Logger { get; private set; } = new FallbackLogger(LogSource);
+    private static readonly string DataPath = Path.Combine(StreamingAssetsPath, "modlib.json");
 
-    public static readonly Assembly MyAssembly = typeof(Core).Assembly;
+    public static ModLogger Logger { get; private set; } = new FallbackLogger(LogSource);
 
+    public static ModLibData MyData { get; private set; }
     public static bool Initialized { get; private set; }
 
     public static void Initialize()
@@ -35,18 +42,34 @@ internal static class Core
 
         Initialized = true;
 
-#if DEBUG
-        OptionUtils.SharedOptions.AddTemporaryOption("modlib.debug", new ConfigValue(true), false);
-#else
-        OptionUtils.SharedOptions.AddTemporaryOption("modlib.debug", new ConfigValue(ModManager.DevTools), false);
-#endif
-
         if (Extras.LogUtilsAvailable)
         {
             Logger = LoggingAdapter.CreateLogger(LogSource);
         }
 
-        Logger = new LogWrapper(Logger, OptionUtils.IsOptionEnabled("modlib.debug") ? LogLevel.All : LogLevel.Info);
+        Extras.WrapAction(static () =>
+        {
+            if (!File.Exists(DataPath))
+            {
+                MyData = new(false, MOD_VERSION);
+                return;
+            }
+
+            string data = File.ReadAllText(Path.Combine(StreamingAssetsPath, "modlib.json"));
+
+            if (!string.IsNullOrWhiteSpace(data))
+            {
+                DataContractJsonSerializer serializer = new(typeof(ModLibData));
+
+                using MemoryStream ms = new(Encoding.UTF8.GetBytes(data));
+
+                MyData = (ModLibData)serializer.ReadObject(ms);
+            }
+        }, Logger);
+
+        Logger = new FilteredLogWrapper(Logger);
+
+        OptionUtils.SharedOptions.AddTemporaryOption("modlib.debug", new ConfigValue(MyData.DevToolsActive), false);
 
         if (Extras.IsMeadowEnabled)
         {
@@ -58,10 +81,10 @@ internal static class Core
             On.RainWorldGame.ExitGame += ExitGameHook;
         }
 
-        if (Extras.IsIICEnabled || Extras.IsMeadowEnabled)
-        {
-            On.RainWorldGame.Update += GameUpdateHook;
-        }
+        On.RainWorld.OnModsInit += OnModsInitHook;
+        On.RainWorldGame.Update += GameUpdateHook;
+
+        Application.quitting += Disable;
 
         Registry.RegisterAssembly(MyAssembly, PluginData, null, Logger);
 
@@ -94,9 +117,32 @@ internal static class Core
             On.RainWorldGame.ExitGame -= ExitGameHook;
         }
 
-        if (Extras.IsIICEnabled || Extras.IsMeadowEnabled)
+        On.RainWorld.OnModsInit -= OnModsInitHook;
+        On.RainWorldGame.Update -= GameUpdateHook;
+
+        Application.quitting -= Disable;
+
+        Extras.WrapAction(static () =>
         {
-            On.RainWorldGame.Update -= GameUpdateHook;
+            DataContractJsonSerializer serializer = new(typeof(ModLibData));
+
+            using MemoryStream ms = new();
+
+            serializer.WriteObject(ms, MyData);
+
+            string data = Encoding.UTF8.GetString(ms.ToArray());
+
+            if (!string.IsNullOrWhiteSpace(data))
+            {
+                File.WriteAllText(DataPath, data);
+
+                Logger.LogInfo($"Saved ModLib data to StreamingAssets/modlib.json.");
+            }
+        }, Logger);
+
+        foreach (ModPersistentSaveData saveData in ModPersistentSaveData.RegisteredInstances)
+        {
+            saveData.SaveToFile();
         }
     }
 
@@ -104,7 +150,7 @@ internal static class Core
     {
         orig.Invoke(self, asDeath, asQuit);
 
-        Extras.InGameSession = false;
+        Extras.GameSession = null;
     }
 
     private static void GameSessionHook(On.GameSession.orig_ctor orig, GameSession self, RainWorldGame game)
@@ -113,7 +159,7 @@ internal static class Core
 
         OptionUtils.SharedOptions.RefreshOptions(Extras.InGameSession);
 
-        Extras.InGameSession = true;
+        Extras.GameSession = self;
     }
 
     private static void GameUpdateHook(On.RainWorldGame.orig_Update orig, RainWorldGame self)
@@ -124,9 +170,22 @@ internal static class Core
         }
         else
         {
+            global::Options? options = UnityEngine.Object.FindObjectOfType<RainWorld>()?.options;
+            int maxPlayers = Keybind.MaxPlayers;
+
             foreach (Keybind keybind in Keybind.Keybinds)
             {
-                keybind.Update();
+                if (maxPlayers == 1)
+                {
+                    keybind.Update(options, 0);
+                }
+                else
+                {
+                    for (int i = 0; i < maxPlayers; i++)
+                    {
+                        keybind.Update(options, i);
+                    }
+                }
             }
         }
 
@@ -136,6 +195,35 @@ internal static class Core
         {
             ModRPCManager.UpdateRPCs();
         }
+    }
+
+    private static void OnModsInitHook(On.RainWorld.orig_OnModsInit orig, RainWorld self)
+    {
+        orig.Invoke(self);
+
+        MyData = new(ModManager.DevTools, MOD_VERSION);
+
+        OptionUtils.SharedOptions.AddTemporaryOption("modlib.debug", new ConfigValue(MyData.DevToolsActive), false);
+
+        if (FilteredLogWrapper.DynamicInstances.Count > 0)
+        {
+            foreach (FilteredLogWrapper logWrapper in FilteredLogWrapper.DynamicInstances)
+            {
+                logWrapper.MaxLogLevel = MyData.DevToolsActive ? LogLevel.All : LogLevel.Info;
+            }
+
+            FilteredLogWrapper.DynamicInstances.Clear();
+        }
+    }
+
+    [DataContract]
+    public readonly struct ModLibData(bool devToolsActive, string lastLoadedVersion)
+    {
+        [DataMember]
+        public readonly bool DevToolsActive = devToolsActive;
+
+        [DataMember]
+        public readonly string LastLoadedVersion = lastLoadedVersion;
     }
 
     private static class PatchLoader
