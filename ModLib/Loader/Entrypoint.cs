@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using BepInEx.Bootstrap;
 using BepInEx.Logging;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
@@ -72,7 +70,7 @@ public static class Entrypoint
             }
             else
             {
-                CoreInitialize();
+                Core.Initialize();
             }
 
             IsInitialized = true;
@@ -113,28 +111,8 @@ public static class Entrypoint
     /// <summary>
     ///     Adds a CorePlugin object to the GameObject all mods are tied to, so ModLib can more accurately detect when the game is shutting down.
     /// </summary>
-    private static void InitializeCoreILHook(ILContext context)
-    {
-        ILCursor c = new(context);
-
-        c.GotoNext(MoveType.After, static x => x.MatchBrfalse(out _))
-         .MoveAfterLabels()
-         .EmitDelegate(CoreInitialize);
-    }
-
-    private static void CoreInitialize()
-    {
-        if (Chainloader.ManagerObject.TryGetComponent<CorePlugin>(out _)) return;
-
-        Chainloader.ManagerObject.AddComponent<CorePlugin>();
-
-        using Stream stream = Core.MyAssembly.GetManifestResourceStream("HOOKS_ModLib.dll");
-
-        byte[] assemblyData = new byte[stream.Length];
-        stream.Read(assemblyData, 0, assemblyData.Length);
-
-        Assembly.Load(assemblyData);
-    }
+    private static void InitializeCoreILHook(ILContext context) =>
+        new ILCursor(context).EmitDelegate(Core.Initialize);
 
     /// <summary>
     ///     Initializes compatibility checking with the provided paths to config files.

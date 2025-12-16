@@ -1,7 +1,5 @@
 using System;
 using System.IO;
-using System.Linq;
-using System.Text;
 using BepInEx.Logging;
 
 namespace ModLib.Logging;
@@ -56,20 +54,5 @@ public static class LoggingAdapter
                 return new FallbackLogger(logSource);
             }
         }
-    }
-
-    internal static string SanitizeName(string modName)
-    {
-        StringBuilder stringBuilder = new();
-        char[] forbiddenChars = [.. Path.GetInvalidPathChars(), ' '];
-
-        foreach (char c in modName)
-        {
-            if (forbiddenChars.Contains(c)) continue;
-
-            stringBuilder.Append(c);
-        }
-
-        return stringBuilder.ToString();
     }
 }

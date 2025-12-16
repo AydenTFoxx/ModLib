@@ -1,6 +1,9 @@
 using System;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Text;
 using BepInEx;
 using BepInEx.Logging;
 using ModLib.Loader;
@@ -14,6 +17,8 @@ namespace ModLib;
 /// </summary>
 public static class Registry
 {
+    private static readonly char[] ForbiddenPathChars = [.. Path.GetInvalidPathChars(), ' '];
+
     private static readonly ConditionalWeakTable<Assembly, ModEntry> RegisteredMods = new();
 
     /// <summary>
@@ -98,11 +103,6 @@ public static class Registry
             : throw new ModNotFoundException($"Could not find mod for assembly: {caller.FullName}");
     }
 
-    internal static ModEntry? TryGetMod(Assembly caller) =>
-        RegisteredMods.TryGetValue(caller, out ModEntry metadata)
-            ? metadata
-            : null;
-
     /// <summary>
     ///     Registers the given assembly to ModLib, binding the provided arguments as its metadata.
     /// </summary>
@@ -128,6 +128,25 @@ public static class Registry
 
         Core.Logger?.LogDebug($"Registered new Mod Entry: {entry}");
     }
+
+    internal static string SanitizeModName(string modName)
+    {
+        StringBuilder stringBuilder = new();
+
+        foreach (char c in modName)
+        {
+            if (ForbiddenPathChars.Contains(c)) continue;
+
+            stringBuilder.Append(c);
+        }
+
+        return stringBuilder.ToString();
+    }
+
+    internal static ModEntry? TryGetMod(Assembly caller) =>
+        RegisteredMods.TryGetValue(caller, out ModEntry metadata)
+            ? metadata
+            : null;
 
     /// <summary>
     ///     Represents a mod entry within ModLib's registry.

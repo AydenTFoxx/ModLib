@@ -41,7 +41,7 @@ internal static class LogUtilsHelper
 
     public static LogID CreateLogID(string name, bool register = false)
     {
-        LogID logID = new(LoggingAdapter.SanitizeName(name), Core.LogsPath, LogAccess.FullAccess, register);
+        LogID logID = new(Registry.SanitizeModName(name), Core.LogsPath, LogAccess.FullAccess, register);
 
         logID.Properties.ShowCategories.IsEnabled = true;
         logID.Properties.ShowLogTimestamp.IsEnabled = true;

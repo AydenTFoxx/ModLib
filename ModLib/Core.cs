@@ -10,6 +10,8 @@ using ModLib.Input;
 using ModLib.Logging;
 using ModLib.Meadow;
 using ModLib.Options;
+using ModLib.Storage;
+using UnityEngine;
 
 namespace ModLib;
 
@@ -82,6 +84,8 @@ internal static class Core
         On.RainWorld.OnModsInit += OnModsInitHook;
         On.RainWorldGame.Update += GameUpdateHook;
 
+        Application.quitting += Disable;
+
         Registry.RegisterAssembly(MyAssembly, PluginData, null, Logger);
 
         try
@@ -116,6 +120,8 @@ internal static class Core
         On.RainWorld.OnModsInit -= OnModsInitHook;
         On.RainWorldGame.Update -= GameUpdateHook;
 
+        Application.quitting -= Disable;
+
         Extras.WrapAction(static () =>
         {
             DataContractJsonSerializer serializer = new(typeof(ModLibData));
@@ -133,13 +139,18 @@ internal static class Core
                 Logger.LogInfo($"Saved ModLib data to StreamingAssets/modlib.json.");
             }
         }, Logger);
+
+        foreach (ModPersistentSaveData saveData in ModPersistentSaveData.RegisteredInstances)
+        {
+            saveData.SaveToFile();
+        }
     }
 
     private static void ExitGameHook(On.RainWorldGame.orig_ExitGame orig, RainWorldGame self, bool asDeath, bool asQuit)
     {
         orig.Invoke(self, asDeath, asQuit);
 
-        Extras.InGameSession = false;
+        Extras.GameSession = null;
     }
 
     private static void GameSessionHook(On.GameSession.orig_ctor orig, GameSession self, RainWorldGame game)
@@ -148,7 +159,7 @@ internal static class Core
 
         OptionUtils.SharedOptions.RefreshOptions(Extras.InGameSession);
 
-        Extras.InGameSession = true;
+        Extras.GameSession = self;
     }
 
     private static void GameUpdateHook(On.RainWorldGame.orig_Update orig, RainWorldGame self)

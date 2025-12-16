@@ -20,6 +20,11 @@ namespace ModLib;
 public static class Extras
 {
     /// <summary>
+    ///     The current game session of the player, if any.
+    /// </summary>
+    public static GameSession? GameSession { get; internal set; }
+
+    /// <summary>
     ///     Whether or not the Rain Meadow mod is present. This value is cached for performance purposes.
     /// </summary>
     public static bool IsMeadowEnabled { get; internal set; }
@@ -50,7 +55,7 @@ public static class Extras
     /// <summary>
     ///     If the player is currently in-game and not on the main menu.
     /// </summary>
-    public static bool InGameSession { get; internal set; }
+    public static bool InGameSession => GameSession is not null;
 
     /// <summary>
     ///     Determines if LogUtils is currently loaded and available for usage.

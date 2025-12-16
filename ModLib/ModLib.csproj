@@ -6,6 +6,7 @@
 		<Company>YNHZRFXN</Company>
 		<AssemblyVersion>0.3.1.0</AssemblyVersion>
 		<FileVersion>0.3.1.0</FileVersion>
+		<PathMap>$(MSBuildProjectDirectory)=/ModLib</PathMap>
 	</PropertyGroup>
 
 	<!-- .NET options -->
@@ -44,7 +45,6 @@
 	<!-- Embedded resources -->
 	<ItemGroup>
 		<EmbeddedResource Include="../$(TargetName).Loader/patchers/$(TargetName).Loader.dll" LogicalName="$(TargetName).Loader.dll" />
-		<EmbeddedResource Include="$(TargetDir)HOOKS_$(TargetName).dll" LogicalName="HOOKS_$(TargetName).dll" />
 	</ItemGroup>
 
 	<!-- Post-compile tasks -->
@@ -53,17 +53,14 @@
 			<CopyPlugins Include="$(TargetDir)$(TargetName).dll" />
 			<CopyPlugins Include="$(TargetDir)$(TargetName).pdb" />
 
-			<CopyHooks Include="$(TargetDir)HOOKS_$(TargetName).dll" />
+			<CopyDocs Include="$(TargetDir)$(TargetName).xml" />
 
 			<CopyDeps Include="../lib/Mods/LogUtils.dll" />
 			<CopyDeps Include="../lib/Mods/LogUtils.pdb" />
 		</ItemGroup>
 
-		<Exec Command="MonoMod.RuntimeDetour.HookGen.exe $(TargetDir)$(TargetName).dll" WorkingDirectory="../mod/utils/" />
-		<Exec Command="move $(TargetDir)MMHOOK_$(TargetName).dll $(TargetDir)HOOKS_$(TargetName).dll" />
-
 		<Copy SourceFiles="@(CopyPlugins)" DestinationFolder="../lib/Custom/" />
-		<Copy SourceFiles="@(CopyHooks)" DestinationFolder="../lib/Custom/" />
+		<Copy SourceFiles="@(CopyDocs)" DestinationFolder="../lib/Custom/" />
 
 		<Copy SourceFiles="@(CopyPlugins)" DestinationFolder="../mod/newest/plugins/" />
 		<Copy SourceFiles="@(CopyDeps)" DestinationFolder="../mod/newest/plugins/" />
