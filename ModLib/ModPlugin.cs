@@ -15,7 +15,10 @@ namespace ModLib;
 /// </remarks>
 public abstract class ModPlugin : BaseUnityPlugin
 {
-    private readonly OptionInterface? options;
+    /// <summary>
+    ///     The REMIX option interface registered for this mod, if any. This field is read-only.
+    /// </summary>
+    protected readonly OptionInterface? Options;
 
     /// <summary>
     ///     Determines if this mod has successfuly been enabled.
@@ -53,7 +56,7 @@ public abstract class ModPlugin : BaseUnityPlugin
     /// <param name="options">The mod's REMIX option interface class, if any.</param>
     public ModPlugin(OptionInterface? options)
     {
-        this.options = options;
+        Options = options;
 
         Initialize(Assembly.GetCallingAssembly(), options?.GetType(), LoggingAdapter.CreateLogger(base.Logger));
     }
@@ -65,7 +68,7 @@ public abstract class ModPlugin : BaseUnityPlugin
     /// <param name="logger">The logger instance to be used. If null, a new one is created and assigned to this mod.</param>
     public ModPlugin(OptionInterface? options, ModLogger? logger)
     {
-        this.options = options;
+        Options = options;
 
         Initialize(Assembly.GetCallingAssembly(), options?.GetType(), logger);
     }
@@ -143,9 +146,21 @@ public abstract class ModPlugin : BaseUnityPlugin
     /// </summary>
     protected virtual void LoadResources()
     {
-        if (options is not null)
+        if (Options is null || MachineConnector.SetRegisteredOI(Info.Metadata.GUID, Options)) return;
+
+        Logger.LogWarning("Failed to initialize registered option interface! Attempting to register directly to MachineConnector._registeredOIs instead.");
+
+        try
         {
-            MachineConnector.SetRegisteredOI(Info.Metadata.GUID, options);
+            MachineConnector._registeredOIs[Info.Metadata.GUID] = Options;
+
+            MachineConnector._RefreshOIs();
+
+            Logger.LogInfo($"Successfully registered option interface {Options} with mod ID \"{Info.Metadata.GUID}\".");
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError($"Failed to register option interface to MachineConnector! {ex}");
         }
     }
 
