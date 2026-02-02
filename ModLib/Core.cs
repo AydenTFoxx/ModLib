@@ -19,7 +19,7 @@ internal static class Core
 {
     public const string MOD_GUID = "ynhzrfxn.modlib";
     public const string MOD_NAME = "ModLib";
-    public const string MOD_VERSION = "0.3.1.1";
+    public const string MOD_VERSION = "0.3.2.0";
 
     public static readonly Assembly MyAssembly = typeof(Core).Assembly;
 
@@ -47,29 +47,13 @@ internal static class Core
             Logger = LoggingAdapter.CreateLogger(LogSource);
         }
 
-        Extras.WrapAction(static () =>
-        {
-            if (!File.Exists(DataPath))
-            {
-                MyData = new(false, MOD_VERSION);
-                return;
-            }
-
-            string data = File.ReadAllText(Path.Combine(StreamingAssetsPath, "modlib.json"));
-
-            if (!string.IsNullOrWhiteSpace(data))
-            {
-                DataContractJsonSerializer serializer = new(typeof(ModLibData));
-
-                using MemoryStream ms = new(Encoding.UTF8.GetBytes(data));
-
-                MyData = (ModLibData)serializer.ReadObject(ms);
-            }
-        }, Logger);
+        Extras.WrapAction(ReadModLibData, Logger);
 
         Logger = new FilteredLogWrapper(Logger);
 
         OptionUtils.SharedOptions.AddTemporaryOption("modlib.debug", new ConfigValue(MyData.DevToolsActive), false);
+
+        Extras.DebugMode = OptionUtils.IsOptionEnabled("modlib.debug");
 
         if (Extras.IsMeadowEnabled)
         {
@@ -122,23 +106,7 @@ internal static class Core
 
         Application.quitting -= Disable;
 
-        Extras.WrapAction(static () =>
-        {
-            DataContractJsonSerializer serializer = new(typeof(ModLibData));
-
-            using MemoryStream ms = new();
-
-            serializer.WriteObject(ms, MyData);
-
-            string data = Encoding.UTF8.GetString(ms.ToArray());
-
-            if (!string.IsNullOrWhiteSpace(data))
-            {
-                File.WriteAllText(DataPath, data);
-
-                Logger.LogInfo($"Saved ModLib data to StreamingAssets/modlib.json.");
-            }
-        }, Logger);
+        Extras.WrapAction(WriteModLibData, Logger);
 
         foreach (ModPersistentSaveData saveData in ModPersistentSaveData.RegisteredInstances)
         {
@@ -205,6 +173,18 @@ internal static class Core
 
         OptionUtils.SharedOptions.AddTemporaryOption("modlib.debug", new ConfigValue(MyData.DevToolsActive), false);
 
+        if (!Extras.IsIICEnabled && CompatibilityManager.IsIICEnabled(forceQuery: true))
+        {
+            Extras.IsIICEnabled = true;
+        }
+
+        if (!Extras.IsMeadowEnabled && CompatibilityManager.IsRainMeadowEnabled(forceQuery: true))
+        {
+            Extras.IsMeadowEnabled = true;
+        }
+
+        Extras.DebugMode = OptionUtils.IsOptionEnabled("modlib.debug");
+
         if (FilteredLogWrapper.DynamicInstances.Count > 0)
         {
             foreach (FilteredLogWrapper logWrapper in FilteredLogWrapper.DynamicInstances)
@@ -213,6 +193,44 @@ internal static class Core
             }
 
             FilteredLogWrapper.DynamicInstances.Clear();
+        }
+    }
+
+    private static void ReadModLibData()
+    {
+        if (!File.Exists(DataPath))
+        {
+            MyData = new(false, MOD_VERSION);
+            return;
+        }
+
+        string data = File.ReadAllText(Path.Combine(StreamingAssetsPath, "modlib.json"));
+
+        if (!string.IsNullOrWhiteSpace(data))
+        {
+            DataContractJsonSerializer serializer = new(typeof(ModLibData));
+
+            using MemoryStream ms = new(Encoding.UTF8.GetBytes(data));
+
+            MyData = (ModLibData)serializer.ReadObject(ms);
+        }
+    }
+
+    private static void WriteModLibData()
+    {
+        DataContractJsonSerializer serializer = new(typeof(ModLibData));
+
+        using MemoryStream ms = new();
+
+        serializer.WriteObject(ms, MyData);
+
+        string data = Encoding.UTF8.GetString(ms.ToArray());
+
+        if (!string.IsNullOrWhiteSpace(data))
+        {
+            File.WriteAllText(DataPath, data);
+
+            Logger.LogInfo($"Saved ModLib data to StreamingAssets/modlib.json.");
         }
     }
 

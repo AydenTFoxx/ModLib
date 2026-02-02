@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using BepInEx.Logging;
-using ModLib.Options;
 
 namespace ModLib.Logging;
 
@@ -24,7 +23,7 @@ public class FilteredLogWrapper(ModLogger logger, LogLevel maxLogLevel) : ModLog
     /// </summary>
     /// <param name="logger">The logger instance to be wrapped.</param>
     public FilteredLogWrapper(ModLogger logger)
-        : this(logger, OptionUtils.IsOptionEnabled("modlib.debug") ? LogLevel.All : LogLevel.Info)
+        : this(logger, Extras.DebugMode ? LogLevel.All : LogLevel.Info)
     {
         DynamicInstances.Add(this);
     }

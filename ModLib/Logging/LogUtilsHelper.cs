@@ -64,6 +64,6 @@ internal static class LogUtilsHelper
             ? MyLogID
             : adapter.ModLibCreated
                 ? CreateLogID(self.Plugin.Name, register: false)
-                : logger.LogTargets.FirstOrDefault(id => !id.IsGameControlled);
+                : logger.LogTargets.FirstOrDefault(static id => !id.IsGameControlled);
     }
 }
