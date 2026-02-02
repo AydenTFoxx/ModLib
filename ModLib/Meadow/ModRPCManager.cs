@@ -62,7 +62,7 @@ public static class ModRPCManager
 
         if (expired)
         {
-            _activeRPCs = [.. _activeRPCs.Where(t => t.Lifetime > 0)];
+            _activeRPCs = [.. _activeRPCs.Where(static t => t.Lifetime > 0)];
         }
     }
 

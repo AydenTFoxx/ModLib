@@ -1,0 +1,9 @@
+Bug fixes; Changes to methods with no impact on functionality -> 0.0.0.x (Hotfix)
+New/removed field/method to existing class; Changed method signature -> 0.0.x.0 (Patch)
+New/removed class; Major rewrites of codebase, with backwards compatibility; Medium changes to behavior of an existing feature -> 0.x.0.0 (Minor)
+Major changes to functionality of several features, without backwards compatibility; Complete shift/rebranding of the project itself -> x.0.0.0 (Major)
+
+Indev versions start with `0.x.y.z`. Release versions start with `1.x.y.z`. Current version is `0.3.2.0`.
+
+Private members are disregarded for "New/removed <member>" conditions; Private member names and method signatures may change at any time with no prior warning, and are NOT considered breaking changes for versioning purposes.
+However, a refactoring where several private members are modified/rewritten for any particular purpose is still considered a significant codebase rewrite, which incurs a minimum of a 0.x.0.0 (minor) update.

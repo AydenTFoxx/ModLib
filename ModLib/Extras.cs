@@ -67,6 +67,12 @@ public static class Extras
     /// </summary>
     public static bool ModLibAvailable => Entrypoint.IsInitialized;
 
+    /// <summary>
+    ///     Determines if Dev Tools is currently enabled, or was enabled last time ModLib was active.
+    ///     Usable even before ModManager is available, but might be innacurate on the first time the mod is run.
+    /// </summary>
+    public static bool DebugMode { get; internal set; }
+
     static Extras()
     {
         Entrypoint.TryInitialize();
@@ -74,7 +80,7 @@ public static class Extras
 
     internal static void Initialize()
     {
-        LogUtilsAvailable = AppDomain.CurrentDomain.GetAssemblies().Any(a => a.FullName.Contains("LogUtils"));
+        LogUtilsAvailable = AppDomain.CurrentDomain.GetAssemblies().Any(static a => a.FullName.Contains("LogUtils"));
 
         IsMeadowEnabled = CompatibilityManager.IsRainMeadowEnabled();
         IsIICEnabled = CompatibilityManager.IsIICEnabled();

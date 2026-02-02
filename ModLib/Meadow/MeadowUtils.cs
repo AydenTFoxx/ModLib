@@ -14,7 +14,7 @@ namespace ModLib.Meadow;
 ///         Warning: Always ensure Rain Meadow is enabled before using this class!
 ///     </para>
 ///     <para>
-///         Properties and methods like <see cref="Extras.IsMeadowEnabled"/>, <see cref="Extras.IsOnlineSession"/>, and <see cref="CompatibilityManager.IsRainMeadowEnabled()"/>
+///         Properties and methods like <see cref="Extras.IsMeadowEnabled"/>, <see cref="Extras.IsOnlineSession"/>, and <see cref="CompatibilityManager.IsRainMeadowEnabled(bool)"/>
 ///         can all be used/queried before accessing any of this class's members. Otherwise, a <see cref="TypeLoadException"/> will be thrown, even if the given member does not have any Meadow-specific code.
 ///     </para>
 /// </remarks>

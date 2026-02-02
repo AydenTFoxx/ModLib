@@ -14,7 +14,7 @@ namespace ModLib.Loader;
 /// </summary>
 /// <remarks>
 ///     This is an internal class of ModLib, exposed for usage by other assemblies.
-///     Unless working specifically in that context, you should not have to access this class or any of its members directly.
+///     Unless working strictly in that context, you should not access this class or any of its members directly.
 /// </remarks>
 [EditorBrowsable(EditorBrowsableState.Never)]
 public static class Entrypoint
@@ -39,7 +39,7 @@ public static class Entrypoint
     /// </summary>
     /// <remarks>
     ///     This is an internal method of ModLib, exposed for usage by <c>ModLib.Loader</c>.
-    ///     Unless working within that context, you should not have to call this function.
+    ///     Unless working within that context, you should not call this function.
     /// </remarks>
     /// <param name="compatibilityPaths">The list of paths to config files, retrieved during the preloading process.</param>
     /// <param name="callerPath">The compiler-provided file path to the calling method.</param>

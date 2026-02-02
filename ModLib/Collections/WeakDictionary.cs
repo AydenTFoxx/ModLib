@@ -52,7 +52,7 @@ public class WeakDictionary<TKey, TValue> : IDictionary<TKey, TValue>, ICloneabl
         // The reason for this is in case (for some reason which I have never seen) the finalizer trigger doesn't work
         // There is not much performance penalty with this, since this is only called in cases when we would be enumerating the inner collections anyway.
 
-        List<WeakReference> keysToRemove = [.. valueMap.Keys.Where(k => !k.IsAlive)];
+        List<WeakReference> keysToRemove = [.. valueMap.Keys.Where(static k => !k.IsAlive)];
 
         foreach (WeakReference key in keysToRemove)
             valueMap.Remove(key);
@@ -65,7 +65,7 @@ public class WeakDictionary<TKey, TValue> : IDictionary<TKey, TValue>, ICloneabl
             lock (locker)
             {
                 Purge();
-                return valueMap.ToDictionary(p => (TKey)p.Key.Target, p => p.Value);
+                return valueMap.ToDictionary(static p => (TKey)p.Key.Target, static p => p.Value);
             }
         }
     }
@@ -108,7 +108,7 @@ public class WeakDictionary<TKey, TValue> : IDictionary<TKey, TValue>, ICloneabl
             lock (locker)
             {
                 Purge();
-                return [.. valueMap.Keys.Select(k => (TKey)k.Target)];
+                return [.. valueMap.Keys.Select(static k => (TKey)k.Target)];
             }
         }
     }
@@ -121,7 +121,7 @@ public class WeakDictionary<TKey, TValue> : IDictionary<TKey, TValue>, ICloneabl
             lock (locker)
             {
                 Purge();
-                return [.. valueMap.Select(p => p.Value)];
+                return [.. valueMap.Select(static p => p.Value)];
             }
         }
     }

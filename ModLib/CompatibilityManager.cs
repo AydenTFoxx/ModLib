@@ -13,6 +13,9 @@ public static class CompatibilityManager
 {
     private static readonly Dictionary<string, bool> ManagedMods = [];
 
+    internal const string RAIN_MEADOW_ID = "henpemaz_rainmeadow";
+    internal const string IMPROVED_INPUT_ID = "improved-input-config";
+
     /// <summary>
     ///     Clears the internal dictionary of cached mods.
     /// </summary>
@@ -22,23 +25,33 @@ public static class CompatibilityManager
     ///     Determines if a given mod is currently enabled.
     /// </summary>
     /// <param name="modID">The ID of the mod to check for.</param>
+    /// <param name="forceQuery">If true, ignores any previously cached result and queries for the mod's ID directly.</param>
     /// <returns><c>true</c> if the given mod was found to be enabled, <c>false</c> otherwise.</returns>
-    public static bool IsModEnabled(string modID) =>
-        ManagedMods.TryGetValue(modID, out bool value)
-            ? value
-            : ModManager.ActiveMods.Any(mod => mod.id == modID);
+    public static bool IsModEnabled(string modID, bool forceQuery = false)
+    {
+        if (!forceQuery && ManagedMods.TryGetValue(modID, out bool value))
+            return value;
+
+        bool result = ModManager.ActiveMods.Any(mod => mod.id == modID);
+
+        SetModCompatibility(modID, result);
+
+        return result;
+    }
 
     /// <summary>
     ///     Determines if either Improved Input Config or Improved Input Config: Extended are enabled.
     /// </summary>
+    /// <param name="forceQuery">If true, ignores any previously cached result and queries for IIC's ID directly.</param>
     /// <returns><c>true</c> if one of these mods is enabled, <c>false</c> otherwise.</returns>
-    public static bool IsIICEnabled() => IsModEnabled("improved-input-config");
+    public static bool IsIICEnabled(bool forceQuery = false) => IsModEnabled(IMPROVED_INPUT_ID, forceQuery);
 
     /// <summary>
     ///     Determines if the Rain Meadow mod is enabled.
     /// </summary>
+    /// <param name="forceQuery">If true, ignores any previously cached result and queries for Rain Meadow's ID directly.</param>
     /// <returns><c>true</c> if the mod is enabled, <c>false</c> otherwise.</returns>
-    public static bool IsRainMeadowEnabled() => IsModEnabled("henpemaz_rainmeadow");
+    public static bool IsRainMeadowEnabled(bool forceQuery = false) => IsModEnabled(RAIN_MEADOW_ID, forceQuery);
 
     /// <summary>
     ///     Overrides the configured compatibility features for a given mod.
@@ -182,7 +195,7 @@ public static class CompatibilityManager
                     AdvancedSearchIDs.Add(line);
                 }
 
-                modIDs.Add([.. line.Split([','], StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim())]);
+                modIDs.Add([.. line.Split([','], StringSplitOptions.RemoveEmptyEntries).Select(static s => s.Trim())]);
             }
 
             return modIDs;
