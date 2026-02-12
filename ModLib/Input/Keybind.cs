@@ -26,6 +26,11 @@ public record Keybind
     /// <returns>A read-only list of all registered keybinds.</returns>
     public static ReadOnlyCollection<Keybind> Keybinds { get; } = new(_keybinds);
 
+    static Keybind()
+    {
+        Core.InputModuleActivated = true;
+    }
+
     /// <summary>
     ///     The unique identifier of this Keybind.
     /// </summary>

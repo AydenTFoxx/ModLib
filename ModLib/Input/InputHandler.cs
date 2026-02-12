@@ -7,6 +7,11 @@ namespace ModLib.Input;
 /// </summary>
 public static class InputHandler
 {
+    static InputHandler()
+    {
+        Core.InputModuleActivated = true;
+    }
+
     /// <summary>
     ///     Retrieves the raw input package for the given player.
     /// </summary>

@@ -103,6 +103,7 @@ public abstract class ModPlugin : BaseUnityPlugin
     public virtual void OnEnable()
     {
         if (IsModEnabled) return;
+
         IsModEnabled = true;
 
         Extras.WrapAction(() =>
@@ -129,12 +130,15 @@ public abstract class ModPlugin : BaseUnityPlugin
         IsModEnabled = false;
         ResourcesLoaded = false;
 
-        Extras.WrapAction(() =>
+        if (Extras.RainReloaderActive)
         {
-            RemoveHooks();
+            Extras.WrapAction(() =>
+            {
+                RemoveHooks();
 
-            Logger.LogDebug("Removed all hooks successfully.");
-        }, Logger);
+                Logger.LogDebug("Removed all hooks successfully.");
+            }, Logger);
+        }
 
         Logger.LogInfo($"Disabled {Info.Metadata.Name} successfully.");
     }

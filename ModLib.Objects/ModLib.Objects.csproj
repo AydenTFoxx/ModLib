@@ -2,7 +2,7 @@
 
 	<!-- Assembly metadata -->
 	<PropertyGroup>
-		<Title>Generic Modding Library</Title>
+		<Title>ModLib Objects Extension</Title>
 		<Company>YNHZRFXN</Company>
 		<AssemblyVersion>0.3.3.0</AssemblyVersion>
 		<FileVersion>0.3.3.0</FileVersion>
@@ -42,15 +42,9 @@
 		</Reference>
 	</ItemGroup>
 
-	<!-- Embedded resources -->
+	<!-- Referenced project(s) -->
 	<ItemGroup>
-		<EmbeddedResource Include="../$(TargetName).Loader/_patchers/$(TargetName).Loader.dll" LogicalName="$(TargetName).Loader.dll" />
-	</ItemGroup>
-
-	<!-- Related Assemblies -->
-	<ItemGroup>
-		<InternalsVisibleTo Include="ModLib.Loader" />
-		<InternalsVisibleTo Include="ModLib.Objects" />
+		<ProjectReference Include="..\ModLib\ModLib.csproj" />
 	</ItemGroup>
 
 	<!-- Post-compile tasks -->
@@ -60,13 +54,12 @@
 			<CopyPlugins Include="$(TargetDir)$(TargetName).pdb" />
 
 			<CopyDocs Include="$(TargetDir)$(TargetName).xml" />
-
-			<CopyDeps Include="../lib/Mods/LogUtils.dll" />
-			<CopyDeps Include="../lib/Mods/LogUtils.pdb" />
 		</ItemGroup>
 
+		<Copy SourceFiles="@(CopyPlugins)" DestinationFolder="./_plugins/" />
+		<Copy SourceFiles="@(CopyPlugins)" DestinationFolder="../mod/newest/plugins/" />
+
 		<Copy SourceFiles="@(CopyPlugins); @(CopyDocs)" DestinationFolder="../lib/Custom/" />
-		<Copy SourceFiles="@(CopyPlugins); @(CopyDeps)" DestinationFolder="../mod/newest/plugins/" />
 	</Target>
 
 </Project>

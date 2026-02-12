@@ -15,6 +15,7 @@ public static class CompatibilityManager
 
     internal const string RAIN_MEADOW_ID = "henpemaz_rainmeadow";
     internal const string IMPROVED_INPUT_ID = "improved-input-config";
+    internal const string FAKE_ACHIEVEMENTS_ID = "ddemile.fake_achievements";
 
     /// <summary>
     ///     Clears the internal dictionary of cached mods.
@@ -38,6 +39,13 @@ public static class CompatibilityManager
 
         return result;
     }
+
+    /// <summary>
+    ///     Determines if the Fake AChievements mod is enabled.
+    /// </summary>
+    /// <param name="forceQuery">If true, ignores any previously cached result and queries for Rain Meadow's ID directly.</param>
+    /// <returns><c>true</c> if the mod is enabled, <c>false</c> otherwise.</returns>
+    public static bool IsFakeAchievementsEnabled(bool forceQuery = false) => IsModEnabled(FAKE_ACHIEVEMENTS_ID, forceQuery);
 
     /// <summary>
     ///     Determines if either Improved Input Config or Improved Input Config: Extended are enabled.
@@ -84,8 +92,9 @@ public static class CompatibilityManager
 
             HashSet<string[]> configuredModIDs = new(
                 [
-                    ["henpemaz_rainmeadow", "3388224007"],  // Rain Meadow
-                    ["improved-input-config", "3458119961"] // Improved Input Config: Extended
+                    [RAIN_MEADOW_ID, "3388224007"],  // Rain Meadow
+                    [IMPROVED_INPUT_ID, "3458119961"], // Improved Input Config: Extended
+                    [FAKE_ACHIEVEMENTS_ID, "3255024058"] // Fake Achievements
                 ],
                 new ModIDEqualityComparer()
             );

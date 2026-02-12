@@ -10,29 +10,68 @@ using MonoMod.RuntimeDetour;
 namespace ModLib.Loader;
 
 /// <summary>
-///     ModLib's entry point for initializing core systems and being available for usage as early as possible.
+///     ModLib's entrypoint for initializing core systems and being available for usage as early as possible.
 /// </summary>
 /// <remarks>
-///     This is an internal class of ModLib, exposed for usage by other assemblies.
+///     This is an internal class of ModLib, exposed for usage by extension assemblies.
 ///     Unless working strictly in that context, you should not access this class or any of its members directly.
 /// </remarks>
-[EditorBrowsable(EditorBrowsableState.Never)]
+[EditorBrowsable(EditorBrowsableState.Advanced)]
 public static class Entrypoint
 {
+    private static readonly EventHandlerList eventHandlerList = new();
+
+    private const byte preInitializeKey = 0;
+    private const byte onInitializeKey = 1;
+    private const byte preDisableKey = 2;
+    private const byte onDisableKey = 3;
+
+    private static ILHook? _initHook;
+    private static bool _initializing;
+
     /// <summary>
     ///     Whether or not ModLib was successfully initialized.
     /// </summary>
     public static bool IsInitialized { get; private set; }
 
-    private static ILHook? _initHook;
-    private static bool _initializing;
-
-    internal static void TryInitialize([CallerFilePath] string callerPath = "")
+    /// <summary>
+    ///     Invoked just before ModLib starts its initialization process.
+    /// </summary>
+    public static event Action? PreInitialize
     {
-        if (IsInitialized || _initializing) return;
-
-        Initialize([], callerPath);
+        add => eventHandlerList.AddHandler(preInitializeKey, value);
+        remove => eventHandlerList.RemoveHandler(preInitializeKey, value);
     }
+
+    /// <summary>
+    ///     Invoked after ModLib finishes initializing.
+    /// </summary>
+    public static event Action? OnInitialize
+    {
+        add => eventHandlerList.AddHandler(onInitializeKey, value);
+        remove => eventHandlerList.RemoveHandler(onInitializeKey, value);
+    }
+
+    /// <summary>
+    ///     Invoked just before ModLib starts its shutdown process.
+    /// </summary>
+    public static event Action? PreDisable
+    {
+        add => eventHandlerList.AddHandler(preDisableKey, value);
+        remove => eventHandlerList.RemoveHandler(preDisableKey, value);
+    }
+
+    /// <summary>
+    ///     Invoked after ModLib has been disabled.
+    /// </summary>
+    public static event Action? OnDisable
+    {
+        add => eventHandlerList.AddHandler(onDisableKey, value);
+        remove => eventHandlerList.RemoveHandler(onDisableKey, value);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    internal static void TryInitialize([CallerFilePath] string callerPath = "") => Initialize([], callerPath);
 
     /// <summary>
     ///     Initializes ModLib and loads its resources into the game.
@@ -43,10 +82,13 @@ public static class Entrypoint
     /// </remarks>
     /// <param name="compatibilityPaths">The list of paths to config files, retrieved during the preloading process.</param>
     /// <param name="callerPath">The compiler-provided file path to the calling method.</param>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public static void Initialize(IList<string> compatibilityPaths, [CallerFilePath] string callerPath = "")
+    internal static void Initialize(IList<string> compatibilityPaths, [CallerFilePath] string callerPath = "")
     {
-        if (IsInitialized) return;
+        if (IsInitialized || _initializing) return;
+
+        ModLibExtensionAttribute.LoadAllEntrypoints();
+
+        GetEventByKey<Action>(preInitializeKey)?.Invoke();
 
         _initializing = true;
 
@@ -62,15 +104,13 @@ public static class Entrypoint
 
             if (!isForcedInit)
             {
-                _initHook ??= new ILHook(
+                (_initHook ??= new ILHook(
                     typeof(BepInEx.MultiFolderLoader.ChainloaderHandler).GetMethod("PostFindPluginTypes", BindingFlags.NonPublic | BindingFlags.Static),
-                    InitializeCoreILHook
-                );
-                _initHook.Apply();
+                    InitializeCoreILHook)).Apply();
             }
             else
             {
-                Core.Initialize();
+                CoreInitialize();
             }
 
             IsInitialized = true;
@@ -91,9 +131,10 @@ public static class Entrypoint
     /// <summary>
     ///     Disables ModLib and removes its resources from the game.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public static void Disable()
+    internal static void Disable()
     {
+        GetEventByKey<Action>(preDisableKey)?.Invoke();
+
         try
         {
             Core.Disable();
@@ -106,13 +147,24 @@ public static class Entrypoint
 
         _initializing = false;
         IsInitialized = false;
+
+        GetEventByKey<Action>(onDisableKey)?.Invoke();
+
+        ModLibExtensionAttribute.UnloadAllEntrypoints();
     }
 
-    /// <summary>
-    ///     Adds a CorePlugin object to the GameObject all mods are tied to, so ModLib can more accurately detect when the game is shutting down.
-    /// </summary>
     private static void InitializeCoreILHook(ILContext context) =>
-        new ILCursor(context).EmitDelegate(Core.Initialize);
+        new ILCursor(context).EmitDelegate(CoreInitialize);
+
+    private static void CoreInitialize()
+    {
+        Core.Initialize();
+
+        GetEventByKey<Action>(onInitializeKey)?.Invoke();
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private static T GetEventByKey<T>(byte key) where T : Delegate => (T)eventHandlerList[key];
 
     /// <summary>
     ///     Initializes compatibility checking with the provided paths to config files.

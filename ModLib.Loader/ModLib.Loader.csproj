@@ -1,27 +1,37 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+	<!-- Assembly metadata -->
 	<PropertyGroup>
 		<Title>Generic Modding Library Loader</Title>
-		<AssemblyVersion>0.2.0.6</AssemblyVersion>
-		<FileVersion>0.2.0.6</FileVersion>
+		<Company>YNHZRFXN</Company>
+		<AssemblyVersion>0.2.0.8</AssemblyVersion>
+		<FileVersion>0.2.0.8</FileVersion>
+		<PathMap>$(MSBuildProjectDirectory)=/$(TargetName)</PathMap>
 	</PropertyGroup>
 
+	<!-- .NET options -->
 	<PropertyGroup>
 		<TargetFramework>net481</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<!-- Compiler settings -->
+	<PropertyGroup>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	</PropertyGroup>
 
+	<!-- Determinism config -->
 	<PropertyGroup>
 		<Deterministic>true</Deterministic>
 		<DeterministicSourcePaths>true</DeterministicSourcePaths>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
+		<SourceRoot Include="$(MSBuildThisFileDirectory)/" />
 	</ItemGroup>
 
+	<!-- Referenced assemblies -->
 	<ItemGroup>
 		<Reference Include="../lib/Rain World/BepInEx/core/BepInEx.dll">
 			<Private>false</Private>
@@ -37,12 +47,13 @@
 		</Reference>
 	</ItemGroup>
 
+	<!-- Post-compile tasks -->
 	<Target Name="GenerateModLibPatcher" AfterTargets="PostBuildEvent">
 		<ItemGroup>
 			<CopyPlugins Include="$(TargetDir)$(TargetName).dll" />
 		</ItemGroup>
 
-		<Copy SourceFiles="@(CopyPlugins)" DestinationFolder="./patchers/" />
+		<Copy SourceFiles="@(CopyPlugins)" DestinationFolder="./_patchers/" />
 	</Target>
 
 </Project>
