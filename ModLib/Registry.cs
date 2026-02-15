@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
 using BepInEx;
 using BepInEx.Logging;
 using ModLib.Loader;
@@ -17,8 +16,6 @@ namespace ModLib;
 /// </summary>
 public static class Registry
 {
-    private static readonly char[] ForbiddenPathChars = [.. Path.GetInvalidPathChars(), ' '];
-
     private static readonly ConditionalWeakTable<Assembly, ModEntry> RegisteredMods = new();
 
     /// <summary>
@@ -131,16 +128,9 @@ public static class Registry
 
     internal static string SanitizeModName(string modName)
     {
-        StringBuilder stringBuilder = new();
+        char[] ForbiddenPathChars = [.. Path.GetInvalidPathChars(), ' '];
 
-        foreach (char c in modName)
-        {
-            if (ForbiddenPathChars.Contains(c)) continue;
-
-            stringBuilder.Append(c);
-        }
-
-        return stringBuilder.ToString();
+        return string.Join("", modName.Where(c => !ForbiddenPathChars.Contains(c)));
     }
 
     internal static ModEntry? TryGetMod(Assembly caller) =>

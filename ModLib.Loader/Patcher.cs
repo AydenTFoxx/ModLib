@@ -27,13 +27,22 @@ public static class Patcher
 
         Logger.LogMessage($"Looking for ModLib assemblies...");
 
-        AssemblyCandidate target = AssemblyUtils.FindLatestAssembly(GetSearchPaths(), "ModLib.dll");
+        AssemblyCandidate target = AssemblyUtils.FindLatestAssembly(GetSearchPaths(true), "ModLib.dll");
 
         if (target.Path != null)
         {
             Logger.LogMessage($"Loading latest ModLib DLL: {AssemblyUtils.FormatCandidate(target, true)}");
 
             Assembly.LoadFrom(target.Path);
+
+            AssemblyCandidate targetObjects = AssemblyUtils.FindLatestAssembly(GetSearchPaths(false), "ModLib.Objects.dll");
+
+            if (targetObjects.Path != null)
+            {
+                Logger.LogMessage($"Loading latest ModLib.Objects DLL: {AssemblyUtils.FormatCandidate(targetObjects, true)}");
+
+                Assembly.LoadFrom(targetObjects.Path);
+            }
 
             loadedAssembly = true;
         }
@@ -43,18 +52,21 @@ public static class Patcher
         }
     }
 
-    private static IEnumerable<string> GetSearchPaths()
+    private static IEnumerable<string> GetSearchPaths(bool doCompatFileCheck = true)
     {
         foreach (Mod mod in ModManager.Mods)
         {
             // Retrieve the mod's CompatibilityMods.txt file, if there is any
-            string? compatFilePath = Directory.GetFiles(mod.ModDir, "CompatibilityMods.txt", SearchOption.TopDirectoryOnly).FirstOrDefault();
-
-            if (compatFilePath is not null)
+            if (doCompatFileCheck)
             {
-                Logger.LogInfo($"Found CM config file: {AssemblyUtils.GetModName(compatFilePath, true)}");
+                string? compatFilePath = Directory.GetFiles(mod.ModDir, "CompatibilityMods.txt", SearchOption.TopDirectoryOnly).FirstOrDefault();
 
-                CompatibilityPaths.Add(compatFilePath);
+                if (compatFilePath is not null)
+                {
+                    Logger.LogInfo($"Found CM config file: {AssemblyUtils.GetModName(compatFilePath, true)}");
+
+                    CompatibilityPaths.Add(compatFilePath);
+                }
             }
 
             yield return mod.PluginsPath;
@@ -85,11 +97,17 @@ public static class Patcher
         }
         catch (Exception ex)
         {
-            Logger.LogError($"Failed to initialize ModLib entry point: {ex}");
+            Logger.LogError($"Failed to initialize ModLib entrypoint: {ex}");
         }
 
         CompatibilityPaths.Clear();
 
         BepInEx.Logging.Logger.Sources.Remove(Logger);
+    }
+
+    private static class ModLibAccess
+    {
+        public static void TryLoadModLib(List<string> compatibilityPaths) =>
+            Entrypoint.Initialize(compatibilityPaths);
     }
 }

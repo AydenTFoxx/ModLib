@@ -7,6 +7,7 @@ using System.Text;
 using BepInEx;
 using BepInEx.Logging;
 using ModLib.Input;
+using ModLib.Loader;
 using ModLib.Logging;
 using ModLib.Meadow;
 using ModLib.Options;
@@ -19,7 +20,7 @@ internal static class Core
 {
     public const string MOD_GUID = "ynhzrfxn.modlib";
     public const string MOD_NAME = "ModLib";
-    public const string MOD_VERSION = "0.3.2.0";
+    public const string MOD_VERSION = "0.3.3.0";
 
     public static readonly Assembly MyAssembly = typeof(Core).Assembly;
 
@@ -35,6 +36,8 @@ internal static class Core
 
     public static ModLibData MyData { get; private set; }
     public static bool Initialized { get; private set; }
+
+    public static bool InputModuleActivated { get; set; }
 
     public static void Initialize()
     {
@@ -68,7 +71,7 @@ internal static class Core
         On.RainWorld.OnModsInit += OnModsInitHook;
         On.RainWorldGame.Update += GameUpdateHook;
 
-        Application.quitting += Disable;
+        Application.quitting += Entrypoint.Disable;
 
         Registry.RegisterAssembly(MyAssembly, PluginData, null, Logger);
 
@@ -89,22 +92,25 @@ internal static class Core
 
         Initialized = false;
 
-        CompatibilityManager.Clear();
-
-        if (Extras.IsMeadowEnabled)
+        if (Extras.RainReloaderActive)
         {
-            MeadowHooks.RemoveHooks();
-        }
-        else
-        {
-            On.GameSession.ctor -= GameSessionHook;
-            On.RainWorldGame.ExitGame -= ExitGameHook;
-        }
+            CompatibilityManager.Clear();
 
-        On.RainWorld.OnModsInit -= OnModsInitHook;
-        On.RainWorldGame.Update -= GameUpdateHook;
+            if (Extras.IsMeadowEnabled)
+            {
+                MeadowHooks.RemoveHooks();
+            }
+            else
+            {
+                On.GameSession.ctor -= GameSessionHook;
+                On.RainWorldGame.ExitGame -= ExitGameHook;
+            }
 
-        Application.quitting -= Disable;
+            On.RainWorld.OnModsInit -= OnModsInitHook;
+            On.RainWorldGame.Update -= GameUpdateHook;
+
+            Application.quitting -= Entrypoint.Disable;
+        }
 
         Extras.WrapAction(WriteModLibData, Logger);
 
@@ -132,26 +138,29 @@ internal static class Core
 
     private static void GameUpdateHook(On.RainWorldGame.orig_Update orig, RainWorldGame self)
     {
-        if (Extras.IsIICEnabled)
+        if (InputModuleActivated)
         {
-            ImprovedInputHelper.UpdateInput();
-        }
-        else
-        {
-            global::Options? options = UnityEngine.Object.FindObjectOfType<RainWorld>()?.options;
-            int maxPlayers = Keybind.MaxPlayers;
-
-            foreach (Keybind keybind in Keybind.Keybinds)
+            if (Extras.IsIICEnabled)
             {
-                if (maxPlayers == 1)
+                ImprovedInputHelper.UpdateInput();
+            }
+            else
+            {
+                global::Options? options = UnityEngine.Object.FindObjectOfType<RainWorld>()?.options;
+                int maxPlayers = Keybind.MaxPlayers;
+
+                foreach (Keybind keybind in Keybind.Keybinds)
                 {
-                    keybind.Update(options, 0);
-                }
-                else
-                {
-                    for (int i = 0; i < maxPlayers; i++)
+                    if (maxPlayers == 1)
                     {
-                        keybind.Update(options, i);
+                        keybind.Update(options, 0);
+                    }
+                    else
+                    {
+                        for (int i = 0; i < maxPlayers; i++)
+                        {
+                            keybind.Update(options, i);
+                        }
                     }
                 }
             }
@@ -181,6 +190,11 @@ internal static class Core
         if (!Extras.IsMeadowEnabled && CompatibilityManager.IsRainMeadowEnabled(forceQuery: true))
         {
             Extras.IsMeadowEnabled = true;
+        }
+
+        if (!Extras.IsFakeAchievementsEnabled && CompatibilityManager.IsFakeAchievementsEnabled(forceQuery: true))
+        {
+            Extras.IsFakeAchievementsEnabled = true;
         }
 
         Extras.DebugMode = OptionUtils.IsOptionEnabled("modlib.debug");
@@ -248,7 +262,7 @@ internal static class Core
     {
         private const string TARGET_DLL = "ModLib.Loader.dll";
 
-        private static readonly Version _latestLoaderVersion = new("0.2.0.6");
+        private static readonly Version _latestLoaderVersion = new("0.2.0.8");
 
         private static readonly string _targetPath = Path.Combine(Paths.PatcherPluginPath, TARGET_DLL);
 

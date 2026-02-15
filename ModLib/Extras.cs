@@ -1,7 +1,9 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Security.Permissions;
+using FakeAchievements;
 using ModLib.Loader;
 using ModLib.Logging;
 using ModLib.Meadow;
@@ -33,6 +35,11 @@ public static class Extras
     ///     Whether or not the Improved Input Config: Extended mod is present. This value is cached for performance purposes.
     /// </summary>
     public static bool IsIICEnabled { get; internal set; }
+
+    /// <summary>
+    ///     Whether or not the Fake Achievements mod is present. This value is cached for performance purposes.
+    /// </summary>
+    public static bool IsFakeAchievementsEnabled { get; internal set; }
 
     /// <summary>
     ///     If the current game session is in an online lobby.
@@ -73,6 +80,8 @@ public static class Extras
     /// </summary>
     public static bool DebugMode { get; internal set; }
 
+    internal static bool RainReloaderActive => ModManager.ActiveMods.Any(static mod => mod.id == "twofour2.rainReloader");
+
     static Extras()
     {
         Entrypoint.TryInitialize();
@@ -84,7 +93,73 @@ public static class Extras
 
         IsMeadowEnabled = CompatibilityManager.IsRainMeadowEnabled();
         IsIICEnabled = CompatibilityManager.IsIICEnabled();
+        IsFakeAchievementsEnabled = CompatibilityManager.IsFakeAchievementsEnabled();
     }
+
+    /// <summary>
+    ///     Grants and displays a given custom achievement to the client.
+    ///     If the Fake Achievements mod is not present, this method does nothing.
+    /// </summary>
+    /// <param name="achievementID">The resolvable identifier of the achievement.</param>
+    public static void GrantFakeAchievement(string achievementID)
+    {
+        if (!IsFakeAchievementsEnabled) return;
+
+        string pluginGuid = Registry.GetMod(Assembly.GetCallingAssembly()).Plugin.GUID;
+
+        if (!achievementID.StartsWith($"{pluginGuid}/"))
+            achievementID = $"{pluginGuid}/${achievementID}";
+
+        Core.Logger.LogDebug($"Displaying achievement: {achievementID}");
+
+        try
+        {
+            FakeAchievementsAccess.GrantAchievement(achievementID);
+        }
+        catch (Exception ex)
+        {
+            Core.Logger.LogError($"Failed to grant achievement [{achievementID}]!");
+            Core.Logger.LogError($"Exception: {ex}");
+        }
+    }
+
+    /// <summary>
+    ///     Revokes a given custom achievement for the client.
+    ///     If the Fake Achievements mod is not present, this method does nothing.
+    /// </summary>
+    /// <param name="achievementID">The resolvable identifier of the achievement.</param>
+    public static void RevokeFakeAchievement(string achievementID)
+    {
+        if (!IsFakeAchievementsEnabled) return;
+
+        string pluginGuid = Registry.GetMod(Assembly.GetCallingAssembly()).Plugin.GUID;
+
+        if (!achievementID.StartsWith($"{pluginGuid}/"))
+            achievementID = $"{pluginGuid}/${achievementID}";
+
+        Core.Logger.LogDebug($"Revoking achievement: {achievementID}");
+
+        try
+        {
+            FakeAchievementsAccess.RevokeAchievement(achievementID);
+        }
+        catch (Exception ex)
+        {
+            Core.Logger.LogError($"Failed to revoke achievement [{achievementID}]!");
+            Core.Logger.LogError($"Exception: {ex}");
+        }
+    }
+
+    /// <summary>
+    ///     Safely determines if the given object is owned by the player in an online context.
+    /// </summary>
+    /// <param name="physicalObject">The object for testing.</param>
+    /// <returns>
+    ///     <c>true</c> if the given object is owned by this client, <c>false</c> otherwise.
+    ///     This method returns <c>true</c> if Rain Meadow is not enabled, or if the player is not in an online lobby.
+    /// </returns>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsLocalObject(PhysicalObject physicalObject) => !IsMeadowEnabled || MeadowUtils.IsMine(physicalObject);
 
     /// <summary>
     ///     Wraps a given action in a try-catch, safely performing its code while handling potential exceptions.
@@ -122,5 +197,14 @@ public static class Extras
             logger.LogError($"Failed to run wrapped action: {action.Method.Name}");
             logger.LogError(ex);
         }
+    }
+
+    private static class FakeAchievementsAccess
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static void GrantAchievement(string achievementID) => AchievementsManager.GrantAchievement(achievementID);
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static void RevokeAchievement(string achievementID) => AchievementsManager.RevokeAchievement(achievementID);
     }
 }

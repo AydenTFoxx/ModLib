@@ -1,0 +1,34 @@
+INIT
+
+- ModLib.Loader Inits (Preloading process)
+
+  - Entrypoint.Initialize() is called
+
+    - Extension assemblies are located and loaded; Initialize() is called for each one of them.
+
+    - PreInitialize is called
+
+    - CompatibilityManager is initialized; Override files are read and evaluated.
+    - Extras is initialized; Static fields are populated for later usage by ModLib and other mods.
+    - Core is initialized; Various internal services are initialized and properly configured here.
+
+    - OnInitialize is called
+
+- ModLib is ready for usage by consumers.
+
+---
+
+EXIT
+
+- Entrypoint.Disable() is called
+
+  - PreDisable is called
+
+  - Core is disabled; Services are stopped, and data is saved to disk.
+  - Entrypoint class is marked as non-initialized.
+
+  - OnDisable is called
+
+  - Extension assemblies are disabled and unloaded; Disable() is called for each one of them.
+
+- ModLib is disabled, game exits.
