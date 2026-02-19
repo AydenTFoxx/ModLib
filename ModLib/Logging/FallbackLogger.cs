@@ -7,17 +7,36 @@ namespace ModLib.Logging;
 /// <summary>
 ///     A logger type which logs to a custom file with basic formatting and timestamps.
 /// </summary>
-public class FallbackLogger(ManualLogSource logSource) : ModLogger
+public class FallbackLogger : ModLogger
 {
-    private readonly string PathToLogFile = Path.Combine(Registry.DefaultLogsPath, logSource.SourceName + ".log");
+    private readonly string PathToLogFile;
+
+    private readonly ManualLogSource LogSource;
+
+    /// <summary>
+    ///     Creates a new default logger with a given log source.
+    /// </summary>
+    /// <param name="logSource">The source used for logging to BepInEx.</param>
+    /// <exception cref="ArgumentNullException">logSource is null</exception>
+    public FallbackLogger(ManualLogSource logSource)
+    {
+        LogSource = logSource ?? throw new ArgumentNullException(nameof(logSource));
+
+        PathToLogFile = Path.Combine(Registry.DefaultLogsPath, logSource.SourceName + ".log");
+
+        if (File.Exists(PathToLogFile))
+        {
+            Extras.WrapAction(() => File.WriteAllText(PathToLogFile, ""), Core.Logger);
+        }
+    }
 
     /// <inheritdoc/>
-    public override object GetLogSource() => logSource;
+    public override object GetLogSource() => LogSource;
 
     /// <inheritdoc/>
     public override void Log(LogLevel level, object data)
     {
-        logSource.Log(level, data);
+        LogSource.Log(level, data);
 
         WriteToFile(PathToLogFile, FormatMessage(data, level));
 

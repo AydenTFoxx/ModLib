@@ -8,15 +8,17 @@ namespace ModLib.Meadow;
 /// <summary>
 ///     Events sent to and received by clients, used for syncing data in an online context.
 /// </summary>
-public static class ModRPCs
+internal static class ModRPCs
 {
     /// <summary>
     ///     Writes the provided system message to the player's chat.
     /// </summary>
     /// <param name="message">The message to be displayed</param>
-    [SoftRPCMethod]
+    [SoftRPCMethod(security = RPCSecurity.InResource)]
     public static void LogSystemMessage(string message)
     {
+        if (!Extras.InGameSession) return;
+
         ChatLogManager.LogSystemMessage(message);
 
         Core.Logger.LogMessage($"-> {message}");
@@ -27,7 +29,7 @@ public static class ModRPCs
     /// </summary>
     /// <param name="rpcEvent">The RPC event itself.</param>
     /// <param name="onlinePlayer">The player who called this event.</param>
-    [SoftRPCMethod]
+    [SoftRPCMethod(security = RPCSecurity.InLobby)]
     public static void RequestSyncRemixOptions(RPCEvent rpcEvent, OnlinePlayer onlinePlayer)
     {
         if (!MeadowUtils.IsHost)
@@ -53,7 +55,7 @@ public static class ModRPCs
     /// </summary>
     /// <param name="rpcEvent">The RPC event itself.</param>
     /// <param name="options">The serializable values of the host's <see cref="ServerOptions"/> instance.</param>
-    [SoftRPCMethod]
+    [SoftRPCMethod(security = RPCSecurity.InLobby)]
     public static void SyncRemixOptions(RPCEvent rpcEvent, SerializableOptions options)
     {
         if (MeadowUtils.IsHost)
@@ -90,7 +92,7 @@ public static class ModRPCs
         {
             foreach (KeyValuePair<string, ConfigValue> optionPair in options)
             {
-                if (optionPair.Key.StartsWith("_", System.StringComparison.Ordinal)) continue;
+                if (optionPair.Key.StartsWith("_", System.StringComparison.OrdinalIgnoreCase)) continue;
 
                 Options.Add(optionPair.Key, optionPair.Value);
             }

@@ -82,7 +82,7 @@ public static class ModRPCManager
         RPCEvent rpcEvent = onlinePlayer
             .InvokeOnceRPC(rpcSource.GetMethod(@delegate.Method.Name).CreateDelegate(typeof(T)), args)
             .Then(ResolveRPCEvent)
-            .SetTimeout(1000);
+            .SetTimeout(30 * 40); // 30s time limit
 
         Core.Logger.LogDebug($"Sending RPC event {rpcEvent} to {rpcEvent.to}...");
 
@@ -92,18 +92,34 @@ public static class ModRPCManager
     /// <summary>
     ///     Sends a single RPC event to all players in the same room as the online entity.
     /// </summary>
-    /// <param name="source">The online entity who will send the RPC events.</param>
+    /// <param name="source">The online entity who will send the RPC event.</param>
     /// <param name="del">The RPC method to be sent.</param>
     /// <param name="args">Any arguments of the RPC method.</param>
+    /// <exception cref="InvalidOperationException">source is not in a room session.</exception>
     public static void BroadcastOnceRPCInRoom(this OnlineEntity source, Delegate del, params object[] args)
     {
-        if (source.currentlyJoinedResource is not RoomSession roomSession)
-        {
-            Core.Logger.LogDebug($"{source} is not in a valid joined resource; Ignoring.");
-            return;
-        }
+        if (source.currentlyJoinedResource is not RoomSession roomSession) throw new InvalidOperationException($"{source} is not in a room session.");
 
         foreach (OnlinePlayer participant in roomSession.participants)
+        {
+            if (participant.isMe) continue;
+
+            participant.SendRPCEvent(del, args);
+        }
+    }
+
+    /// <summary>
+    ///     Sends a single RPC event to all players in the current lobby.
+    /// </summary>
+    /// <param name="_">The online entity who triggered the RPC event. This argument is not read, and is only included for usage of this method as an extension of <see cref="OnlineEntity"/>.</param>
+    /// <param name="del">The RPC method to be sent.</param>
+    /// <param name="args">Any arguments of the RPC method.</param>
+    /// <exception cref="InvalidOperationException">The client is not in an online lobby.</exception>
+    public static void BroadcastOnceRPCInLobby(this OnlineEntity? _, Delegate del, params object[] args)
+    {
+        if (OnlineManager.lobby is null) throw new InvalidOperationException("Cannot send RPCs outside of a valid lobby.");
+
+        foreach (OnlinePlayer participant in OnlineManager.lobby.participants)
         {
             if (participant.isMe) continue;
 

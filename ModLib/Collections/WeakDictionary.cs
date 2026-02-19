@@ -304,7 +304,7 @@ public class WeakDictionary<TKey, TValue> : IDictionary<TKey, TValue>, ICloneabl
     /// <param name="self">The list to be converted.</param>
     public static explicit operator WeakDictionary<TKey, TValue>(Dictionary<TKey, TValue> self)
     {
-        return [.. self.Where(static kvp => kvp.Key is not null && kvp.Value is not null)];
+        return [.. self.Where(static kvp => kvp is { Key: not null, Value: not null })];
     }
 
     private class ObjectReferenceEqualityComparer<T> : IEqualityComparer<T>

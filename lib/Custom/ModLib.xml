@@ -283,6 +283,15 @@
             <param name="assembly">The assembly whose types will be retrieved.</param>
             <returns>A collection containing all loaded types of the given assembly.</returns>
         </member>
+        <member name="M:ModLib.Extensions.CollectionExtensions.Add``2(System.Collections.Generic.Dictionary{``0,``1},System.Collections.Generic.KeyValuePair{``0,``1})">
+            <inheritdoc cref="M:ModLib.Extensions.CollectionExtensions.&lt;G&gt;$E42DFDC8D24EBEA929FB244FBCDF3D61`2.Add(System.Collections.Generic.KeyValuePair{`0,`1})"/>
+        </member>
+        <member name="M:ModLib.Extensions.CollectionExtensions.&lt;G&gt;$E42DFDC8D24EBEA929FB244FBCDF3D61`2.Add(System.Collections.Generic.KeyValuePair{`0,`1})">
+            <summary>
+                Adds the specified key-value pair to the dictionary.
+            </summary>
+            <param name="keyValuePair">The key and value pair to be added.</param>
+        </member>
         <member name="T:ModLib.Extensions.PhysicalObjectExtensions">
             <summary>
                 Extension methods for manipulating <see cref="T:PhysicalObject"/> instances.
@@ -348,9 +357,9 @@
                 Determines if LogUtils is currently loaded and available for usage.
             </summary>
         </member>
-        <member name="P:ModLib.Extras.ModLibAvailable">
+        <member name="P:ModLib.Extras.ModLibReady">
             <summary>
-                Determines if ModLib is currently loaded and available for usage.
+                Determines if ModLib is fully loaded and available for usage.
             </summary>
         </member>
         <member name="P:ModLib.Extras.DebugMode">
@@ -638,7 +647,7 @@
                     The identifier of this keybind. Must be an unique string not used by any other mod, or yourself.
                 </para>
                 <para>
-                    If omitted, an unique identifier is generated with the format <c>"{ModId}.{KeybindName}"</c>
+                    If null, an unique identifier is generated with the format <c>"{ModId}.{KeybindName}"</c>
                 </para>
             </param>
             <param name="name">The name of the new Keybind. Will be displayed for players with IIC:E enabled.</param>
@@ -670,30 +679,19 @@
         </member>
         <member name="P:ModLib.Loader.Entrypoint.IsInitialized">
             <summary>
-                Whether or not ModLib was successfully initialized.
+                Whether or not ModLib has successfully initialized.
             </summary>
         </member>
-        <member name="E:ModLib.Loader.Entrypoint.PreInitialize">
+        <member name="M:ModLib.Loader.Entrypoint.TryInitialize(System.String)">
             <summary>
-                Invoked just before ModLib starts its initialization process.
+                Attempts to initialize ModLib if it hasn't been initialized already.
             </summary>
-        </member>
-        <member name="E:ModLib.Loader.Entrypoint.OnInitialize">
-            <summary>
-                Invoked after ModLib finishes initializing.
-            </summary>
-        </member>
-        <member name="E:ModLib.Loader.Entrypoint.PreDisable">
-            <summary>
-                Invoked just before ModLib starts its shutdown process.
-            </summary>
-        </member>
-        <member name="E:ModLib.Loader.Entrypoint.OnDisable">
-            <summary>
-                Invoked after ModLib has been disabled.
-            </summary>
+            <param name="callerPath">The compiler-provided file path to the caller of this method.</param>
         </member>
         <member name="M:ModLib.Loader.Entrypoint.Initialize(System.Collections.Generic.IList{System.String},System.String)">
+            <inheritdoc cref="M:ModLib.Loader.Entrypoint.Initialize(System.Collections.Generic.IList{System.String},System.Boolean,System.String)"/>
+        </member>
+        <member name="M:ModLib.Loader.Entrypoint.Initialize(System.Collections.Generic.IList{System.String},System.Boolean,System.String)">
             <summary>
                 Initializes ModLib and loads its resources into the game.
             </summary>
@@ -702,25 +700,32 @@
                 Unless working within that context, you should not call this function.
             </remarks>
             <param name="compatibilityPaths">The list of paths to config files, retrieved during the preloading process.</param>
-            <param name="callerPath">The compiler-provided file path to the calling method.</param>
+            <param name="callerPath">The compiler-provided name of the caller.</param>
+            <param name="isLateInit">Whether the current initialization was triggered outside of the preloading process.</param>
         </member>
         <member name="M:ModLib.Loader.Entrypoint.Disable">
             <summary>
                 Disables ModLib and removes its resources from the game.
             </summary>
         </member>
-        <member name="M:ModLib.Loader.Entrypoint.InitializeCompatManager(System.Collections.Generic.IList{System.String},BepInEx.Logging.ManualLogSource,System.Boolean,System.String)">
+        <member name="T:ModLib.Loader.IExtensionEntrypoint">
             <summary>
-                Initializes compatibility checking with the provided paths to config files.
+                Specifies that a given class is the entrypoint for a ModLib extension assembly.
             </summary>
-            <param name="compatibilityPaths">The list of paths to config files, retrieved during the preloader process.</param>
-            <param name="logger">The logger for usage by this method.</param>
-            <param name="isForcedInit">Whether or not this is a forced initalization. If the caller is not ModLib's Loader, this should always be <c>true</c>.</param>
-            <param name="caller">The provided file path to the calling method.</param>
         </member>
-        <member name="T:ModLib.Loader.ModLibExtensionAttribute">
+        <member name="P:ModLib.Loader.IExtensionEntrypoint.Metadata">
             <summary>
-                Specifies that a given class is the entrypoint for a ModLib extension assembly. This class cannot be inherited.
+                The metadata of the extension assembly, used for identification.
+            </summary>
+        </member>
+        <member name="M:ModLib.Loader.IExtensionEntrypoint.OnEnable">
+            <summary>
+                Invoked just before ModLib initializes; Has the guarantee most ModLib components are initialized, though some features may not be available yet.
+            </summary>
+        </member>
+        <member name="M:ModLib.Loader.IExtensionEntrypoint.OnDisable">
+            <summary>
+                Invoked just before ModLib is disabled.
             </summary>
         </member>
         <member name="T:ModLib.Logging.FallbackLogger">
@@ -730,8 +735,10 @@
         </member>
         <member name="M:ModLib.Logging.FallbackLogger.#ctor(BepInEx.Logging.ManualLogSource)">
             <summary>
-                A logger type which logs to a custom file with basic formatting and timestamps.
+                Creates a new default logger with a given log source.
             </summary>
+            <param name="logSource">The source used for logging to BepInEx.</param>
+            <exception cref="T:System.ArgumentNullException">logSource is null</exception>
         </member>
         <member name="M:ModLib.Logging.FallbackLogger.GetLogSource">
             <inheritdoc/>
@@ -742,27 +749,32 @@
         <member name="T:ModLib.Logging.FilteredLogWrapper">
             <summary>
                 A wrapper around an <see cref="T:ModLib.Logging.ModLogger"/> instance, where logs are only processed
-                if they meet a minimal threshold logging level.
+                if their logging level is not within a given blacklist.
             </summary>
             <param name="logger">The logger instance to be wrapped.</param>
-            <param name="maxLogLevel">The max log level allowed for logging.</param>
+            <param name="filterLevels">The logging level(s) to be excluded from logging.</param>
         </member>
         <member name="M:ModLib.Logging.FilteredLogWrapper.#ctor(ModLib.Logging.ModLogger,BepInEx.Logging.LogLevel)">
             <summary>
                 A wrapper around an <see cref="T:ModLib.Logging.ModLogger"/> instance, where logs are only processed
-                if they meet a minimal threshold logging level.
+                if their logging level is not within a given blacklist.
             </summary>
             <param name="logger">The logger instance to be wrapped.</param>
-            <param name="maxLogLevel">The max log level allowed for logging.</param>
+            <param name="filterLevels">The logging level(s) to be excluded from logging.</param>
         </member>
-        <member name="P:ModLib.Logging.FilteredLogWrapper.MaxLogLevel">
+        <member name="P:ModLib.Logging.FilteredLogWrapper.FilterLogLevels">
             <summary>
-                The max "priority" level allowed for logging; Any message whose level is lower than this will be ignored.
+                The log levels which will be ignored by this logger instance.
+            </summary>
+        </member>
+        <member name="P:ModLib.Logging.FilteredLogWrapper.Logger">
+            <summary>
+                The internally wrapped logger.
             </summary>
         </member>
         <member name="M:ModLib.Logging.FilteredLogWrapper.#ctor(ModLib.Logging.ModLogger)">
             <summary>
-                Creates a log wrapper with ModLib's default logging verbosity settings; All logs of type <c>Debug</c> or lower are ignored, unless in Debug Mode.
+                Creates a log wrapper with ModLib's default logging verbosity settings; All logs of <c>Debug</c> level are ignored, unless in Debug Mode.
             </summary>
             <param name="logger">The logger instance to be wrapped.</param>
         </member>
@@ -772,7 +784,7 @@
         <member name="M:ModLib.Logging.FilteredLogWrapper.Log(BepInEx.Logging.LogLevel,System.Object)">
             <inheritdoc/>
             <remarks>
-                This method will only process log requests if <paramref name="level"/> is of equal importance or higher than the max <see cref="T:BepInEx.Logging.LogLevel"/> allowed.
+                This method will only process log requests if <paramref name="level"/> is not blacklisted for logging by this instance.
             </remarks>
         </member>
         <member name="M:ModLib.Logging.FilteredLogWrapper.ToString">
@@ -1008,9 +1020,19 @@
             <summary>
                 Sends a single RPC event to all players in the same room as the online entity.
             </summary>
-            <param name="source">The online entity who will send the RPC events.</param>
+            <param name="source">The online entity who will send the RPC event.</param>
             <param name="del">The RPC method to be sent.</param>
             <param name="args">Any arguments of the RPC method.</param>
+            <exception cref="T:System.InvalidOperationException">source is not in a room session.</exception>
+        </member>
+        <member name="M:ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInLobby(RainMeadow.OnlineEntity,System.Delegate,System.Object[])">
+            <summary>
+                Sends a single RPC event to all players in the current lobby.
+            </summary>
+            <param name="_">The online entity who triggered the RPC event. This argument is not read, and is only included for usage of this method as an extension of <see cref="T:RainMeadow.OnlineEntity"/>.</param>
+            <param name="del">The RPC method to be sent.</param>
+            <param name="args">Any arguments of the RPC method.</param>
+            <exception cref="T:System.InvalidOperationException">The client is not in an online lobby.</exception>
         </member>
         <member name="M:ModLib.Meadow.ModRPCManager.ResolveRPCEvent(RainMeadow.GenericResult)">
             <summary>
@@ -1087,6 +1109,111 @@
             </summary>
             <param name="serializer">The serializer for usage by this method.</param>
         </member>
+        <member name="T:ModLib.Meadow.SerializableDictionary`2">
+            <summary>
+                Represents a collection of online keys and values which can be converted to an equivalent local representation.
+            </summary>
+            <typeparam name="TOnlineKey">The type of the online representation of the dictionary's keys.</typeparam>
+            <typeparam name="TOnlineValue">The type of the online representation of the dictionary's values.</typeparam>
+        </member>
+        <member name="M:ModLib.Meadow.SerializableDictionary`2.#ctor">
+            <summary>
+                Initializes a new instance of the <see cref="T:ModLib.Meadow.SerializableDictionary`2"/> class
+                that is empty, has the default initial capacity, and uses the default equality comparer for the key type.
+            </summary>
+        </member>
+        <member name="M:ModLib.Meadow.SerializableDictionary`2.#ctor(System.Int32)">
+            <summary>
+                Initializes a new instance of the <see cref="T:ModLib.Meadow.SerializableDictionary`2"/> class
+                that is empty, has the specified initial capacity, and uses the default equality comparer for the key type.
+            </summary>
+            <param name="capacity">The initial number of elements that the <see cref="T:ModLib.Meadow.SerializableDictionary`2"/> can contain.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">capacity is less than 0.</exception>
+        </member>
+        <member name="M:ModLib.Meadow.SerializableDictionary`2.#ctor(System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>
+                Initializes a new instance of the <see cref="T:ModLib.Meadow.SerializableDictionary`2"/> class
+                that is empty, has the default initial capacity, and uses the specified <see cref="T:System.Collections.Generic.IEqualityComparer`1"/>.
+            </summary>
+            <param name="comparer">
+                The <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> implementation to use when comparing keys,
+                or null to use the default <see cref="T:System.Collections.Generic.EqualityComparer`1"/> for the type of the key.
+            </param>
+        </member>
+        <member name="M:ModLib.Meadow.SerializableDictionary`2.#ctor(System.Int32,System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>
+                Initializes a new instance of the <see cref="T:ModLib.Meadow.SerializableDictionary`2"/> class
+                that is empty, has the specified initial capacity, and uses the specified <see cref="T:System.Collections.Generic.IEqualityComparer`1"/>.
+            </summary>
+            <param name="capacity">The initial number of elements that the <see cref="T:ModLib.Meadow.SerializableDictionary`2"/> can contain.</param>
+            <param name="comparer">
+                The <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> implementation to use when comparing keys,
+                or null to use the default <see cref="T:System.Collections.Generic.EqualityComparer`1"/> for the type of the key.
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">capacity is less than 0.</exception>
+        </member>
+        <member name="M:ModLib.Meadow.SerializableDictionary`2.#ctor(System.Collections.Generic.IDictionary{`0,`1})">
+            <summary>
+                Initializes a new instance of the <see cref="T:ModLib.Meadow.SerializableDictionary`2"/> class
+                that contains elements copied from the specified <see cref="T:System.Collections.Generic.IDictionary`2"/> and uses the default equality comparer for the key type.
+            </summary>
+            <param name="dictionary">The <see cref="T:System.Collections.Generic.IDictionary`2"/> whose elements are copied to the new <see cref="T:ModLib.Meadow.SerializableDictionary`2"/>.</param>
+            <exception cref="T:System.ArgumentNullException">dictionary is null.</exception>
+            <exception cref="T:System.ArgumentException">dictionary contains one or more duplicate keys.</exception>
+        </member>
+        <member name="M:ModLib.Meadow.SerializableDictionary`2.#ctor(System.Collections.Generic.IDictionary{`0,`1},System.Collections.Generic.IEqualityComparer{`0})">
+            <summary>
+                Initializes a new instance of the <see cref="T:ModLib.Meadow.SerializableDictionary`2"/> class
+                that contains elements copied from the specified <see cref="T:System.Collections.Generic.IDictionary`2"/> and uses the specified <see cref="T:System.Collections.Generic.IEqualityComparer`1"/>.
+            </summary>
+            <param name="dictionary">The <see cref="T:System.Collections.Generic.IDictionary`2"/> whose elements are copied to the new <see cref="T:ModLib.Meadow.SerializableDictionary`2"/>.</param>
+            <param name="comparer">
+                The <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> implementation to use when comparing keys,
+                or null to use the default <see cref="T:System.Collections.Generic.EqualityComparer`1"/> for the type of the key.
+            </param>
+            <exception cref="T:System.ArgumentNullException">dictionary is null.</exception>
+            <exception cref="T:System.ArgumentException">dictionary contains one or more duplicate keys.</exception>
+        </member>
+        <member name="M:ModLib.Meadow.SerializableDictionary`2.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+                Initializes a new instance of the <see cref="T:ModLib.Meadow.SerializableDictionary`2"/> class with serialized data.
+            </summary>
+            <remarks>
+                This constructor is inherited from <see cref="T:System.Collections.Generic.Dictionary`2"/>, and is NOT meant for usage with Rain Meadow.
+            </remarks>
+            <param name="info">A <see cref="T:System.Runtime.Serialization.SerializationInfo"/> object containing the information required to serialize the <see cref="T:ModLib.Meadow.SerializableDictionary`2"/>.</param>
+            <param name="context">A <see cref="T:System.Runtime.Serialization.StreamingContext"/> structure containing the source and destination of the serialized stream associated with the <see cref="T:ModLib.Meadow.SerializableDictionary`2"/>.</param>
+        </member>
+        <member name="M:ModLib.Meadow.SerializableDictionary`2.CustomSerialize(RainMeadow.Serializer)">
+            <summary>
+                Reads or writes the contents of the dictionary to a serializer in an online context.
+            </summary>
+            <param name="serializer">The serializer instance used for reading/writing the dictionary's contents.</param>
+        </member>
+        <member name="M:ModLib.Meadow.SerializableDictionary`2.ToLocalCollection``2(System.Func{System.Collections.Generic.KeyValuePair{`0,`1},System.Collections.Generic.KeyValuePair{``0,``1}})">
+            <summary>
+                Returns a new dictionary containing the local representation of all elements in this dictionary,
+                using the provided delegate for the conversion.
+            </summary>
+            <param name="conversionMethod">The delegate for converting online types to their local counterparts.</param>
+            <returns>A new dictionary containing the local representation of all elements in this dictionary.</returns>
+        </member>
+        <member name="M:ModLib.Meadow.SerializableDictionary`2.SerializeElement(RainMeadow.Serializer,`0@,`1@)">
+            <summary>
+                Serializes a given pair of elements with the given serializer.
+            </summary>
+            <param name="serializer">The serializer used for the operation.</param>
+            <param name="key">The key to be serialized.</param>
+            <param name="value">The value to be serialized.</param>
+        </member>
+        <member name="M:ModLib.Meadow.SerializableDictionary`2.GetSerializerMethod(System.Type)">
+            <summary>
+                Retrieves the registered method used for serializing a given type.
+            </summary>
+            <param name="type">The type whose serialization method will be searched.</param>
+            <returns>The method used for serializing <paramref name="type"/>.</returns>
+            <exception cref="T:System.ArgumentException">No serialization method was found for <paramref name="type"/>.</exception>
+        </member>
         <member name="T:ModLib.ModPlugin">
             <summary>
                 A BaseUnityPlugin skeleton for quick prototyping and development.
@@ -1110,14 +1237,9 @@
                 Determines if LoadResources has been successfully called during initialization.
             </summary>
         </member>
-        <member name="P:ModLib.ModPlugin.Logger">
+        <member name="P:ModLib.ModPlugin.ModLogger">
             <summary>
                 The custom logger instance for this mod.
-            </summary>
-        </member>
-        <member name="P:ModLib.ModPlugin.LogSource">
-            <summary>
-                The <see cref="T:BepInEx.Logging.ManualLogSource"/> inherited from <see cref="T:BepInEx.BaseUnityPlugin"/> by this mod.
             </summary>
         </member>
         <member name="M:ModLib.ModPlugin.#ctor">

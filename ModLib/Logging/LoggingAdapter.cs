@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Runtime.CompilerServices;
 using BepInEx.Logging;
 
 namespace ModLib.Logging;
@@ -13,35 +14,43 @@ public static class LoggingAdapter
 {
     static LoggingAdapter()
     {
-        Extras.WrapAction(static () =>
+        try
         {
             if (!Directory.Exists(Core.LogsPath))
             {
                 Directory.CreateDirectory(Core.LogsPath);
             }
-        }, Core.Logger);
+        }
+        catch (Exception ex)
+        {
+            Core.LogSource.LogError($"Failed to create Logs folder! {ex}");
+        }
     }
+
+    /// <inheritdoc cref="CreateLogger(ManualLogSource, BepInEx.Logging.LogLevel)"/>
+    [Obsolete("Prefer specifying the levels to be excluded (if any) with CreateLogger(ManualLogSource, LogLevel) instead. This overload will be removed in a future update.")]
+    public static ModLogger CreateLogger(ManualLogSource logSource, bool wrapLogger) => CreateLogger(logSource, wrapLogger ? LogLevel.Debug : LogLevel.None);
 
     /// <summary>
     ///     Creates a logger instance employing a safe encapsulation technique.
     /// </summary>
     /// <param name="logSource">The BepInEx source to use for identification and logging.</param>
-    /// <param name="wrapLogger">
-    ///     If true, the generated logger will be a <see cref="FilteredLogWrapper"/>,
-    ///     which ignores certain logs based on their level and the current type of ModLib's build.
-    /// </param>
-    public static ModLogger CreateLogger(ManualLogSource logSource, bool wrapLogger = false)
+    /// <param name="filterLevels">If set, the generated logger will be a <see cref="FilteredLogWrapper"/> which ignores log requests with the given logging level(s).</param>
+    public static ModLogger CreateLogger(ManualLogSource logSource, LogLevel filterLevels = LogLevel.None)
     {
         ModLogger result = Extras.LogUtilsAvailable
-            ? CreateLogUtilsLogger(logSource)
+            ? LogUtilsAccess.CreateLogger(logSource)
             : new FallbackLogger(logSource);
 
-        if (wrapLogger)
-            result = new FilteredLogWrapper(result);
+        return filterLevels is not LogLevel.None
+            ? new FilteredLogWrapper(result, filterLevels)
+            : result;
+    }
 
-        return result;
-
-        static ModLogger CreateLogUtilsLogger(ManualLogSource logSource)
+    private static class LogUtilsAccess
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static ModLogger CreateLogger(ManualLogSource logSource)
         {
             try
             {

@@ -44,7 +44,7 @@ public static class Extras
     /// <summary>
     ///     If the current game session is in an online lobby.
     /// </summary>
-    public static bool IsOnlineSession => IsMeadowEnabled && MeadowUtils.IsOnline;
+    public static bool IsOnlineSession => IsMeadowEnabled && MeadowUtils.IsOnline && InGameSession;
 
     /// <summary>
     ///     If the current game session is in a multiplayer context (online or local).
@@ -70,9 +70,9 @@ public static class Extras
     public static bool LogUtilsAvailable { get; internal set; }
 
     /// <summary>
-    ///     Determines if ModLib is currently loaded and available for usage.
+    ///     Determines if ModLib is fully loaded and available for usage.
     /// </summary>
-    public static bool ModLibAvailable => Entrypoint.IsInitialized;
+    public static bool ModLibReady => Entrypoint.IsInitialized;
 
     /// <summary>
     ///     Determines if Dev Tools is currently enabled, or was enabled last time ModLib was active.
@@ -89,7 +89,21 @@ public static class Extras
 
     internal static void Initialize()
     {
-        LogUtilsAvailable = AppDomain.CurrentDomain.GetAssemblies().Any(static a => a.FullName.Contains("LogUtils"));
+        if (AppDomain.CurrentDomain.GetAssemblies().Any(static asm => asm.FullName.StartsWith("LogUtils, Version=1.0")))
+        {
+            Core.LogSource.LogDebug("LogUtils assembly found! Testing for features...");
+
+            try
+            {
+                LogUtilsAvailable = LogUtilsAccess.VerifyLogUtilsPresence();
+            }
+            catch
+            {
+                LogUtilsAvailable = false;
+            }
+
+            Core.LogSource.LogDebug($"LogUtils available: {LogUtilsAvailable}");
+        }
 
         IsMeadowEnabled = CompatibilityManager.IsRainMeadowEnabled();
         IsIICEnabled = CompatibilityManager.IsIICEnabled();
@@ -206,5 +220,11 @@ public static class Extras
 
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static void RevokeAchievement(string achievementID) => AchievementsManager.RevokeAchievement(achievementID);
+    }
+
+    private static class LogUtilsAccess
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static bool VerifyLogUtilsPresence() => LogUtils.UtilityCore.IsInitialized;
     }
 }

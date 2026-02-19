@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using BepInEx.Logging;
+using ModLib.Extensions;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
 
@@ -19,59 +21,29 @@ namespace ModLib.Loader;
 [EditorBrowsable(EditorBrowsableState.Advanced)]
 public static class Entrypoint
 {
-    private static readonly EventHandlerList eventHandlerList = new();
+    private static readonly List<IExtensionEntrypoint> LoadedExtensions = [];
 
-    private const byte preInitializeKey = 0;
-    private const byte onInitializeKey = 1;
-    private const byte preDisableKey = 2;
-    private const byte onDisableKey = 3;
-
+    private static ManualLogSource LogSource = Logger.CreateLogSource("ModLib.Entrypoint");
     private static ILHook? _initHook;
+
     private static bool _initializing;
 
     /// <summary>
-    ///     Whether or not ModLib was successfully initialized.
+    ///     Whether or not ModLib has successfully initialized.
     /// </summary>
     public static bool IsInitialized { get; private set; }
 
     /// <summary>
-    ///     Invoked just before ModLib starts its initialization process.
+    ///     Attempts to initialize ModLib if it hasn't been initialized already.
     /// </summary>
-    public static event Action? PreInitialize
-    {
-        add => eventHandlerList.AddHandler(preInitializeKey, value);
-        remove => eventHandlerList.RemoveHandler(preInitializeKey, value);
-    }
-
-    /// <summary>
-    ///     Invoked after ModLib finishes initializing.
-    /// </summary>
-    public static event Action? OnInitialize
-    {
-        add => eventHandlerList.AddHandler(onInitializeKey, value);
-        remove => eventHandlerList.RemoveHandler(onInitializeKey, value);
-    }
-
-    /// <summary>
-    ///     Invoked just before ModLib starts its shutdown process.
-    /// </summary>
-    public static event Action? PreDisable
-    {
-        add => eventHandlerList.AddHandler(preDisableKey, value);
-        remove => eventHandlerList.RemoveHandler(preDisableKey, value);
-    }
-
-    /// <summary>
-    ///     Invoked after ModLib has been disabled.
-    /// </summary>
-    public static event Action? OnDisable
-    {
-        add => eventHandlerList.AddHandler(onDisableKey, value);
-        remove => eventHandlerList.RemoveHandler(onDisableKey, value);
-    }
-
+    /// <param name="callerPath">The compiler-provided file path to the caller of this method.</param>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    internal static void TryInitialize([CallerFilePath] string callerPath = "") => Initialize([], callerPath);
+    internal static void TryInitialize([CallerFilePath] string callerPath = "") => Initialize([], true, callerPath);
+
+    /// <inheritdoc cref="Initialize(IList{string}, bool, string)"/>
+    [Obsolete("Prefer the overload `Initialize(IList<string>, bool, string)`; This method will be removed in a future update.")]
+    internal static void Initialize(IList<string> compatibilityPaths, [CallerFilePath] string callerPath = "") =>
+        Initialize(compatibilityPaths, false, callerPath); // Required for upgrading from ModLib.Loader < v0.2.1.0
 
     /// <summary>
     ///     Initializes ModLib and loads its resources into the game.
@@ -81,50 +53,44 @@ public static class Entrypoint
     ///     Unless working within that context, you should not call this function.
     /// </remarks>
     /// <param name="compatibilityPaths">The list of paths to config files, retrieved during the preloading process.</param>
-    /// <param name="callerPath">The compiler-provided file path to the calling method.</param>
-    internal static void Initialize(IList<string> compatibilityPaths, [CallerFilePath] string callerPath = "")
+    /// <param name="callerPath">The compiler-provided name of the caller.</param>
+    /// <param name="isLateInit">Whether the current initialization was triggered outside of the preloading process.</param>
+    internal static void Initialize(IList<string> compatibilityPaths, bool isLateInit, [CallerFilePath] string callerPath = "")
     {
         if (IsInitialized || _initializing) return;
 
-        ModLibExtensionAttribute.LoadAllEntrypoints();
-
-        GetEventByKey<Action>(preInitializeKey)?.Invoke();
-
         _initializing = true;
 
-        ManualLogSource logSource = Logger.CreateLogSource("ModLib.Entrypoint");
-
-        bool isForcedInit = !callerPath.Contains("ModLib.Loader");
+        LoadExtensionEntrypoints();
 
         try
         {
-            InitializeCompatManager(compatibilityPaths, logSource, isForcedInit, callerPath);
+            LogSource.LogInfo($"{nameof(CompatibilityManager)}: Reading {compatibilityPaths.Count} file{(compatibilityPaths.Count != 1 ? "s" : "")} for config overrides...{(isLateInit ? $" (Late initialization from {callerPath})" : "")}");
+
+            new CompatibilityManager.ConfigLoader(LogSource).Initialize(compatibilityPaths);
 
             Extras.Initialize();
 
-            if (!isForcedInit)
+            if (isLateInit)
+            {
+                CoreInitialize();
+            }
+            else
             {
                 (_initHook ??= new ILHook(
                     typeof(BepInEx.MultiFolderLoader.ChainloaderHandler).GetMethod("PostFindPluginTypes", BindingFlags.NonPublic | BindingFlags.Static),
                     InitializeCoreILHook)).Apply();
             }
-            else
-            {
-                CoreInitialize();
-            }
-
-            IsInitialized = true;
         }
         catch (Exception ex)
         {
-            logSource.LogError("Failed to initialize ModLib! Some systems may not work as expected.");
-            logSource.LogError($"Exception: {ex}");
+            LogSource.LogError("Failed to initialize ModLib! Some systems may not work as expected. (Init Phase: #1)");
+            LogSource.LogError($"Exception: {ex}");
         }
-        finally
-        {
-            Logger.Sources.Remove(logSource);
 
-            _initializing = false;
+        static void InitializeCoreILHook(ILContext context)
+        {
+            _ = new ILCursor(context).EmitDelegate(CoreInitialize);
         }
     }
 
@@ -133,52 +99,98 @@ public static class Entrypoint
     /// </summary>
     internal static void Disable()
     {
-        GetEventByKey<Action>(preDisableKey)?.Invoke();
-
         try
         {
+            for (int i = 0; i < LoadedExtensions.Count; i++)
+            {
+                LoadedExtensions[i].OnDisable();
+            }
+
             Core.Disable();
 
-            _initHook?.Undo();
+            if (Extras.RainReloaderActive)
+                _initHook?.Undo();
         }
-        catch { }
+        catch (Exception ex)
+        {
+            Core.Logger.LogError($"Thrown exception while unloading ModLib: {ex}");
+        }
 
         _initHook = null;
 
         _initializing = false;
         IsInitialized = false;
 
-        GetEventByKey<Action>(onDisableKey)?.Invoke();
-
-        ModLibExtensionAttribute.UnloadAllEntrypoints();
+        LoadedExtensions.Clear();
     }
-
-    private static void InitializeCoreILHook(ILContext context) =>
-        new ILCursor(context).EmitDelegate(CoreInitialize);
 
     private static void CoreInitialize()
     {
-        Core.Initialize();
+        try
+        {
+            for (int i = 0; i < LoadedExtensions.Count; i++)
+            {
+                LoadedExtensions[i].OnEnable();
+            }
 
-        GetEventByKey<Action>(onInitializeKey)?.Invoke();
+            Core.Initialize();
+
+            IsInitialized = true;
+        }
+        catch (Exception ex)
+        {
+            LogSource.LogError("Failed to initialize ModLib! Some systems may not work as expected. (Init Phase: #2)");
+            LogSource.LogError($"Exception: {ex}");
+        }
+
+        try
+        {
+            Core.PatchLoader.Initialize();
+        }
+        catch (Exception ex)
+        {
+            LogSource.LogError("Patch loader failed to initialize; Cannot verify local ModLib.Loader assembly.");
+            LogSource.LogError($"Exception: {ex}");
+        }
+        finally
+        {
+            Logger.Sources.Remove(LogSource);
+
+            LogSource = null!;
+
+            _initializing = false;
+        }
     }
 
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static T GetEventByKey<T>(byte key) where T : Delegate => (T)eventHandlerList[key];
-
-    /// <summary>
-    ///     Initializes compatibility checking with the provided paths to config files.
-    /// </summary>
-    /// <param name="compatibilityPaths">The list of paths to config files, retrieved during the preloader process.</param>
-    /// <param name="logger">The logger for usage by this method.</param>
-    /// <param name="isForcedInit">Whether or not this is a forced initalization. If the caller is not ModLib's Loader, this should always be <c>true</c>.</param>
-    /// <param name="caller">The provided file path to the calling method.</param>
-    private static void InitializeCompatManager(IList<string> compatibilityPaths, ManualLogSource logger, bool isForcedInit = false, string caller = "")
+    private static void LoadExtensionEntrypoints()
     {
-        logger.LogInfo($"{nameof(CompatibilityManager)}: Reading {compatibilityPaths.Count} file{(compatibilityPaths.Count != 1 ? "s" : "")} for config overrides...{(isForcedInit ? $" (Forced initialization by {caller})" : "")}");
+        List<Type> types = [.. AssemblyExtensions.GetAllTypes().Where(static t => t is { IsInterface: false, IsAbstract: false } && typeof(IExtensionEntrypoint).IsAssignableFrom(t))];
 
-        using CompatibilityManager.ConfigLoader loader = new(logger);
+        if (types.Count == 0)
+        {
+            LogSource.LogDebug("No extension entrypoints found, skipping loading.");
+            return;
+        }
 
-        loader.Initialize(compatibilityPaths);
+        for (int i = 0; i < types.Count; i++)
+        {
+            Type type = types[i];
+
+            try
+            {
+                IExtensionEntrypoint entrypoint = (IExtensionEntrypoint)Activator.CreateInstance(type);
+
+                LogSource.LogDebug($"Loading extension entrypoint: [{type.AssemblyQualifiedName}]");
+
+                Registry.RegisterAssembly(type.Assembly, entrypoint.Metadata, null, null);
+
+                LoadedExtensions.Add(entrypoint);
+            }
+            catch (Exception ex)
+            {
+                LogSource.LogError($"Failed to initialize extension entrypoint: [{type.AssemblyQualifiedName}]");
+                LogSource.LogError($"Exception: {ex}");
+            }
+        }
     }
 }

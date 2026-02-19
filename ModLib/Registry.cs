@@ -177,7 +177,7 @@ public static class Registry
 
             if (Extras.LogUtilsAvailable)
             {
-                LogUtilsHelper.InitLogID(this);
+                LogUtilsAccess.InitLogID(this);
             }
         }
 
@@ -186,7 +186,27 @@ public static class Registry
         /// </summary>
         /// <returns>A string representing this mod's stored metadata.</returns>
         public override string ToString() =>
-            $"[Plugin: ({Plugin.GUID}|{Plugin.Name}|{Plugin.Version}); OptionHolder? {OptionHolder?.ToString() ?? "None"}; Logger? {Logger?.ToString() ?? "None"}{(Extras.LogUtilsAvailable ? $"; LogID? {(LogID as ExtEnumBase)?.ToString() ?? "None"}" : "")}]";
+            $"[({Plugin.GUID}|{Plugin.Name}|{Plugin.Version}); {OptionHolder?.ToString() ?? "No OptionHolder"}; {Logger?.ToString() ?? "No Logger"}{(Extras.LogUtilsAvailable ? $"; {(LogID as ExtEnumBase)?.ToString() ?? "None"}" : "")}]";
+
+        private static class LogUtilsAccess
+        {
+            [MethodImpl(MethodImplOptions.NoInlining)]
+            public static void InitLogID(ModEntry self)
+            {
+                if (self.LogID is not null
+                    || self.Logger is not LogUtilsLogger adapter
+                    || adapter.GetLogSource() is not LogUtils.Logger logger)
+                {
+                    return;
+                }
+
+                self.LogID = self.Plugin == Core.PluginData
+                    ? LogUtilsHelper.MyLogID
+                    : adapter.ModLibCreated
+                        ? LogUtilsHelper.CreateLogID(self.Plugin.Name, register: false)
+                        : logger.LogTargets.FirstOrDefault(static id => !id.IsGameControlled);
+            }
+        }
     }
 
     /// <summary>
@@ -206,7 +226,7 @@ public static class Registry
         /// </summary>
         /// <inheritdoc/>
         public ModNotFoundException(string message)
-            : base(message + " (Did you remember to register your mod before calling this method?)")
+            : base(message + " (Did you register your mod before calling this method?)")
         {
         }
 
@@ -216,7 +236,7 @@ public static class Registry
         /// </summary>
         /// <inheritdoc/>
         public ModNotFoundException(string message, Exception innerException)
-            : base(message + " (Did you remember to register your mod before calling this method?)", innerException)
+            : base(message + " (Did you register your mod before calling this method?)", innerException)
         {
         }
     }

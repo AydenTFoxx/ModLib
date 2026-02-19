@@ -20,7 +20,7 @@ internal static class Core
 {
     public const string MOD_GUID = "ynhzrfxn.modlib";
     public const string MOD_NAME = "ModLib";
-    public const string MOD_VERSION = "0.3.3.0";
+    public const string MOD_VERSION = "0.4.0.0";
 
     public static readonly Assembly MyAssembly = typeof(Core).Assembly;
 
@@ -34,10 +34,11 @@ internal static class Core
 
     public static ModLogger Logger { get; private set; } = new FallbackLogger(LogSource);
 
-    public static ModLibData MyData { get; private set; }
     public static bool Initialized { get; private set; }
 
-    public static bool InputModuleActivated { get; set; }
+    internal static bool InputModuleActivated { get; set; }
+
+    private static ModLibData MyData { get; set; }
 
     public static void Initialize()
     {
@@ -47,10 +48,25 @@ internal static class Core
 
         if (Extras.LogUtilsAvailable)
         {
+            LogSource.LogDebug("Switching Core logger to LogUtils!");
+
             Logger = LoggingAdapter.CreateLogger(LogSource);
         }
+        else
+        {
+            LogSource.LogDebug("Using fallback logger for ModLib.");
 
-        Extras.WrapAction(ReadModLibData, Logger);
+            Logger ??= new FallbackLogger(LogSource);
+        }
+
+        try
+        {
+            ReadModLibData();
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError($"Failed to retrieve ModLib data: {ex}");
+        }
 
         Logger = new FilteredLogWrapper(Logger);
 
@@ -74,16 +90,6 @@ internal static class Core
         Application.quitting += Entrypoint.Disable;
 
         Registry.RegisterAssembly(MyAssembly, PluginData, null, Logger);
-
-        try
-        {
-            PatchLoader.Initialize();
-        }
-        catch (Exception ex)
-        {
-            Logger.LogError("Patch loader failed to initialize; Cannot verify local ModLib.Loader assembly.");
-            Logger.LogError($"Exception: {ex}");
-        }
     }
 
     public static void Disable()
@@ -112,7 +118,14 @@ internal static class Core
             Application.quitting -= Entrypoint.Disable;
         }
 
-        Extras.WrapAction(WriteModLibData, Logger);
+        try
+        {
+            WriteModLibData();
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError($"Failed to write ModLib data: {ex}");
+        }
 
         foreach (ModPersistentSaveData saveData in ModPersistentSaveData.RegisteredInstances)
         {
@@ -203,7 +216,7 @@ internal static class Core
         {
             foreach (FilteredLogWrapper logWrapper in FilteredLogWrapper.DynamicInstances)
             {
-                logWrapper.MaxLogLevel = MyData.DevToolsActive ? LogLevel.All : LogLevel.Info;
+                logWrapper.FilterLogLevels = MyData.DevToolsActive ? LogLevel.None : LogLevel.Debug;
             }
 
             FilteredLogWrapper.DynamicInstances.Clear();
@@ -249,7 +262,7 @@ internal static class Core
     }
 
     [DataContract]
-    public readonly struct ModLibData(bool devToolsActive, string lastLoadedVersion)
+    private readonly struct ModLibData(bool devToolsActive, string lastLoadedVersion)
     {
         [DataMember]
         public readonly bool DevToolsActive = devToolsActive;
@@ -258,11 +271,11 @@ internal static class Core
         public readonly string LastLoadedVersion = lastLoadedVersion;
     }
 
-    private static class PatchLoader
+    internal static class PatchLoader
     {
         private const string TARGET_DLL = "ModLib.Loader.dll";
 
-        private static readonly Version _latestLoaderVersion = new("0.2.0.8");
+        private static readonly Version _latestLoaderVersion = new("0.2.1.0");
 
         private static readonly string _targetPath = Path.Combine(Paths.PatcherPluginPath, TARGET_DLL);
 

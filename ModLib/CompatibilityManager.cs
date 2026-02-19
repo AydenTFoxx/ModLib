@@ -68,12 +68,11 @@ public static class CompatibilityManager
     /// <param name="enable">Whether or not compatibility with the given mod should be enabled.</param>
     public static void SetModCompatibility(string modID, bool enable) => ManagedMods[modID] = enable;
 
-    internal sealed class ConfigLoader(ManualLogSource logger) : IDisposable
+    internal sealed class ConfigLoader(ManualLogSource logger)
     {
         private static readonly string PathToLocalMods = Path.Combine(Core.StreamingAssetsPath, "mods");
 
-        private List<string> AdvancedSearchIDs = [];
-        private bool disposedValue;
+        private readonly List<string> AdvancedSearchIDs = [];
 
         /// <summary>
         ///     Initializes the <see cref="CompatibilityManager"/> with the provided list of paths to config files.
@@ -217,26 +216,6 @@ public static class CompatibilityManager
             return Json.Parser.Parse(reader.ReadToEnd()) is Dictionary<string, object> jsonObject
                 ? (string)jsonObject["id"]
                 : string.Empty;
-        }
-
-        private void Dispose(bool disposing)
-        {
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    AdvancedSearchIDs?.Clear();
-                    AdvancedSearchIDs = null!;
-                }
-
-                disposedValue = true;
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose(disposing: true);
-            GC.SuppressFinalize(this);
         }
 
         private sealed class ModIDEqualityComparer : IEqualityComparer<string[]>

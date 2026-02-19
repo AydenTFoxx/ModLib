@@ -109,7 +109,7 @@ public class CustomInputData
         }
 
         rawInput[0] = CustomInput.GetRawInput(playerNumber);
-        input[0] = listener is not Creature creature || (!creature.dead && creature.stun == 0)
+        input[0] = listener is not Creature creature || (creature is { dead: false, stun: 0 })
             ? rawInput[0].Clone()
             : new CustomInput();
     }

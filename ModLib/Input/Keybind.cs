@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using BepInEx;
 using UnityEngine;
 
@@ -87,8 +88,7 @@ public record Keybind
     {
         ValidatePlayerNumber(playerNumber);
 
-        return (player is null || (player.Consious && !player.mapInput.mp && player.controller is null))
-            && _keyPresses[playerNumber, 0];
+        return (player is null or { Consious: true, mapInput.mp: false, controller: null }) && _keyPresses[playerNumber, 0];
     }
 
     /// <summary>
@@ -104,8 +104,7 @@ public record Keybind
     {
         ValidatePlayerNumber(playerNumber);
 
-        return (player is null || (player.Consious && !player.mapInput.mp && player.controller is null))
-            && _keyPresses[playerNumber, 0] && !_keyPresses[playerNumber, 1];
+        return (player is null or { Consious: true, mapInput.mp: false, controller: null }) && _keyPresses[playerNumber, 0] && !_keyPresses[playerNumber, 1];
     }
 
     internal void Update(global::Options? options, int playerIndex)
@@ -157,15 +156,15 @@ public record Keybind
 
     /// <inheritdoc cref="Register(string, string, KeyCode, KeyCode, KeyCode)"/>
     public static Keybind Register(string name, KeyCode keyboardPreset, KeyCode gamepadPreset) =>
-        Register(Assembly.GetCallingAssembly(), null, name, keyboardPreset, gamepadPreset, gamepadPreset);
+        RegisterInternal(Assembly.GetCallingAssembly(), null, name, keyboardPreset, gamepadPreset, gamepadPreset);
 
     /// <inheritdoc cref="Register(string, string, KeyCode, KeyCode, KeyCode)"/>
     public static Keybind Register(string name, KeyCode keyboardPreset, KeyCode gamepadPreset, KeyCode xboxPreset) =>
-        Register(Assembly.GetCallingAssembly(), null, name, keyboardPreset, gamepadPreset, xboxPreset);
+        RegisterInternal(Assembly.GetCallingAssembly(), null, name, keyboardPreset, gamepadPreset, xboxPreset);
 
     /// <inheritdoc cref="Register(string, string, KeyCode, KeyCode, KeyCode)"/>
     public static Keybind Register(string? id, string name, KeyCode keyboardPreset, KeyCode gamepadPreset) =>
-        Register(Assembly.GetCallingAssembly(), id, name, keyboardPreset, gamepadPreset, gamepadPreset);
+        RegisterInternal(Assembly.GetCallingAssembly(), id, name, keyboardPreset, gamepadPreset, gamepadPreset);
 
     /// <summary>
     ///     Registers a new Keybind with the provided arguments.
@@ -178,7 +177,7 @@ public record Keybind
     ///         The identifier of this keybind. Must be an unique string not used by any other mod, or yourself.
     ///     </para>
     ///     <para>
-    ///         If omitted, an unique identifier is generated with the format <c>"{ModId}.{KeybindName}"</c>
+    ///         If null, an unique identifier is generated with the format <c>"{ModId}.{KeybindName}"</c>
     ///     </para>
     /// </param>
     /// <param name="name">The name of the new Keybind. Will be displayed for players with IIC:E enabled.</param>
@@ -187,9 +186,9 @@ public record Keybind
     /// <param name="xboxPreset">The key code for usage by Xbox input devices.</param>
     /// <returns>The registered <see cref="Keybind"/> object.</returns>
     public static Keybind Register(string? id, string name, KeyCode keyboardPreset, KeyCode gamepadPreset, KeyCode xboxPreset) =>
-        Register(Assembly.GetCallingAssembly(), id, name, keyboardPreset, gamepadPreset, xboxPreset);
+        RegisterInternal(Assembly.GetCallingAssembly(), id, name, keyboardPreset, gamepadPreset, xboxPreset);
 
-    private static Keybind Register(Assembly caller, string? id, string name, KeyCode keyboardPreset, KeyCode gamepadPreset, KeyCode xboxPreset)
+    private static Keybind RegisterInternal(Assembly caller, string? id, string name, KeyCode keyboardPreset, KeyCode gamepadPreset, KeyCode xboxPreset)
     {
         BepInPlugin plugin = Registry.GetMod(caller).Plugin;
 
@@ -199,19 +198,25 @@ public record Keybind
 
         if (gameKeybind is null)
         {
-            gameKeybind = new(id, plugin.Name, name, keyboardPreset, gamepadPreset, xboxPreset);
+            gameKeybind = new Keybind(id, plugin.Name, name, keyboardPreset, gamepadPreset, xboxPreset);
 
             if (Extras.IsIICEnabled)
-                ImprovedInputHelper.RegisterKeybind(gameKeybind);
+                ImprovedInputAccess.RegisterKeybind(gameKeybind);
 
             _keybinds.Add(gameKeybind);
+
+            Core.Logger.LogDebug($"[Keybind] Registered new keybind: {gameKeybind}");
+        }
+        else
+        {
+            Core.Logger.LogDebug($"[Keybind] Retrieving existing keybind: {gameKeybind}");
         }
 
         return gameKeybind;
 
         static string GetModPrefix(BepInPlugin plugin)
         {
-            return plugin.GUID.Split('.', '_', ' ').Last().ToLowerInvariant();
+            return plugin.GUID.Split('.', '_', ' ', '-').Last().ToLowerInvariant();
         }
     }
 
@@ -245,5 +250,11 @@ public record Keybind
     public static implicit operator ImprovedInput.PlayerKeybind(Keybind self)
     {
         return ImprovedInput.PlayerKeybind.Get(self.Id) ?? ImprovedInput.PlayerKeybind.Register(self.Id, self.Mod, self.Name, self.KeyboardPreset, self.GamepadPreset, self.XboxPreset);
+    }
+
+    private static class ImprovedInputAccess
+    {
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static void RegisterKeybind(Keybind keybind) => ImprovedInputHelper.RegisterKeybind(keybind);
     }
 }

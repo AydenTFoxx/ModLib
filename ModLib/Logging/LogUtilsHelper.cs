@@ -1,4 +1,3 @@
-using System.Linq;
 using BepInEx.Logging;
 using LogUtils;
 using LogUtils.Enums;
@@ -8,35 +7,26 @@ namespace ModLib.Logging;
 
 internal static class LogUtilsHelper
 {
-    public static object MyLogID;
-
-    static LogUtilsHelper()
+    internal static LogID MyLogID
     {
-        MyLogID = CreateLogID(Core.MOD_NAME, register: true);
-
-        LogProperties properties = ((LogID)MyLogID).Properties;
-
-        if (!properties.ReadOnly)
+        get
         {
-            properties.AltFilename = new LogFilename("ynhzrfxn.modlib", ".log");
-
-            properties.IntroMessage = "# Initialized ModLib successfully.";
-            properties.OutroMessage = "# Disabled ModLib successfully.";
-        }
-    }
-
-    public static ModLogger CreateLogger(ILogSource logSource)
-    {
-        CompositeLogTarget logTargets = logSource.SourceName == Core.MOD_NAME
-            ? (LogID)MyLogID | LogID.BepInEx
-            : CreateLogID(logSource.SourceName, register: false) | LogID.BepInEx | LogID.Unity;
-
-        return new LogUtilsLogger(
-            new LogUtils.Logger(logTargets)
+            if (field is null)
             {
-                LogSource = logSource
+                field = CreateLogID(Core.MOD_NAME, register: true);
+
+                LogProperties properties = field.Properties;
+
+                if (!properties.ReadOnly)
+                {
+                    properties.AltFilename = new LogFilename("ynhzrfxn.modlib", ".log");
+
+                    properties.IntroMessage = "# Initialized ModLib successfully.";
+                    properties.OutroMessage = "# Disabled ModLib successfully.";
+                }
             }
-        );
+            return field;
+        }
     }
 
     public static LogID CreateLogID(string name, bool register = false)
@@ -51,19 +41,17 @@ internal static class LogUtilsHelper
         return logID;
     }
 
-    internal static void InitLogID(this Registry.ModEntry self)
+    public static ModLogger CreateLogger(ILogSource logSource)
     {
-        if (self.LogID is not null
-            || self.Logger is not LogUtilsLogger adapter
-            || adapter.GetLogSource() is not LogUtils.Logger logger)
-        {
-            return;
-        }
+        ILogTarget logTargets = logSource == Core.LogSource
+            ? MyLogID | LogID.Unity
+            : CreateLogID(logSource.SourceName, register: false) | LogID.BepInEx | LogID.Unity;
 
-        self.LogID = self.Plugin == Core.PluginData
-            ? MyLogID
-            : adapter.ModLibCreated
-                ? CreateLogID(self.Plugin.Name, register: false)
-                : logger.LogTargets.FirstOrDefault(static id => !id.IsGameControlled);
+        return new LogUtilsLogger(
+            new LogUtils.Logger(logTargets)
+            {
+                LogSource = logSource
+            }
+        );
     }
 }

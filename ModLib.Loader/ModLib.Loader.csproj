@@ -4,8 +4,8 @@
 	<PropertyGroup>
 		<Title>Generic Modding Library Loader</Title>
 		<Company>YNHZRFXN</Company>
-		<AssemblyVersion>0.2.0.8</AssemblyVersion>
-		<FileVersion>0.2.0.8</FileVersion>
+		<AssemblyVersion>0.2.1.0</AssemblyVersion>
+		<FileVersion>0.2.1.0</FileVersion>
 		<PathMap>$(MSBuildProjectDirectory)=/$(TargetName)</PathMap>
 	</PropertyGroup>
 

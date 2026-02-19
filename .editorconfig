@@ -19,3 +19,6 @@ dotnet_diagnostic.IDE0008.severity = suggestion
 
 # Default severity for all analyzer diagnostics
 dotnet_analyzer_diagnostic.severity = warning
+
+# IDE0028: Simplify collection initialization
+dotnet_diagnostic.IDE0028.severity = silent

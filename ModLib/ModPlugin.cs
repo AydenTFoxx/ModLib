@@ -1,8 +1,7 @@
 ﻿using System;
-using System.IO;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using BepInEx;
-using BepInEx.Logging;
 using ModLib.Logging;
 
 namespace ModLib;
@@ -15,6 +14,8 @@ namespace ModLib;
 /// </remarks>
 public abstract class ModPlugin : BaseUnityPlugin
 {
+    private bool _initialized;
+
     /// <summary>
     ///     The REMIX option interface registered for this mod, if any. This field is read-only.
     /// </summary>
@@ -33,12 +34,7 @@ public abstract class ModPlugin : BaseUnityPlugin
     /// <summary>
     ///     The custom logger instance for this mod.
     /// </summary>
-    protected new ModLogger Logger { get; set; }
-
-    /// <summary>
-    ///     The <see cref="ManualLogSource"/> inherited from <see cref="BaseUnityPlugin"/> by this mod.
-    /// </summary>
-    protected ManualLogSource LogSource { get; set; }
+    protected ModLogger ModLogger { get; set; }
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
@@ -58,7 +54,7 @@ public abstract class ModPlugin : BaseUnityPlugin
     {
         Options = options;
 
-        Initialize(Assembly.GetCallingAssembly(), options?.GetType(), LoggingAdapter.CreateLogger(base.Logger));
+        Initialize(Assembly.GetCallingAssembly(), options?.GetType(), null);
     }
 
     /// <summary>
@@ -73,25 +69,14 @@ public abstract class ModPlugin : BaseUnityPlugin
         Initialize(Assembly.GetCallingAssembly(), options?.GetType(), logger);
     }
 
+    [MethodImpl(MethodImplOptions.NoInlining)]
     private void Initialize(Assembly caller, Type? optionHolder, ModLogger? logger)
     {
-        LogSource = base.Logger;
+        ModLogger = logger ?? LoggingAdapter.CreateLogger(Logger);
 
-        logger ??= LoggingAdapter.CreateLogger(LogSource);
+        Registry.RegisterAssembly(caller, Info.Metadata, optionHolder, ModLogger);
 
-        if (logger is not LogUtilsLogger { ModLibCreated: false })
-        {
-            string pathToLogFile = Path.Combine(Registry.DefaultLogsPath, Registry.SanitizeModName(Info.Metadata.Name) + ".log");
-
-            if (File.Exists(pathToLogFile))
-            {
-                Extras.WrapAction(() => File.WriteAllText(pathToLogFile, ""), Core.Logger);
-            }
-        }
-
-        Registry.RegisterAssembly(caller, Info.Metadata, optionHolder, logger);
-
-        Logger = logger;
+        _initialized = true;
     }
 
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
@@ -106,14 +91,29 @@ public abstract class ModPlugin : BaseUnityPlugin
 
         IsModEnabled = true;
 
+        if (!_initialized)
+        {
+            Core.Logger.LogWarning($"ModPlugin [{Info.Metadata.GUID}] called OnEnable() before Initialize()! Forcing late initialization.");
+
+            try
+            {
+                Initialize(GetType().Assembly, Options?.GetType(), ModLogger);
+            }
+            catch (Exception ex)
+            {
+                Core.Logger.LogError($"ModPlugin initialization failed. The respective mod (\"{Info.Metadata.Name}\") will likely not work as expected.");
+                Core.Logger.LogError($"Exception: {ex}");
+            }
+        }
+
         Extras.WrapAction(() =>
         {
             ApplyHooks();
 
-            Logger.LogDebug("Successfully registered hooks to the game.");
-        }, Logger);
+            ModLogger.LogDebug("Successfully registered hooks to the game.");
+        }, ModLogger);
 
-        Logger.LogInfo($"Enabled {Info.Metadata.Name} successfully.");
+        ModLogger.LogInfo($"Enabled {Info.Metadata.Name} successfully.");
     }
 
     /// <summary>
@@ -130,17 +130,19 @@ public abstract class ModPlugin : BaseUnityPlugin
         IsModEnabled = false;
         ResourcesLoaded = false;
 
+        _initialized = false;
+
         if (Extras.RainReloaderActive)
         {
             Extras.WrapAction(() =>
             {
                 RemoveHooks();
 
-                Logger.LogDebug("Removed all hooks successfully.");
-            }, Logger);
+                ModLogger.LogDebug("Removed all hooks successfully.");
+            }, ModLogger);
         }
 
-        Logger.LogInfo($"Disabled {Info.Metadata.Name} successfully.");
+        ModLogger.LogInfo($"Disabled {Info.Metadata.Name} successfully.");
     }
 
     /// <summary>
@@ -152,7 +154,7 @@ public abstract class ModPlugin : BaseUnityPlugin
     {
         if (Options is null || MachineConnector.SetRegisteredOI(Info.Metadata.GUID, Options)) return;
 
-        Logger.LogWarning("Failed to initialize registered option interface! Attempting to register directly to MachineConnector._registeredOIs instead.");
+        ModLogger.LogWarning("Failed to initialize registered option interface! Attempting to register directly to MachineConnector._registeredOIs instead.");
 
         try
         {
@@ -160,11 +162,11 @@ public abstract class ModPlugin : BaseUnityPlugin
 
             MachineConnector._RefreshOIs();
 
-            Logger.LogInfo($"Successfully registered option interface {Options} with mod ID \"{Info.Metadata.GUID}\".");
+            ModLogger.LogInfo($"Successfully registered option interface {Options} with mod ID \"{Info.Metadata.GUID}\".");
         }
         catch (Exception ex)
         {
-            Logger.LogError($"Failed to register option interface to MachineConnector! {ex}");
+            ModLogger.LogError($"Failed to register option interface to MachineConnector! {ex}");
         }
     }
 
@@ -187,7 +189,7 @@ public abstract class ModPlugin : BaseUnityPlugin
 
         if (!ResourcesLoaded)
         {
-            Extras.WrapAction(LoadResources, Logger);
+            Extras.WrapAction(LoadResources, ModLogger);
 
             ResourcesLoaded = true;
         }

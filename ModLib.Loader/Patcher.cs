@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using BepInEx.Logging;
 using BepInEx.MultiFolderLoader;
 using Mono.Cecil;
@@ -97,7 +98,7 @@ public static class Patcher
         }
         catch (Exception ex)
         {
-            Logger.LogError($"Failed to initialize ModLib entrypoint: {ex}");
+            Logger.LogError($"Failed to initialize ModLib entrypoint: {ex} (Init Phase: #0)");
         }
 
         CompatibilityPaths.Clear();
@@ -107,7 +108,8 @@ public static class Patcher
 
     private static class ModLibAccess
     {
+        [MethodImpl(MethodImplOptions.NoInlining)]
         public static void TryLoadModLib(List<string> compatibilityPaths) =>
-            Entrypoint.Initialize(compatibilityPaths);
+            Entrypoint.Initialize(compatibilityPaths, false);
     }
 }
