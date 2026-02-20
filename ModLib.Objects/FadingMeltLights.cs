@@ -1,3 +1,4 @@
+using System;
 using RWCustom;
 using UnityEngine;
 
@@ -17,6 +18,34 @@ public class FadingMeltLights : CosmeticSprite
 
     private bool initialized;
     private bool forcedMeltEffect;
+
+    private readonly float speed;
+    private readonly float strength;
+
+    /// <summary>
+    ///     Creates a new instance of the <see cref="FadingMeltLights"/> class with the default effect strength and duration modifiers.
+    /// </summary>
+    public FadingMeltLights()
+    {
+        speed = 1f;
+        strength = 1f;
+    }
+
+    /// <summary>
+    ///     Creates a new instance of the <see cref="FadingMeltLights"/> class with the specified effect strength and duration modifiers.
+    /// </summary>
+    /// <param name="speed">The speed at which the effect disappears. Must be a positive, non-zero value.</param>
+    /// <param name="strength">The initial strength of the effect; Ignored if the current room already has Void Melt. Must be a positive, non-zero value.</param>
+    /// <exception cref="ArgumentOutOfRangeException">speed is zero or a negative value. -or- strength is zero or a negative value.</exception>
+    public FadingMeltLights(float speed, float strength)
+    {
+        if (speed <= 0) throw new ArgumentOutOfRangeException(nameof(speed));
+
+        if (strength <= 0) throw new ArgumentOutOfRangeException(nameof(strength));
+
+        this.speed = speed;
+        this.strength = strength;
+    }
 
     /// <summary>
     ///     The progress of the fade effect, ranging from <c>1f</c> (strongest gold tint) to <c>0f</c> (no gold tint, effect is removed).
@@ -49,7 +78,7 @@ public class FadingMeltLights : CosmeticSprite
             return;
         }
 
-        FadeProgress = Mathf.Max(0f, FadeProgress - 0.016666668f);
+        FadeProgress = Mathf.Max(0f, FadeProgress - (0.016666668f * speed));
         meltEffect?.amount = Mathf.Lerp(effectInitLevel, 1f, Custom.SCurve(FadeProgress, 0.6f));
 
         if (FadeProgress <= 0f)
@@ -87,7 +116,7 @@ public class FadingMeltLights : CosmeticSprite
 
         if (meltEffect is null)
         {
-            meltEffect = new RoomSettings.RoomEffect(RoomSettings.RoomEffect.Type.VoidMelt, 1f, false);
+            meltEffect = new RoomSettings.RoomEffect(RoomSettings.RoomEffect.Type.VoidMelt, strength, false);
 
             room.roomSettings.effects.Add(meltEffect);
 

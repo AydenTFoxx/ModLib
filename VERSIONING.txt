@@ -5,5 +5,5 @@ Major changes to functionality of several features, without backwards compatibil
 
 Indev versions start with `0.x.y.z`. Release versions start with `1.x.y.z`. Current version is `0.3.2.0`.
 
-Private members are disregarded for "New/removed <member>" conditions; Private member names and method signatures may change at any time with no prior warning, and are NOT considered breaking changes for versioning purposes.
-However, a refactoring where several private members are modified/rewritten for any particular purpose is still considered a significant codebase rewrite, which incurs a minimum of a 0.x.0.0 (minor) update.
+Non-public members are disregarded for "New/removed <member>" conditions; Member names and method signatures may change at any time with no prior warning, and are NOT considered breaking changes for versioning purposes.
+However, a refactoring where several non-public members are modified and/or rewritten is still considered a significant codebase rewrite, which incurs a minimum of a 0.x.0.0 (minor) update.

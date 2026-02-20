@@ -799,14 +799,14 @@
             </summary>
         </member>
         <member name="M:ModLib.Logging.LoggingAdapter.CreateLogger(BepInEx.Logging.ManualLogSource,System.Boolean)">
+            <inheritdoc cref="M:ModLib.Logging.LoggingAdapter.CreateLogger(BepInEx.Logging.ManualLogSource,BepInEx.Logging.LogLevel)"/>
+        </member>
+        <member name="M:ModLib.Logging.LoggingAdapter.CreateLogger(BepInEx.Logging.ManualLogSource,BepInEx.Logging.LogLevel)">
             <summary>
                 Creates a logger instance employing a safe encapsulation technique.
             </summary>
             <param name="logSource">The BepInEx source to use for identification and logging.</param>
-            <param name="wrapLogger">
-                If true, the generated logger will be a <see cref="T:ModLib.Logging.FilteredLogWrapper"/>,
-                which ignores certain logs based on their level and the current type of ModLib's build.
-            </param>
+            <param name="filterLevels">If set, the generated logger will be a <see cref="T:ModLib.Logging.FilteredLogWrapper"/> which ignores log requests with the given logging level(s).</param>
         </member>
         <member name="T:ModLib.Logging.LogUtilsLogger">
             <summary>

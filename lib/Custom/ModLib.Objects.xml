@@ -6,33 +6,9 @@
     <members>
         <member name="T:ModLib.Objects.DeathProtection">
             <summary>
-                Prevents all death of its target creature while active.
-                Can be configured to either expire after a given delay, or once a given condition is met.
+                Prevents all death of its target creature for a configurable delay and/or condition.
+                This class cannot be inherited.
             </summary>
-        </member>
-        <member name="F:ModLib.Objects.DeathProtection.TrueCondition">
-            <summary>
-                The positive condition for removing the protection instance; Always returns <c>true</c>.
-            </summary>
-            <remarks>
-                When using this predicate, the protection instance is removed as soon as lifetime is depleted.
-            </remarks>
-        </member>
-        <member name="F:ModLib.Objects.DeathProtection.FalseCondition">
-            <summary>
-                The negative condition for removing the protection instance; Always returns <c>false</c>.
-            </summary>
-            <remarks>
-                When using this predicate, the protection instance remains indefinitely active until manually removed.
-            </remarks>
-        </member>
-        <member name="F:ModLib.Objects.DeathProtection.SafeLandingCondition">
-            <summary>
-                The default condition for removing the protection instance; Returns <c>true</c> when the target is in a safe position.
-            </summary>
-            <remarks>
-                When using this predicate, the protection is removed as soon as the target is conscious and on solid ground or a body of water.
-            </remarks>
         </member>
         <member name="P:ModLib.Objects.DeathProtection.Target">
             <summary>
@@ -42,6 +18,16 @@
         <member name="P:ModLib.Objects.DeathProtection.ProtectionModes">
             <summary>
                 The sources of damage this protection will prevent against for its Target.
+            </summary>
+        </member>
+        <member name="P:ModLib.Objects.DeathProtection.SafePos">
+            <summary>
+                The last known position considered "safe"; If the protected creature is destroyed, it is instead teleported to this position.
+            </summary>
+        </member>
+        <member name="P:ModLib.Objects.DeathProtection.Power">
+            <summary>
+                The power value for visual effects.
             </summary>
         </member>
         <member name="P:ModLib.Objects.DeathProtection.ProtectAgainstViolence">
@@ -62,24 +48,14 @@
                 This value is equivalent to <c>ProtectionModes.HasFlag(DeathProtection.ProtectionMode.Destruction)</c>.
             </summary>
         </member>
-        <member name="P:ModLib.Objects.DeathProtection.SafePos">
-            <summary>
-                The last known position considered "safe"; If the protected creature is destroyed, it is instead teleported to this position.
-            </summary>
-        </member>
-        <member name="P:ModLib.Objects.DeathProtection.Power">
-            <summary>
-                The power value for visual effects.
-            </summary>
-        </member>
         <member name="P:ModLib.Objects.DeathProtection.SaveCooldown">
             <summary>
                 If greater than <c>0</c>, a cooldown where the creature is assumed to be alive; Prevents repeated attempts to revive the target causing no revival at all.
             </summary>
         </member>
-        <member name="F:ModLib.Objects.DeathProtection.lifespan">
+        <member name="P:ModLib.Objects.DeathProtection.SavingThrows">
             <summary>
-                An optional lifespan for the protection. If a condition is also provided, this acts as the "grace" timer before the protection can actually expire.
+                The amount of times the protection has saved Target from destruction in a row. If exceeding a given limit, the protection is destroyed.
             </summary>
         </member>
         <member name="F:ModLib.Objects.DeathProtection.revivalsLeft">
@@ -87,9 +63,14 @@
                 The amount of times the protection will attempt to revive its target creature. If this number reaches zero, the protection is destroyed.
             </summary>
         </member>
-        <member name="F:ModLib.Objects.DeathProtection.condition">
+        <member name="F:ModLib.Objects.DeathProtection.lifespan">
             <summary>
-                An optional condition to determine when the protection should be removed. If omitted, defaults to a countdown using lifespan.
+                An optional lifespan for the protection. If a condition is also provided, this acts as the "grace" timer before the protection can actually expire.
+            </summary>
+        </member>
+        <member name="F:ModLib.Objects.DeathProtection.isInfinite">
+            <summary>
+                If true, lifespan is ignored and the protection lasts until manually destroyed.
             </summary>
         </member>
         <member name="F:ModLib.Objects.DeathProtection.forceRevive">
@@ -113,13 +94,12 @@
                 When the protection is removed, their respective fields are restored to their original values.
             </summary>
         </member>
-        <member name="M:ModLib.Objects.DeathProtection.#ctor(Creature,System.Predicate{Creature},System.Int32,ModLib.Objects.DeathProtection.ProtectionMode,System.Nullable{WorldCoordinate},System.Boolean)">
+        <member name="M:ModLib.Objects.DeathProtection.#ctor(Creature,System.Int16,ModLib.Objects.DeathProtection.ProtectionMode,System.Nullable{WorldCoordinate},System.Boolean)">
             <summary>
                 Creates a new death protection instance which lasts until the given condition returns <c>true</c>.
             </summary>
             <param name="target">The creature to protect.</param>
-            <param name="condition">The condition for removing the protection; When <c>true</c>, the protection is removed.</param>
-            <param name="lifespan">The amount of time to wait before <paramref name="condition"/> can be tested.</param>
+            <param name="lifespan">The amount of time to wait before the protection can be removed.</param>
             <param name="protectionModes"></param>
             <param name="safePos">An optional "safe" position, used when the creature is destroyed.</param>
             <param name="forceRevive">If true and <paramref name="target"/> somehow dies while protected, it is revived. This also immediately ends the protection.</param>
@@ -130,29 +110,17 @@
         <member name="M:ModLib.Objects.DeathProtection.Destroy">
             <inheritdoc/>
         </member>
-        <member name="M:ModLib.Objects.DeathProtection.CreateInstance(Creature,System.Int32,ModLib.Objects.DeathProtection.ProtectionMode,System.Nullable{WorldCoordinate},System.Boolean)">
+        <member name="M:ModLib.Objects.DeathProtection.CreateInstance(Creature,System.Int16,ModLib.Objects.DeathProtection.ProtectionMode,System.Nullable{WorldCoordinate},System.Boolean)">
             <summary>
                 Creates a new death protection instance which lasts for the given amount of ticks.
             </summary>
             <param name="target">The creature to protect.</param>
-            <param name="lifespan">The duration of the protection.</param>
-            <param name="protectionModes"></param>
+            <param name="lifespan">The duration of the protection. Set to <c>-1</c> for an indefinitely-lasting protection.</param>
+            <param name="protectionModes">The sources of death this protection will prevent.</param>
             <param name="safePos">An optional "safe" position, used when the creature is destroyed.</param>
             <param name="forceRevive">If true and <paramref name="target"/> somehow dies while protected, it is revived. This also immediately ends the protection.</param>
             <exception cref="T:System.ArgumentNullException">target is null.</exception>
-            <exception cref="T:System.InvalidOperationException">target is not in a valid room -or- target is already being protected.</exception>
-        </member>
-        <member name="M:ModLib.Objects.DeathProtection.CreateInstance(Creature,System.Predicate{Creature},ModLib.Objects.DeathProtection.ProtectionMode,System.Nullable{WorldCoordinate},System.Boolean)">
-            <summary>
-                Creates a new death protection instance which lasts for the given amount of ticks.
-            </summary>
-            <param name="target">The creature to protect.</param>
-            <param name="condition">The condition for removing the protection; When <c>true</c>, the protection is removed.</param>
-            <param name="protectionModes"></param>
-            <param name="safePos">An optional "safe" position, used when the creature is destroyed.</param>
-            <param name="forceRevive">If true and <paramref name="target"/> somehow dies while protected, it is revived. This also immediately ends the protection.</param>
-            <exception cref="T:System.ArgumentNullException">target is null -or- condition is null.</exception>
-            <exception cref="T:System.InvalidOperationException">target is not in a valid room -or- target is already being protected.</exception>
+            <exception cref="T:System.ArgumentException">target is not in a valid room -or- target is already being protected.</exception>
         </member>
         <member name="M:ModLib.Objects.DeathProtection.HasProtection(Creature)">
             <summary>
@@ -227,19 +195,14 @@
                 This is a composite protection type.
             </summary>
         </member>
-        <member name="M:ModLib.Objects.DeathProtectionHooks.PreventCreatureDestructionHook(On.UpdatableAndDeletable.orig_Destroy,UpdatableAndDeletable)">
-            <summary>
-            Prevents the destruction of creatures who are under death protection.
-            </summary>
-        </member>
-        <member name="M:ModLib.Objects.DeathProtectionHooks.DisposePossessionManagerHook(On.Player.orig_Destroy,Player)">
-            <summary>
-            Disposes of the player's PossessionManager when Slugcat is destroyed. Also prevents death-protected players from being destroyed.
-            </summary>
-        </member>
         <member name="M:ModLib.Objects.DeathProtectionHooks.AvoidImmunePlayerHook(System.Func{Creature,System.Boolean},Creature)">
             <summary>
             Grants the player Worm Grass immunity when protected from death.
+            </summary>
+        </member>
+        <member name="M:ModLib.Objects.DeathProtectionHooks.CreatureDeathHook(On.Creature.orig_Die,Creature)">
+            <summary>
+                Prevents death-protected creatures from being killed with Creature.Die().
             </summary>
         </member>
         <member name="M:ModLib.Objects.DeathProtectionHooks.GrantSandstormImmunityHook(System.Func{PhysicalObject,System.Boolean},PhysicalObject)">
@@ -262,9 +225,19 @@
             Prevents the game over screen from showing up if a player is currently being protected.
             </summary>
         </member>
-        <member name="M:ModLib.Objects.DeathProtectionHooks.PreventCreatureDestructionHook(On.AbstractWorldEntity.orig_Destroy,AbstractWorldEntity)">
+        <member name="M:ModLib.Objects.DeathProtectionHooks.PreventAbstractCreatureDestructionHook(On.AbstractWorldEntity.orig_Destroy,AbstractWorldEntity)">
             <summary>
             Prevents a creature's abstract representation from being destroyed while death-immune.
+            </summary>
+        </member>
+        <member name="M:ModLib.Objects.DeathProtectionHooks.PreventCreatureDestructionHook(On.UpdatableAndDeletable.orig_Destroy,UpdatableAndDeletable)">
+            <summary>
+            Prevents the destruction of creatures who are under death protection.
+            </summary>
+        </member>
+        <member name="M:ModLib.Objects.DeathProtectionHooks.PreventPlayerDestructionHook(On.Player.orig_Destroy,Player)">
+            <summary>
+            Disposes of the player's PossessionManager when Slugcat is destroyed. Also prevents death-protected players from being destroyed.
             </summary>
         </member>
         <member name="M:ModLib.Objects.DeathProtectionHooks.IgnoreLeviathanBiteILHook(MonoMod.Cil.ILContext)">
@@ -314,6 +287,19 @@
                 This object is purely visual, and has no effect on the player's Karma level.
             </remarks>
         </member>
+        <member name="M:ModLib.Objects.FadingMeltLights.#ctor">
+            <summary>
+                Creates a new instance of the <see cref="T:ModLib.Objects.FadingMeltLights"/> class with the default effect strength and duration modifiers.
+            </summary>
+        </member>
+        <member name="M:ModLib.Objects.FadingMeltLights.#ctor(System.Single,System.Single)">
+            <summary>
+                Creates a new instance of the <see cref="T:ModLib.Objects.FadingMeltLights"/> class with the specified effect strength and duration modifiers.
+            </summary>
+            <param name="speed">The speed at which the effect disappears. Must be a positive, non-zero value.</param>
+            <param name="strength">The initial strength of the effect; Ignored if the current room already has Void Melt. Must be a positive, non-zero value.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">speed is zero or a negative value. -or- strength is zero or a negative value.</exception>
+        </member>
         <member name="P:ModLib.Objects.FadingMeltLights.FadeProgress">
             <summary>
                 The progress of the fade effect, ranging from <c>1f</c> (strongest gold tint) to <c>0f</c> (no gold tint, effect is removed).
@@ -332,6 +318,10 @@
             <summary>
                 A variant of <see cref="T:UpdatableAndDeletable"/> which is updated independently of a room.
             </summary>
+            <remarks>
+                Instances of this class (or subtypes) are NOT synced upon joining a Rain Meadow server;
+                Mods should roll their own sync implementation if Rain Meadow compatibility is desired.
+            </remarks>
         </member>
         <member name="F:ModLib.Objects.GlobalUpdatableAndDeletable.evenUpdate">
             <inheritdoc cref="F:UpdatableAndDeletable.evenUpdate"/>
@@ -352,6 +342,16 @@
         </member>
         <member name="M:ModLib.Objects.GlobalUpdatableAndDeletable.Destroy">
             <inheritdoc cref="M:UpdatableAndDeletable.Destroy"/>
+        </member>
+        <member name="T:ModLib.Objects.IForbiddenToPull">
+            <summary>
+                Specifies that a given object type cannot be pulled by a Blizzard Lizard's pull.
+            </summary>
+        </member>
+        <member name="M:ModLib.Objects.Main.ForbidPullingMarkedTypesHook(On.Watcher.LizardBlizzardModule.orig_IsForbiddenToPull,Watcher.LizardBlizzardModule,UpdatableAndDeletable)">
+            <summary>
+                Prevents Blizzard Lizards' blizzard shield from pushing around objects inheriting the <see cref="T:ModLib.Objects.IForbiddenToPull"/> interface.
+            </summary>
         </member>
     </members>
 </doc>

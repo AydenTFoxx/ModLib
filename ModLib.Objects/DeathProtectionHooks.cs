@@ -5,14 +5,12 @@ using ModLib.Extensions;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
 using MonoMod.RuntimeDetour;
+using MoreSlugcats;
 using UnityEngine;
+using Watcher;
 
 namespace ModLib.Objects;
 
-// Notice: The following methods are not included here, but must be hooked to as well to actually prevent death:
-//      Creature.Die(), UpdatableAndDeletable.Destroy(), Player.Destroy()
-//
-// The implementation for these hooks can be found in the Possession.PossessionHooks class
 internal static class DeathProtectionHooks
 {
     private static Hook[]? manualHooks;
@@ -26,19 +24,27 @@ internal static class DeathProtectionHooks
 
             IL.Creature.RippleViolenceCheck += NoViolenceWhileProtectedILHook;
 
+            IL.Creature.Update += IgnoreDeathPitDestructionILHook;
+
             IL.BulletDrip.Strike += PreventRainDropStunILHook;
             IL.RoomRain.ThrowAroundObjects += PreventRoomRainPushILHook;
 
             IL.WormGrass.WormGrassPatch.Update += IgnoreRepulsiveCreatureILHook;
-        }, Core.Logger);
+        }, Main.Logger);
 
-        On.AbstractWorldEntity.Destroy += PreventCreatureDestructionHook;
+        On.AbstractWorldEntity.Destroy += PreventAbstractCreatureDestructionHook;
 
+        On.Creature.Die += CreatureDeathHook;
+
+        On.Player.Destroy += PreventPlayerDestructionHook;
         On.Player.Die += PlayerDeathHook;
+        On.Player.PermaDie += PermaDieHook;
 
         On.RainWorldGame.GameOver += InterruptGameOverHook;
 
         On.RoomRain.CreatureSmashedInGround += IgnorePlayerRainDeathHook;
+
+        On.UpdatableAndDeletable.Destroy += PreventCreatureDestructionHook;
 
         On.Watcher.WarpPoint.SpawnPendingObject += WarpDeathProtectionHook;
 
@@ -72,19 +78,27 @@ internal static class DeathProtectionHooks
 
             IL.Creature.RippleViolenceCheck -= NoViolenceWhileProtectedILHook;
 
+            IL.Creature.Update += IgnoreDeathPitDestructionILHook;
+
             IL.BulletDrip.Strike -= PreventRainDropStunILHook;
             IL.RoomRain.ThrowAroundObjects -= PreventRoomRainPushILHook;
 
             IL.WormGrass.WormGrassPatch.Update -= IgnoreRepulsiveCreatureILHook;
-        }, Core.Logger);
+        }, Main.Logger);
 
-        On.AbstractWorldEntity.Destroy -= PreventCreatureDestructionHook;
+        On.AbstractWorldEntity.Destroy -= PreventAbstractCreatureDestructionHook;
 
+        On.Creature.Die -= CreatureDeathHook;
+
+        On.Player.Destroy -= PreventPlayerDestructionHook;
         On.Player.Die -= PlayerDeathHook;
+        On.Player.PermaDie -= PermaDieHook;
 
         On.RainWorldGame.GameOver -= InterruptGameOverHook;
 
         On.RoomRain.CreatureSmashedInGround -= IgnorePlayerRainDeathHook;
+
+        On.UpdatableAndDeletable.Destroy -= PreventCreatureDestructionHook;
 
         On.Watcher.WarpPoint.SpawnPendingObject -= WarpDeathProtectionHook;
 
@@ -98,33 +112,9 @@ internal static class DeathProtectionHooks
         manualHooks = null;
     }
 
-    /// <summary>
-    /// Prevents the destruction of creatures who are under death protection.
-    /// </summary>
-    private static void PreventCreatureDestructionHook(On.UpdatableAndDeletable.orig_Destroy orig, UpdatableAndDeletable self)
+    private static void PermaDieHook(On.Player.orig_PermaDie orig, Player self)
     {
-        if (self is Creature crit and not Player && TrySaveFromDestruction(crit)) return;
-
-        orig.Invoke(self);
-    }
-
-    /// <summary>
-    /// Disposes of the player's PossessionManager when Slugcat is destroyed. Also prevents death-protected players from being destroyed.
-    /// </summary>
-    private static void DisposePossessionManagerHook(On.Player.orig_Destroy orig, Player self)
-    {
-        if (TrySaveFromDestruction(self)) return;
-
-        orig.Invoke(self);
-    }
-
-    private static void CreatureDeathHook(On.Creature.orig_Die orig, Creature self)
-    {
-        if (DeathProtection.TryGetProtection(self, out DeathProtection protection)
-            && EvaluateDeathPrevention(protection, self))
-        {
-            return;
-        }
+        if (DeathProtection.HasProtection(self)) return;
 
         orig.Invoke(self);
     }
@@ -133,20 +123,30 @@ internal static class DeathProtectionHooks
     /// Grants the player Worm Grass immunity when protected from death.
     /// </summary>
     private static bool AvoidImmunePlayerHook(Func<Creature, bool> orig, Creature self) =>
-        (DeathProtection.TryGetProtection(self, out DeathProtection protection) && (protection.ProtectAgainstEnvironment || protection.ProtectAgainstDestruction)) || orig.Invoke(self);
+        DeathProtection.HasProtection(self) || orig.Invoke(self);
+
+    /// <summary>
+    ///     Prevents death-protected creatures from being killed with Creature.Die().
+    /// </summary>
+    private static void CreatureDeathHook(On.Creature.orig_Die orig, Creature self)
+    {
+        if (DeathProtection.HasProtection(self)) return;
+
+        orig.Invoke(self);
+    }
 
     /// <summary>
     /// Makes death-immune creatures also immune to end-of-cycle sandstorms.
     /// </summary>
     private static bool GrantSandstormImmunityHook(Func<PhysicalObject, bool> orig, PhysicalObject self) =>
-        self is Creature crit && DeathProtection.TryGetProtection(crit, out DeathProtection protection) && protection.ProtectAgainstEnvironment;
+        DeathProtection.HasProtection(self as Creature) || orig.Invoke(self);
 
     /// <summary>
     /// Prevents the end of cycle rain from affecting Slugcat if protected.
     /// </summary>
     private static void IgnorePlayerRainDeathHook(On.RoomRain.orig_CreatureSmashedInGround orig, RoomRain self, Creature crit, float speed)
     {
-        if (DeathProtection.TryGetProtection(crit, out DeathProtection protection) && protection.ProtectAgainstEnvironment) return;
+        if (DeathProtection.HasProtection(crit)) return;
 
         orig.Invoke(self, crit, speed);
     }
@@ -155,7 +155,7 @@ internal static class DeathProtectionHooks
     /// Prevents the player from being affected by wind while protected.
     /// </summary>
     private static float IgnoreWindAffectivenessHook(Func<Creature, float> orig, Creature self) =>
-        DeathProtection.TryGetProtection(self, out DeathProtection protection) && protection.ProtectAgainstEnvironment
+        DeathProtection.HasProtection(self)
             ? 0f
             : orig.Invoke(self);
 
@@ -171,11 +171,7 @@ internal static class DeathProtectionHooks
 
     private static void PlayerDeathHook(On.Player.orig_Die orig, Player self)
     {
-        if (DeathProtection.TryGetProtection(self, out DeathProtection protection)
-            && EvaluateDeathPrevention(protection, self))
-        {
-            return;
-        }
+        if (DeathProtection.HasProtection(self)) return;
 
         orig.Invoke(self);
     }
@@ -183,15 +179,44 @@ internal static class DeathProtectionHooks
     /// <summary>
     /// Prevents a creature's abstract representation from being destroyed while death-immune.
     /// </summary>
-    private static void PreventCreatureDestructionHook(On.AbstractWorldEntity.orig_Destroy orig, AbstractWorldEntity self)
+    private static void PreventAbstractCreatureDestructionHook(On.AbstractWorldEntity.orig_Destroy orig, AbstractWorldEntity self)
     {
         if (self is AbstractCreature abstractCreature
-            && DeathProtection.HasProtection(abstractCreature.realizedCreature)) return;
+            && abstractCreature.realizedCreature is not (null or DrillCrab or Overseer or MothGrub or RippleSpider or BigJellyFish)
+            && DeathProtection.HasProtection(abstractCreature.realizedCreature))
+        {
+            Main.Logger.LogDebug($"Protected AWE ({self}) called Destroy()!");
+            return;
+        }
 
         orig.Invoke(self);
     }
 
-    private static bool WarpDeathProtectionHook(On.Watcher.WarpPoint.orig_SpawnPendingObject orig, Watcher.WarpPoint self, AbstractPhysicalObject nextObject, bool immediateSpawn)
+    /// <summary>
+    /// Prevents the destruction of creatures who are under death protection.
+    /// </summary>
+    private static void PreventCreatureDestructionHook(On.UpdatableAndDeletable.orig_Destroy orig, UpdatableAndDeletable self)
+    {
+        if (self is Creature crit and not (Player or DrillCrab or Overseer or MothGrub or RippleSpider or BigJellyFish) && TrySaveFromDestruction(crit))
+        {
+            Main.Logger.LogDebug($"Protected UAD ({self}) called Destroy()!");
+            return;
+        }
+
+        orig.Invoke(self);
+    }
+
+    /// <summary>
+    /// Disposes of the player's PossessionManager when Slugcat is destroyed. Also prevents death-protected players from being destroyed.
+    /// </summary>
+    private static void PreventPlayerDestructionHook(On.Player.orig_Destroy orig, Player self)
+    {
+        if (TrySaveFromDestruction(self)) return;
+
+        orig.Invoke(self);
+    }
+
+    private static bool WarpDeathProtectionHook(On.Watcher.WarpPoint.orig_SpawnPendingObject orig, WarpPoint self, AbstractPhysicalObject nextObject, bool immediateSpawn)
     {
         if (orig.Invoke(self, nextObject, immediateSpawn))
         {
@@ -205,6 +230,29 @@ internal static class DeathProtectionHooks
             return true;
         }
         return false;
+    }
+
+    /// <summary>
+    ///     Prohibits death pits from ever attempting to kill or destroy protected creatures.
+    /// </summary>
+    private static void IgnoreDeathPitDestructionILHook(ILContext context)
+    {
+        ILCursor c = new(context);
+        ILLabel? target = null;
+
+        c.GotoNext(static x => x.MatchLdfld<ChallengeInformation.ChallengeMeta>(nameof(ChallengeInformation.ChallengeMeta.oobProtect)))
+         .GotoPrev(MoveType.After, x => x.MatchBgeUn(out target))
+         .MoveAfterLabels();
+
+        // Target: if (base.bodyChunks[0].pos.y < num6 && (...) && (...) && (...))
+        //                                            ^ HERE (Insert)
+
+        c.Emit(OpCodes.Ldarg_0)
+         .EmitDelegate(TrySaveFromDestruction);
+
+        c.Emit(OpCodes.Brtrue, target);
+
+        // Result: if (base.bodyChunks[0].pos.y < num6 && !TrySaveFromDestruction(this) && (...) && (...) && (...))
     }
 
     /// <summary>
@@ -232,17 +280,11 @@ internal static class DeathProtectionHooks
          .Emit(OpCodes.Ldloc_S, (byte)7)
          .Emit(OpCodes.Callvirt, typeof(List<PhysicalObject>).GetMethod("get_Item"))
          .Emit(OpCodes.Isinst, typeof(Creature))
-         .EmitDelegate(ShouldIgnoreBite);
+         .EmitDelegate(DeathProtection.HasProtection);
 
         c.Emit(OpCodes.Brtrue, target);
 
         // Result: if (!(this.room.physicalObjects[j][k] is BigEel) && !ShouldIgnoreBite(this.room.physicalObjects[j][k] as Creature) && ...) { ... }
-
-        static bool ShouldIgnoreBite(Creature? creature)
-        {
-            return DeathProtection.TryGetProtection(creature, out DeathProtection protection)
-                && (protection.ProtectAgainstViolence || protection.ProtectAgainstDestruction);
-        }
     }
 
     /// <summary>
@@ -265,17 +307,11 @@ internal static class DeathProtectionHooks
          .Emit(OpCodes.Ldfld, typeof(RelationshipTracker.DynamicRelationship).GetField(nameof(RelationshipTracker.DynamicRelationship.trackerRep)))
          .Emit(OpCodes.Ldfld, typeof(Tracker.CreatureRepresentation).GetField(nameof(Tracker.CreatureRepresentation.representedCreature)))
          .Emit(OpCodes.Callvirt, typeof(AbstractCreature).GetProperty(nameof(AbstractCreature.realizedCreature)).GetGetMethod())
-         .EmitDelegate(ShouldIgnoreCreature);
+         .EmitDelegate(DeathProtection.HasProtection);
 
         c.Emit(OpCodes.Brtrue, target);
 
         // Result: if (this.eel.AmIHoldingCreature(dRelation.trackerRep.representedCreature) || DeathProtection.HasProtection(dRelation.trackerRep.representedCreature.realizedCreature) || dRelation.trackerRep.representedCreature.creatureTemplate.smallCreature) { ... }
-
-        static bool ShouldIgnoreCreature(Creature? creature)
-        {
-            return DeathProtection.TryGetProtection(creature, out DeathProtection protection)
-                && (protection.ProtectAgainstViolence || protection.ProtectAgainstDestruction);
-        }
     }
 
     /// <summary>
@@ -295,17 +331,11 @@ internal static class DeathProtectionHooks
         //                                     ^ HERE (Insert)
 
         c.Emit(OpCodes.Ldloc_0)
-         .EmitDelegate(ShouldIgnoreCreature);
+         .EmitDelegate(DeathProtection.HasProtection);
 
         c.Emit(OpCodes.Brtrue, target);
 
         // Result: if (realizedCreature != null && !DeathProtection.HasProtection(realizedCreature) && ...) { ... }
-
-        static bool ShouldIgnoreCreature(Creature? creature)
-        {
-            return DeathProtection.TryGetProtection(creature, out DeathProtection protection)
-                && (protection.ProtectAgainstEnvironment || protection.ProtectAgainstDestruction);
-        }
     }
 
     /// <summary>
@@ -323,15 +353,10 @@ internal static class DeathProtectionHooks
         // Target: if (source != null && source.owner.abstractPhysicalObject.rippleLayer != this.abstractCreature.rippleLayer && !source.owner.abstractPhysicalObject.rippleBothSides && !this.abstractCreature.rippleBothSides) { ... }
         //                           ^ HERE (Insert)
 
-        d.Emit(OpCodes.Ldarg_1).EmitDelegate(ShouldIgnoreCreature);
+        d.Emit(OpCodes.Ldarg_1).EmitDelegate(DeathProtection.HasProtection);
         d.Emit(OpCodes.Brtrue, target);
 
         // Result: if (source != null && !DeathProtection.HasProtection(source.owner as Creature) && source.owner.abstractPhysicalObject.rippleLayer != this.abstractCreature.rippleLayer && !source.owner.abstractPhysicalObject.rippleBothSides && !this.abstractCreature.rippleBothSides) { ... }
-
-        static bool ShouldIgnoreCreature(Creature? creature)
-        {
-            return DeathProtection.TryGetProtection(creature, out DeathProtection protection) && protection.ProtectAgainstViolence;
-        }
     }
 
     /// <summary>
@@ -354,16 +379,11 @@ internal static class DeathProtectionHooks
          .Emit(OpCodes.Ldfld, typeof(SharedPhysics.CollisionResult).GetField(nameof(SharedPhysics.CollisionResult.chunk)))
          .Emit(OpCodes.Callvirt, typeof(BodyChunk).GetProperty(nameof(BodyChunk.owner)).GetGetMethod())
          .Emit(OpCodes.Isinst, typeof(Creature))
-         .EmitDelegate(ShouldIgnoreCreature);
+         .EmitDelegate(DeathProtection.HasProtection);
 
         c.Emit(OpCodes.Brtrue, target);
 
         // Result: if (collisionResult.chunk.owner is Creature && !DeathProtection.HasProtection(collisionResult.chunk.owner as Creature)) { ... }
-
-        static bool ShouldIgnoreCreature(Creature? creature)
-        {
-            return DeathProtection.TryGetProtection(creature, out DeathProtection protection) && protection.ProtectAgainstEnvironment;
-        }
     }
 
     /// <summary>
@@ -393,16 +413,11 @@ internal static class DeathProtectionHooks
          .Emit(OpCodes.Ldloc_1)
          .Emit(OpCodes.Callvirt, typeof(List<PhysicalObject>).GetMethod("get_Item"))
          .Emit(OpCodes.Isinst, typeof(Creature))
-         .EmitDelegate(ShouldIgnoreCreature);
+         .EmitDelegate(DeathProtection.HasProtection);
 
         c.Emit(OpCodes.Brtrue, target);
 
         // Result: if (!DeathProtection.HasProtection(this.room.physicalObjects[i][j] as Creature) && (!ModManager.Watcher || !this.room.game.IsStorySession || this.room.physicalObjects[i][j].abstractPhysicalObject.rippleLayer == 0)) { ... }
-
-        static bool ShouldIgnoreCreature(Creature? creature)
-        {
-            return DeathProtection.TryGetProtection(creature, out DeathProtection protection) && protection.ProtectAgainstEnvironment;
-        }
     }
 
     /// <summary>
@@ -414,8 +429,8 @@ internal static class DeathProtectionHooks
     internal static bool TrySaveFromDestruction(Creature creature)
     {
         if (creature.inShortcut
+            || creature.abstractCreature.InDen
             || !DeathProtection.TryGetProtection(creature, out DeathProtection protection)
-            || !protection.ProtectAgainstDestruction
             || !protection.SafePos.HasValue) return false;
 
         if (protection.SaveCooldown > 0) return true;
@@ -429,12 +444,12 @@ internal static class DeathProtectionHooks
 
             if (creature.room is null)
             {
-                Core.Logger.LogWarning($"[DeathProtection] Could not retrieve a room for {creature}; Destruction will not be avoided.");
+                Main.Logger.LogWarning($"Could not retrieve a room for {creature}; Destruction will not be avoided.");
                 return false;
             }
         }
 
-        Vector2 revivePos = creature.room.MiddleOfTile(protection.SafePos.Value);
+        Vector2 revivePos = creature.room.MiddleOfTile(protection.SafePos ?? throw new InvalidOperationException("Attempted saving a creature without a valid safe position."));
 
         if (creature is Player player)
         {
@@ -453,6 +468,8 @@ internal static class DeathProtectionHooks
             }
         }
 
+        protection.SavingThrows++;
+
         Vector2 bodyVel = new(0f, 8f + creature.room.gravity);
         foreach (BodyChunk bodyChunk in creature.bodyChunks)
         {
@@ -463,25 +480,12 @@ internal static class DeathProtectionHooks
             creature.StunAllGrasps(80);
 
         creature.room.AddObject(new KarmicShockwave(creature, revivePos, 80, 48f * protection.Power, 64f * protection.Power));
-        creature.room.AddObject(new Explosion.ExplosionLight(revivePos, 180f * protection.Power, 1f, 80, RainWorld.GoldRGB));
+        creature.room.AddObject(new Explosion.ExplosionLight(revivePos, 80f * protection.Power, 1f, 20, RainWorld.GoldRGB));
 
         creature.room.PlaySound(SoundID.SB_A14, creature.mainBodyChunk, false, 1f, 1.25f + (UnityEngine.Random.value * 0.5f));
 
-        Core.Logger.LogInfo($"[DeathProtection] {creature} was saved from destruction!");
+        Main.Logger.LogInfo($"{creature} was saved from destruction!");
+
         return true;
-    }
-
-    private static bool EvaluateDeathPrevention(DeathProtection protection, Creature self)
-    {
-        if (protection.SaveCooldown > 0) return true;
-
-        if (self.killTag is not null && protection.ProtectAgainstViolence)
-        {
-            self.StunAllGrasps(40);
-            return true;
-        }
-
-        return !self.slatedForDeletetion
-            && (protection.ProtectAgainstEnvironment || (protection.ProtectAgainstDestruction && protection.SafePos.HasValue));
     }
 }

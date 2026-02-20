@@ -5,6 +5,10 @@ namespace ModLib.Objects;
 /// <summary>
 ///     A variant of <see cref="UpdatableAndDeletable"/> which is updated independently of a room.
 /// </summary>
+/// <remarks>
+///     Instances of this class (or subtypes) are NOT synced upon joining a Rain Meadow server;
+///     Mods should roll their own sync implementation if Rain Meadow compatibility is desired.
+/// </remarks>
 public class GlobalUpdatableAndDeletable
 {
     internal static readonly List<GlobalUpdatableAndDeletable> Instances = [];

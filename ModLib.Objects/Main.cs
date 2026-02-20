@@ -1,60 +1,95 @@
-using System.Collections.Generic;
-using System.Reflection;
+using System.Linq;
+using System.Security.Permissions;
 using BepInEx;
+using BepInEx.Logging;
+using ModLib.Loader;
+using ModLib.Logging;
+using ModLib.Meadow;
+using ModLib.Objects.Meadow;
 using Mono.Cecil.Cil;
 using MonoMod.Cil;
-using MonoMod.RuntimeDetour;
+using RainMeadow;
+using Watcher;
+
+// Allows access to private members
+#pragma warning disable CS0618
+[assembly: SecurityPermission(SecurityAction.RequestMinimum, SkipVerification = true)]
+#pragma warning restore CS0618
 
 namespace ModLib.Objects;
 
-internal static class Main
+internal class Main : IExtensionEntrypoint
 {
-    private static ILHook[]? ilHooks;
+    private static ManualLogSource LogSource = new("ModLib.Objects");
 
-    public static BepInPlugin Metadata { get; } = new("ynhzrfxn.modlib-objects", "ModLib Objects Extension", "0.3.3.0");
+    internal static ModLogger Logger { get; private set; } = new FallbackLogger(LogSource);
 
-    public static void Initialize()
+    public BepInPlugin Metadata { get; } = new("ynhzrfxn.modlib-objects", "ModLib.Objects", "0.4.0.0");
+
+    public void OnEnable()
     {
-        ilHooks = [
-            new ILHook(typeof(Core).GetMethod("ExitGameHook", BindingFlags.NonPublic | BindingFlags.Static), ClearGUADsOnExitILHook),
-            new ILHook(typeof(Core).GetMethod("GameUpdateHook", BindingFlags.NonPublic | BindingFlags.Static), UpdateGUADsILHook)
-        ];
+        Logger = LoggingAdapter.CreateLogger(LogSource);
 
-        for (int i = 0; i < ilHooks.Length; i++)
+        DeathProtectionHooks.ApplyHooks();
+
+        if (Extras.IsMeadowEnabled)
         {
-            ilHooks[i].Apply();
-        }
-    }
+            MeadowProtectionHooks.ApplyHooks();
 
-    public static void Disable()
-    {
-        if (ilHooks is null) return;
-
-        for (int i = 0; i < ilHooks.Length; i++)
-        {
-            ilHooks[i].Undo();
+            MeadowUtils.PlayerJoinedLobby += RainMeadowAccess.SyncDeathProtections;
         }
 
-        ilHooks = null;
+        IL.RainWorldGame.Update += UpdateGUADsILHook;
+
+        On.RainWorldGame.ExitGame += ClearGUADsOnExitHook;
+
+        On.Watcher.LizardBlizzardModule.IsForbiddenToPull += ForbidPullingMarkedTypesHook;
+
+        Logger.LogDebug("Successfully enabled Objects expansion for ModLib.");
     }
 
-    private static void ClearGUADsOnExitILHook(ILContext context)
+    public void OnDisable()
+    {
+        if (Extras.RainReloaderActive)
+        {
+            DeathProtectionHooks.RemoveHooks();
+
+            if (Extras.IsMeadowEnabled)
+            {
+                MeadowProtectionHooks.RemoveHooks();
+
+                MeadowUtils.PlayerJoinedLobby -= RainMeadowAccess.SyncDeathProtections;
+            }
+
+            IL.RainWorldGame.Update -= UpdateGUADsILHook;
+
+            On.RainWorldGame.ExitGame -= ClearGUADsOnExitHook;
+
+            On.Watcher.LizardBlizzardModule.IsForbiddenToPull -= ForbidPullingMarkedTypesHook;
+        }
+
+        Logger.LogDebug("Disabled Objects expansion for ModLib.");
+        Logger = null!;
+
+        BepInEx.Logging.Logger.Sources.Remove(LogSource);
+
+        LogSource = null!;
+    }
+
+    private static void ClearGUADsOnExitHook(On.RainWorldGame.orig_ExitGame orig, RainWorldGame self, bool asDeath, bool asQuit)
+    {
+        orig.Invoke(self, asDeath, asQuit);
+
+        GlobalUpdatableAndDeletable.Instances.Clear();
+    }
+
+    private static void UpdateGUADsILHook(ILContext context)
     {
         ILCursor c = new(context);
 
-        c.GotoNext(static x => x.MatchRet())
+        c.GotoNext(MoveType.After, static x => x.MatchCallvirt(typeof(PathfinderResourceDivider).GetMethod(nameof(PathfinderResourceDivider.Update))))
          .MoveAfterLabels()
-         .Emit(OpCodes.Ldsfld, typeof(GlobalUpdatableAndDeletable).GetField(nameof(GlobalUpdatableAndDeletable.Instances), BindingFlags.NonPublic | BindingFlags.Static))
-         .Emit(OpCodes.Callvirt, typeof(List<>).GetMethod(nameof(List<>.Clear)));
-    }
-
-    private static void UpdateGUADsILHook(ILContext context) // "There's no such thing as 'too many IL hooks'!" -- me, probably
-    {
-        ILCursor c = new(context);
-
-        c.GotoNext(static x => x.MatchRet())
-         .MoveAfterLabels()
-         .Emit(OpCodes.Ldarg_1)
+         .Emit(OpCodes.Ldarg_0)
          .EmitDelegate(UpdateGUADs);
 
         static void UpdateGUADs(RainWorldGame self)
@@ -70,6 +105,22 @@ internal static class Main
                     guad.Update(self.evenUpdate);
                 }
             }
+        }
+    }
+
+    /// <summary>
+    ///     Prevents Blizzard Lizards' blizzard shield from pushing around objects inheriting the <see cref="IForbiddenToPull"/> interface.
+    /// </summary>
+    private static bool ForbidPullingMarkedTypesHook(On.Watcher.LizardBlizzardModule.orig_IsForbiddenToPull orig, LizardBlizzardModule self, UpdatableAndDeletable uad) =>
+        uad is not IForbiddenToPull && orig.Invoke(self, uad); // I can make this an IL hook
+
+    private static class RainMeadowAccess
+    {
+        public static void SyncDeathProtections(OnlinePlayer player)
+        {
+            if (!OnlineManager.lobby.isOwner) return;
+
+            player.SendRPCEvent(MyRPCs.SyncDeathProtections, new SerializableDictionary<OnlineCreature, OnlineDeathProtection>(DeathProtection.GetInstances().Select(MyRPCs.LocalToOnlineProtection).ToDictionary()));
         }
     }
 }
