@@ -1,4 +1,8 @@
+using System.Reflection;
 using ModLib.Options;
+using Mono.Cecil.Cil;
+using MonoMod.Cil;
+using MonoMod.RuntimeDetour;
 using RainMeadow;
 
 namespace ModLib.Meadow;
@@ -8,6 +12,8 @@ namespace ModLib.Meadow;
 /// </summary>
 internal static class MeadowHooks
 {
+    private static ILHook[]? manualHooks;
+
     /// <summary>
     ///     Applies all Rain Meadow-specific hooks to the game.
     /// </summary>
@@ -15,6 +21,15 @@ internal static class MeadowHooks
     {
         On.GameSession.ctor += GameSessionHook;
         On.RainWorldGame.ExitGame += ExitGameHook;
+
+        manualHooks = [
+            new ILHook(typeof(Lobby).GetMethod("NewParticipantImpl", BindingFlags.NonPublic | BindingFlags.Instance), OnPlayerJoinedILHook)
+        ];
+
+        for (int i = 0; i < manualHooks.Length; i++)
+        {
+            manualHooks[i].Apply();
+        }
     }
 
     /// <summary>
@@ -24,7 +39,18 @@ internal static class MeadowHooks
     {
         On.GameSession.ctor -= GameSessionHook;
         On.RainWorldGame.ExitGame -= ExitGameHook;
+
+        if (manualHooks is not null)
+        {
+            for (int i = 0; i < manualHooks.Length; i++)
+            {
+                manualHooks[i].Undo();
+            }
+            manualHooks = null;
+        }
     }
+
+    private static void OnPlayerJoinedILHook(ILContext context) => new ILCursor(context).Emit(OpCodes.Ldarg_1).EmitDelegate(MeadowUtils.OnPlayerJoinedLobby);
 
     private static void ExitGameHook(On.RainWorldGame.orig_ExitGame orig, RainWorldGame self, bool asDeath, bool asQuit)
     {

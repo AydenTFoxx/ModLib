@@ -69,7 +69,6 @@ public static class ModRPCManager
     /// <summary>
     ///     Sends an RPC event to the online player, which is automatically aborted if the recipient does not answer after a certain time limit.
     /// </summary>
-    /// <typeparam name="T">The type of the RPC delegate to be sent.</typeparam>
     /// <param name="onlinePlayer">The recipient who will receive this RPC event.</param>
     /// <param name="delegate">The RPC method to be sent.</param>
     /// <param name="args">Any arguments of the RPC method.</param>
@@ -96,7 +95,8 @@ public static class ModRPCManager
     /// <param name="del">The RPC method to be sent.</param>
     /// <param name="args">Any arguments of the RPC method.</param>
     /// <exception cref="InvalidOperationException">source is not in a room session.</exception>
-    public static void BroadcastOnceRPCInRoom(this OnlineEntity source, Delegate del, params object[] args)
+    public static void BroadcastOnceRPCInRoom<T>(this OnlineEntity source, T del, params object[] args)
+        where T : Delegate
     {
         if (source.currentlyJoinedResource is not RoomSession roomSession) throw new InvalidOperationException($"{source} is not in a room session.");
 
@@ -115,7 +115,8 @@ public static class ModRPCManager
     /// <param name="del">The RPC method to be sent.</param>
     /// <param name="args">Any arguments of the RPC method.</param>
     /// <exception cref="InvalidOperationException">The client is not in an online lobby.</exception>
-    public static void BroadcastOnceRPCInLobby(this OnlineEntity? _, Delegate del, params object[] args)
+    public static void BroadcastOnceRPCInLobby<T>(this OnlineEntity? _, T del, params object[] args)
+        where T : Delegate
     {
         if (OnlineManager.lobby is null) throw new InvalidOperationException("Cannot send RPCs outside of a valid lobby.");
 

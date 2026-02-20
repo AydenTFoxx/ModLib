@@ -916,9 +916,14 @@
                 </para>
             </remarks>
         </member>
-        <member name="E:ModLib.Meadow.MeadowUtils.JoinedGameSession">
+        <member name="E:ModLib.Meadow.MeadowUtils.EnterGameSession">
             <summary>
-                Invoked when the player first joins an online game session (not the lobby itself).
+                Invoked when the player first joins an online game session (NOT the lobby itself -- see <see cref="E:RainMeadow.MatchmakingManager.OnLobbyJoined"/> instead).
+            </summary>
+        </member>
+        <member name="E:ModLib.Meadow.MeadowUtils.PlayerJoinedLobby">
+            <summary>
+                Invoked when a new player enters the current lobby.
             </summary>
         </member>
         <member name="P:ModLib.Meadow.MeadowUtils.IsOnline">
@@ -1010,13 +1015,12 @@
             <summary>
                 Sends an RPC event to the online player, which is automatically aborted if the recipient does not answer after a certain time limit.
             </summary>
-            <typeparam name="T">The type of the RPC delegate to be sent.</typeparam>
             <param name="onlinePlayer">The recipient who will receive this RPC event.</param>
             <param name="delegate">The RPC method to be sent.</param>
             <param name="args">Any arguments of the RPC method.</param>
             <returns>The <see cref="T:RainMeadow.RPCEvent"/> instance sent to the online player.</returns>
         </member>
-        <member name="M:ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInRoom(RainMeadow.OnlineEntity,System.Delegate,System.Object[])">
+        <member name="M:ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInRoom``1(RainMeadow.OnlineEntity,``0,System.Object[])">
             <summary>
                 Sends a single RPC event to all players in the same room as the online entity.
             </summary>
@@ -1025,7 +1029,7 @@
             <param name="args">Any arguments of the RPC method.</param>
             <exception cref="T:System.InvalidOperationException">source is not in a room session.</exception>
         </member>
-        <member name="M:ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInLobby(RainMeadow.OnlineEntity,System.Delegate,System.Object[])">
+        <member name="M:ModLib.Meadow.ModRPCManager.BroadcastOnceRPCInLobby``1(RainMeadow.OnlineEntity,``0,System.Object[])">
             <summary>
                 Sends a single RPC event to all players in the current lobby.
             </summary>

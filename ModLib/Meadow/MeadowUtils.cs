@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using RainMeadow;
@@ -20,10 +21,28 @@ namespace ModLib.Meadow;
 /// </remarks>
 public static class MeadowUtils
 {
+    private static readonly EventHandlerList eventHandlerList = new();
+
+    private const byte ENTER_GAME_SESSION_KEY = 1;
+    private const byte PLAYER_JOINED_SESSION_KEY = 2;
+
     /// <summary>
-    ///     Invoked when the player first joins an online game session (not the lobby itself).
+    ///     Invoked when the player first joins an online game session (NOT the lobby itself -- see <see cref="MatchmakingManager.OnLobbyJoined"/> instead).
     /// </summary>
-    public static event Action<GameSession>? JoinedGameSession;
+    public static event Action<GameSession> EnterGameSession
+    {
+        add => eventHandlerList.AddHandler(ENTER_GAME_SESSION_KEY, value);
+        remove => eventHandlerList.RemoveHandler(ENTER_GAME_SESSION_KEY, value);
+    }
+
+    /// <summary>
+    ///     Invoked when a new player enters the current lobby.
+    /// </summary>
+    public static event Action<OnlinePlayer> PlayerJoinedLobby
+    {
+        add => eventHandlerList.AddHandler(PLAYER_JOINED_SESSION_KEY, value);
+        remove => eventHandlerList.RemoveHandler(PLAYER_JOINED_SESSION_KEY, value);
+    }
 
     /// <summary>
     ///     Determines if the current game session is an online lobby.
@@ -171,12 +190,6 @@ public static class MeadowUtils
     /// <param name="callback">The optional callback method to be executed after resolving the request.</param>
     public static void RequestOwnership(OnlinePhysicalObject onlineObject, Action<GenericResult>? callback = null)
     {
-        if (!ValidateOwnershipRequest(onlineObject))
-        {
-            callback?.Invoke(new GenericResult.Fail());
-            return;
-        }
-
         try
         {
             Core.Logger.LogDebug($"Requesting ownership of {onlineObject}...");
@@ -195,39 +208,23 @@ public static class MeadowUtils
 
         void DefaultCallback(GenericResult result)
         {
-            Core.Logger.LogDebug($"Request result: {result} | New ownership: {onlineObject.owner}");
+            Core.Logger.LogDebug($"[{result}] Requested ownership by {result.to}; New ownership: {onlineObject.owner}");
         }
     }
 
-    internal static void OnJoinedGameSession(GameSession session) => JoinedGameSession?.Invoke(session);
-
-    private static bool ValidateOwnershipRequest(OnlinePhysicalObject? onlineObject)
+    internal static void OnJoinedGameSession(GameSession session)
     {
-        if (onlineObject is null)
-        {
-            Core.Logger.LogWarning("Cannot request the ownership of a null object.");
-        }
-        else if (onlineObject.isMine)
-        {
-            Core.Logger.LogWarning($"{onlineObject} is already mine!");
-        }
-        else if (!onlineObject.isTransferable)
-        {
-            Core.Logger.LogWarning($"{onlineObject} cannot be transfered.");
-        }
-        else if (onlineObject.isPending)
-        {
-            Core.Logger.LogWarning($"{onlineObject} has a pending request.");
-        }
-        else if (!onlineObject.currentlyJoinedResource.isAvailable)
-        {
-            Core.Logger.LogWarning($"{onlineObject} is in an unavailable resource.");
-        }
-        else
-        {
-            return true;
-        }
+        Core.Logger.LogDebug($"Invoking {nameof(OnJoinedGameSession)}()!");
 
-        return false;
+        ((Action<GameSession>)eventHandlerList[ENTER_GAME_SESSION_KEY])?.Invoke(session);
+    }
+
+    internal static void OnPlayerJoinedLobby(OnlinePlayer player)
+    {
+        if (player.isMe) return;
+
+        Core.Logger.LogDebug($"Invoking {nameof(OnPlayerJoinedLobby)}()!");
+
+        ((Action<OnlinePlayer>)eventHandlerList[PLAYER_JOINED_SESSION_KEY])?.Invoke(player);
     }
 }

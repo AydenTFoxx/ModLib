@@ -99,13 +99,26 @@ public static class Entrypoint
     /// </summary>
     internal static void Disable()
     {
-        try
+        if (LoadedExtensions.Count > 0)
         {
             for (int i = 0; i < LoadedExtensions.Count; i++)
             {
-                LoadedExtensions[i].OnDisable();
-            }
+                IExtensionEntrypoint entrypoint = LoadedExtensions[i];
 
+                try
+                {
+                    entrypoint.OnDisable();
+                }
+                catch (Exception ex)
+                {
+                    LogSource.LogError($"Failed to invoke OnDisable() for entrypoint [{entrypoint.GetType().AssemblyQualifiedName}]!");
+                    LogSource.LogError($"Exception: {ex}");
+                }
+            }
+        }
+
+        try
+        {
             Core.Disable();
 
             if (Extras.RainReloaderActive)
@@ -126,13 +139,26 @@ public static class Entrypoint
 
     private static void CoreInitialize()
     {
-        try
+        if (LoadedExtensions.Count > 0)
         {
             for (int i = 0; i < LoadedExtensions.Count; i++)
             {
-                LoadedExtensions[i].OnEnable();
-            }
+                IExtensionEntrypoint entrypoint = LoadedExtensions[i];
 
+                try
+                {
+                    entrypoint.OnEnable();
+                }
+                catch (Exception ex)
+                {
+                    LogSource.LogError($"Failed to invoke OnEnable() for entrypoint [{entrypoint.GetType().AssemblyQualifiedName}]!");
+                    LogSource.LogError($"Exception: {ex}");
+                }
+            }
+        }
+
+        try
+        {
             Core.Initialize();
 
             IsInitialized = true;
@@ -152,14 +178,14 @@ public static class Entrypoint
             LogSource.LogError("Patch loader failed to initialize; Cannot verify local ModLib.Loader assembly.");
             LogSource.LogError($"Exception: {ex}");
         }
-        finally
+
+        if (IsInitialized)
         {
             Logger.Sources.Remove(LogSource);
-
             LogSource = null!;
-
-            _initializing = false;
         }
+
+        _initializing = false;
     }
 
     private static void LoadExtensionEntrypoints()

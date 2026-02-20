@@ -14,7 +14,7 @@ internal static class ModRPCs
     ///     Writes the provided system message to the player's chat.
     /// </summary>
     /// <param name="message">The message to be displayed</param>
-    [SoftRPCMethod(security = RPCSecurity.InResource)]
+    [SoftRPCMethod(security = RPCSecurity.InLobby)]
     public static void LogSystemMessage(string message)
     {
         if (!Extras.InGameSession) return;

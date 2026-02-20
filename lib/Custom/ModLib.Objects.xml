@@ -15,11 +15,6 @@
                 The targeted creature.
             </summary>
         </member>
-        <member name="P:ModLib.Objects.DeathProtection.ProtectionModes">
-            <summary>
-                The sources of damage this protection will prevent against for its Target.
-            </summary>
-        </member>
         <member name="P:ModLib.Objects.DeathProtection.SafePos">
             <summary>
                 The last known position considered "safe"; If the protected creature is destroyed, it is instead teleported to this position.
@@ -28,24 +23,6 @@
         <member name="P:ModLib.Objects.DeathProtection.Power">
             <summary>
                 The power value for visual effects.
-            </summary>
-        </member>
-        <member name="P:ModLib.Objects.DeathProtection.ProtectAgainstViolence">
-            <summary>
-                Determines if the current protection will prevent creature-sourced damage or death attempts.
-                This value is equivalent to <c>ProtectionModes.HasFlag(DeathProtection.ProtectionMode.Violence)</c>.
-            </summary>
-        </member>
-        <member name="P:ModLib.Objects.DeathProtection.ProtectAgainstEnvironment">
-            <summary>
-                Determines if the current protection will prevent environmental damage or death causes.
-                This value is equivalent to <c>ProtectionModes.HasFlag(DeathProtection.ProtectionMode.Environment)</c>.
-            </summary>
-        </member>
-        <member name="P:ModLib.Objects.DeathProtection.ProtectAgainstDestruction">
-            <summary>
-                Determines if the current protection will prevent all kinds of destruction, be it creature or environment-sourced.
-                This value is equivalent to <c>ProtectionModes.HasFlag(DeathProtection.ProtectionMode.Destruction)</c>.
             </summary>
         </member>
         <member name="P:ModLib.Objects.DeathProtection.SaveCooldown">
@@ -94,13 +71,12 @@
                 When the protection is removed, their respective fields are restored to their original values.
             </summary>
         </member>
-        <member name="M:ModLib.Objects.DeathProtection.#ctor(Creature,System.Int16,ModLib.Objects.DeathProtection.ProtectionMode,System.Nullable{WorldCoordinate},System.Boolean)">
+        <member name="M:ModLib.Objects.DeathProtection.#ctor(Creature,System.Int16,System.Nullable{WorldCoordinate},System.Boolean)">
             <summary>
                 Creates a new death protection instance which lasts until the given condition returns <c>true</c>.
             </summary>
             <param name="target">The creature to protect.</param>
             <param name="lifespan">The amount of time to wait before the protection can be removed.</param>
-            <param name="protectionModes"></param>
             <param name="safePos">An optional "safe" position, used when the creature is destroyed.</param>
             <param name="forceRevive">If true and <paramref name="target"/> somehow dies while protected, it is revived. This also immediately ends the protection.</param>
         </member>
@@ -110,13 +86,12 @@
         <member name="M:ModLib.Objects.DeathProtection.Destroy">
             <inheritdoc/>
         </member>
-        <member name="M:ModLib.Objects.DeathProtection.CreateInstance(Creature,System.Int16,ModLib.Objects.DeathProtection.ProtectionMode,System.Nullable{WorldCoordinate},System.Boolean)">
+        <member name="M:ModLib.Objects.DeathProtection.CreateInstance(Creature,System.Int16,System.Nullable{WorldCoordinate},System.Boolean)">
             <summary>
                 Creates a new death protection instance which lasts for the given amount of ticks.
             </summary>
             <param name="target">The creature to protect.</param>
             <param name="lifespan">The duration of the protection. Set to <c>-1</c> for an indefinitely-lasting protection.</param>
-            <param name="protectionModes">The sources of death this protection will prevent.</param>
             <param name="safePos">An optional "safe" position, used when the creature is destroyed.</param>
             <param name="forceRevive">If true and <paramref name="target"/> somehow dies while protected, it is revived. This also immediately ends the protection.</param>
             <exception cref="T:System.ArgumentNullException">target is null.</exception>
@@ -136,64 +111,6 @@
             <param name="target">The creature to be queried.</param>
             <param name="protection">The retrieved protection instance. If none is found, this value is <c>null</c>.</param>
             <returns><c>true</c> if a valid protection instance was found, <c>false</c> otherwise.</returns>
-        </member>
-        <member name="T:ModLib.Objects.DeathProtection.ProtectionMode">
-            <summary>
-                Determines what kind of death sources will <see cref="T:ModLib.Objects.DeathProtection"/> protect its target against.
-            </summary>
-        </member>
-        <member name="F:ModLib.Objects.DeathProtection.ProtectionMode.None">
-            <summary>
-                No source will be prevented; This is the same as having no death protection at all.
-            </summary>
-        </member>
-        <member name="F:ModLib.Objects.DeathProtection.ProtectionMode.Violence">
-            <summary>
-                Creature-related violence (e.g. lizard bites, all weapons, etc.) will be ignored;
-                The target cannot be grabbed by creatures, and becomes immune to Bite and Explosion damage.
-            </summary>
-        </member>
-        <member name="F:ModLib.Objects.DeathProtection.ProtectionMode.Environment">
-            <summary>
-                Environment-related death (e.g. electricity, drowning, worm grass, etc.) will be ignored;
-                The target cannot drown, is ignored by worm grass, and becomes immune to lava, hypothermia, and Electricity damage.
-                <br/><br/>
-                This also prevents death from Ripple Amoeba in the Watcher campaign.
-            </summary>
-        </member>
-        <member name="F:ModLib.Objects.DeathProtection.ProtectionMode.GenericImmunity">
-            <summary>
-                Combines the protection values of <see cref="F:ModLib.Objects.DeathProtection.ProtectionMode.Violence"/> and <see cref="F:ModLib.Objects.DeathProtection.ProtectionMode.Environment"/>; Has a similar behavior to the `invuln` command from the Dev Console mod.
-                This is a composite protection type.
-            </summary>
-        </member>
-        <member name="F:ModLib.Objects.DeathProtection.ProtectionMode.Destruction">
-            <summary>
-                Protects the target against all forms of destruction (death pits, tesla coils, worm grass, vultures flying off-screen, etc.);
-                If destroyed, the target will reappear at the last "safe" position it was at, briefly knocking away nearby creatures.
-            </summary>
-        </member>
-        <member name="F:ModLib.Objects.DeathProtection.ProtectionMode.NonEnvironmental">
-            <summary>
-                Combines the protection values of <see cref="F:ModLib.Objects.DeathProtection.ProtectionMode.Violence"/> and <see cref="F:ModLib.Objects.DeathProtection.ProtectionMode.Destruction"/>;
-                Prevents all forms of creature violence and destruction, such as being crushed by a Leviathan's bite.
-                This is a composite protection type.
-            </summary>
-        </member>
-        <member name="F:ModLib.Objects.DeathProtection.ProtectionMode.NonCreature">
-            <summary>
-                Combines the protection values of <see cref="F:ModLib.Objects.DeathProtection.ProtectionMode.Environment"/> and <see cref="F:ModLib.Objects.DeathProtection.ProtectionMode.Destruction"/>;
-                Prevents all forms of environmental harm and destruction, such as worm grass or death pits.
-                This is a composite protection type.
-            </summary>
-        </member>
-        <member name="F:ModLib.Objects.DeathProtection.ProtectionMode.FullInvulnerability">
-            <summary>
-                Combines all three protection types: <see cref="F:ModLib.Objects.DeathProtection.ProtectionMode.Violence"/>, <see cref="F:ModLib.Objects.DeathProtection.ProtectionMode.Environment"/>, and <see cref="F:ModLib.Objects.DeathProtection.ProtectionMode.Destruction"/>;
-                Prevents all forms of death and destruction from killing the target.
-                Unless by exceptional cases or mod intervention, the target cannot die or be destroyed by any means.
-                This is a composite protection type.
-            </summary>
         </member>
         <member name="M:ModLib.Objects.DeathProtectionHooks.AvoidImmunePlayerHook(System.Func{Creature,System.Boolean},Creature)">
             <summary>
@@ -238,6 +155,11 @@
         <member name="M:ModLib.Objects.DeathProtectionHooks.PreventPlayerDestructionHook(On.Player.orig_Destroy,Player)">
             <summary>
             Disposes of the player's PossessionManager when Slugcat is destroyed. Also prevents death-protected players from being destroyed.
+            </summary>
+        </member>
+        <member name="M:ModLib.Objects.DeathProtectionHooks.IgnoreDeathPitDestructionILHook(MonoMod.Cil.ILContext)">
+            <summary>
+                Prohibits death pits from ever attempting to kill or destroy protected creatures.
             </summary>
         </member>
         <member name="M:ModLib.Objects.DeathProtectionHooks.IgnoreLeviathanBiteILHook(MonoMod.Cil.ILContext)">
@@ -351,6 +273,11 @@
         <member name="M:ModLib.Objects.Main.ForbidPullingMarkedTypesHook(On.Watcher.LizardBlizzardModule.orig_IsForbiddenToPull,Watcher.LizardBlizzardModule,UpdatableAndDeletable)">
             <summary>
                 Prevents Blizzard Lizards' blizzard shield from pushing around objects inheriting the <see cref="T:ModLib.Objects.IForbiddenToPull"/> interface.
+            </summary>
+        </member>
+        <member name="M:ModLib.Objects.Meadow.MeadowProtectionHooks.IgnoreDeathMessageIfProtectedHook(System.Func{RainMeadow.OnlinePhysicalObject,System.Boolean},RainMeadow.OnlinePhysicalObject)">
+            <summary>
+                Ignore cause-of-death messages for creatures under protection.
             </summary>
         </member>
     </members>

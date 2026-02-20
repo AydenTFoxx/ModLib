@@ -44,9 +44,9 @@ public class FallbackLogger : ModLogger
             WriteToUnity(data, level);
     }
 
-    private static string FormatMessage(object message, LogLevel category) => $"{DateTime.Now:t} [{category}]: {message}{Environment.NewLine}";
+    private static string FormatMessage(object message, LogLevel category) => $"{DateTime.Now:T} [{category}]: {message}{Environment.NewLine}";
 
-    private static void WriteToFile(string path, string contents) => File.WriteAllText(path, contents);
+    private static void WriteToFile(string path, string contents) => File.AppendAllText(path, contents);
 
     private static void WriteToUnity(object data, LogLevel category)
     {
