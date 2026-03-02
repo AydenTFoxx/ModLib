@@ -79,7 +79,7 @@ public class FadingMeltLights : CosmeticSprite
         }
 
         FadeProgress = Mathf.Max(0f, FadeProgress - (0.016666668f * speed));
-        meltEffect?.amount = Mathf.Lerp(effectInitLevel, 1f, Custom.SCurve(FadeProgress, 0.6f));
+        meltEffect?.amount = Mathf.Lerp(effectInitLevel, strength, Custom.SCurve(FadeProgress, 0.6f));
 
         if (FadeProgress <= 0f)
         {
@@ -107,7 +107,7 @@ public class FadingMeltLights : CosmeticSprite
             if (room.roomSettings.effects[i].type == RoomSettings.RoomEffect.Type.VoidMelt)
             {
                 meltEffect = room.roomSettings.effects[i];
-                effectInitLevel = meltEffect.amount;
+                effectInitLevel = meltEffect.amount * strength;
                 break;
             }
         }

@@ -1,67 +1,147 @@
-using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using ModLib.Meadow;
+using MoreSlugcats;
 using RainMeadow;
+using UnityEngine;
 
 namespace ModLib.Objects.Meadow;
 
 internal static class MyRPCs
 {
-    [RPCMethod(security = RPCSecurity.InLobby)]
-    public static void SyncDeathProtections(RPCEvent rpcEvent, SerializableDictionary<OnlineCreature, OnlineDeathProtection> data)
+    [SoftRPCMethod]
+    public static GenericResult SyncDeathProtections(RPCEvent rpcEvent, SerializableDictionary<OnlineCreature, OnlineProtectionSnapshot> data)
     {
-        ThrowIfTrue(OnlineManager.lobby.isOwner || OnlineManager.lobby.owner != rpcEvent.from, $"Received invalid OnlineProtections sync request; Ignoring. (Reason: {(OnlineManager.lobby.isOwner ? "I'm host" : $"{rpcEvent.from} is not host")})");
+        if (OnlineManager.lobby is null or { isOwner: true } || OnlineManager.lobby.owner != rpcEvent.from)
+            return new GenericResult.Fail(rpcEvent);
 
-        Main.Logger.LogInfo($"Syncing local OnlineProtections data with {rpcEvent.from}!");
-
-        DeathProtection.SetInstances(data.ToLocalCollection(OnlineToLocalProtection));
-    }
-
-    [RPCMethod(security = RPCSecurity.InLobby)]
-    public static void RequestProtection(RPCEvent rpcEvent, OnlineDeathProtection onlineProtection)
-    {
-        if (!Extras.InGameSession) return;
-
-        Main.Logger.LogInfo($"Received protection object from {rpcEvent.from}! Adding to collection... (Target: {onlineProtection.Target})");
-
-        DeathProtection.AddInstance(onlineProtection.Target.realizedCreature, onlineProtection.ToLocalProtection());
-    }
-
-    [RPCMethod(security = RPCSecurity.InLobby)]
-    public static void StopProtection(RPCEvent rpcEvent, OnlineDeathProtection onlineProtection)
-    {
-        if (!Extras.InGameSession) return;
-
-        Main.Logger.LogInfo($"Stopping protection of {onlineProtection.Target}! (Requested by: {rpcEvent.from})");
-
-        onlineProtection.ToLocalProtection().Destroy();
-    }
-
-    internal static KeyValuePair<Creature, DeathProtection> OnlineToLocalProtection(KeyValuePair<OnlineCreature, OnlineDeathProtection> onlinePair)
-    {
-        return new KeyValuePair<Creature, DeathProtection>(
-            onlinePair.Key.realizedCreature ?? throw new ArgumentException($"Could not find realized creature of {onlinePair.Key}"),
-            onlinePair.Value.ToLocalProtection()
-        );
-    }
-
-    internal static KeyValuePair<OnlineCreature, OnlineDeathProtection> LocalToOnlineProtection(KeyValuePair<Creature, DeathProtection> localPair)
-    {
-        return new KeyValuePair<OnlineCreature, OnlineDeathProtection>(
-            localPair.Key.abstractCreature.GetOnlineCreature() ?? throw new ArgumentException($"Could not find online representation for {localPair.Key}"),
-            localPair.Value.ToOnlineProtection()
-        );
-    }
-
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static void ThrowIfTrue(bool condition, string message)
-    {
-        if (condition)
+        foreach (KeyValuePair<OnlineCreature, OnlineProtectionSnapshot> kvp in data)
         {
-            Main.Logger.LogWarning(message);
-
-            throw new InvalidProgrammerException(message);
+            DeathProtection.RestoreFromSnapshot(kvp.Key.realizedCreature, kvp.Value);
         }
+
+        return new GenericResult.Ok(rpcEvent);
+    }
+
+    [SoftRPCMethod]
+    public static GenericResult RequestNewProtection(RPCEvent rpcEvent, OnlineCreature onlineCreature, ushort lifespan, WorldCoordinate? safePos)
+    {
+        if (!onlineCreature.isMine || DeathProtection.HasProtection(onlineCreature.realizedCreature))
+            return new GenericResult.Fail(rpcEvent);
+
+        DeathProtection.CreateInstance(onlineCreature.realizedCreature, lifespan, safePos);
+
+        return new GenericResult.Ok(rpcEvent);
+    }
+
+    [SoftRPCMethod]
+    public static GenericResult RequestStopProtection(RPCEvent rpcEvent, OnlineCreature onlineCreature)
+    {
+        if (!onlineCreature.isMine
+            || !DeathProtection.TryGetProtection(onlineCreature.realizedCreature, out DeathProtection protection)
+            || protection.slatedForDeletetion)
+        {
+            return new GenericResult.Fail(rpcEvent);
+        }
+
+        protection.DestroyInternal(true);
+
+        return new GenericResult.Ok(rpcEvent);
+    }
+
+    [SoftRPCMethod]
+    public static GenericResult SyncNewProtection(RPCEvent rpcEvent, OnlineCreature onlineCreature, OnlineProtectionSnapshot snapshot)
+    {
+        if (onlineCreature.isMine || onlineCreature.owner != rpcEvent.from || DeathProtection.HasProtection(onlineCreature.realizedCreature))
+            return new GenericResult.Fail(rpcEvent);
+
+        DeathProtection.RestoreFromSnapshot(onlineCreature.realizedCreature, snapshot);
+
+        return new GenericResult.Ok(rpcEvent);
+    }
+
+    [SoftRPCMethod]
+    public static GenericResult SyncStopProtection(RPCEvent rpcEvent, OnlineCreature onlineCreature)
+    {
+        if (onlineCreature.isMine
+            || onlineCreature.owner != rpcEvent.from
+            || !DeathProtection.TryGetProtection(onlineCreature.realizedCreature, out DeathProtection protection)
+            || protection.slatedForDeletetion)
+        {
+            return new GenericResult.Fail(rpcEvent);
+        }
+
+        protection.DestroyInternal(true);
+
+        return new GenericResult.Ok(rpcEvent);
+    }
+
+    [SoftRPCMethod]
+    public static GenericResult RequestSaveFromDestruction(RPCEvent rpcEvent, OnlineCreature onlineCreature)
+    {
+        return onlineCreature.isMine && DeathProtection.Hooks.TrySaveFromDestruction(onlineCreature.realizedCreature)
+            ? new GenericResult.Ok(rpcEvent)
+            : new GenericResult.Fail(rpcEvent);
+    }
+
+    [SoftRPCMethod]
+    public static GenericResult SyncSaveFromDestruction(RPCEvent rpcEvent, OnlineCreature onlineCreature, Vector2 revivePos)
+    {
+        if (onlineCreature.isMine || onlineCreature.owner != rpcEvent.from || !DeathProtection.TryGetProtection(onlineCreature.realizedCreature, out DeathProtection protection))
+            return new GenericResult.Fail(rpcEvent);
+
+        DeathProtection.Hooks.DisplaySavingThrowEffects(onlineCreature.realizedCreature, protection, revivePos);
+
+        return new GenericResult.Ok(rpcEvent);
+    }
+
+    [SoftRPCMethod]
+    public static GenericResult RequestCreatureRevival(RPCEvent rpcEvent, OnlineCreature onlineCreature)
+    {
+        return onlineCreature.isMine && RevivalHelper.ReviveCreature(onlineCreature.realizedCreature)
+            ? new GenericResult.Ok(rpcEvent)
+            : new GenericResult.Fail(rpcEvent);
+    }
+
+    [SoftRPCMethod]
+    public static GenericResult RequestOracleRevival(RPCEvent rpcEvent, OnlinePhysicalObject onlineOracle)
+    {
+        return onlineOracle.isMine && onlineOracle.apo.realizedObject is Oracle oracle && RevivalHelper.ReviveOracle(oracle)
+            ? new GenericResult.Ok(rpcEvent)
+            : new GenericResult.Fail(rpcEvent);
+    }
+
+    [SoftRPCMethod]
+    public static GenericResult RequestRevivePebbles(RPCEvent rpcEvent, OnlinePhysicalObject opo)
+    {
+        if (!OnlineManager.lobby.isOwner || opo.apo.realizedObject is not Oracle oracle || oracle.room?.game.session is not StoryGameSession storySession)
+            return new GenericResult.Fail(rpcEvent);
+
+        if (ModManager.MSC)
+            storySession.saveState.miscWorldSaveData.halcyonStolen = (oracle.oracleBehavior as CLOracleBehavior)?.halcyon is null;
+
+        storySession.saveState.deathPersistentSaveData.ripPebbles = false;
+
+        return new GenericResult.Ok(rpcEvent);
+    }
+
+    [SoftRPCMethod]
+    public static GenericResult RequestReviveMoon(RPCEvent rpcEvent, OnlinePhysicalObject opo)
+    {
+        if (!OnlineManager.lobby.isOwner || opo.apo.realizedObject is not Oracle oracle || oracle.room?.game.session is not StoryGameSession storySession)
+            return new GenericResult.Fail(rpcEvent);
+
+        storySession.saveState.deathPersistentSaveData.ripMoon = false;
+
+        return new GenericResult.Ok(rpcEvent);
+    }
+
+    [SoftRPCMethod]
+    public static GenericResult RequestRemoveFromRespawnList(RPCEvent rpcEvent, OnlineCreature onlineCreature)
+    {
+        if (!OnlineManager.lobby.isOwner) return new GenericResult.Fail(rpcEvent);
+
+        RevivalHelper.RemoveFromRespawnList(onlineCreature.realizedCreature);
+
+        return new GenericResult.Ok(rpcEvent);
     }
 }

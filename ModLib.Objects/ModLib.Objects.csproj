@@ -4,8 +4,8 @@
 	<PropertyGroup>
 		<Title>ModLib Objects Extension</Title>
 		<Company>YNHZRFXN</Company>
-		<AssemblyVersion>0.4.0.0</AssemblyVersion>
-		<FileVersion>0.4.0.0</FileVersion>
+		<AssemblyVersion>0.5.0.0</AssemblyVersion>
+		<FileVersion>0.5.0.0</FileVersion>
 		<PathMap>$(MSBuildProjectDirectory)=/$(TargetName)</PathMap>
 	</PropertyGroup>
 
@@ -50,11 +50,15 @@
 	<!-- Post-compile tasks -->
 	<Target Name="GenerateModLibrary" AfterTargets="PostBuildEvent">
 		<ItemGroup>
-			<CopyPlugins Include="$(TargetDir)$(TargetName).dll" />
-			<CopyPlugins Include="$(TargetDir)$(TargetName).pdb" />
+			<RenameTargets Include="$(TargetDir)$(TargetName).*" />
 
-			<CopyDocs Include="$(TargetDir)$(TargetName).xml" />
+			<CopyPlugins Include="$(TargetDir)$(TargetName).modlib.dll" />
+			<CopyPlugins Include="$(TargetDir)$(TargetName).modlib.pdb" />
+
+			<CopyDocs Include="$(TargetDir)$(TargetName).modlib.xml" />
 		</ItemGroup>
+
+		<Move SourceFiles="@(RenameTargets)" DestinationFiles="@(RenameTargets->Replace('$(TargetName).', '$(TargetName).modlib.'))" />
 
 		<Copy SourceFiles="@(CopyPlugins)" DestinationFolder="./_plugins/" />
 		<Copy SourceFiles="@(CopyPlugins)" DestinationFolder="../mod/newest/plugins/" />
