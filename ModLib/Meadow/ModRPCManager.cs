@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Reflection;
 using RainMeadow;
 
 namespace ModLib.Meadow;
@@ -10,7 +10,7 @@ namespace ModLib.Meadow;
 /// </summary>
 public static class ModRPCManager
 {
-    private static List<RPCTimeout> _activeRPCs = [];
+    internal static List<RPCTimeout> _activeRPCs = [];
 
     private static void RemoveTimeout(this RPCEvent self)
     {
@@ -50,55 +50,55 @@ public static class ModRPCManager
     /// </summary>
     internal static void UpdateRPCs()
     {
-        if (_activeRPCs.Count < 1) return;
+        if (_activeRPCs.Count is 0) return;
 
-        bool expired = false;
-        foreach (RPCTimeout rpcTimeout in _activeRPCs)
+        for (int i = _activeRPCs.Count - 1; i >= 0; i--)
         {
-            rpcTimeout.Update();
-
-            expired = rpcTimeout.Lifetime < 1;
+            _activeRPCs[i].Update();
         }
 
-        if (expired)
-        {
-            _activeRPCs = [.. _activeRPCs.Where(static t => t.Lifetime > 0)];
-        }
+        _activeRPCs.RemoveAll(static t => t.IsExpired);
     }
 
     /// <summary>
     ///     Sends an RPC event to the online player, which is automatically aborted if the recipient does not answer after a certain time limit.
     /// </summary>
     /// <param name="onlinePlayer">The recipient who will receive this RPC event.</param>
-    /// <param name="delegate">The RPC method to be sent.</param>
+    /// <param name="delegate">The RPC delegate to be sent.</param>
     /// <param name="args">Any arguments of the RPC method.</param>
-    /// <returns>The <see cref="RPCEvent"/> instance sent to the online player.</returns>
-    public static RPCEvent SendRPCEvent<T>(this OnlinePlayer onlinePlayer, T @delegate, params object[] args)
+    /// <returns>The <see cref="RPCEvent"/> instance sent to the online player, or <c>null</c> if the RPC fails to be delivered.</returns>
+    public static RPCEvent? SendRPCEvent<T>(this OnlinePlayer onlinePlayer, T @delegate, params object[] args)
         where T : Delegate
     {
-        Type rpcSource = @delegate.Method.DeclaringType;
+        try
+        {
+            RPCEvent rpcEvent = onlinePlayer
+                .InvokeOnceRPC(@delegate.Method.DeclaringType.GetMethod(@delegate.Method.Name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance).CreateDelegate(typeof(T)), args)
+                .Then(ResolveRPCEvent)
+                .SetTimeout(30 * 40); // 30s time limit
 
-        RPCEvent rpcEvent = onlinePlayer
-            .InvokeOnceRPC(rpcSource.GetMethod(@delegate.Method.Name).CreateDelegate(typeof(T)), args)
-            .Then(ResolveRPCEvent)
-            .SetTimeout(30 * 40); // 30s time limit
+            Core.Logger.LogDebug($"Sending RPC event {rpcEvent} to {rpcEvent.to}...");
 
-        Core.Logger.LogDebug($"Sending RPC event {rpcEvent} to {rpcEvent.to}...");
+            return rpcEvent;
+        }
+        catch (Exception ex)
+        {
+            Core.Logger.LogError($"Could not send RPC to {onlinePlayer}! {ex}");
 
-        return rpcEvent;
+            return null;
+        }
     }
 
     /// <summary>
     ///     Sends a single RPC event to all players in the same room as the online entity.
     /// </summary>
     /// <param name="source">The online entity who will send the RPC event.</param>
-    /// <param name="del">The RPC method to be sent.</param>
+    /// <param name="del">The RPC delegate to be sent.</param>
     /// <param name="args">Any arguments of the RPC method.</param>
-    /// <exception cref="InvalidOperationException">source is not in a room session.</exception>
     public static void BroadcastOnceRPCInRoom<T>(this OnlineEntity source, T del, params object[] args)
         where T : Delegate
     {
-        if (source.currentlyJoinedResource is not RoomSession roomSession) throw new InvalidOperationException($"{source} is not in a room session.");
+        if (source.currentlyJoinedResource is not RoomSession roomSession) return;
 
         foreach (OnlinePlayer participant in roomSession.participants)
         {
@@ -111,14 +111,12 @@ public static class ModRPCManager
     /// <summary>
     ///     Sends a single RPC event to all players in the current lobby.
     /// </summary>
-    /// <param name="_">The online entity who triggered the RPC event. This argument is not read, and is only included for usage of this method as an extension of <see cref="OnlineEntity"/>.</param>
     /// <param name="del">The RPC method to be sent.</param>
     /// <param name="args">Any arguments of the RPC method.</param>
-    /// <exception cref="InvalidOperationException">The client is not in an online lobby.</exception>
-    public static void BroadcastOnceRPCInLobby<T>(this OnlineEntity? _, T del, params object[] args)
+    public static void BroadcastOnceRPCInLobby<T>(T del, params object[] args)
         where T : Delegate
     {
-        if (OnlineManager.lobby is null) throw new InvalidOperationException("Cannot send RPCs outside of a valid lobby.");
+        if (OnlineManager.lobby is null) return;
 
         foreach (OnlinePlayer participant in OnlineManager.lobby.participants)
         {
@@ -158,20 +156,20 @@ public static class ModRPCManager
     /// </summary>
     /// <param name="Source">The RPC event this timeout is tied to.</param>
     /// <param name="Lifetime">The duration of the internal timer.</param>
-    private sealed record RPCTimeout(RPCEvent Source, int Lifetime)
+    internal sealed record RPCTimeout(RPCEvent Source, int Lifetime)
     {
         public RPCEvent Source { get; } = Source;
 
         public int Lifetime { get; set; } = Lifetime;
-        public bool Expired { get; private set; }
+        public bool IsExpired { get; private set; }
 
         public void Update()
         {
-            if (Expired) return;
+            if (IsExpired) return;
 
             if (Source.aborted)
             {
-                Expired = true;
+                IsExpired = true;
                 return;
             }
 
@@ -183,8 +181,10 @@ public static class ModRPCManager
 
                 Source.Abort();
 
-                Expired = true;
+                IsExpired = true;
             }
         }
+
+        public void Abort() => Lifetime = 0;
     }
 }

@@ -44,7 +44,7 @@ public static class Extras
     /// <summary>
     ///     If the current game session is in an online lobby.
     /// </summary>
-    public static bool IsOnlineSession => IsMeadowEnabled && MeadowUtils.IsOnline && InGameSession;
+    public static bool IsOnlineSession => IsMeadowEnabled && MeadowUtils.IsOnline;
 
     /// <summary>
     ///     If the current game session is in a multiplayer context (online or local).
@@ -52,7 +52,7 @@ public static class Extras
     /// <remarks>
     ///     To determine if the given session is online or not, use <see cref="IsOnlineSession"/>.
     /// </remarks>
-    public static bool IsMultiplayer => (ModManager.JollyCoop && InGameSession) || IsOnlineSession;
+    public static bool IsMultiplayer => ModManager.JollyCoop || IsOnlineSession;
 
     /// <summary>
     ///     If the player is the host of the current game session. On Singleplayer, this is always true.
@@ -60,7 +60,7 @@ public static class Extras
     public static bool IsHostPlayer => !IsMeadowEnabled || MeadowUtils.IsHost;
 
     /// <summary>
-    ///     If the player is currently in-game and not on the main menu.
+    ///     If the player is currently in a game session (i.e. not on the main menu).
     /// </summary>
     public static bool InGameSession => GameSession is not null;
 
@@ -111,11 +111,22 @@ public static class Extras
     }
 
     /// <summary>
+    ///     Determines if the client has unlocked the given custom achievement.
+    /// </summary>
+    /// <param name="achievementID">The resolvable identifier of the achievement.</param>
+    /// <returns><c>true</c> if the custom achievement is unlocked, <c>false</c> otherwise.</returns>
+    public static bool HasAchievement(string achievementID) => IsFakeAchievementsEnabled && FakeAchievementsAccess.HasAchievement(achievementID);
+
+    /// <summary>
     ///     Grants and displays a given custom achievement to the client.
     ///     If the Fake Achievements mod is not present, this method does nothing.
     /// </summary>
     /// <param name="achievementID">The resolvable identifier of the achievement.</param>
-    public static void GrantFakeAchievement(string achievementID)
+    /// <param name="cosmeticOnly">
+    ///     If true, the achievement is displayed but not unlocked.
+    ///     Also bypasses the usual prevention of achievements triggering more than once per client.
+    /// </param>
+    public static void GrantAchievement(string achievementID, bool cosmeticOnly = false)
     {
         if (!IsFakeAchievementsEnabled) return;
 
@@ -128,7 +139,7 @@ public static class Extras
 
         try
         {
-            FakeAchievementsAccess.GrantAchievement(achievementID);
+            FakeAchievementsAccess.GrantAchievement(achievementID, cosmeticOnly);
         }
         catch (Exception ex)
         {
@@ -142,7 +153,7 @@ public static class Extras
     ///     If the Fake Achievements mod is not present, this method does nothing.
     /// </summary>
     /// <param name="achievementID">The resolvable identifier of the achievement.</param>
-    public static void RevokeFakeAchievement(string achievementID)
+    public static void RevokeAchievement(string achievementID)
     {
         if (!IsFakeAchievementsEnabled) return;
 
@@ -173,7 +184,7 @@ public static class Extras
     ///     This method returns <c>true</c> if Rain Meadow is not enabled, or if the player is not in an online lobby.
     /// </returns>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool IsLocalObject(PhysicalObject physicalObject) => !IsMeadowEnabled || MeadowUtils.IsMine(physicalObject);
+    public static bool IsLocalObject(PhysicalObject physicalObject) => !IsOnlineSession || MeadowUtils.IsMine(physicalObject);
 
     /// <summary>
     ///     Wraps a given action in a try-catch, safely performing its code while handling potential exceptions.
@@ -181,7 +192,7 @@ public static class Extras
     /// <param name="action">The action to be executed.</param>
     public static void WrapAction(Action action)
     {
-        ModLogger? logger = Registry.TryGetMod(Assembly.GetCallingAssembly())?.Logger ?? Core.Logger;
+        ModLogger? logger = Registry.TryGetMod(Assembly.GetCallingAssembly(), out Registry.ModEntry? mod) ? mod.Logger : Core.Logger;
 
         try
         {
@@ -216,7 +227,10 @@ public static class Extras
     private static class FakeAchievementsAccess
     {
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static void GrantAchievement(string achievementID) => AchievementsManager.GrantAchievement(achievementID);
+        public static bool HasAchievement(string achievementID) => !AchievementsTracker.CanUnlockAchievement(achievementID);
+
+        [MethodImpl(MethodImplOptions.NoInlining)]
+        public static void GrantAchievement(string achievementID, bool cosmeticOnly) => AchievementsManager.GrantAchievement(achievementID, cosmeticOnly);
 
         [MethodImpl(MethodImplOptions.NoInlining)]
         public static void RevokeAchievement(string achievementID) => AchievementsManager.RevokeAchievement(achievementID);
@@ -225,6 +239,6 @@ public static class Extras
     private static class LogUtilsAccess
     {
         [MethodImpl(MethodImplOptions.NoInlining)]
-        public static bool VerifyLogUtilsPresence() => LogUtils.UtilityCore.IsInitialized;
+        public static bool VerifyLogUtilsPresence() => LogUtils.UtilityCore.Assembly is not null;
     }
 }

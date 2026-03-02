@@ -1,0 +1,36 @@
+# ModLib TODO
+
+ModLib:
+
+- Internal:
+  - Core.PatchLoader._latestPatcherVersion could be assigned at compile-time, somehow. Would help a lot with not forgetting to change it after an update.
+
+- Input Module:
+  - Add support for changing Keybind keys; Save changes to disk.
+
+- Loader Module:
+  - Improve extension assembly detection and loading; Remove ModLib.Objects being directly loaded by Loader.Patcher if possible.
+
+- Logging Module:
+  - LogUtilsHelper should have as little ModLib-specific branches as possible; ModLib should be treated as a regular consumer of its own API
+  - Add log buffering for FallbackLogger
+
+- Options Module:
+  - Add element overlap prevention for OptionBuilder; Transform the class into more than just a shortcut for manual REMIX menu creation.
+
+---
+
+ModLib README:
+
+- (TODO: Make greater use of this shared API, simplifying interoperability between mods)
+
+AscendedSaint:
+
+- Player sees their own name in the ascension/revival messages, instead of the actual ascended/revived target.
+
+- Reviving an online creature causes both the owner and the caller to attempt running the revival method; The creature is not revived.
+
+- Self-ascension is disabled in an online lobby, regardless of the client or host's settings (possibly due to above ServerOptions issue)
+  - Ascension effects are also not played; None of the aforementioned issues occur in singleplayer.
+    - A potential fix has been provided; Playtest is pending.
+      - Fix is not enough; Now the game freezes waiting for the creature's revival. Non-players don't work either.

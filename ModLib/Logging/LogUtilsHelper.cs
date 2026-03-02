@@ -1,7 +1,9 @@
+using System;
 using BepInEx.Logging;
 using LogUtils;
 using LogUtils.Enums;
 using LogUtils.Properties;
+using ModLib.Extensions;
 
 namespace ModLib.Logging;
 
@@ -41,17 +43,18 @@ internal static class LogUtilsHelper
         return logID;
     }
 
-    public static ModLogger CreateLogger(ILogSource logSource)
+    public static ModLogger CreateLogger(ILogSource logSource, LogLevel allowLevels)
     {
         ILogTarget logTargets = logSource == Core.LogSource
             ? MyLogID | LogID.Unity
-            : CreateLogID(logSource.SourceName, register: false) | LogID.BepInEx | LogID.Unity;
+            : CreateLogID(logSource?.SourceName ?? Registry.GetMod(AssemblyExtensions.GetCallingAssembly() ?? throw new ArgumentException("logSource cannot be omitted unless the caller is registered to ModLib.", nameof(logSource))).Plugin.Name, register: false) | LogID.BepInEx | LogID.Unity;
 
         return new LogUtilsLogger(
             new LogUtils.Logger(logTargets)
             {
                 LogSource = logSource
-            }
+            },
+            allowLevels
         );
     }
 }

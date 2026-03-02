@@ -64,9 +64,9 @@ public class OptionBuilder(OpTab opTab)
         AddCheckBoxOption(text, configurable, out _, out checkBox, colors);
 
     /// <summary>
-    ///     Adds a new <c>OpCheckBox</c> to the <c>OpTab</c> instance, with a descriptive <c>OpLabel</c> after it.
+    ///     Adds a new <c>OpCheckBox</c> to the <c>OpTab</c> instance, with a descriptive <c>OpLabel</c> to its right.
     /// </summary>
-    /// <param name="text">The check box's label. Will be displayed right after the box itself.</param>
+    /// <param name="text">The check box's label. Will be displayed to the right of the box itself.</param>
     /// <param name="configurable">The <c>Configurable</c> this check box will be bound to.</param>
     /// <param name="label">The generated <c>OpLabel</c> for this option.</param>
     /// <param name="checkBox">The generated <c>OpCheckBox</c> for this option.</param>
@@ -113,9 +113,9 @@ public class OptionBuilder(OpTab opTab)
         AddComboBoxOption(text, configurable, out _, out comboBox, width, colors);
 
     /// <summary>
-    ///     Adds a new <c>OpComboBox</c> to the <c>OpTab</c> instance, with a descriptive <c>OpLabel</c> after it.
+    ///     Adds a new <c>OpComboBox</c> to the <c>OpTab</c> instance, with a descriptive <c>OpLabel</c> above it.
     /// </summary>
-    /// <param name="text">The combo box's label. Will be displayed right after the box itself.</param>
+    /// <param name="text">The combo box's label. Will be displayed above the box itself.</param>
     /// <param name="configurable">The <c>Configurable</c> this combo box will be bound to.</param>
     /// <param name="label">The generated <c>OpLabel</c> for this option.</param>
     /// <param name="comboBox">The generated <c>OpComboBox</c> for this option.</param>
@@ -136,7 +136,7 @@ public class OptionBuilder(OpTab opTab)
                 verticalAlignment = OpLabel.LabelVAlignment.Center,
                 color = GetColorOrDefault(colors, 0)
             },
-            comboBox = new OpComboBox(configurable, vector2 + new Vector2(180f, 00f), width)
+            comboBox = new OpComboBox(configurable, vector2 + new Vector2(180f, 0f), width)
             {
                 description = configurable.info.description,
                 colorEdge = GetColorOrDefault(colors, 1),
@@ -147,6 +147,59 @@ public class OptionBuilder(OpTab opTab)
         elementsToAdd.AddRange(elements);
 
         vector2.y -= 32f;
+
+        return this;
+    }
+
+    /// <inheritdoc cref="AddKeyBinderOption(string, Configurable{KeyCode}, out OpLabel, out OpKeyBinder, Vector2, Color[])"/>
+    [MethodImpl(MethodImplOptions.NoInlining)]
+    public OptionBuilder AddKeyBinderOption(string text, Configurable<KeyCode> configurable, Vector2 size = default, params Color[] colors) =>
+        AddKeyBinderOption(text, configurable, out _, out _, size, colors);
+
+    /// <inheritdoc cref="AddKeyBinderOption(string, Configurable{KeyCode}, out OpLabel, out OpKeyBinder, Vector2, Color[])"/>
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public OptionBuilder AddKeyBinderOption(string text, Configurable<KeyCode> configurable, out OpKeyBinder keyBinder, Vector2 size = default, params Color[] colors) =>
+        AddKeyBinderOption(text, configurable, out _, out keyBinder, size, colors);
+
+    /// <summary>
+    ///     Adds a new <c>OpKeyBinder</c> to the <c>OpTab</c> instance, with a descriptive <c>OpLabel</c> to its left.
+    /// </summary>
+    /// <param name="text">The key binder's label. Will be displayed to the left of the binder itself.</param>
+    /// <param name="configurable">The <c>Configurable</c> this key binder will be bound to.</param>
+    /// <param name="label">The generated <c>OpLabel</c> for this option.</param>
+    /// <param name="keyBinder">The generated <c>OpKeyBinder</c> for this option.</param>
+    /// <param name="size">The size of the key binder object. Defaults to a 128x32 box.</param>
+    /// <param name="colors">
+    ///     The color values to be used by the <c>OpLabel</c> and <c>OpKeyBinder</c> instance.
+    ///     Colors are retrieved by index and applied to relevant fields in alphabetical order.
+    /// </param>
+    /// <returns>The <c>OptionBuilder</c> object.</returns>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public OptionBuilder AddKeyBinderOption(string text, Configurable<KeyCode> configurable, out OpLabel label, out OpKeyBinder keyBinder, Vector2 size = default, params Color[] colors)
+    {
+        if (size == default)
+            size = new Vector2(128f, 32f);
+
+        UIelement[] elements = [
+            label = new OpLabel(vector2, new Vector2(100f, 24f), text)
+            {
+                description = configurable.info.description,
+                alignment = FLabelAlignment.Left,
+                verticalAlignment = OpLabel.LabelVAlignment.Center,
+                color = GetColorOrDefault(colors, 0)
+            },
+            keyBinder = new OpKeyBinder(configurable, vector2 + new Vector2(10f, 32f), size, false)
+            {
+                description = configurable.info.description,
+                colorEdge = GetColorOrDefault(colors, 1),
+                colorFill = GetColorOrDefault(colors, 2, MenuColorEffect.rgbBlack)
+            }
+        ];
+
+        elementsToAdd.AddRange(elements);
+
+        vector2.y -= size.y + 48f;
 
         return this;
     }
@@ -163,9 +216,9 @@ public class OptionBuilder(OpTab opTab)
         AddSliderOption(text, configurable, out _, out slider, multi, vertical, colors);
 
     /// <summary>
-    ///     Adds a new <c>OpSlider</c> to the <c>OpTab</c> instance, with a descriptive <c>OpLabel</c> before it.
+    ///     Adds a new <c>OpSlider</c> to the <c>OpTab</c> instance, with a descriptive <c>OpLabel</c> to its left.
     /// </summary>
-    /// <param name="text">The slider's label. Will be displayed right before the slider itself.</param>
+    /// <param name="text">The slider's label. Will be displayed to the left of the slider itself.</param>
     /// <param name="configurable">The <c>Configurable</c> this slider will be bound to.</param>
     /// <param name="label">The generated <c>OpLabel</c> for this option.</param>
     /// <param name="slider">The generated <c>OpSlider</c> for this option.</param>
@@ -214,9 +267,9 @@ public class OptionBuilder(OpTab opTab)
         AddFloatSliderOption(text, configurable, out _, out slider, length, decimalNum, vertical, colors);
 
     /// <summary>
-    ///     Adds a new <c>OpFloatSlider</c> to the <c>OpTab</c> instance, with a descriptive <c>OpLabel</c> before it.
+    ///     Adds a new <c>OpFloatSlider</c> to the <c>OpTab</c> instance, with a descriptive <c>OpLabel</c> to its left.
     /// </summary>
-    /// <param name="text">The slider's label. Will be displayed right before the slider itself.</param>
+    /// <param name="text">The slider's label. Will be displayed to the left of the slider itself.</param>
     /// <param name="configurable">The <c>Configurable</c> this slider will be bound to.</param>
     /// <param name="label">The generated <c>OpLabel</c> for this option.</param>
     /// <param name="slider">The generated <c>OpFloatSlider</c> for this option.</param>
@@ -351,7 +404,7 @@ public class OptionBuilder(OpTab opTab)
     /// <param name="index">The index of the color to be retrieved.</param>
     /// <param name="fallback">A fallback color to use if the given index does not have a value.</param>
     /// <returns>A <c>Color</c> instance for usage by menu elements.</returns>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    [EditorBrowsable(EditorBrowsableState.Advanced)]
     public static Color GetColorOrDefault(Color[] colors, int index, Color fallback = default)
     {
         Color color = colors.ElementAtOrDefault(index);

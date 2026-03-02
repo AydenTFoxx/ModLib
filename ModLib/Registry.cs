@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -37,7 +38,11 @@ public static class Registry
         Entrypoint.TryInitialize();
     }
 
-    /// <inheritdoc cref="RegisterMod(BaseUnityPlugin, Type, ManualLogSource)"/>
+    /// <inheritdoc cref="RegisterMod(BaseUnityPlugin, Type, ModLogger)"/>
+    public static void RegisterMod(BaseUnityPlugin plugin) =>
+        RegisterAssembly(Assembly.GetCallingAssembly(), plugin.Info.Metadata, null, null);
+
+    /// <inheritdoc cref="RegisterMod(BaseUnityPlugin, Type, ModLogger)"/>
     public static void RegisterMod(BaseUnityPlugin plugin, Type? optionHolder) =>
         RegisterAssembly(Assembly.GetCallingAssembly(), plugin.Info.Metadata, optionHolder, null);
 
@@ -50,7 +55,7 @@ public static class Registry
     ///     A class with <c>public static</c> fields of type <see cref="Configurable{T}"/>,
     ///     which are retrieved via reflection to determine the mod's REMIX options.
     /// </param>
-    /// <param name="logSource">The log source of this mod. If LogUtils is present, a <see cref="LogUtils.Logger"/> will be created with this parameter as its <c>LogSource</c> value.</param>
+    /// <param name="logSource">The log source of this mod.</param>
     /// <exception cref="InvalidOperationException">The current mod assembly is already registered to ModLib.</exception>
     public static void RegisterMod(BaseUnityPlugin plugin, Type? optionHolder, ManualLogSource logSource) =>
         RegisterAssembly(Assembly.GetCallingAssembly(), plugin.Info.Metadata, optionHolder, LoggingAdapter.CreateLogger(logSource));
@@ -64,28 +69,32 @@ public static class Registry
     ///     A class with <c>public static</c> fields of type <see cref="Configurable{T}"/>,
     ///     which are retrieved via reflection to determine the mod's REMIX options.
     /// </param>
-    /// <param name="logger">The wrapped logger for usage by this mod.</param>
+    /// <param name="logger">The logger instance for usage by this mod.</param>
     /// <exception cref="InvalidOperationException">The current mod assembly is already registered to ModLib.</exception>
     public static void RegisterMod(BaseUnityPlugin plugin, Type? optionHolder, ModLogger? logger) =>
         RegisterAssembly(Assembly.GetCallingAssembly(), plugin.Info.Metadata, optionHolder, logger);
+
+    /// <inheritdoc cref="RegisterMod(BaseUnityPlugin, Type, ModLogger)"/>
+    public static void RegisterMod(BepInPlugin plugin) =>
+        RegisterAssembly(Assembly.GetCallingAssembly(), plugin, null, null);
+
+    /// <inheritdoc cref="RegisterMod(BaseUnityPlugin, Type, ModLogger)"/>
+    public static void RegisterMod(BepInPlugin plugin, Type? optionHolder) =>
+        RegisterAssembly(Assembly.GetCallingAssembly(), plugin, optionHolder, null);
+
+    /// <inheritdoc cref="RegisterMod(BaseUnityPlugin, Type, ManualLogSource)"/>
+    public static void RegisterMod(BepInPlugin plugin, Type? optionHolder, ManualLogSource logSource) =>
+        RegisterAssembly(Assembly.GetCallingAssembly(), plugin, optionHolder, LoggingAdapter.CreateLogger(logSource));
+
+    /// <inheritdoc cref="RegisterMod(BaseUnityPlugin, Type, ModLogger)"/>
+    public static void RegisterMod(BepInPlugin plugin, Type? optionHolder, ModLogger? logger) =>
+        RegisterAssembly(Assembly.GetCallingAssembly(), plugin, optionHolder, logger);
 
     /// <summary>
     ///     Removes the current mod assembly from ModLib's registry.
     /// </summary>
     /// <returns><c>true</c> if the mod was successfully unregistered, <c>false</c> otherwise (e.g. if it was not registered at all).</returns>
-    public static bool UnregisterMod()
-    {
-        Assembly caller = Assembly.GetCallingAssembly();
-
-        if (!RegisteredMods.TryGetValue(caller, out ModEntry entry)) return false;
-
-        if (entry.OptionHolder is not null)
-        {
-            ServerOptions.RemoveOptionSource(entry.OptionHolder);
-        }
-
-        return RegisteredMods.Remove(caller);
-    }
+    public static bool UnregisterMod() => UnregisterAssembly(Assembly.GetCallingAssembly());
 
     /// <summary>
     ///     Retrieves the mod metadata for the given assembly.
@@ -120,10 +129,22 @@ public static class Registry
 
         if (optionHolder is not null)
         {
-            ServerOptions.AddOptionSource(optionHolder);
+            SharedOptions.AddOptionSource(optionHolder);
         }
 
         Core.Logger?.LogDebug($"Registered new Mod Entry: {entry}");
+    }
+
+    internal static bool UnregisterAssembly(Assembly caller)
+    {
+        if (!RegisteredMods.TryGetValue(caller, out ModEntry entry)) return false;
+
+        if (entry.OptionHolder is not null)
+        {
+            SharedOptions.RemoveOptionSource(entry.OptionHolder);
+        }
+
+        return RegisteredMods.Remove(caller);
     }
 
     internal static string SanitizeModName(string modName)
@@ -133,10 +154,7 @@ public static class Registry
         return string.Join("", modName.Where(c => !ForbiddenPathChars.Contains(c)));
     }
 
-    internal static ModEntry? TryGetMod(Assembly caller) =>
-        RegisteredMods.TryGetValue(caller, out ModEntry metadata)
-            ? metadata
-            : null;
+    internal static bool TryGetMod(Assembly caller, [NotNullWhen(true)] out ModEntry? metadata) => RegisteredMods.TryGetValue(caller, out metadata);
 
     /// <summary>
     ///     Represents a mod entry within ModLib's registry.
@@ -154,14 +172,14 @@ public static class Registry
         public Type? OptionHolder { get; }
 
         /// <summary>
-        ///     The unique LogID of this mod, if any.
-        /// </summary>
-        public object? LogID { get; set; }
-
-        /// <summary>
         ///     The logger instance of this mod, if any.
         /// </summary>
         public ModLogger? Logger { get; set; }
+
+        /// <summary>
+        ///     The unique LogID of this mod, if any.
+        /// </summary>
+        public object? LogID { get; set; }
 
         internal ModEntry(BepInPlugin plugin, Type? optionHolder, ManualLogSource logger)
             : this(plugin, optionHolder, LoggingAdapter.CreateLogger(logger))

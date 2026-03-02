@@ -1,11 +1,13 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using BepInEx;
 using BepInEx.Logging;
+using ModLib.Debug;
 using ModLib.Input;
 using ModLib.Loader;
 using ModLib.Logging;
@@ -20,7 +22,7 @@ internal static class Core
 {
     public const string MOD_GUID = "ynhzrfxn.modlib";
     public const string MOD_NAME = "ModLib";
-    public const string MOD_VERSION = "0.4.0.1";
+    public const string MOD_VERSION = "0.5.0.0";
 
     public static readonly Assembly MyAssembly = typeof(Core).Assembly;
 
@@ -28,8 +30,8 @@ internal static class Core
     public static readonly ManualLogSource LogSource = BepInEx.Logging.Logger.CreateLogSource(MOD_NAME);
 
     public static readonly string StreamingAssetsPath = Path.Combine(Paths.GameRootPath, "RainWorld_Data", "StreamingAssets");
-    public static readonly string LogsPath = Path.Combine(StreamingAssetsPath, "Logs");
 
+    public static readonly string LogsPath = Path.Combine(StreamingAssetsPath, "Logs");
     private static readonly string DataPath = Path.Combine(StreamingAssetsPath, "modlib.json");
 
     public static ModLogger Logger { get; private set; } = new FallbackLogger(LogSource);
@@ -46,19 +48,6 @@ internal static class Core
 
         Initialized = true;
 
-        if (Extras.LogUtilsAvailable)
-        {
-            LogSource.LogDebug("Switching Core logger to LogUtils!");
-
-            Logger = LoggingAdapter.CreateLogger(LogSource);
-        }
-        else
-        {
-            LogSource.LogDebug("Using fallback logger for ModLib.");
-
-            Logger ??= new FallbackLogger(LogSource);
-        }
-
         try
         {
             ReadModLibData();
@@ -68,11 +57,23 @@ internal static class Core
             Logger.LogError($"Failed to retrieve ModLib data: {ex}");
         }
 
-        Logger = new FilteredLogWrapper(Logger);
+        SharedOptions.SetOption("modlib.debug", MyData.DevToolsActive);
+        SharedOptions.SetOption("modlib.preview", false);
 
-        OptionUtils.SharedOptions.AddTemporaryOption("modlib.debug", new ConfigValue(MyData.DevToolsActive), false);
+        Extras.DebugMode = SharedOptions.IsOptionEnabled("modlib.debug");
 
-        Extras.DebugMode = OptionUtils.IsOptionEnabled("modlib.debug");
+        if (Extras.LogUtilsAvailable)
+        {
+            LogSource.LogDebug("Switching Core logger to LogUtils!");
+
+            Logger = LoggingAdapter.CreateLogger(LogSource, MyData.DevToolsActive ? ModLogger.DefaultLogLevels : ModLogger.NonDebugLevels);
+        }
+        else
+        {
+            LogSource.LogDebug("Using fallback logger for ModLib.");
+
+            Logger ??= new FallbackLogger(LogSource, MyData.DevToolsActive ? ModLogger.DefaultLogLevels : ModLogger.NonDebugLevels);
+        }
 
         if (Extras.IsMeadowEnabled)
         {
@@ -84,7 +85,7 @@ internal static class Core
             On.RainWorldGame.ExitGame += ExitGameHook;
         }
 
-        On.RainWorld.OnModsInit += OnModsInitHook;
+        On.RainWorld.PostModsInit += PostModsInitHook;
         On.RainWorldGame.Update += GameUpdateHook;
 
         Application.quitting += Entrypoint.Disable;
@@ -112,7 +113,7 @@ internal static class Core
                 On.RainWorldGame.ExitGame -= ExitGameHook;
             }
 
-            On.RainWorld.OnModsInit -= OnModsInitHook;
+            On.RainWorld.PostModsInit -= PostModsInitHook;
             On.RainWorldGame.Update -= GameUpdateHook;
 
             Application.quitting -= Entrypoint.Disable;
@@ -127,7 +128,7 @@ internal static class Core
             Logger.LogError($"Failed to write ModLib data: {ex}");
         }
 
-        foreach (ModPersistentSaveData saveData in ModPersistentSaveData.RegisteredInstances)
+        foreach (ModData saveData in ModData.StoredInstances.Where(static md => md.AutoSave))
         {
             saveData.SaveToFile();
         }
@@ -144,7 +145,7 @@ internal static class Core
     {
         orig.Invoke(self, game);
 
-        OptionUtils.SharedOptions.RefreshOptions(Extras.InGameSession);
+        SharedOptions.RefreshOptions(Extras.InGameSession);
 
         Extras.GameSession = self;
     }
@@ -159,21 +160,11 @@ internal static class Core
             }
             else
             {
-                global::Options? options = UnityEngine.Object.FindObjectOfType<RainWorld>()?.options;
-                int maxPlayers = Keybind.MaxPlayers;
-
                 foreach (Keybind keybind in Keybind.Keybinds)
                 {
-                    if (maxPlayers == 1)
+                    for (int i = 0; i < Keybind.MaxPlayers; i++)
                     {
-                        keybind.Update(options, 0);
-                    }
-                    else
-                    {
-                        for (int i = 0; i < maxPlayers; i++)
-                        {
-                            keybind.Update(options, i);
-                        }
+                        keybind.Update(RWCustom.Custom.rainWorld?.options, i);
                     }
                 }
             }
@@ -187,39 +178,36 @@ internal static class Core
         }
     }
 
-    private static void OnModsInitHook(On.RainWorld.orig_OnModsInit orig, RainWorld self)
+    private static void PostModsInitHook(On.RainWorld.orig_PostModsInit orig, RainWorld self)
     {
         orig.Invoke(self);
 
         MyData = new(ModManager.DevTools, MOD_VERSION);
 
-        OptionUtils.SharedOptions.AddTemporaryOption("modlib.debug", new ConfigValue(MyData.DevToolsActive), false);
+        SharedOptions.RemoveOption("modlib.debug");
+        SharedOptions.SetOption("modlib.debug", MyData.DevToolsActive);
 
-        if (!Extras.IsIICEnabled && CompatibilityManager.IsIICEnabled(forceQuery: true))
+        Extras.DebugMode = SharedOptions.IsOptionEnabled("modlib.debug");
+
+        if (!Extras.IsIICEnabled)
+            Extras.IsIICEnabled = CompatibilityManager.IsIICEnabled();
+
+        if (!Extras.IsMeadowEnabled)
+            Extras.IsMeadowEnabled = CompatibilityManager.IsRainMeadowEnabled();
+
+        if (!Extras.IsFakeAchievementsEnabled)
+            Extras.IsFakeAchievementsEnabled = CompatibilityManager.IsFakeAchievementsEnabled();
+
+        if (CompatibilityManager.IsModEnabled(CompatibilityManager.DEV_CONSOLE_ID))
         {
-            Extras.IsIICEnabled = true;
-        }
-
-        if (!Extras.IsMeadowEnabled && CompatibilityManager.IsRainMeadowEnabled(forceQuery: true))
-        {
-            Extras.IsMeadowEnabled = true;
-        }
-
-        if (!Extras.IsFakeAchievementsEnabled && CompatibilityManager.IsFakeAchievementsEnabled(forceQuery: true))
-        {
-            Extras.IsFakeAchievementsEnabled = true;
-        }
-
-        Extras.DebugMode = OptionUtils.IsOptionEnabled("modlib.debug");
-
-        if (FilteredLogWrapper.DynamicInstances.Count > 0)
-        {
-            foreach (FilteredLogWrapper logWrapper in FilteredLogWrapper.DynamicInstances)
+            try
             {
-                logWrapper.FilterLogLevels = MyData.DevToolsActive ? LogLevel.None : LogLevel.Debug;
+                ModDebugger.RegisterCommands();
             }
-
-            FilteredLogWrapper.DynamicInstances.Clear();
+            catch (Exception ex)
+            {
+                LogSource.LogError($"Failed to initialize DevConsole commands! {ex}");
+            }
         }
     }
 
@@ -275,7 +263,7 @@ internal static class Core
     {
         private const string TARGET_DLL = "ModLib.Loader.dll";
 
-        private static readonly Version _latestLoaderVersion = new("0.2.1.0");
+        private static readonly Version _latestLoaderVersion = new("0.2.2.0");
 
         private static readonly string _targetPath = Path.Combine(Paths.PatcherPluginPath, TARGET_DLL);
 

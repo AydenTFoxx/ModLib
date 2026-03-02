@@ -15,7 +15,7 @@ namespace ModLib.Meadow;
 ///         Warning: Always ensure Rain Meadow is enabled before using this class!
 ///     </para>
 ///     <para>
-///         Properties and methods like <see cref="Extras.IsMeadowEnabled"/>, <see cref="Extras.IsOnlineSession"/>, and <see cref="CompatibilityManager.IsRainMeadowEnabled(bool)"/>
+///         Properties and methods like <see cref="Extras.IsMeadowEnabled"/>, <see cref="Extras.IsOnlineSession"/>, and <see cref="CompatibilityManager.IsRainMeadowEnabled()"/>
 ///         can all be used/queried before accessing any of this class's members. Otherwise, a <see cref="TypeLoadException"/> will be thrown, even if the given member does not have any Meadow-specific code.
 ///     </para>
 /// </remarks>
@@ -45,17 +45,17 @@ public static class MeadowUtils
     }
 
     /// <summary>
-    ///     Determines if the current game session is an online lobby.
+    ///     Determines if the current game session is in an online lobby.
     /// </summary>
     public static bool IsOnline => OnlineManager.lobby is not null;
 
     /// <summary>
-    ///     Determines if this player is the host of an online session. On singleplayer, this is always true.
+    ///     Determines if this client is the host of the current session. On singleplayer, this is always true.
     /// </summary>
     public static bool IsHost => !IsOnline || OnlineManager.lobby.isOwner;
 
     /// <summary>
-    ///     Determines if the given physical object belongs to the client.
+    ///     Determines if the given physical object belongs to this client.
     /// </summary>
     /// <remarks>
     ///     If the current game session is not online, this always returns <c>true</c>.
@@ -140,7 +140,7 @@ public static class MeadowUtils
             onlinePlayer.SendRPCEvent(ModRPCs.LogSystemMessage, message);
         }
 
-        ModRPCs.LogSystemMessage(message); // Run the RPC method anyway; No need to repeat code.
+        ModRPCs.LogSystemMessage(null!, message); // Run the RPC method anyway; No need to repeat code.
     }
 
     /// <summary>
@@ -192,7 +192,7 @@ public static class MeadowUtils
     {
         try
         {
-            Core.Logger.LogDebug($"Requesting ownership of {onlineObject}...");
+            Core.Logger.LogDebug($"[MeadowUtils] Requesting ownership of {onlineObject}...");
 
             onlineObject.Request();
 
@@ -200,7 +200,7 @@ public static class MeadowUtils
         }
         catch (Exception ex)
         {
-            Core.Logger.LogError($"Failed to request ownership of {onlineObject}!");
+            Core.Logger.LogError($"[MeadowUtils] Failed to request ownership of {onlineObject}!");
             Core.Logger.LogError(ex);
 
             callback?.Invoke(new GenericResult.Error());
@@ -208,13 +208,13 @@ public static class MeadowUtils
 
         void DefaultCallback(GenericResult result)
         {
-            Core.Logger.LogDebug($"[{result}] Requested ownership by {result.to}; New ownership: {onlineObject.owner}");
+            Core.Logger.LogDebug($"[MeadowUtils: {result}] Requested ownership by {result.to}; New ownership: {onlineObject.owner}");
         }
     }
 
     internal static void OnJoinedGameSession(GameSession session)
     {
-        Core.Logger.LogDebug($"Invoking {nameof(OnJoinedGameSession)}()!");
+        Core.Logger.LogDebug($"[MeadowUtils] Invoking {nameof(OnJoinedGameSession)}()!");
 
         ((Action<GameSession>)eventHandlerList[ENTER_GAME_SESSION_KEY])?.Invoke(session);
     }
@@ -223,7 +223,7 @@ public static class MeadowUtils
     {
         if (player.isMe) return;
 
-        Core.Logger.LogDebug($"Invoking {nameof(OnPlayerJoinedLobby)}()!");
+        Core.Logger.LogDebug($"[MeadowUtils] Invoking {nameof(OnPlayerJoinedLobby)}()!");
 
         ((Action<OnlinePlayer>)eventHandlerList[PLAYER_JOINED_SESSION_KEY])?.Invoke(player);
     }

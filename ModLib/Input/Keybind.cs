@@ -12,14 +12,13 @@ namespace ModLib.Input;
 /// <summary>
 ///     An immutable representation of a player keybind, compatible with ImprovedInput's PlayerKeybind object.
 /// </summary>
-public record Keybind
+public sealed class Keybind
 {
-    private const int InitialMaxPlayers = 1;
-    private const int TotalMaxPlayers = 16;
-
-    internal static int MaxPlayers { get; set; } = InitialMaxPlayers;
-
     private static readonly List<Keybind> _keybinds = [];
+
+    internal static int TotalMaxPlayers => Extras.IsIICEnabled ? 16 : 4;
+
+    internal static int MaxPlayers { get; set; } = 1;
 
     /// <summary>
     ///     Returns a read-only list of all registered keybinds.
@@ -48,21 +47,35 @@ public record Keybind
     public string Name { get; }
 
     /// <summary>
-    ///     The KeyCode to be used for detecting inputs with a keyboard.
+    ///     The KeyCode to be used for detecting inputs with a keyboard. Can be set for a temporary override which is not saved to disk.
     /// </summary>
-    public KeyCode KeyboardPreset { get; }
+    public KeyCode KeyboardKey
+    {
+        get => _keyOverrides[0];
+        set => _keyOverrides[0] = value;
+    }
 
     /// <summary>
-    ///     The KeyCode to be used for detecting inputs with a gamepad.
+    ///     The KeyCode to be used for detecting inputs with a gamepad.  Can be set for a temporary override which is not saved to disk.
     /// </summary>
-    public KeyCode GamepadPreset { get; }
+    public KeyCode GamepadKey
+    {
+        get => _keyOverrides[1];
+        set => _keyOverrides[1] = value;
+    }
 
     /// <summary>
-    ///     The KeyCode to be used for detecting inputs with an xbox.
+    ///     The KeyCode to be used for detecting inputs with an xbox. Can be set for a temporary override which is not saved to disk.
     /// </summary>
-    public KeyCode XboxPreset { get; }
+    public KeyCode XboxKey
+    {
+        get => _keyOverrides[2];
+        set => _keyOverrides[2] = value;
+    }
 
     private bool[,] _keyPresses = new bool[MaxPlayers, 2];
+
+    private readonly KeyCode[] _keyOverrides = new KeyCode[3];
 
     private Keybind(string id, string mod, string name, KeyCode keyboardPreset, KeyCode gamepadPreset, KeyCode xboxPreset)
     {
@@ -70,21 +83,24 @@ public record Keybind
         Mod = mod;
         Name = name;
 
-        KeyboardPreset = keyboardPreset;
-        GamepadPreset = gamepadPreset;
-        XboxPreset = xboxPreset;
+        KeyboardKey = keyboardPreset;
+        GamepadKey = gamepadPreset;
+        XboxKey = xboxPreset;
     }
 
     /// <summary>
     ///     Determines whether this keybind is currently being pressed.
     /// </summary>
+    /// <remarks>
+    ///     Note: Avoid calling this method directly; Instead, prefer using the extension methods of the <see cref="InputHandler"/> class.
+    /// </remarks>
     /// <param name="playerNumber">The player index whose input will be queried.</param>
     /// <param name="player">
     ///     The actual player instance whose inputs are being queried.
-    ///     If specified, input will be ignored while the player is unconscious/dead or in a cutscene.
+    ///     If specified, input will be ignored while the player is unconscious, dead, or in a cutscene.
     /// </param>
     /// <returns><c>true</c> if this keybind's bound key is being held, <c>false</c> otherwise.</returns>
-    internal bool IsDown(int playerNumber, Player? player = null)
+    public bool IsDown(int playerNumber, Player? player)
     {
         ValidatePlayerNumber(playerNumber);
 
@@ -94,13 +110,16 @@ public record Keybind
     /// <summary>
     ///     Determines whether this keybind has just been pressed.
     /// </summary>
+    /// <remarks>
+    ///     Note: Avoid calling this method directly; Instead, prefer using the extension methods of the <see cref="InputHandler"/> class.
+    /// </remarks>
     /// <param name="playerNumber">The player index whose input will be queried.</param>
     /// <param name="player">
     ///     The actual player instance whose inputs are being queried.
-    ///     If specified, input will be ignored while the player is unconscious/dead or in a cutscene.
+    ///     If specified, input will be ignored while the player is unconscious, dead, or in a cutscene.
     /// </param>
     /// <returns><c>true</c> if this keybind's bound key was just pressed, <c>false</c> otherwise.</returns>
-    internal bool JustPressed(int playerNumber, Player? player = null)
+    public bool JustPressed(int playerNumber, Player? player)
     {
         ValidatePlayerNumber(playerNumber);
 
@@ -113,21 +132,29 @@ public record Keybind
 
         _keyPresses[playerIndex, 0] = options is not null && (options.controls[playerIndex].controlPreference == global::Options.ControlSetup.ControlToUse.SPECIFIC_GAMEPAD
             ? options.controls[playerIndex].recentPreset == global::Options.ControlSetup.Preset.XBox
-                ? UnityEngine.Input.GetKey(XboxPreset)
-                : UnityEngine.Input.GetKey(GamepadPreset)
-            : UnityEngine.Input.GetKey(KeyboardPreset));
+                ? UnityEngine.Input.GetKey(XboxKey)
+                : UnityEngine.Input.GetKey(GamepadKey)
+            : UnityEngine.Input.GetKey(KeyboardKey));
+    }
+
+    internal void ForceInput(int playerIndex, bool value)
+    {
+        ValidatePlayerNumber(playerIndex);
+
+        _keyPresses[playerIndex, 1] = _keyPresses[playerIndex, 0];
+        _keyPresses[playerIndex, 0] = value;
     }
 
     private void ValidatePlayerNumber(int playerNumber)
     {
-        if (playerNumber is < 0 or >= TotalMaxPlayers)
+        if (playerNumber is < 0 || playerNumber >= TotalMaxPlayers)
             throw new ArgumentOutOfRangeException(nameof(playerNumber), $"Player number {playerNumber} is not within valid range: 0-{TotalMaxPlayers - 1}.");
 
-        if (_keyPresses.Length <= playerNumber)
+        if (_keyPresses.GetLength(0) <= playerNumber)
         {
             bool[,] lastKeyPresses = (bool[,])_keyPresses.Clone();
 
-            _keyPresses = new bool[(Math.Min(_keyPresses.Length * 2, TotalMaxPlayers)), 2];
+            _keyPresses = new bool[(Math.Min(_keyPresses.GetLength(0) * 2, TotalMaxPlayers)), 2];
 
             for (int i = 0; i < lastKeyPresses.GetLength(0); i++)
             {
@@ -135,9 +162,9 @@ public record Keybind
                 _keyPresses[i, 1] = lastKeyPresses[i, 1];
             }
 
-            MaxPlayers = Math.Max(MaxPlayers, _keyPresses.Length);
+            MaxPlayers = Math.Max(MaxPlayers, _keyPresses.GetLength(0));
 
-            Core.Logger.LogInfo($"Resizing keyPresses array of {Name} ({Id}) to {_keyPresses.Length}");
+            Core.Logger.LogInfo($"Resizing keyPresses array of {Name} ({Id}) to {_keyPresses.GetLength(0)}");
         }
     }
 
@@ -145,7 +172,7 @@ public record Keybind
     ///     Returns a string that represents the Keybind object.
     /// </summary>
     /// <returns>A string that represents the Keybind object.</returns>
-    public override string ToString() => $"{Name} ({Id}) [{KeyboardPreset}|{GamepadPreset}{(XboxPreset != GamepadPreset ? $"|{XboxPreset}" : "")}]";
+    public override string ToString() => $"{Name} ({Id}) [{KeyboardKey}|{GamepadKey}{(XboxKey != GamepadKey ? $"|{XboxKey}" : "")}]";
 
     /// <summary>
     ///     Retrieves the Keybind with the given identifier.
@@ -154,17 +181,35 @@ public record Keybind
     /// <returns>The <see cref="Keybind"/> object whose Id matches the provided argument, or <c>null</c> if none is found.</returns>
     public static Keybind? Get(string id) => _keybinds.Find(k => k.Id == id);
 
-    /// <inheritdoc cref="Register(string, string, KeyCode, KeyCode, KeyCode)"/>
-    public static Keybind Register(string name, KeyCode keyboardPreset, KeyCode gamepadPreset) =>
-        RegisterInternal(Assembly.GetCallingAssembly(), null, name, keyboardPreset, gamepadPreset, gamepadPreset);
+    /// <summary>
+    ///     Retrieves the configured key of a player for a given keybind.
+    /// </summary>
+    /// <param name="keybind">The keybind whose key will be retrieved.</param>
+    /// <param name="playerIndex">The index of the player.</param>
+    /// <returns>The configured key code of the keybind for the given player.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">playerIndex is below zero or greater than the max amount of players.</exception>
+    public static KeyCode KeyCodeFromKeybind(Keybind keybind, int playerIndex)
+    {
+        if (playerIndex is < 0 || playerIndex >= TotalMaxPlayers)
+            throw new ArgumentOutOfRangeException(nameof(playerIndex), $"Player number {playerIndex} is not within valid range: 0-{TotalMaxPlayers - 1}.");
+
+        if (Extras.IsIICEnabled)
+            return ImprovedInputHelper.KeyCodeFromKeybind(keybind, playerIndex);
+
+        global::Options.ControlSetup? playerControls = RWCustom.Custom.rainWorld?.options?.controls[playerIndex];
+
+        return playerControls is null
+            ? KeyCode.None
+            : playerControls.controlPreference == global::Options.ControlSetup.ControlToUse.SPECIFIC_GAMEPAD
+                ? playerControls.recentPreset == global::Options.ControlSetup.Preset.XBox
+                    ? keybind.XboxKey
+                    : keybind.GamepadKey
+                : keybind.KeyboardKey;
+    }
 
     /// <inheritdoc cref="Register(string, string, KeyCode, KeyCode, KeyCode)"/>
-    public static Keybind Register(string name, KeyCode keyboardPreset, KeyCode gamepadPreset, KeyCode xboxPreset) =>
+    public static Keybind Register(string name, KeyCode keyboardPreset = KeyCode.None, KeyCode gamepadPreset = KeyCode.None, KeyCode xboxPreset = KeyCode.None) =>
         RegisterInternal(Assembly.GetCallingAssembly(), null, name, keyboardPreset, gamepadPreset, xboxPreset);
-
-    /// <inheritdoc cref="Register(string, string, KeyCode, KeyCode, KeyCode)"/>
-    public static Keybind Register(string? id, string name, KeyCode keyboardPreset, KeyCode gamepadPreset) =>
-        RegisterInternal(Assembly.GetCallingAssembly(), id, name, keyboardPreset, gamepadPreset, gamepadPreset);
 
     /// <summary>
     ///     Registers a new Keybind with the provided arguments.
@@ -174,7 +219,7 @@ public record Keybind
     /// </remarks>
     /// <param name="id">
     ///     <para>
-    ///         The identifier of this keybind. Must be an unique string not used by any other mod, or yourself.
+    ///         The identifier of this keybind. Must be an unique string not used by any other keybind.
     ///     </para>
     ///     <para>
     ///         If null, an unique identifier is generated with the format <c>"{ModId}.{KeybindName}"</c>
@@ -185,7 +230,7 @@ public record Keybind
     /// <param name="gamepadPreset">The key code for usage by gamepad input devices.</param>
     /// <param name="xboxPreset">The key code for usage by Xbox input devices.</param>
     /// <returns>The registered <see cref="Keybind"/> object.</returns>
-    public static Keybind Register(string? id, string name, KeyCode keyboardPreset, KeyCode gamepadPreset, KeyCode xboxPreset) =>
+    public static Keybind Register(string? id, string name, KeyCode keyboardPreset = KeyCode.None, KeyCode gamepadPreset = KeyCode.None, KeyCode xboxPreset = KeyCode.None) =>
         RegisterInternal(Assembly.GetCallingAssembly(), id, name, keyboardPreset, gamepadPreset, xboxPreset);
 
     private static Keybind RegisterInternal(Assembly caller, string? id, string name, KeyCode keyboardPreset, KeyCode gamepadPreset, KeyCode xboxPreset)
@@ -249,7 +294,7 @@ public record Keybind
     /// <param name="self">The Keybind object to be converted.</param>
     public static implicit operator ImprovedInput.PlayerKeybind(Keybind self)
     {
-        return ImprovedInput.PlayerKeybind.Get(self.Id) ?? ImprovedInput.PlayerKeybind.Register(self.Id, self.Mod, self.Name, self.KeyboardPreset, self.GamepadPreset, self.XboxPreset);
+        return ImprovedInput.PlayerKeybind.Get(self.Id) ?? ImprovedInput.PlayerKeybind.Register(self.Id, self.Mod, self.Name, self.KeyboardKey, self.GamepadKey, self.XboxKey);
     }
 
     private static class ImprovedInputAccess

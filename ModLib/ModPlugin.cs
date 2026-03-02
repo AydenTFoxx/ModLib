@@ -34,7 +34,7 @@ public abstract class ModPlugin : BaseUnityPlugin
     /// <summary>
     ///     The custom logger instance for this mod.
     /// </summary>
-    protected ModLogger ModLogger { get; set; }
+    protected new ModLogger Logger { get; set; }
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
@@ -72,9 +72,9 @@ public abstract class ModPlugin : BaseUnityPlugin
     [MethodImpl(MethodImplOptions.NoInlining)]
     private void Initialize(Assembly caller, Type? optionHolder, ModLogger? logger)
     {
-        ModLogger = logger ?? LoggingAdapter.CreateLogger(Logger);
+        Logger = logger ?? LoggingAdapter.CreateLogger(base.Logger);
 
-        Registry.RegisterAssembly(caller, Info.Metadata, optionHolder, ModLogger);
+        Registry.RegisterAssembly(caller, Info.Metadata, optionHolder, Logger);
 
         _initialized = true;
     }
@@ -97,11 +97,11 @@ public abstract class ModPlugin : BaseUnityPlugin
 
             try
             {
-                Initialize(GetType().Assembly, Options?.GetType(), ModLogger);
+                Initialize(GetType().Assembly, Options?.GetType(), Logger);
             }
             catch (Exception ex)
             {
-                Core.Logger.LogError($"ModPlugin initialization failed. The respective mod (\"{Info.Metadata.Name}\") will likely not work as expected.");
+                Core.Logger.LogError($"ModPlugin initialization failed. The respective mod (\"{Info.Metadata.Name}\") may not behave as expected.");
                 Core.Logger.LogError($"Exception: {ex}");
             }
         }
@@ -110,10 +110,10 @@ public abstract class ModPlugin : BaseUnityPlugin
         {
             ApplyHooks();
 
-            ModLogger.LogDebug("Successfully registered hooks to the game.");
-        }, ModLogger);
+            Logger.LogDebug("Successfully registered hooks to the game.");
+        }, Logger);
 
-        ModLogger.LogInfo($"Enabled {Info.Metadata.Name} successfully.");
+        Logger.LogInfo($"Enabled {Info.Metadata.Name} successfully.");
     }
 
     /// <summary>
@@ -138,11 +138,11 @@ public abstract class ModPlugin : BaseUnityPlugin
             {
                 RemoveHooks();
 
-                ModLogger.LogDebug("Removed all hooks successfully.");
-            }, ModLogger);
+                Logger.LogDebug("Removed all hooks successfully.");
+            }, Logger);
         }
 
-        ModLogger.LogInfo($"Disabled {Info.Metadata.Name} successfully.");
+        Logger.LogInfo($"Disabled {Info.Metadata.Name} successfully.");
     }
 
     /// <summary>
@@ -154,7 +154,7 @@ public abstract class ModPlugin : BaseUnityPlugin
     {
         if (Options is null || MachineConnector.SetRegisteredOI(Info.Metadata.GUID, Options)) return;
 
-        ModLogger.LogWarning("Failed to initialize registered option interface! Attempting to register directly to MachineConnector._registeredOIs instead.");
+        Logger.LogWarning("Failed to initialize registered option interface! Attempting to register directly to MachineConnector._registeredOIs instead.");
 
         try
         {
@@ -162,11 +162,11 @@ public abstract class ModPlugin : BaseUnityPlugin
 
             MachineConnector._RefreshOIs();
 
-            ModLogger.LogInfo($"Successfully registered option interface {Options} with mod ID \"{Info.Metadata.GUID}\".");
+            Logger.LogInfo($"Successfully registered option interface {Options} with mod ID \"{Info.Metadata.GUID}\".");
         }
         catch (Exception ex)
         {
-            ModLogger.LogError($"Failed to register option interface to MachineConnector! {ex}");
+            Logger.LogError($"Failed to register option interface to MachineConnector! {ex}");
         }
     }
 
@@ -189,7 +189,7 @@ public abstract class ModPlugin : BaseUnityPlugin
 
         if (!ResourcesLoaded)
         {
-            Extras.WrapAction(LoadResources, ModLogger);
+            Extras.WrapAction(LoadResources, Logger);
 
             ResourcesLoaded = true;
         }

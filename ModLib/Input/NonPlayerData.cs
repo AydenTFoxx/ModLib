@@ -6,7 +6,7 @@ namespace ModLib.Input;
 ///     Provides simple representation of a given player's input data;
 ///     A mirror of <see cref="Plugin.PlayerData"/> which can be converted to and from its original class.
 /// </summary>
-public class CustomInputData
+public class NonPlayerData
 {
     /// <summary>
     ///     The current input buffer of the bound player, accounting for factors such as stun, death, or cutscenes.
@@ -24,12 +24,12 @@ public class CustomInputData
     public int playerNumber;
 
     /// <summary>
-    ///     Creates a new <see cref="CustomInputData"/> from the given <see cref="Plugin.PlayerData"/> instance,
+    ///     Creates a new <see cref="NonPlayerData"/> from the given <see cref="Plugin.PlayerData"/> instance,
     ///     then binds it to the provided player index.
     /// </summary>
     /// <param name="data">The data whose values will be copied from.</param>
     /// <param name="playerNumber">The player index this data should be bound to.</param>
-    public CustomInputData(Plugin.PlayerData data, int playerNumber = 0)
+    public NonPlayerData(Plugin.PlayerData data, int playerNumber = 0)
     {
         this.playerNumber = playerNumber;
 
@@ -37,19 +37,19 @@ public class CustomInputData
     }
 
     /// <summary>
-    ///     Creates a new <see cref="CustomInputData"/> with empty values, bound to the provided player index.
+    ///     Creates a new <see cref="NonPlayerData"/> with empty values, bound to the provided player index.
     /// </summary>
     /// <param name="playerNumber">The player index this data will be bound to.</param>
-    public CustomInputData(int playerNumber)
+    public NonPlayerData(int playerNumber)
         : this()
     {
         this.playerNumber = playerNumber;
     }
 
     /// <summary>
-    ///     Creates a new <see cref="CustomInputData"/> with empty values, bound to the default player index.
+    ///     Creates a new <see cref="NonPlayerData"/> with empty values, bound to the default player index.
     /// </summary>
-    public CustomInputData()
+    public NonPlayerData()
     {
         for (int i = 0; i < input.Length; i++)
         {
@@ -118,7 +118,7 @@ public class CustomInputData
     ///     Converts this data instance to an equivalent <see cref="Plugin.PlayerData"/> instance.
     /// </summary>
     /// <param name="self">The data itself.</param>
-    public static implicit operator Plugin.PlayerData(CustomInputData self)
+    public static implicit operator Plugin.PlayerData(NonPlayerData self)
     {
         Plugin.PlayerData data = new();
 
@@ -128,12 +128,12 @@ public class CustomInputData
     }
 
     /// <summary>
-    ///     Converts a <see cref="Plugin.PlayerData"/> instance to an equivalent <see cref="CustomInputData"/> instance.
+    ///     Converts a <see cref="Plugin.PlayerData"/> instance to an equivalent <see cref="NonPlayerData"/> instance.
     /// </summary>
     /// <param name="self">The data itself.</param>
-    public static implicit operator CustomInputData(Plugin.PlayerData self)
+    public static implicit operator NonPlayerData(Plugin.PlayerData self)
     {
-        CustomInputData data = new();
+        NonPlayerData data = new();
 
         data.CopyFrom(self);
 

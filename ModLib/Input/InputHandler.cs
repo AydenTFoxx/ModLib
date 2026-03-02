@@ -36,7 +36,7 @@ public static class InputHandler
     /// <param name="rawInput">If true, input will be evaluated even if Slugcat itself cannot receive inputs (e.g. when dead or in cutscene mode).</param>
     /// <returns><c>true</c> if the keybind's key is currently being held, <c>false</c> otherwise.</returns>
     public static bool IsKeyDown(this Player player, Keybind keybind, bool rawInput = false) =>
-        keybind is not null && (player.AI is null || player.safariControlled) && (Extras.IsIICEnabled
+        keybind is not null && Extras.IsLocalObject(player) && (player.AI is null || player.safariControlled) && (Extras.IsIICEnabled
             ? ImprovedInputHelper.IsKeyDown(player, keybind, rawInput)
             : keybind.IsDown(player.playerState.playerNumber, !rawInput ? player : null));
 
@@ -49,12 +49,11 @@ public static class InputHandler
     /// </remarks>
     /// <param name="playerNumber">The index of the player.</param>
     /// <param name="keybind">The keybind to be checked.</param>
-    /// <param name="rawInput">If true, input will be evaluated even if Slugcat itself cannot receive inputs (e.g. when dead or in cutscene mode).</param>
     /// <returns><c>true</c> if the keybind's key is currently being held, <c>false</c> otherwise.</returns>
-    public static bool IsKeyDown(int playerNumber, Keybind keybind, bool rawInput = false) =>
+    public static bool IsKeyDown(int playerNumber, Keybind keybind) =>
         keybind is not null && (Extras.IsIICEnabled
-            ? ImprovedInputHelper.IsKeyDown(playerNumber, keybind, rawInput)
-            : keybind.IsDown(playerNumber));
+            ? ImprovedInputHelper.IsKeyDown(playerNumber, keybind, true)
+            : keybind.IsDown(playerNumber, null));
 
     /// <summary>
     ///     Determines whether a given keybind has just been pressed by the player.
@@ -64,7 +63,7 @@ public static class InputHandler
     /// <param name="rawInput">If true, input will be evaluated even if Slugcat itself cannot receive inputs (e.g. when dead or in cutscene mode).</param>
     /// <returns><c>true</c> if the keybind's key was just pressed, <c>false</c> otherwise.</returns>
     public static bool WasKeyJustPressed(this Player player, Keybind keybind, bool rawInput = false) =>
-        keybind is not null && (player.AI is null || player.safariControlled) && (Extras.IsIICEnabled
+        keybind is not null && Extras.IsLocalObject(player) && (player.AI is null || player.safariControlled) && (Extras.IsIICEnabled
             ? ImprovedInputHelper.WasKeyJustPressed(player, keybind, rawInput)
             : keybind.JustPressed(player.playerState.playerNumber, !rawInput ? player : null));
 
@@ -73,27 +72,21 @@ public static class InputHandler
     /// </summary>
     /// <param name="playerNumber">The index of the player.</param>
     /// <param name="keybind">The keybind to be checked.</param>
-    /// <param name="rawInput">If true, input will be evaluated even if Slugcat itself cannot receive inputs (e.g. when dead or in cutscene mode).</param>
     /// <returns><c>true</c> if the keybind's key was just pressed, <c>false</c> otherwise.</returns>
-    public static bool WasKeyJustPressed(int playerNumber, Keybind keybind, bool rawInput = false) =>
+    public static bool WasKeyJustPressed(int playerNumber, Keybind keybind) =>
         keybind is not null && (Extras.IsIICEnabled
-            ? ImprovedInputHelper.WasKeyJustPressed(playerNumber, keybind, rawInput)
-            : keybind.JustPressed(playerNumber));
+            ? ImprovedInputHelper.WasKeyJustPressed(playerNumber, keybind, true)
+            : keybind.JustPressed(playerNumber, null));
 
     /// <summary>
-    ///     Enables or disables input handling for non-player objects.
-    ///     If enabled, a <see cref="CustomInputData"/> can be retrieved from the player's index to obtain their current input.
+    ///     Enables input handling for non-player objects.
+    ///     Requires the Improved Input Config: Extended mod to work; Does nothing otherwise.
     /// </summary>
-    /// <remarks>
-    ///     This requires the Improved Input Config: Extended mod to work, and will do nothing otherwise.
-    /// </remarks>
     /// <param name="playerNumber">The player index to be checked.</param>
-    public static void ToggleInputListener(int playerNumber)
+    public static void AddInputListener(int playerNumber)
     {
         if (!Extras.IsIICEnabled) return;
 
-        CustomInputData? listener = ImprovedInputHelper.GetInputListener(playerNumber);
-
-        ImprovedInputHelper.SetInputListener(playerNumber, listener is null);
+        ImprovedInputHelper.AddInputListener(playerNumber);
     }
 }

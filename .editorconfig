@@ -1,5 +1,8 @@
 [*.cs]
 
+# IDE0008: Use explicit type
+dotnet_diagnostic.IDE0008.severity = suggestion
+
 # IDE0011: Add braces
 csharp_prefer_braces = when_multiline
 
@@ -8,17 +11,14 @@ dotnet_diagnostic.IDE0011.severity = silent
 # IDE0022: Use block body for method
 csharp_style_expression_bodied_methods = when_on_single_line
 
-# IDE0160: Convert to block scoped namespace
-csharp_style_namespace_declarations = file_scoped
+# IDE0028: Simplify collection initialization
+dotnet_diagnostic.IDE0028.severity = silent
 
 # IDE0058: Expression value is never used
 dotnet_diagnostic.IDE0058.severity = none
 
-# IDE0008: Use explicit type
-dotnet_diagnostic.IDE0008.severity = suggestion
+# IDE0160: Convert to block scoped namespace
+csharp_style_namespace_declarations = file_scoped
 
 # Default severity for all analyzer diagnostics
 dotnet_analyzer_diagnostic.severity = warning
-
-# IDE0028: Simplify collection initialization
-dotnet_diagnostic.IDE0028.severity = silent

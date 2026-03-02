@@ -13,10 +13,32 @@ namespace ModLib.Meadow;
 /// <typeparam name="TOnlineValue">The type of the online representation of the dictionary's values.</typeparam>
 public class SerializableDictionary<TOnlineKey, TOnlineValue> : Dictionary<TOnlineKey, TOnlineValue>, Serializer.ICustomSerializable
 {
-    private static readonly MethodInfo Serializer_GetSerializationMethod = typeof(Serializer).GetMethod("GetSerializationMethod", BindingFlags.NonPublic | BindingFlags.Static) ?? throw new MissingMethodException($"Could not retrieve RainMeadow method Serializer.GetSerializationMethod(). (This is a ModLib error; Please report it on its GitHub repository if you're seeing this message)");
+    private static MethodInfo Serializer_GetSerializationMethod
+    {
+        get
+        {
+            field ??= typeof(Serializer).GetMethod("GetSerializationMethod", BindingFlags.NonPublic | BindingFlags.Static) ?? throw new MissingMethodException($"Could not retrieve RainMeadow method Serializer.GetSerializationMethod(). (This is a ModLib error; Please report it on its GitHub repository if you're seeing this message)");
+            return field;
+        }
+    }
 
-    private readonly MethodInfo? _serializeKeyMethod = GetSerializerMethod(typeof(TOnlineKey));
-    private readonly MethodInfo? _serializeValueMethod = GetSerializerMethod(typeof(TOnlineValue));
+    private MethodInfo SerializeKeyMethod
+    {
+        get
+        {
+            field ??= GetSerializerMethod(typeof(TOnlineKey));
+            return field;
+        }
+    }
+
+    private MethodInfo SerializeValueMethod
+    {
+        get
+        {
+            field ??= GetSerializerMethod(typeof(TOnlineValue));
+            return field;
+        }
+    }
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="SerializableDictionary{TOnlineKey, TOnlineValue}"/> class
@@ -139,7 +161,7 @@ public class SerializableDictionary<TOnlineKey, TOnlineValue> : Dictionary<TOnli
     /// </summary>
     /// <param name="conversionMethod">The delegate for converting online types to their local counterparts.</param>
     /// <returns>A new dictionary containing the local representation of all elements in this dictionary.</returns>
-    public IDictionary<TLocalKey, TLocalValue> ToLocalCollection<TLocalKey, TLocalValue>(Func<KeyValuePair<TOnlineKey, TOnlineValue>, KeyValuePair<TLocalKey, TLocalValue>> conversionMethod)
+    public IDictionary<TLocalKey, TLocalValue> MapToLocal<TLocalKey, TLocalValue>(Func<KeyValuePair<TOnlineKey, TOnlineValue>, KeyValuePair<TLocalKey, TLocalValue>> conversionMethod)
     {
         Dictionary<TLocalKey, TLocalValue> result = [];
 
@@ -166,17 +188,17 @@ public class SerializableDictionary<TOnlineKey, TOnlineValue> : Dictionary<TOnli
     /// <param name="serializer">The serializer used for the operation.</param>
     /// <param name="key">The key to be serialized.</param>
     /// <param name="value">The value to be serialized.</param>
-    protected void SerializeElement(Serializer serializer, ref TOnlineKey key, ref TOnlineValue value)
+    protected virtual void SerializeElement(Serializer serializer, ref TOnlineKey key, ref TOnlineValue value)
     {
         if (key is Serializer.ICustomSerializable sKey)
             sKey.CustomSerialize(serializer);
         else
-            _serializeKeyMethod?.Invoke(serializer, [key]);
+            SerializeKeyMethod.Invoke(serializer, [key]);
 
         if (value is Serializer.ICustomSerializable sValue)
             sValue.CustomSerialize(serializer);
         else
-            _serializeValueMethod?.Invoke(serializer, [value]);
+            SerializeValueMethod.Invoke(serializer, [value]);
     }
 
     /// <summary>
@@ -184,9 +206,9 @@ public class SerializableDictionary<TOnlineKey, TOnlineValue> : Dictionary<TOnli
     /// </summary>
     /// <param name="type">The type whose serialization method will be searched.</param>
     /// <returns>The method used for serializing <paramref name="type"/>.</returns>
-    /// <exception cref="ArgumentException">No serialization method was found for <paramref name="type"/>.</exception>
-    private static MethodInfo? GetSerializerMethod(Type type) =>
+    /// <exception cref="InvalidProgrammerException">No serialization method was found for <paramref name="type"/>.</exception>
+    private static MethodInfo GetSerializerMethod(Type type) =>
         type is Serializer.ICustomSerializable
-            ? null
-            : (MethodInfo)Serializer_GetSerializationMethod.Invoke(null, [type, (!type.IsValueType && (!type.IsArray || !type.GetElementType().IsValueType)) || Nullable.GetUnderlyingType(type) is not null, true, true]) ?? throw new ArgumentException($"Could not find serializer method for type {type}.", nameof(type));
+            ? type.GetMethod("CustomSerialize", BindingFlags.Public | BindingFlags.Instance, null, [typeof(Serializer)], null)
+            : (MethodInfo)Serializer_GetSerializationMethod.Invoke(null, [type, (!type.IsValueType && (!type.IsArray || !type.GetElementType().IsValueType)) || Nullable.GetUnderlyingType(type) is not null, true, true]) ?? throw new InvalidProgrammerException($"Could not find a serialization method for {type}");
 }

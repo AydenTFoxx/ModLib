@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -21,7 +22,7 @@ namespace ModLib.Loader;
 [EditorBrowsable(EditorBrowsableState.Advanced)]
 public static class Entrypoint
 {
-    private static readonly List<IExtensionEntrypoint> LoadedExtensions = [];
+    internal static readonly List<IExtensionEntrypoint> LoadedExtensions = [];
 
     private static ManualLogSource LogSource = Logger.CreateLogSource("ModLib.Entrypoint");
     private static ILHook? _initHook;
@@ -137,8 +138,39 @@ public static class Entrypoint
         LoadedExtensions.Clear();
     }
 
+    internal static void CheckExtensionAssemblies(string path)
+    {
+        try
+        {
+            string[] extensionPaths = Directory.GetFiles(path, "*.modlib.dll", SearchOption.TopDirectoryOnly);
+
+            if (extensionPaths.Length is 0) return;
+
+            for (int i = 0; i < extensionPaths.Length; i++)
+            {
+                try
+                {
+                    Assembly.LoadFrom(extensionPaths[i]);
+                }
+                catch (Exception ex)
+                {
+                    LogSource.LogError($"Failed to load extension assembly: {extensionPaths[i]}");
+                    LogSource.LogError($"Exception: {ex}");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            LogSource.LogError(ex);
+        }
+    }
+
     private static void CoreInitialize()
     {
+        if (IsInitialized) return;
+
+        LogSource ??= Core.LogSource;
+
         if (LoadedExtensions.Count > 0)
         {
             for (int i = 0; i < LoadedExtensions.Count; i++)
@@ -190,7 +222,9 @@ public static class Entrypoint
 
     private static void LoadExtensionEntrypoints()
     {
-        List<Type> types = [.. AssemblyExtensions.GetAllTypes().Where(static t => t is { IsInterface: false, IsAbstract: false } && typeof(IExtensionEntrypoint).IsAssignableFrom(t))];
+        BepInEx.MultiFolderLoader.ModManager.Mods.ForEach(static mod => CheckExtensionAssemblies(mod.PluginsPath));
+
+        List<Type> types = [.. AssemblyExtensions.GetAllTypes(cacheResults: false).Where(static t => !t.IsInterface && (!t.IsAbstract || t.IsSealed) && typeof(IExtensionEntrypoint).IsAssignableFrom(t))];
 
         if (types.Count == 0)
         {
@@ -208,7 +242,8 @@ public static class Entrypoint
 
                 LogSource.LogDebug($"Loading extension entrypoint: [{type.AssemblyQualifiedName}]");
 
-                Registry.RegisterAssembly(type.Assembly, entrypoint.Metadata, null, null);
+                if (!Registry.TryGetMod(type.Assembly, out _))
+                    Registry.RegisterAssembly(type.Assembly, entrypoint.Metadata, null, null);
 
                 LoadedExtensions.Add(entrypoint);
             }

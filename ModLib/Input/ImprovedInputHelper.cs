@@ -1,15 +1,39 @@
+using System;
 using ImprovedInput;
+using UnityEngine;
 
 namespace ModLib.Input;
 
 internal static class ImprovedInputHelper
 {
-    private static readonly CustomInputData?[] InputData = new CustomInputData[CustomInputExt.MaxPlayers];
+    private static NonPlayerData?[] InputData = new NonPlayerData[1];
 
-    public static CustomInputData? GetInputListener(int playerNumber) => InputData[playerNumber];
+    public static NonPlayerData? GetInputListener(int playerNumber)
+    {
+        if (playerNumber < 0 || playerNumber >= Keybind.TotalMaxPlayers)
+            throw new ArgumentOutOfRangeException(nameof(playerNumber), $"Player index must be a value between 0 and {Keybind.TotalMaxPlayers - 1}.");
 
-    public static void SetInputListener(int playerNumber, bool enable) =>
-        InputData[playerNumber] = enable ? new CustomInputData(playerNumber) : null;
+        if (playerNumber >= InputData.Length)
+            Array.Resize(ref InputData, InputData.Length * 2);
+
+        return InputData[playerNumber];
+    }
+
+    public static void AddInputListener(int playerNumber)
+    {
+        if (playerNumber < 0 || playerNumber >= Keybind.TotalMaxPlayers)
+            throw new ArgumentOutOfRangeException(nameof(playerNumber), $"Player index must be a value between 0 and {Keybind.TotalMaxPlayers - 1}.");
+
+        if (playerNumber >= InputData.Length)
+            Array.Resize(ref InputData, InputData.Length * 2);
+
+        InputData[playerNumber] ??= new NonPlayerData(playerNumber);
+    }
+
+    public static KeyCode KeyCodeFromKeybind(Keybind keybind, int playerIndex) => KeyCodeFromKeybind((PlayerKeybind)keybind, playerIndex);
+
+    public static KeyCode KeyCodeFromKeybind(PlayerKeybind keybind, int playerIndex) =>
+        RWCustom.Custom.rainWorld?.options?.controls[playerIndex].KeyCodeFromAction(keybind.gameAction, 0, keybind.axisPositive) ?? 0;
 
     public static bool IsKeyDown(Player player, Keybind keybind, bool rawInput) =>
         rawInput
@@ -18,7 +42,7 @@ internal static class ImprovedInputHelper
 
     public static bool IsKeyDown(int playerNumber, Keybind keybind, bool rawInput)
     {
-        CustomInputData? data = InputData[playerNumber];
+        NonPlayerData? data = InputData[playerNumber];
 
         if (data is null) return false;
 
@@ -41,7 +65,7 @@ internal static class ImprovedInputHelper
 
     public static bool WasKeyJustPressed(int playerNumber, Keybind keybind, bool rawInput)
     {
-        CustomInputData? data = InputData[playerNumber];
+        NonPlayerData? data = InputData[playerNumber];
 
         if (data is null) return false;
 
@@ -54,14 +78,14 @@ internal static class ImprovedInputHelper
     {
         if (PlayerKeybind.Get(keybind.Id) is not null) return;
 
-        PlayerKeybind.Register(keybind.Id, keybind.Mod, keybind.Name, keybind.KeyboardPreset, keybind.GamepadPreset, keybind.XboxPreset);
+        PlayerKeybind.Register(keybind.Id, keybind.Mod, keybind.Name, keybind.KeyboardKey, keybind.GamepadKey, keybind.XboxKey);
     }
 
     public static void UpdateInput()
     {
         if (InputData.Length == 0) return;
 
-        foreach (CustomInputData? data in InputData)
+        foreach (NonPlayerData? data in InputData)
         {
             if (data is null) continue;
 

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using BepInEx;
 using BepInEx.Logging;
 
 namespace ModLib;
@@ -11,11 +13,36 @@ namespace ModLib;
 /// </summary>
 public static class CompatibilityManager
 {
-    private static readonly Dictionary<string, bool> ManagedMods = [];
+    internal static readonly Dictionary<string, bool> ManagedMods = [];
 
-    internal const string RAIN_MEADOW_ID = "henpemaz_rainmeadow";
-    internal const string IMPROVED_INPUT_ID = "improved-input-config";
-    internal const string FAKE_ACHIEVEMENTS_ID = "ddemile.fake_achievements";
+    internal static IEnumerable<BaseUnityPlugin> LoadedPlugins
+    {
+        get
+        {
+            field ??= (List<BaseUnityPlugin>)typeof(BepInEx.Bootstrap.Chainloader).GetField("_plugins", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null);
+            return field;
+        }
+    }
+
+    /// <summary>
+    ///     The unique identifier of the Rain Meadow mod. This field is constant.
+    /// </summary>
+    public const string RAIN_MEADOW_ID = "henpemaz_rainmeadow";
+
+    /// <summary>
+    ///     The unique identifier of the Improved Input Config: Extended mod. This field is constant.
+    /// </summary>
+    public const string IMPROVED_INPUT_ID = "improved-input-config";
+
+    /// <summary>
+    ///     The unique identifier of the Fake Achievements mod. This field is constant.
+    /// </summary>
+    public const string FAKE_ACHIEVEMENTS_ID = "ddemile.fake_achievements";
+
+    /// <summary>
+    ///     The unique identifier of the Dev Console mod. This field is constant.
+    /// </summary>
+    public const string DEV_CONSOLE_ID = "slime-cubed.devconsole";
 
     /// <summary>
     ///     Clears the internal dictionary of cached mods.
@@ -33,37 +60,46 @@ public static class CompatibilityManager
         if (!forceQuery && ManagedMods.TryGetValue(modID, out bool value))
             return value;
 
-        bool result = ModManager.ActiveMods.Any(mod => mod.id == modID);
+        bool result = Core.Initialized
+            ? ModManager.ActiveMods.Any(mod => mod.id == modID)
+            : LoadedPlugins.Any(plugin => plugin.Info.Metadata.GUID == modID);
 
         SetModCompatibility(modID, result);
 
         return result;
     }
 
+    internal static bool IsModEnabled_NoCache(string modID, bool forceQuery = false) =>
+        !forceQuery && ManagedMods.TryGetValue(modID, out bool value)
+            ? value
+            : Core.Initialized
+                ? ModManager.ActiveMods.Any(mod => mod.id == modID)
+                : LoadedPlugins.Any(plugin => plugin.Info.Metadata.GUID == modID);
+
     /// <summary>
     ///     Determines if the Fake AChievements mod is enabled.
     /// </summary>
-    /// <param name="forceQuery">If true, ignores any previously cached result and queries for Rain Meadow's ID directly.</param>
     /// <returns><c>true</c> if the mod is enabled, <c>false</c> otherwise.</returns>
-    public static bool IsFakeAchievementsEnabled(bool forceQuery = false) => IsModEnabled(FAKE_ACHIEVEMENTS_ID, forceQuery);
+    public static bool IsFakeAchievementsEnabled() => IsModEnabled(FAKE_ACHIEVEMENTS_ID, true);
 
     /// <summary>
     ///     Determines if either Improved Input Config or Improved Input Config: Extended are enabled.
     /// </summary>
-    /// <param name="forceQuery">If true, ignores any previously cached result and queries for IIC's ID directly.</param>
     /// <returns><c>true</c> if one of these mods is enabled, <c>false</c> otherwise.</returns>
-    public static bool IsIICEnabled(bool forceQuery = false) => IsModEnabled(IMPROVED_INPUT_ID, forceQuery);
+    public static bool IsIICEnabled() => IsModEnabled(IMPROVED_INPUT_ID, true);
 
     /// <summary>
     ///     Determines if the Rain Meadow mod is enabled.
     /// </summary>
-    /// <param name="forceQuery">If true, ignores any previously cached result and queries for Rain Meadow's ID directly.</param>
     /// <returns><c>true</c> if the mod is enabled, <c>false</c> otherwise.</returns>
-    public static bool IsRainMeadowEnabled(bool forceQuery = false) => IsModEnabled(RAIN_MEADOW_ID, forceQuery);
+    public static bool IsRainMeadowEnabled() => IsModEnabled(RAIN_MEADOW_ID, true);
 
     /// <summary>
     ///     Overrides the configured compatibility features for a given mod.
     /// </summary>
+    /// <remarks>
+    ///     This method does not affect the static values stored in the <see cref="Extras"/> class.
+    /// </remarks>
     /// <param name="modID">The identifier of the mod.</param>
     /// <param name="enable">Whether or not compatibility with the given mod should be enabled.</param>
     public static void SetModCompatibility(string modID, bool enable) => ManagedMods[modID] = enable;
@@ -93,22 +129,23 @@ public static class CompatibilityManager
                 [
                     [RAIN_MEADOW_ID, "3388224007"],  // Rain Meadow
                     [IMPROVED_INPUT_ID, "3458119961"], // Improved Input Config: Extended
-                    [FAKE_ACHIEVEMENTS_ID, "3255024058"] // Fake Achievements
+                    [FAKE_ACHIEVEMENTS_ID, "3255024058"], // Fake Achievements
+                    [DEV_CONSOLE_ID, "2920528044"] // Dev Console
                 ],
                 new ModIDEqualityComparer()
             );
 
             foreach (string[] modIDs in userModIDs)
             {
-                if (configuredModIDs.TryGetValue(modIDs, out string[] currentModIDs))
+                if (configuredModIDs.TryGetValue(modIDs, out string[] currentModIDs)) // If first mod ID is the same... (first ID is BepInEx ID)
                 {
                     configuredModIDs.Remove(currentModIDs);
 
-                    configuredModIDs.Add([.. currentModIDs.Union(modIDs)]);
+                    configuredModIDs.Add([.. currentModIDs.Union(modIDs)]); // ...override with user-defined list
                 }
                 else
                 {
-                    configuredModIDs.Add(modIDs);
+                    configuredModIDs.Add(modIDs); // otherwise, just add the new array of IDs
                 }
             }
 

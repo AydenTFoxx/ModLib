@@ -12,35 +12,75 @@ using UnityEngine;
 namespace ModLib.Storage;
 
 /// <summary>
-///     JSON-serializable data which is retrieved on initialization and stored in a dedicated file on shutdown.
+///     Mod-unique persistent data which is automatically retrieved and saved to disk by ModLib.
 /// </summary>
 [DataContract]
-public class ModPersistentSaveData
+public class ModData
 {
-    private static readonly string PathToDataFolder = Path.Combine(Application.persistentDataPath, "ModData");
+    internal static readonly List<ModData> StoredInstances = [];
 
-    internal static readonly List<ModPersistentSaveData> RegisteredInstances = [];
+    /// <summary>
+    ///     The path to the folder where data files are stored. This property is read-only.
+    /// </summary>
+    protected static string PathToDataFolder
+    {
+        get
+        {
+            field ??= Path.Combine(Application.persistentDataPath, "ModData");
 
+            return field;
+        }
+    }
+
+    /// <summary>
+    ///     The dictionary where all data of this instance is stored.
+    /// </summary>
     [DataMember]
-    private Dictionary<string, object> Data = [];
+    protected internal Dictionary<string, object> Data { get; set; } = [];
 
-    private readonly string modID;
-    private readonly bool isGlobal;
+    /// <summary>
+    ///     The identifier of the mod owning this data holder. This property is read-only.
+    /// </summary>
+    public string ModID { get; }
+
+    /// <summary>
+    ///     Whether or not this data holder instance is shared between all save slots of the game. This property is read-only.
+    /// </summary>
+    public bool IsGlobal { get; }
+
+    /// <summary>
+    ///     Whether or not this data holder instance is automatically managed by ModLib for saving and retrieving data. This property is read-only.
+    /// </summary>
+    public bool AutoSave { get; }
+
+    /// <summary>
+    ///     The name of the file where data will be stored. This property is read-only.
+    /// </summary>
+    protected string? SaveFileName { get; }
 
     /// <summary>
     ///     Creates a new persistent data for this mod.
     /// </summary>
-    /// <param name="isGlobal">If true, all save slots will share the same data file. Otherwise, each slot has a separate file in its own folder.</param>
-    /// <param name="manualSave">If true, ModLib will not automatically save the stored data. Otherwise, the data is stored in a JSON file upon closing the game.</param>
-    public ModPersistentSaveData(bool isGlobal = false, bool manualSave = false)
+    /// <param name="saveFileName">If specified, overrides the default file name for the stored data.</param>
+    /// <param name="isGlobal">If true, all three save slots will share the same data file. Otherwise, each slot will have its own save file.</param>
+    /// <param name="autoSave">If true, ModLib will load any previously stored data on construction, and save it to a JSON file on shutdown.</param>
+    public ModData(string? saveFileName = "", bool isGlobal = false, bool autoSave = true)
     {
-        modID = Registry.GetMod(Assembly.GetCallingAssembly()).Plugin.GUID;
-        this.isGlobal = isGlobal;
+        ModID = Registry.GetMod(Assembly.GetCallingAssembly()).Plugin.GUID;
 
-        LoadFromFile();
+        IsGlobal = isGlobal;
+        AutoSave = autoSave;
 
-        if (!manualSave)
-            RegisteredInstances.Add(this);
+        if (autoSave)
+        {
+            SaveFileName = string.IsNullOrWhiteSpace(saveFileName)
+                ? Registry.SanitizeModName(ModID)
+                : saveFileName;
+
+            LoadFromFile();
+        }
+
+        StoredInstances.Add(this);
     }
 
     /// <summary>
@@ -119,7 +159,7 @@ public class ModPersistentSaveData
         catch (Exception ex)
         {
             if (ex is not InvalidCastException)
-                Core.Logger.LogError($"Failed to retrieve data for {modID}! {ex}");
+                Core.Logger.LogError($"Failed to retrieve data for {ModID}! {ex}");
         }
 
         data = default!;
@@ -145,15 +185,19 @@ public class ModPersistentSaveData
     /// </summary>
     /// <param name="key">The key the data will be bound to.</param>
     /// <param name="data">The data to be stored.</param>
+    /// <exception cref="ArgumentNullException">key is null</exception>
     public void SetData(string key, object data) => Data[key] = data;
 
-    internal void SaveToFile()
+    /// <summary>
+    ///     Saves this instance's data to its respective save file.
+    /// </summary>
+    protected internal virtual void SaveToFile()
     {
         try
         {
             string pathToFile = GetPathToFile();
 
-            DataContractJsonSerializer serializer = new(typeof(ModPersistentSaveData), Data.Values.Select(static o => o.GetType()));
+            DataContractJsonSerializer serializer = new(typeof(ModData), Data.Values.Select(static o => o.GetType()));
 
             using MemoryStream ms = new();
 
@@ -163,25 +207,28 @@ public class ModPersistentSaveData
 
             if (!string.IsNullOrWhiteSpace(data))
             {
-                if (!isGlobal)
+                if (!IsGlobal)
                     Directory.CreateDirectory(Path.GetDirectoryName(pathToFile));
 
                 File.WriteAllText(pathToFile, data);
 
-                Core.Logger.LogDebug($"Saving data from {modID} to {pathToFile.Replace(Application.persistentDataPath, "")}");
+                Core.Logger.LogDebug($"Saving data from {ModID} to {pathToFile.Replace(Application.persistentDataPath, "")}");
             }
             else
             {
-                Core.Logger.LogDebug($"Data is empty; Not saving to file. ({modID})");
+                Core.Logger.LogDebug($"Data is empty; Not saving to file. ({ModID})");
             }
         }
         catch (Exception ex)
         {
-            Core.Logger.LogError($"Failed to save persistent data for {modID}! {ex}");
+            Core.Logger.LogError($"Failed to save persistent data for {ModID}! {ex}");
         }
     }
 
-    internal void LoadFromFile()
+    /// <summary>
+    ///     Loads this mod's data from its JSON file, if any.
+    /// </summary>
+    protected internal virtual void LoadFromFile()
     {
         try
         {
@@ -193,22 +240,26 @@ public class ModPersistentSaveData
 
             if (string.IsNullOrWhiteSpace(data)) return;
 
-            DataContractJsonSerializer serializer = new(typeof(ModPersistentSaveData));
+            DataContractJsonSerializer serializer = new(typeof(ModData));
 
             using MemoryStream ms = new(Encoding.UTF8.GetBytes(data));
 
-            Data = ((ModPersistentSaveData)serializer.ReadObject(ms)).Data;
+            Data = ((ModData)serializer.ReadObject(ms)).Data;
 
-            Core.Logger.LogDebug($"Retrieved data from {modID}!");
+            Core.Logger.LogDebug($"Retrieved data from {ModID}!");
         }
         catch (Exception ex)
         {
-            Core.Logger.LogError($"Failed to load persistent data for {modID}! {ex}");
+            Core.Logger.LogError($"Failed to load persistent data for {ModID}! {ex}");
         }
     }
 
-    private string GetPathToFile() =>
-        isGlobal
-            ? Path.Combine(PathToDataFolder, Registry.SanitizeModName(modID) + ".json")
-            : Path.Combine(PathToDataFolder, Custom.rainWorld?.options?.saveSlot.ToString() ?? "0", Registry.SanitizeModName(modID) + ".json");
+    /// <summary>
+    ///     Retrieves the path to the file where data will be stored/retrieved.
+    /// </summary>
+    /// <returns>The full path to the file where data will be stored/retrieved.</returns>
+    protected virtual string GetPathToFile() =>
+        IsGlobal
+            ? Path.Combine(PathToDataFolder, $"{SaveFileName}.json")
+            : Path.Combine(PathToDataFolder, Custom.rainWorld?.options?.saveSlot.ToString() ?? "0", $"{SaveFileName}.json");
 }
