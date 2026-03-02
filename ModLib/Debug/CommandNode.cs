@@ -6,6 +6,8 @@ using System.Linq;
 
 namespace ModLib.Debug;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 public sealed class CommandNode : IEquatable<CommandNode>
 {
     private readonly List<CommandNode> _children = [];

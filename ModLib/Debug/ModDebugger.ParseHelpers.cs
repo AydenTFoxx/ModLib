@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace ModLib.Debug;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 public static partial class ModDebugger
 {
     private const int MAX_CAST_RECURSION = 20;

@@ -18,6 +18,8 @@ using UnityEngine;
 
 namespace ModLib.Debug;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 public static partial class ModDebugger
 {
     public static readonly CommandNode MainCommandTree = new("modlib", $"Base interactive command for managing ModLib's various modules.{Environment.NewLine}{Environment.NewLine}To invoke a particular command, type `modlib <CommandName>` plus any arguments.",

@@ -391,11 +391,6 @@
             </summary>
             <param name="supportedModIDs">The list of mod IDs to be queried.</param>
         </member>
-        <member name="T:ModLib.Debug.ModDebugger">
-             <summary>
-            
-             </summary>
-        </member>
         <member name="T:ModLib.Extensions.AssemblyExtensions">
             <summary>
                 Utility and extension methods for handling assemblies.
@@ -907,6 +902,19 @@
             <param name="allowLevels">The logging level(s) that will be processed for logging. Log requests whose log level is not specified here are ignored.</param>
             <exception cref="T:System.ArgumentException">logSource is null and the caller mod assembly is not registered to ModLib.</exception>
         </member>
+        <member name="M:ModLib.Logging.FallbackLogger.#ctor(System.String)">
+            <summary>
+                Creates a new default logger with the specified log name and default logging filters.
+            </summary>
+            <param name="logName">The name of the logging file. If a rooted path is specified, it is instead used as the direct path to the log file.</param>
+        </member>
+        <member name="M:ModLib.Logging.FallbackLogger.#ctor(System.String,BepInEx.Logging.LogLevel)">
+            <summary>
+                Creates a new default logger with the given log source and logging filters.
+            </summary>
+            <param name="logName">The name of the logging file. If a rooted path is specified, it is instead used as the direct path to the log file.</param>
+            <param name="allowLevels">The logging level(s) that will be processed for logging. Log requests whose log level is not specified here are ignored.</param>
+        </member>
         <member name="M:ModLib.Logging.FallbackLogger.GetLogSource">
             <inheritdoc/>
         </member>
@@ -919,12 +927,11 @@
             </summary>
         </member>
         <member name="M:ModLib.Logging.LoggingAdapter.CreateLogger(BepInEx.Logging.ManualLogSource,BepInEx.Logging.LogLevel)">
-             <summary>
-                 Creates a logger instance employing a safe encapsulation technique.
-             </summary>
-             <param name="logSource">The BepInEx source to use for identification and logging.</param>
-             <param name="filterLevels">If specified, the logging levels that will be ignored by the new logger instance.</param>
-            
+            <summary>
+                Creates a logger instance employing a safe encapsulation technique.
+            </summary>
+            <param name="logSource">The BepInEx source to use for identification and logging.</param>
+            <param name="allowLevels">If specified, the logging levels that the new logger instance will listen to. By default, all log levels are enabled.</param>
         </member>
         <member name="T:ModLib.Logging.LogUtilsLogger">
             <summary>

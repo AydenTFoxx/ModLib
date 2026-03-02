@@ -7,9 +7,8 @@ using UnityEngine;
 
 namespace ModLib.Debug;
 
-/// <summary>
-///
-/// </summary>
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+
 public static partial class ModDebugger
 {
     internal static void RegisterCommands()

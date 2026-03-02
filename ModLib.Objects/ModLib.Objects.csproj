@@ -50,18 +50,14 @@
 	<!-- Post-compile tasks -->
 	<Target Name="GenerateModLibrary" AfterTargets="PostBuildEvent">
 		<ItemGroup>
-			<RenameTargets Include="$(TargetDir)$(TargetName).*" />
+			<CopyPlugins Include="$(TargetDir)$(TargetName).dll" />
+			<CopyPlugins Include="$(TargetDir)$(TargetName).pdb" />
 
-			<CopyPlugins Include="$(TargetDir)$(TargetName).modlib.dll" />
-			<CopyPlugins Include="$(TargetDir)$(TargetName).modlib.pdb" />
-
-			<CopyDocs Include="$(TargetDir)$(TargetName).modlib.xml" />
+			<CopyDocs Include="$(TargetDir)$(TargetName).xml" />
 		</ItemGroup>
 
-		<Move SourceFiles="@(RenameTargets)" DestinationFiles="@(RenameTargets->Replace('$(TargetName).', '$(TargetName).modlib.'))" />
-
-		<Copy SourceFiles="@(CopyPlugins)" DestinationFolder="./_plugins/" />
-		<Copy SourceFiles="@(CopyPlugins)" DestinationFolder="../mod/newest/plugins/" />
+		<Copy SourceFiles="@(CopyPlugins)" DestinationFiles="@(CopyPlugins->Replace('$(TargetDir)', './_plugins/')->Replace('$(TargetName).', '$(TargetName).modlib.'))" />
+		<Copy SourceFiles="@(CopyPlugins)" DestinationFiles="@(CopyPlugins->Replace('$(TargetDir)', '../mod/newest/plugins/')->Replace('$(TargetName).', '$(TargetName).modlib.'))" />
 
 		<Copy SourceFiles="@(CopyPlugins); @(CopyDocs)" DestinationFolder="../lib/Custom/" />
 	</Target>
