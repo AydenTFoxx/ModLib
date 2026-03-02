@@ -48,7 +48,7 @@ internal static class AssemblyUtils
 
                     LastFoundAssembly = new AssemblyCandidate(version, targetPath);
 
-                    Patcher.Logger.LogInfo($"Found candidate: {FormatCandidate(LastFoundAssembly)}");
+                    Patcher.LogSource.LogInfo($"Found candidate: {FormatCandidate(LastFoundAssembly)}");
 
                     if (target.Path == null || target.Version < version)
                         target = LastFoundAssembly;
@@ -56,11 +56,11 @@ internal static class AssemblyUtils
             }
             catch (IOException ex)
             {
-                Patcher.Logger.LogError($"Error trying to access {searchPath}: {ex.Message}");
+                Patcher.LogSource.LogError($"Error trying to access {searchPath}: {ex.Message}");
             }
             catch (Exception ex)
             {
-                Patcher.Logger.LogError($"Error reading version from {searchPath}: {ex.Message}");
+                Patcher.LogSource.LogError($"Error reading version from {searchPath}: {ex.Message}");
             }
         }
         return target;

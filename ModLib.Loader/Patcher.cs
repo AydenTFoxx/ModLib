@@ -15,10 +15,10 @@ namespace ModLib.Loader;
 
 public static class Patcher
 {
-    internal static readonly ManualLogSource Logger = BepInEx.Logging.Logger.CreateLogSource("ModLib.Loader");
+    internal static ManualLogSource LogSource = Logger.CreateLogSource("ModLib.Loader");
 
-    private static bool loadedAssembly;
-    private static readonly List<string> CompatibilityPaths = [];
+    private static List<string> CompatibilityPaths = [];
+    private static bool _loadedAssembly;
 
     public static IEnumerable<string> TargetDLLs => GetDLLs();
 
@@ -26,30 +26,21 @@ public static class Patcher
     {
         yield return "BepInEx.MultiFolderLoader.dll";
 
-        Logger.LogMessage($"Looking for ModLib assemblies...");
+        LogSource.LogMessage($"Looking for ModLib assemblies...");
 
         AssemblyCandidate target = AssemblyUtils.FindLatestAssembly(GetSearchPaths(true), "ModLib.dll");
 
-        if (target.Path != null)
+        if (!string.IsNullOrEmpty(target.Path))
         {
-            Logger.LogMessage($"Loading latest ModLib DLL: {AssemblyUtils.FormatCandidate(target, true)}");
+            LogSource.LogMessage($"Loading latest ModLib DLL: {AssemblyUtils.FormatCandidate(target, true)}");
 
             Assembly.LoadFrom(target.Path);
 
-            AssemblyCandidate targetObjects = AssemblyUtils.FindLatestAssembly(GetSearchPaths(false), "ModLib.Objects.dll");
-
-            if (targetObjects.Path != null)
-            {
-                Logger.LogMessage($"Loading latest ModLib.Objects DLL: {AssemblyUtils.FormatCandidate(targetObjects, true)}");
-
-                Assembly.LoadFrom(targetObjects.Path);
-            }
-
-            loadedAssembly = true;
+            _loadedAssembly = true;
         }
         else
         {
-            Logger.LogInfo("No ModLib assembly found.");
+            LogSource.LogInfo("No ModLib assembly found.");
         }
     }
 
@@ -64,7 +55,7 @@ public static class Patcher
 
                 if (compatFilePath is not null)
                 {
-                    Logger.LogInfo($"Found CM config file: {AssemblyUtils.GetModName(compatFilePath, true)}");
+                    LogSource.LogInfo($"Found CM config file: {AssemblyUtils.GetModName(compatFilePath, true)}");
 
                     CompatibilityPaths.Add(compatFilePath);
                 }
@@ -90,7 +81,7 @@ public static class Patcher
 
     public static void Finish()
     {
-        if (!loadedAssembly) return;
+        if (!_loadedAssembly) return;
 
         try
         {
@@ -98,12 +89,14 @@ public static class Patcher
         }
         catch (Exception ex)
         {
-            Logger.LogError($"Failed to initialize ModLib entrypoint: {ex} (Init Phase: #0)");
+            LogSource.LogError($"Failed to initialize ModLib entrypoint: {ex} (Init Phase: #0)");
         }
 
         CompatibilityPaths.Clear();
+        CompatibilityPaths = null!;
 
-        BepInEx.Logging.Logger.Sources.Remove(Logger);
+        Logger.Sources.Remove(LogSource);
+        LogSource = null!;
     }
 
     private static class ModLibAccess
